@@ -12,36 +12,47 @@ This page will be where the visitor can take a scent finder quiz that is specifi
 This page will be where the visitor can take a scent finder quiz that is specific to body products - questions will pertain to skin sensitivity, scent intensity, and types of scents.
 
 ## Products Page(s)
-* Home products page
-* Body products page
+* Home products list page
+* Body products list page
+* Can switch currency type for preferred currency (currency converter integration)
+* Reviews per product detail page (list)
 
 Each product linked to detail page and product can be added to cart from main or detail pages
 
-## Customer Account Page
+## Customer Account Pages
 * Wishlist page/saved items
 * Scent profile - saved quiz results
-* Order history
+* Order history - option to leave a review for a purchased product
 * Account information
 
+Users can visit the wishlist page which contains a list of favorited items which can be added through the products page when hovering over a specific listing.
 
-
+Users can also visit a scent profile page to see their past results/recommendations for products after completing a quiz.
 
 
 ## Cart/Checkout
+* Can switch currency type for preferred currency (currency converter integration)
+* Can checkout as a guest, no sign in required
 
 
 ## About Page
-* Map integration
-
-
-## FAQ
-
+* Contains company information (description and social media links), and ingredient sourcing information (google maps integration)
+* FAQ
 ---
-## Employee side:
+# Employee side
+
 
 ## Inventory Page
+* table containing a list of products and their stocks, quantity counter per row
+* a button to create new products that will be stored in inventory, redirects to [create new product form](##New-Product-Form-Page)
+* search bar to find a specific item to add stock to
 
+## New Product Form Page
+* a form to add new products to inventory
 
 ## Order Fulfillment
+* table of orders with tags to mark status of order
+* link to a detail view containing product info, quantity, price, customer info
+* (in detail view) button to update completion of order
 
 
