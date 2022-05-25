@@ -12,6 +12,13 @@ Smelli Belli - a lifestyle.
 
 Smelli Belli - choose your own scent-venture.
 
+## Design
+
+- [API design](docs/apis.md)
+- [Data model](docs/data-model.md)
+- [GHI](docs/ghi.md)
+- [Integrations](docs/integrations.md)
+
 ## Intended market
 
 We are targeting general consumers in the self-care market who are looking for a tailored shopping experience. Consumers of skincare products, bath & body products, and home goods who can find a wide array of products that conform to their tastes.
