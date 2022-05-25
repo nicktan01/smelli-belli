@@ -4,12 +4,18 @@
 This will be the first page visitors arrive to on the website.
 There will be links to the quizzes on this page.
 
+[Home Page](wireframes/home-page.png)
 
-## Home Scent Quiz
+
+## Home Scent Quiz 
 This page will be where the visitor can take a scent finder quiz that is specific to home products - questions will be relevant to home goods like scent intensity, type of product, room size, number of rooms etc
+
+[Home Scent Quiz](wireframes/home-scent-quiz.PNG)
 
 ## Body Product Quiz
 This page will be where the visitor can take a scent finder quiz that is specific to body products - questions will pertain to skin sensitivity, scent intensity, and types of scents.
+
+[Body Scent Quiz](wireframes/body-scent-quiz.PNG)
 
 ## Products Page(s)
 * Home products list page
@@ -18,6 +24,8 @@ This page will be where the visitor can take a scent finder quiz that is specifi
 * Reviews per product detail page (list)
 
 Each product linked to detail page and product can be added to cart from main or detail pages
+
+[Product Page](wireframes/products-page.PNG)
 
 ## Customer Account Pages
 * Wishlist page/saved items
@@ -29,10 +37,15 @@ Users can visit the wishlist page which contains a list of favorited items which
 
 Users can also visit a scent profile page to see their past results/recommendations for products after completing a quiz.
 
+[Wish List](wireframes/wish-list.PNG)
+
+[Order History](wireframes/order-history.PNG)
+
 
 ## Cart/Checkout
 * Can switch currency type for preferred currency (currency converter integration)
 * Can checkout as a guest, no sign in required
+
 
 
 ## About Page
@@ -47,6 +60,7 @@ Users can also visit a scent profile page to see their past results/recommendati
 * a button to create new products that will be stored in inventory, redirects to [create new product form](##New-Product-Form-Page)
 * search bar to find a specific item to add stock to
 
+[Inventory](wireframes/inventory.PNG)
 ## New Product Form Page
 * a form to add new products to inventory
 
@@ -55,4 +69,5 @@ Users can also visit a scent profile page to see their past results/recommendati
 * link to a detail view containing product info, quantity, price, customer info
 * (in detail view) button to update completion of order
 
+[Order Fulfillment](wireframes/order-fufillment.PNG)
 
