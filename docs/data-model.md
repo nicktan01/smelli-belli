@@ -41,9 +41,21 @@
 
 ## Employees
 
-## Body Quiz
+## Quiz Questions
 
-## Home Quiz
+| name      | type   | unique | optional |
+|-----------|--------|--------|----------|
+| questions | string | y      | n        |
+| answers   | string | y      | n        |
+
+## Quiz Models 
+
+| name      | type     | unique | optional |
+|-----------|----------|--------|----------|
+| user      | string   | n      | n        |
+| questions | string   | n      | n        |
+| responses | string   | n      | n        |
+| created   | datetime | n      | n        |
 
 ## Cart
 
@@ -51,13 +63,12 @@
 
 | Name         | Type | Unique | Optional |
 | ------------ | ---- | ------ | -------- |
-| -            | -    | -      | -        |
 | products     | int  | no     | no       |
 | price        | int  | no     | no       |
 | quantity     | int  | no     | no       |
 | totals       | int  | no     | no       |
 | order_number | int  | yes    | no       |
-| customer     | int  | yes    | no       |
+| customer     | int  | no     | no       |
 
 ## Guest
 
