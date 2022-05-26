@@ -145,7 +145,7 @@ The Address API will be tied to the accounts and users will enter in both a ship
 
 ## Guest
 
-- Method: `POST`
+- Method: `GET`, `POST`
 - Path: `/api/accounts`, `/api/accounts/<int:pk>`
 
 Input:
