@@ -2,24 +2,24 @@
 
 ## Product
 
-| name           | type      | unique | optional |
-| -------------- | --------- | ------ | -------- |
-| name           | string    | yes    | no       |
-| scent          | string    | no     | no       |
-| sku            | string    | yes    | no       |
-| price          | int       | no     | no       |
-| rating         | int       | no     | yes      |
-| size           | int       | no     | no       |
-| quantity       | int       | no     | no       |
-| tags           | string    | no     | no       |
-| ingredients    | string    | no     | no       |
-| limited_item   | bool      | no     | no       |
-| created        | int       | no     | no       |
-| image          | string    | no     | no       |
-| description    | string    | no     | no       |
-| usage          | string    | no     | no       |
-| storage        | string    | no     | no       |
-| is_wish_listed | bool      | no     | no       |
+| name           | type   | unique | optional |
+| -------------- | ------ | ------ | -------- |
+| name           | string | yes    | no       |
+| scent          | string | no     | no       |
+| sku            | string | yes    | no       |
+| price          | int    | no     | no       |
+| rating         | int    | no     | yes      |
+| size           | int    | no     | no       |
+| quantity       | int    | no     | no       |
+| tags           | string | no     | no       |
+| ingredients    | string | no     | no       |
+| limited_item   | bool   | no     | no       |
+| created        | int    | no     | no       |
+| image          | string | no     | no       |
+| description    | string | no     | no       |
+| usage          | string | no     | no       |
+| storage        | string | no     | no       |
+| is_wish_listed | bool   | no     | no       |
 
 The `product` entity contains the data about a specific product
 that a user can purchase.
@@ -45,14 +45,14 @@ that a user can purchase.
 ## Quiz Questions
 
 | name      | type   | unique | optional |
-|-----------|--------|--------|----------|
+| --------- | ------ | ------ | -------- |
 | questions | string | y      | n        |
 | answers   | string | y      | n        |
 
-## Quiz Models 
+## Quiz Models
 
 | name      | type     | unique | optional |
-|-----------|----------|--------|----------|
+| --------- | -------- | ------ | -------- |
 | user      | string   | n      | n        |
 | questions | string   | n      | n        |
 | responses | string   | n      | n        |
@@ -69,14 +69,15 @@ that a user can purchase.
 
 ## Order
 
-| Name         | Type | Unique | Optional |
-| ------------ | ---- | ------ | -------- |
-| products     | int  | no     | no       |
-| price        | int  | no     | no       |
-| quantity     | int  | no     | no       |
-| totals       | int  | no     | no       |
-| order_number | int  | yes    | no       |
-| customer     | int  | no     | no       |
+| Name         | Type     | Unique | Optional |
+| ------------ | -------- | ------ | -------- |
+| products     | int      | no     | no       |
+| price        | int      | no     | no       |
+| quantity     | int      | no     | no       |
+| totals       | int      | no     | no       |
+| order_number | int      | yes    | no       |
+| customer     | int      | no     | no       |
+| created      | datetime | no     | no       |
 
 ## Guest
 
@@ -93,5 +94,3 @@ that a user can purchase.
 | ---------------- | ------ | ------ | -------- |
 | billing_address  | string | no     | no       |
 | shipping_address | string | no     | no       |
-
-
