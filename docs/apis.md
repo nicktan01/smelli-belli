@@ -294,3 +294,5 @@ Output:
 ```
 
 Creating a new order collects all of the relevant product data from the order, and matches the quantities to those prices. It will then calculate the subtotal(s) and total. The order number will be generated serially. A query is also made to match the order to the customer who made the order, placing their name or id in the result.
+
+NOTE: Orders should describe a ProductVO as opposed to the Product entity. The ProductVO will also have a "quantities" prop on it. Then, Orders price and quantity is much more easily calculated and is not manipulating Products directly. We will likely find other value objects as we go through this.
