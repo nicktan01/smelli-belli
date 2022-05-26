@@ -1,8 +1,9 @@
 # Data models
 
 ## Product
+
 | name           | type      | unique | optional |
-|----------------|-----------|--------|----------|
+| -------------- | --------- | ------ | -------- |
 | name           | string    | yes    | no       |
 | scent          | string    | no     | no       |
 | sku            | string    | yes    | no       |
@@ -21,20 +22,23 @@
 | is_wish_listed | bool      | no     | no       |
 
 ## Wish List
+
 | name    | type                        | unique | optional |
-|---------|-----------------------------|--------|----------|
+| ------- | --------------------------- | ------ | -------- |
 | user    | reference to user entity    | true   | false    |
 | product | reference to product entity | true   | true     |
 
 ## Account/User
+
 | Name       | Type                        | Unique | Optional |
-|------------|-----------------------------|--------|----------|
+| ---------- | --------------------------- | ------ | -------- |
 | first_name | string                      | no     | no       |
 | last_name  | string                      | no     | no       |
 | email      | string                      | no     | no       |
 | address    | reference to Address entity | no     | no       |
 | password   | string                      | no     | no       |
 | is_staff   | bool                        | no     | no       |
+
 ## Employees
 
 ## Body Quiz
@@ -42,17 +46,30 @@
 ## Home Quiz
 
 ## Cart
+
 | Name     | Type   | Unique | Optional |
-|----------|--------|--------|----------|
+| -------- | ------ | ------ | -------- |
 | product  | string | no     | no       |
 | quantity | int    | no     | no       |
 | totals   | float  | no     | no       |
 | created  | date   | no     | no       |
+
 ## Order
 
+| Name         | Type | Unique | Optional |
+| ------------ | ---- | ------ | -------- |
+| -            | -    | -      | -        |
+| products     | int  | no     | no       |
+| price        | int  | no     | no       |
+| quantity     | int  | no     | no       |
+| totals       | int  | no     | no       |
+| order_number | int  | yes    | no       |
+| customer     | int  | yes    | no       |
+
 ## Guest
+
 | Name       | Type   | Unique | Optional |
-|------------|--------|--------|----------|
+| ---------- | ------ | ------ | -------- |
 | first_name | string | no     | no       |
 | last_name  | string | no     | no       |
 | email      | string | no     | no       |
@@ -61,7 +78,7 @@
 ## Address
 
 | Name             | Type   | Unique | Optional |
-|------------------|--------|--------|----------|
+| ---------------- | ------ | ------ | -------- |
 | billing_address  | string | no     | no       |
 | shipping_address | string | no     | no       |
 
