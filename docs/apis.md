@@ -210,3 +210,34 @@ Output:
 ```
 
 An instance of a quiz will be created when a user takes the quiz, users will only provide their answers, the output will save answers associated to their questions, the user who took the quiz, and the date/time the quiz was taken. Users with accounts can delete saved quiz results.
+
+## Create a cart
+
+* **Method**: `GET`, `POST`, `DELETE`, `UPDATE`
+* **Path**: /api/cart/<int:pk>
+
+Input:
+
+```json
+{
+  "product": string,
+  "quantity": int,
+  "totals": int,
+  "created": date
+}
+```
+
+Output:
+
+```json
+{
+ {
+  "product": string,
+  "quantity": int,
+  "totals": int,
+  "created": date
+}
+}
+```
+
+Create a new cart that uses the product information to calculate the total price of all the products in the cart
