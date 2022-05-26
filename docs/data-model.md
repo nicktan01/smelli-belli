@@ -33,14 +33,16 @@ that a user can purchase.
 
 ## Account/User
 
-| Name       | Type                        | Unique | Optional |
-| ---------- | --------------------------- | ------ | -------- |
-| first_name | string                      | no     | no       |
-| last_name  | string                      | no     | no       |
-| email      | string                      | no     | no       |
-| address    | reference to Address entity | no     | no       |
-| password   | string                      | no     | no       |
-| is_staff   | bool                        | no     | no       |
+| Name        | Type                        | Unique | Optional |
+| ----------- | --------------------------- | ------ | -------- |
+| first_name  | string                      | no     | no       |
+| last_name   | string                      | no     | no       |
+| email       | string                      | no     | no       |
+| address     | reference to Address entity | no     | no       |
+| password    | string                      | no     | no       |
+| is_staff    | bool                        | no     | no       |
+| is_active   | bool                        | no     | no       |
+| date_joined | datetime                    | no     | no       |
 
 ## Quiz Questions
 
@@ -79,7 +81,7 @@ that a user can purchase.
 | customer     | int      | no     | no       |
 | created      | datetime | no     | no       |
 
-## Guest
+## Guest User
 
 | Name       | Type   | Unique | Optional |
 | ---------- | ------ | ------ | -------- |
