@@ -2,8 +2,8 @@
 
 ## Product
 
-* **Method**: `POST`, `GET`, `GET`, `PUT`, `DELETE`, 
-* **Path**: /api/products, /api/products/<int:pk>
+- **Method**: `POST`, `GET`, `GET`, `PUT`, `DELETE`,
+- **Path**: /api/products, /api/products/<int:pk>
 
 Input:
 
@@ -25,7 +25,7 @@ Input:
   "usage": string,
   "storage": string,
   "is_wish_listed": bool,
-  
+
 }
 ```
 
@@ -52,11 +52,20 @@ Output:
 }
 ```
 
+<<<<<<< HEAD
 Creating a new product saves the name, scent, sku, price, rating, size, quantity, tags, ingredients, limited_item, created, image, description, usage, storage, and is_wish_listed. This adds a new existing Product to the database which can be wish listed, added or purchased by a user.
 
 ## Wish List
 * **Method**: `GET`, `PUT`, `DELETE`, 
 * **Path**: /api/wish_list/<int:pk>,
+=======
+Creating a new product saves the name, scent, sku, price, rating, size, quantity, tags, ingredients, limited_item, created, image, description, usage, storage, and is_wish_listed.
+
+## Wish List
+
+- **Method**: `POST`, `GET`, `PUT`, `DELETE`,
+- **Path**: /api/wish_list/<int:pk>,
+>>>>>>> ed6f2643989ec9f84532fd70ccdbba227ad410f8
 
 Input:
 
@@ -80,8 +89,8 @@ Creating a new product saves the name, scent, sku, price, rating, size, quantity
 
 ## Accounts
 
-* Method: `GET`, `POST`, `PUT`, `DELETE`
-* Path: /api/accounts, /api/accounts/<int:pk>
+- Method: `GET`, `POST`, `PUT`, `DELETE`
+- Path: /api/accounts, /api/accounts/<int:pk>
 
 Input:
 
@@ -115,11 +124,12 @@ Output:
 }
 ```
 
+The Accounts API will create, update, or delete an account for a user on the Smelli Belli website. Users will need to enter in all of the information listed to create an account. The is_staff boolean field will be to determine whether an account has access to Employee pages.
 
 ## Address
 
-* Method: `GET`, `POST`, `PUT`, `DELETE`
-* Path: /api/address, /api/address/<int:pk>
+- Method: `GET`, `POST`, `PUT`, `DELETE`
+- Path: /api/address, /api/address/<int:pk>
 
 Input:
 
@@ -138,11 +148,13 @@ Output:
 "shipping_address": string
 }
 ```
+
+The Address API will be tied to the accounts and users will enter in both a shipping and billing address for their accounts. The addresses can be updated.
 
 ## Guest
 
-* Method: `POST`
-* Path: /api/accounts, /api/accounts/<int:pk>
+- Method: `POST`
+- Path: /api/accounts, /api/accounts/<int:pk>
 
 Input:
 
@@ -156,6 +168,7 @@ Input:
 ```
 
 Output:
+
 ```json
 {
     "first_name": string,
@@ -165,12 +178,15 @@ Output:
 }
 ```
 
+The Guest API will be primarily for users who would not like to make an account to purchase items on Smelli Belli.
+
 ## Questions
 
-* Method: `POST`, `GET`
-* Path: /api/questions
+- Method: `POST`, `GET`
+- Path: /api/questions
 
 Input:
+
 ```json
 {
   "question": string,
@@ -179,6 +195,7 @@ Input:
 ```
 
 Output:
+
 ```json
 {
   "id": int,
@@ -191,10 +208,11 @@ Quiz questions and answers will be populated by employees and will largely remai
 
 ## Quizzes
 
-* Method: `POST`, `DELETE`
-* Path: /api/body-quiz, /api/home-quiz
+- Method: `POST`, `DELETE`
+- Path: /api/body-quiz, /api/home-quiz
 
 Input:
+
 ```json
 {
   "responses": string
@@ -202,6 +220,7 @@ Input:
 ```
 
 Output:
+
 ```json
 {
   "user": string,
@@ -215,8 +234,8 @@ An instance of a quiz will be created when a user takes the quiz, users will onl
 
 ## Create a cart
 
-* **Method**: `GET`, `POST`, `DELETE`, `UPDATE`
-* **Path**: /api/cart/<int:pk>
+- **Method**: `GET`, `POST`, `DELETE`, `UPDATE`
+- **Path**: /api/cart/<int:pk>
 
 Input:
 
@@ -243,6 +262,7 @@ Output:
 ```
 
 Create a new cart that uses the product information to calculate the total price of all the products in the cart
+<<<<<<< HEAD
 
 ## Orders
 
@@ -282,3 +302,5 @@ Output:
 ```
 
 Creating a new order collects all of the relevant product data from the order, and matches the quantities to those prices. It will then calculate the subtotal(s) and total. The order number will be generated serially. A query is also made to match the order to the customer who made the order, placing their name or id in the result.
+=======
+>>>>>>> ed6f2643989ec9f84532fd70ccdbba227ad410f8
