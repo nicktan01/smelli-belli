@@ -14,12 +14,15 @@
 | tags           | string    | no     | no       |
 | ingredients    | string    | no     | no       |
 | limited_item   | bool      | no     | no       |
-| created        | date time | no     | no       |
+| created        | int       | no     | no       |
 | image          | string    | no     | no       |
 | description    | string    | no     | no       |
 | usage          | string    | no     | no       |
 | storage        | string    | no     | no       |
 | is_wish_listed | bool      | no     | no       |
+
+The `product` entity contains the data about a specific product
+that a user can purchase.
 
 ## Wish List
 
@@ -38,8 +41,6 @@
 | address    | reference to Address entity | no     | no       |
 | password   | string                      | no     | no       |
 | is_staff   | bool                        | no     | no       |
-
-## Employees
 
 ## Quiz Questions
 
@@ -94,5 +95,4 @@
 | billing_address  | string | no     | no       |
 | shipping_address | string | no     | no       |
 
-The `location` entity contains the data about a location
-that a conference can be held at.
+
