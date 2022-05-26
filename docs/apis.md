@@ -2,8 +2,8 @@
 
 ## Product
 
-* **Method**: `POST`, `GET`, `GET`, `PUT`, `DELETE`, 
-* **Path**: /api/products, /api/products/<int:pk>
+- **Method**: `POST`, `GET`, `GET`, `PUT`, `DELETE`,
+- **Path**: /api/products, /api/products/<int:pk>
 
 Input:
 
@@ -25,7 +25,7 @@ Input:
   "usage": string,
   "storage": string,
   "is_wish_listed": bool,
-  
+
 }
 ```
 
@@ -52,11 +52,12 @@ Output:
 }
 ```
 
-Creating a new product saves the name, scent, sku, price, rating, size, quantity, tags, ingredients, limited_item, created, image, description, usage, storage, and is_wish_listed. 
+Creating a new product saves the name, scent, sku, price, rating, size, quantity, tags, ingredients, limited_item, created, image, description, usage, storage, and is_wish_listed.
 
 ## Wish List
-* **Method**: `POST`, `GET`, `PUT`, `DELETE`, 
-* **Path**: /api/wish_list/<int:pk>,
+
+- **Method**: `POST`, `GET`, `PUT`, `DELETE`,
+- **Path**: /api/wish_list/<int:pk>,
 
 Input:
 
@@ -78,8 +79,8 @@ Output:
 
 ## Accounts
 
-* Method: `GET`, `POST`, `PUT`, `DELETE`
-* Path: /api/accounts, /api/accounts/<int:pk>
+- Method: `GET`, `POST`, `PUT`, `DELETE`
+- Path: /api/accounts, /api/accounts/<int:pk>
 
 Input:
 
@@ -113,11 +114,12 @@ Output:
 }
 ```
 
+The Accounts API will create, update, or delete an account for a user on the Smelli Belli website. Users will need to enter in all of the information listed to create an account. The is_staff boolean field will be to determine whether an account has access to Employee pages.
 
 ## Address
 
-* Method: `GET`, `POST`, `PUT`, `DELETE`
-* Path: /api/address, /api/address/<int:pk>
+- Method: `GET`, `POST`, `PUT`, `DELETE`
+- Path: /api/address, /api/address/<int:pk>
 
 Input:
 
@@ -136,11 +138,13 @@ Output:
 "shipping_address": string
 }
 ```
+
+The Address API will be tied to the accounts and users will enter in both a shipping and billing address for their accounts. The addresses can be updated.
 
 ## Guest
 
-* Method: `POST`
-* Path: /api/accounts, /api/accounts/<int:pk>
+- Method: `POST`
+- Path: /api/accounts, /api/accounts/<int:pk>
 
 Input:
 
@@ -154,6 +158,7 @@ Input:
 ```
 
 Output:
+
 ```json
 {
     "first_name": string,
@@ -163,12 +168,15 @@ Output:
 }
 ```
 
+The Guest API will be primarily for users who would not like to make an account to purchase items on Smelli Belli.
+
 ## Questions
 
-* Method: `POST`, `GET`
-* Path: /api/questions
+- Method: `POST`, `GET`
+- Path: /api/questions
 
 Input:
+
 ```json
 {
   "question": string,
@@ -177,6 +185,7 @@ Input:
 ```
 
 Output:
+
 ```json
 {
   "id": int,
@@ -189,10 +198,11 @@ Quiz questions and answers will be populated by employees and will largely remai
 
 ## Quizzes
 
-* Method: `POST`, `DELETE`
-* Path: /api/body-quiz, /api/home-quiz
+- Method: `POST`, `DELETE`
+- Path: /api/body-quiz, /api/home-quiz
 
 Input:
+
 ```json
 {
   "responses": string
@@ -200,6 +210,7 @@ Input:
 ```
 
 Output:
+
 ```json
 {
   "user": string,
@@ -213,8 +224,8 @@ An instance of a quiz will be created when a user takes the quiz, users will onl
 
 ## Create a cart
 
-* **Method**: `GET`, `POST`, `DELETE`, `UPDATE`
-* **Path**: /api/cart/<int:pk>
+- **Method**: `GET`, `POST`, `DELETE`, `UPDATE`
+- **Path**: /api/cart/<int:pk>
 
 Input:
 
