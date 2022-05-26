@@ -37,9 +37,21 @@
 | is_staff   | bool                        | no     | no       |
 ## Employees
 
-## Body Quiz
+## Quiz Questions
 
-## Home Quiz
+| name      | type   | unique | optional |
+|-----------|--------|--------|----------|
+| questions | string | y      | n        |
+| answers   | string | y      | n        |
+
+## Quiz Models 
+
+| name      | type     | unique | optional |
+|-----------|----------|--------|----------|
+| user      | string   | n      | n        |
+| questions | string   | n      | n        |
+| responses | string   | n      | n        |
+| created   | datetime | n      | n        |
 
 ## Cart
 | Name     | Type   | Unique | Optional |
