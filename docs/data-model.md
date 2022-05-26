@@ -58,7 +58,6 @@
 
 | Name         | Type | Unique | Optional |
 | ------------ | ---- | ------ | -------- |
-| -            | -    | -      | -        |
 | products     | int  | no     | no       |
 | price        | int  | no     | no       |
 | quantity     | int  | no     | no       |
