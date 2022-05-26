@@ -64,7 +64,7 @@
 | quantity     | int  | no     | no       |
 | totals       | int  | no     | no       |
 | order_number | int  | yes    | no       |
-| customer     | int  | yes    | no       |
+| customer     | int  | no     | no       |
 
 ## Guest
 
