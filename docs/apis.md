@@ -52,10 +52,10 @@ Output:
 }
 ```
 
-Creating a new product saves the name, scent, sku, price, rating, size, quantity, tags, ingredients, limited_item, created, image, description, usage, storage, and is_wish_listed. 
+Creating a new product saves the name, scent, sku, price, rating, size, quantity, tags, ingredients, limited_item, created, image, description, usage, storage, and is_wish_listed. This adds a new existing Product to the database which can be wish listed, added or purchased by a user.
 
 ## Wish List
-* **Method**: `POST`, `GET`, `PUT`, `DELETE`, 
+* **Method**: `GET`, `PUT`, `DELETE`, 
 * **Path**: /api/wish_list/<int:pk>,
 
 Input:
@@ -75,6 +75,8 @@ Output:
   "product": string
 }
 ```
+
+Creating a new product saves the name, scent, sku, price, rating, size, quantity, tags, ingredients, limited_item, created, image, description, usage, storage, and is_wish_listed. This adds a new existing Product to the database which can be wish listed, added or purchased by a user.
 
 ## Accounts
 
@@ -241,3 +243,42 @@ Output:
 ```
 
 Create a new cart that uses the product information to calculate the total price of all the products in the cart
+
+## Orders
+
+* **Method**: `POST`, `GET`, `GET`, `PUT`, `DELETE`
+* **Path**: /api/orders, /api/orders/<int:pk>
+
+Input:
+```json
+{
+  "products": {
+      "name": string,
+    "sku": string,
+    "size": string,
+    "price": int
+  },
+  "price": int,
+  "quantity": int
+}
+```
+
+Output:
+
+```json
+{
+  "products": {
+    "name": string,
+    "sku": string,
+    "size": string,
+    "price": int
+  },
+  "price": int,
+  "quantity": int,
+  "total": int,
+  "order_number": string,
+  "customer": string
+}
+```
+
+Creating a new order collects all of the relevant product data from the order, and matches the quantities to those prices. It will then calculate the subtotal(s) and total. The order number will be generated serially. A query is also made to match the order to the customer who made the order, placing their name or id in the result.

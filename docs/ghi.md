@@ -25,7 +25,9 @@ This page will be where the visitor can take a scent finder quiz that is specifi
 
 Each product linked to detail page and product can be added to cart from main or detail pages
 
-[Product Page](wireframes/products-page.PNG)
+[Product List Page](wireframes/products-list-page.PNG)
+
+[Product Detail Page](wireframes/product-detail-page.PNG)
 
 ## Customer Account Pages
 * Wishlist page/saved items
@@ -39,6 +41,8 @@ Users can also visit a scent profile page to see their past results/recommendati
 
 [Wish List](wireframes/wish-list.PNG)
 
+[Scent Profile](wireframes/scent-profile.PNG)
+
 [Order History](wireframes/order-history.PNG)
 
 
@@ -51,7 +55,11 @@ Users can also visit a scent profile page to see their past results/recommendati
 ## About Page
 * Contains company information (description and social media links), and ingredient sourcing information (google maps integration)
 * FAQ
+
+[About Page](wireframes/about.PNG)
+
 ---
+
 # Employee side
 
 
