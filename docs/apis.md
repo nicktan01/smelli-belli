@@ -121,7 +121,7 @@ The Accounts API will create, update, or delete an account for a user on the Sme
 ## Address
 
 - Method: `GET`, `POST`, `PUT`, `DELETE`
-- Path: `/api/address`, `/api/address/<int:pk>`
+- Path: `/api/addresses`, `/api/addresses/<int:pk>`
 
 Input:
 
@@ -146,7 +146,7 @@ The Address API will be tied to the accounts and users will enter in both a ship
 ## Guest
 
 - Method: `GET`, `POST`
-- Path: `/api/accounts`, `/api/accounts/<int:pk>`
+- Path: `/api/guests`, `/api/guests/<int:pk>`
 
 Input:
 
