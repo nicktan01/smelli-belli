@@ -5,7 +5,7 @@
 This will be the first page visitors arrive to on the website.
 There will be links to the quizzes on this page.
 
-[Home Page](wireframes/home-page.png)
+![Home Page](wireframes/home-page.png)
 
 ## Home Scent Quiz
 
@@ -17,7 +17,7 @@ This page will be where the visitor can take a scent finder quiz that is specifi
 
 This page will be where the visitor can take a scent finder quiz that is specific to body products - questions will pertain to skin sensitivity, scent intensity, and types of scents.
 
-[Body Scent Quiz](wireframes/body-scent-quiz.PNG)
+![Body Scent Quiz](wireframes/body-scent-quiz.PNG)
 
 ## Products Page(s)
 
@@ -28,9 +28,9 @@ This page will be where the visitor can take a scent finder quiz that is specifi
 
 Each product linked to detail page and product can be added to cart from main or detail pages.
 
-[Product List Page](wireframes/products-list-page.PNG)
+![Product List Page](wireframes/products-list-page.PNG)
 
-[Product Detail Page](wireframes/product-detail-page.PNG)
+![Product Detail Page](wireframes/product-detail-page.PNG)
 
 ## Customer Account Pages
 
@@ -43,11 +43,11 @@ Users can visit the wishlist page which contains a list of favorited items which
 
 Users can also visit a scent profile page to see their past results/recommendations for products after completing a quiz.
 
-[Wish List](wireframes/wish-list.PNG)
+![Wish List](wireframes/wish-list.PNG)
 
-[Scent Profile](wireframes/scent-profile.PNG)
+![Scent Profile](wireframes/scent-profile.PNG)
 
-[Order History](wireframes/order-history.PNG)
+![Order History](wireframes/order-history.PNG)
 
 ## Cart/Checkout
 
@@ -59,7 +59,7 @@ Users can also visit a scent profile page to see their past results/recommendati
 - Contains company information (description and social media links), and ingredient sourcing information (google maps integration)
 - FAQ
 
-[About Page](wireframes/about.PNG)
+![About Page](wireframes/about.PNG)
 
 ---
 
@@ -71,7 +71,7 @@ Users can also visit a scent profile page to see their past results/recommendati
 - a button to create new products that will be stored in inventory, redirects to [create new product form](##New-Product-Form-Page)
 - search bar to find a specific item to add stock to
 
-[Inventory](wireframes/inventory.PNG)
+![Inventory](wireframes/inventory.PNG)
 
 ## New Product Form Page
 
@@ -83,4 +83,4 @@ Users can also visit a scent profile page to see their past results/recommendati
 - link to a detail view containing product info, quantity, price, customer info
 - (in detail view) button to update completion of order
 
-[Order Fulfillment](wireframes/order-fufillment.PNG)
+![Order Fulfillment](wireframes/order-fufillment.PNG)
