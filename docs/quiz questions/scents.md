@@ -23,8 +23,7 @@
     - subtle
     - INTENSE
 
-
-5. 
+5. What's your favorite home decor style?
 
 ## Body Quiz
 1. What kind of product are you looking for? (type)
