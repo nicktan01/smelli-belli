@@ -26,8 +26,8 @@ We are targeting general consumers in the self-care market who are looking for a
 ## Functionality
 
 - Visitors to the site can take a multitude of quizzes that will filter Smelli Belli’s products to match their tastes:
-    - Sensitivity quiz for skincare products
-    - Scent quiz for scent blends on skincare and home goods
+- Sensitivity quiz for skincare products
+- Scent quiz for scent blends on skincare and home goods
 - Visitors can then add products from the filtered list to their cart
 - Products page for a plain list view of all products
 - FAQ page

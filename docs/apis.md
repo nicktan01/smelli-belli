@@ -3,7 +3,7 @@
 ## Product
 
 - **Method**: `POST`, `GET`, `GET`, `PUT`, `DELETE`,
-- **Path**: /api/products, /api/products/<int:pk>
+- **Path**: `/api/products`, `/api/products/<int:pk>`
 
 Input:
 
@@ -55,8 +55,9 @@ Output:
 Creating a new product saves the name, scent, sku, price, rating, size, quantity, tags, ingredients, limited_item, created, image, description, usage, storage, and is_wish_listed. This adds a new existing Product to the database which can be wish listed, added or purchased by a user.
 
 ## Wish List
-* **Method**: `GET`, `PUT`, `DELETE`, 
-* **Path**: /api/wish_list/<int:pk>,
+
+- **Method**: `GET`, `PUT`, `DELETE`,
+- **Path**: `/api/wish_list/<int:pk>`,
 
 Input:
 
@@ -81,7 +82,7 @@ Creating a new product saves the name, scent, sku, price, rating, size, quantity
 ## Accounts
 
 - Method: `GET`, `POST`, `PUT`, `DELETE`
-- Path: /api/accounts, /api/accounts/<int:pk>
+- Path: `/api/accounts`, `/api/accounts/<int:pk>`
 
 Input:
 
@@ -120,7 +121,7 @@ The Accounts API will create, update, or delete an account for a user on the Sme
 ## Address
 
 - Method: `GET`, `POST`, `PUT`, `DELETE`
-- Path: /api/address, /api/address/<int:pk>
+- Path: `/api/addresses`, `/api/addresses/<int:pk>`
 
 Input:
 
@@ -144,8 +145,8 @@ The Address API will be tied to the accounts and users will enter in both a ship
 
 ## Guest
 
-- Method: `POST`
-- Path: /api/accounts, /api/accounts/<int:pk>
+- Method: `GET`, `POST`
+- Path: `/api/guests`, `/api/guests/<int:pk>`
 
 Input:
 
@@ -174,7 +175,7 @@ The Guest API will be primarily for users who would not like to make an account 
 ## Questions
 
 - Method: `POST`, `GET`
-- Path: /api/questions
+- Path: `/api/questions`
 
 Input:
 
@@ -200,7 +201,7 @@ Quiz questions and answers will be populated by employees and will largely remai
 ## Quizzes
 
 - Method: `POST`, `DELETE`
-- Path: /api/body-quiz, /api/home-quiz
+- Path: `/api/body-quiz`, `/api/home-quiz`
 
 Input:
 
@@ -226,7 +227,7 @@ An instance of a quiz will be created when a user takes the quiz, users will onl
 ## Create a cart
 
 - **Method**: `GET`, `POST`, `DELETE`, `UPDATE`
-- **Path**: /api/cart/<int:pk>
+- **Path**: `/api/cart/<int:pk>`
 
 Input:
 
@@ -256,10 +257,11 @@ Create a new cart that uses the product information to calculate the total price
 
 ## Orders
 
-* **Method**: `POST`, `GET`, `GET`, `PUT`, `DELETE`
-* **Path**: /api/orders, /api/orders/<int:pk>
+- **Method**: `POST`, `GET`, `GET`, `PUT`, `DELETE`
+- **Path**: `/api/orders`, `/api/orders/<int:pk>`
 
 Input:
+
 ```json
 {
   "products": {
@@ -292,3 +294,5 @@ Output:
 ```
 
 Creating a new order collects all of the relevant product data from the order, and matches the quantities to those prices. It will then calculate the subtotal(s) and total. The order number will be generated serially. A query is also made to match the order to the customer who made the order, placing their name or id in the result.
+
+NOTE: Orders should describe a ProductVO as opposed to the Product entity. The ProductVO will also have a "quantities" prop on it. Then, Orders price and quantity is much more easily calculated and is not manipulating Products directly. We will likely find other value objects as we go through this.
