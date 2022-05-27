@@ -88,15 +88,15 @@ Input:
 
 ```json
 {
-    "first_name": string,
-    "last_name": string,
-    "email": string,
-    "password": string,
-    "address":  {
-        billing_address: string,
-        shipping_address: string
-        },
-    "is_staff": bool
+  "first_name": string,
+  "last_name": string,
+  "email": string,
+  "password": string,
+  "address":  {
+    billing_address: string,
+    shipping_address: string
+  },
+  "is_staff": bool
 }
 ```
 
@@ -104,15 +104,15 @@ Output:
 
 ```json
 {
-    "first_name": string,
-    "last_name": string,
-    "email": string,
-    "password": string,
-    "address":  {
-        billing_address: string,
-        shipping_address: string
-        },
-    "is_staff": bool
+  "first_name": string,
+  "last_name": string,
+  "email": string,
+  "password": string,
+  "address":  {
+    billing_address: string,
+    shipping_address: string
+  },
+  "is_staff": bool
 }
 ```
 
@@ -127,8 +127,8 @@ Input:
 
 ```json
 {
-"billing_address": string,
-"shipping_address": string
+  "billing_address": string,
+  "shipping_address": string
 }
 ```
 
@@ -136,8 +136,8 @@ Output:
 
 ```json
 {
-"billing_address": string,
-"shipping_address": string
+  "billing_address": string,
+  "shipping_address": string
 }
 ```
 
@@ -152,10 +152,10 @@ Input:
 
 ```json
 {
-    "first_name": string,
-    "last_name": string,
-    "email": string,
-    "address": string
+  "first_name": string,
+  "last_name": string,
+  "email": string,
+  "address": string
 }
 ```
 
@@ -163,10 +163,10 @@ Output:
 
 ```json
 {
-    "first_name": string,
-    "last_name": string,
-    "email": string,
-    "address": string
+  "first_name": string,
+  "last_name": string,
+  "email": string,
+  "address": string
 }
 ```
 
@@ -182,7 +182,7 @@ Input:
 ```json
 {
   "question": string,
-  "answers": [string]
+  "answers": string
 }
 ```
 
@@ -192,7 +192,7 @@ Output:
 {
   "id": int,
   "questions": string,
-  "answers": [string]
+  "answers": string
 }
 ```
 
@@ -244,12 +244,10 @@ Output:
 
 ```json
 {
- {
   "product": string,
   "quantity": int,
   "totals": int,
   "created": date
-}
 }
 ```
 
@@ -265,7 +263,7 @@ Input:
 ```json
 {
   "products": {
-      "name": string,
+    "name": string,
     "sku": string,
     "size": string,
     "price": int
