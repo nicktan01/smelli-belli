@@ -52,20 +52,11 @@ Output:
 }
 ```
 
-<<<<<<< HEAD
 Creating a new product saves the name, scent, sku, price, rating, size, quantity, tags, ingredients, limited_item, created, image, description, usage, storage, and is_wish_listed. This adds a new existing Product to the database which can be wish listed, added or purchased by a user.
 
 ## Wish List
 * **Method**: `GET`, `PUT`, `DELETE`, 
 * **Path**: /api/wish_list/<int:pk>,
-=======
-Creating a new product saves the name, scent, sku, price, rating, size, quantity, tags, ingredients, limited_item, created, image, description, usage, storage, and is_wish_listed.
-
-## Wish List
-
-- **Method**: `POST`, `GET`, `PUT`, `DELETE`,
-- **Path**: /api/wish_list/<int:pk>,
->>>>>>> ed6f2643989ec9f84532fd70ccdbba227ad410f8
 
 Input:
 
@@ -262,7 +253,6 @@ Output:
 ```
 
 Create a new cart that uses the product information to calculate the total price of all the products in the cart
-<<<<<<< HEAD
 
 ## Orders
 
@@ -302,5 +292,3 @@ Output:
 ```
 
 Creating a new order collects all of the relevant product data from the order, and matches the quantities to those prices. It will then calculate the subtotal(s) and total. The order number will be generated serially. A query is also made to match the order to the customer who made the order, placing their name or id in the result.
-=======
->>>>>>> ed6f2643989ec9f84532fd70ccdbba227ad410f8
