@@ -143,35 +143,6 @@ Output:
 
 The Address API will be tied to the accounts and users will enter in both a shipping and billing address for their accounts. The addresses can be updated.
 
-## Guest
-
-- Method: `GET`, `POST`
-- Path: `/api/guests`, `/api/guests/<int:pk>`
-
-Input:
-
-```json
-{
-  "first_name": string,
-  "last_name": string,
-  "email": string,
-  "address": string
-}
-```
-
-Output:
-
-```json
-{
-  "first_name": string,
-  "last_name": string,
-  "email": string,
-  "address": string
-}
-```
-
-The Guest API will be primarily for users who would not like to make an account to purchase items on Smelli Belli.
-
 ## Questions
 
 - Method: `POST`, `GET`
