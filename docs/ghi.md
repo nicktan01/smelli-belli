@@ -11,7 +11,7 @@ There will be links to the quizzes on this page.
 
 This page will be where the visitor can take a scent finder quiz that is specific to home products - questions will be relevant to home goods like scent intensity, type of product, room size, number of rooms etc.
 
-[Home Scent Quiz](wireframes/home-scent-quiz.PNG)
+![Home Scent Quiz](wireframes/home-scent-quiz.PNG)
 
 ## Body Product Quiz
 
