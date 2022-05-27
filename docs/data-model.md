@@ -81,15 +81,6 @@ that a user can purchase.
 | customer     | int      | no     | no       |
 | created      | datetime | no     | no       |
 
-## Guest User
-
-| Name       | Type   | Unique | Optional |
-| ---------- | ------ | ------ | -------- |
-| first_name | string | no     | no       |
-| last_name  | string | no     | no       |
-| email      | string | no     | no       |
-| address    | string | no     | no       |
-
 ## Address
 
 | Name             | Type   | Unique | Optional |
