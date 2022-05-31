@@ -23,9 +23,7 @@ Input:
   "image": string,
   "description": string,
   "usage": string,
-  "storage": string,
-  "is_wish_listed": bool,
-
+  "storage": string
 }
 ```
 
@@ -47,8 +45,7 @@ Output:
   "image": string,
   "description": string,
   "usage": string,
-  "storage": string,
-  "is_wish_listed": bool,
+  "storage": string
 }
 ```
 
