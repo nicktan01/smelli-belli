@@ -1,5 +1,5 @@
 volumes:
-  smelli-data:
+  smelli-db:
     external: true
 services:
   react:
@@ -14,13 +14,13 @@ services:
       HOST_OS: ${OS}
       NODE_ENV: development
       HOST: "0.0.0.0"
-  smelli-db:
+  database:
     image: postgres:14.2-bullseye
     volumes:
-      - beta-data:/var/lib/postgresql/data
+      - smelli-db:/var/lib/postgresql/data
       - ./db:/docker-entrypoint-initdb.d
     environment:
-      - POSTGRES_MULTIPLE_DATABASES=inventory,customer,employee
+      - POSTGRES_MULTIPLE_DATABASES=inventory
       - POSTGRES_PASSWORD=test-databases
     ports:
       - 15432:5432
@@ -33,80 +33,80 @@ services:
     volumes:
       - ./inventory/api:/app
     depends_on:
-      - smelli-db
-    environment:
-      DATABASE_URL: postgres://inventory:password@smelli-db:5432/inventory
-      WAIT_HOSTS: smelli-db:5432
-      WAIT_TIMEOUT: 240
-  employee-api:
-    build:
-      context: ./employee/api
-      dockerfile: ./Dockerfile.dev
-    ports:
-      - "8080:8000"
-    volumes:
-      - ./employee/api:/app
-    depends_on:
-      - smelli-db
-    environment:
-      DATABASE_URL: postgres://employee:password@smelli-db:5432/employee
-      WAIT_HOSTS: smelli-db:5432
-      WAIT_TIMEOUT: 240
-  employee-poller:
-    build:
-      context: ./employee/poll
-      dockerfile: ./Dockerfile.dev
-    volumes:
-      - ./employee/poll:/app
-      - ./employee/api/employee_project:/app/employee_project
-      - ./employee/api/employee_rest:/app/employee_rest
-    depends_on:
       - database
-      - employee-api
     environment:
-      DATABASE_URL: postgres://employee:password@smelli-db:5432/employee
-      WAIT_HOSTS: smelli-db:5432,employee-api:8000
+      DATABASE_URL: postgres://inventory:password@database:5432/inventory
+      WAIT_HOSTS: database:5432
       WAIT_TIMEOUT: 240
-  customer-api:
-    build:
-      context: ./customer/api
-      dockerfile: ./Dockerfile.dev
-    ports:
-      - "8090:8000"
-    volumes:
-      - ./customer/api:/app
-    depends_on:
-      - smelli-db
-    environment:
-      DATABASE_URL: postgres://customer:password@smelli-db:5432/customer
-      WAIT_HOSTS: smelli-db:5432
-      WAIT_TIMEOUT: 240
-  customer-poller:
-    build:
-      context: ./customer/poll
-      dockerfile: ./Dockerfile.dev
-    volumes:
-      - ./customer/poll:/app
-      - ./customer/api/customer_project:/app/customer_project
-      - ./customer/api/customer_rest:/app/customer_rest
-    depends_on:
-      - smelli-db
-      - customer-api
-    environment:
-      DATABASE_URL: postgres://customer:password@smelli-db:5432/customer
-      WAIT_HOSTS: smelli-db:5432,customer-api:8000
-      WAIT_TIMEOUT: 240
-  accounts:
-    build:
-      context: ./accounts/api
-      dockerfile: ./Dockerfile.dev
-    ports:
-      - "9080:8000"
-    volumes:
-      - ./accounts/api:/app
-    depends_on:
-      - smelli-db
-    environment:
-      DATABASE_URL: postgres://accounts:password@smelli-db:5432/accounts
-      WAIT_HOSTS: smelli-db:5432
-      WAIT_TIMEOUT: 240
+  # employee-api:
+  #   build:
+  #     context: ./employee/api
+  #     dockerfile: ./Dockerfile.dev
+  #   ports:
+  #     - "8080:8000"
+  #   volumes:
+  #     - ./employee/api:/app
+  #   depends_on:
+  #     - smelli-db
+  #   environment:
+  #     DATABASE_URL: postgres://employee:password@smelli-db:5432/employee
+  #     WAIT_HOSTS: smelli-db:5432
+  #     WAIT_TIMEOUT: 240
+  # employee-poller:
+  #   build:
+  #     context: ./employee/poll
+  #     dockerfile: ./Dockerfile.dev
+  #   volumes:
+  #     - ./employee/poll:/app
+  #     - ./employee/api/employee_project:/app/employee_project
+  #     - ./employee/api/employee_rest:/app/employee_rest
+  #   depends_on:
+  #     - smelli-db
+  #     - employee-api
+  #   environment:
+  #     DATABASE_URL: postgres://employee:password@smelli-db:5432/employee
+  #     WAIT_HOSTS: smelli-db:5432,employee-api:8000
+  #     WAIT_TIMEOUT: 240
+  # customer-api:
+  #   build:
+  #     context: ./customer/api
+  #     dockerfile: ./Dockerfile.dev
+  #   ports:
+  #     - "8090:8000"
+  #   volumes:
+  #     - ./customer/api:/app
+  #   depends_on:
+  #     - smelli-db
+  #   environment:
+  #     DATABASE_URL: postgres://customer:password@smelli-db:5432/customer
+  #     WAIT_HOSTS: smelli-db:5432
+  #     WAIT_TIMEOUT: 240
+  # customer-poller:
+  #   build:
+  #     context: ./customer/poll
+  #     dockerfile: ./Dockerfile.dev
+  #   volumes:
+  #     - ./customer/poll:/app
+  #     - ./customer/api/customer_project:/app/customer_project
+  #     - ./customer/api/customer_rest:/app/customer_rest
+  #   depends_on:
+  #     - smelli-db
+  #     - customer-api
+  #   environment:
+  #     DATABASE_URL: postgres://customer:password@smelli-db:5432/customer
+  #     WAIT_HOSTS: smelli-db:5432,customer-api:8000
+  #     WAIT_TIMEOUT: 240
+  # accounts:
+  #   build:
+  #     context: ./accounts/api
+  #     dockerfile: ./Dockerfile.dev
+  #   ports:
+  #     - "9080:8000"
+  #   volumes:
+  #     - ./accounts/api:/app
+  #   depends_on:
+  #     - smelli-db
+  #   environment:
+  #     DATABASE_URL: postgres://accounts:password@smelli-db:5432/accounts
+  #     WAIT_HOSTS: smelli-db:5432
+  #     WAIT_TIMEOUT: 240
