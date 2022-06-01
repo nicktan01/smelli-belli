@@ -4,8 +4,8 @@ from django.db import models
 
 class Product(models.Model):
     name = models.CharField(max_length=50, unique=True)
-    sku = models.CharField()
-    price = models.PositiveSmallIntegerField()
+    sku = models.CharField(max_length=12, unique=True)
+    price = models.DecimalField(max_digits=5, decimal_places=2)
     rating = models.PositiveSmallIntegerField()
     size = models.PositiveSmallIntegerField()
     quantity = models.PositiveSmallIntegerField()
@@ -34,6 +34,7 @@ class Scent(models.Model):
         (GOURMAND, 'Gourmand')
     ]
     scents = models.CharField(
+        max_length=25,
         choices=SCENT_CHOICES,
         default=FRESH,
     )
