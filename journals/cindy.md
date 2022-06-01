@@ -28,3 +28,11 @@ Elliott showed us how to start our Django inventory project using a local virtua
 
 Jordan, Nicholas and I were able to add issues to create the backend components of our microservices. Each issue is to create the models, views, and paths of the different microservices. We hope to get most of the backend set up by the end of this week!
 We also are planning to implement the Customer microservice using FastAPI and the Inventory microservice using Django.
+
+## June 1, 2022
+
+Today, we worked on:
+
+- Scrapping our thought of using FastAPI with one of the microservices (with Jordan, Jaiden)
+
+Jordan and I started off project time with making our Customer microservice using FastAPI. We had some issues trying to Dockerize it, but with help from Mitch were able to figure it out. Once we were able to get our Docker containers up and running, Jaiden joined us in trying to write the APIs. We had decided to work on our wishlist API together first since we all feel unfamliar with writing FastAPI but were having a hard time with figuring out how to go about writing the it since with our wishlist, we would need to poll data from our inventory microservice for products but also have access to our accounts microservice. We put in another help ticket where Mitch tried to explain to us an approach we could take but we felt it would be a rough path since we haven't had any experience writing table data that we could use with our API. After some thought, we decided to scrap using FastAPI and stick with writing the backend to our microservices with Django.
