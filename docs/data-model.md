@@ -62,13 +62,6 @@ that a user can purchase.
 
 ## Cart
 
-| Name     | Type   | Unique | Optional |
-| -------- | ------ | ------ | -------- |
-| product  | string | no     | no       |
-| quantity | int    | no     | no       |
-| totals   | float  | no     | no       |
-| created  | date   | no     | no       |
-
 ## Order
 
 | Name         | Type     | Unique | Optional |
