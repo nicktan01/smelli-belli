@@ -11,5 +11,5 @@ class ScentAdmin(admin.ModelAdmin):
     pass
 
 @admin.register(Size)
-class SizeAdin(admin.ModelAdmin):
+class SizeAdmin(admin.ModelAdmin):
     pass

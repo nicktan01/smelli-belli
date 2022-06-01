@@ -1,22 +1,7 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 # Create your models here.
-class Product(models.Model):
-    name = models.CharField(max_length=50, unique=True)
-    sku = models.CharField(max_length=12, unique=True)
-    price = models.DecimalField(max_digits=5, decimal_places=2)
-    rating = models.PositiveSmallIntegerField()
-    quantity = models.PositiveSmallIntegerField()
-    tags = models.CharField(max_length=50)
-    ingredients = models.CharField(max_length=100)
-    limited_item = models.BooleanField()
-    created = models.DateTimeField()
-    image = models.URLField()
-    description = models.CharField(max_length=400)
-    usage = models.CharField(max_length=100)
-    storage = models.CharField(max_length=100)
-
-
 class Size(models.Model):
     ONE_FL_OZ = "1.0 fl oz"
     TWO_FL_OZ = "2.0 fl oz"
@@ -31,11 +16,30 @@ class Size(models.Model):
         choices=SIZE_CHOICES,
         default=''
     )
-    product = models.ForeignKey(
-        Product,
-        related_name="sizes",
-        on_delete=models.CASCADE
+
+
+class Product(models.Model):
+    name = models.CharField(max_length=50)
+    sku = models.CharField(max_length=12, unique=True)
+    price = models.DecimalField(max_digits=5, decimal_places=2)
+    size = models.ForeignKey(
+        Size,
+        related_name="products",
+        on_delete=models.PROTECT
     )
+    quantity = models.PositiveSmallIntegerField()
+    # rating = models.PositiveSmallIntegerField()
+    # rating should be its own model, like in Srumptious Recipes
+    # tags = models.CharField(max_length=50)
+    # tags should be its own app with its own models, like in Scrumptious Recipes
+    ingredients = models.CharField(max_length=500)
+    limited_item = models.BooleanField()
+    image = models.URLField()
+    description = models.CharField(max_length=400)
+    usage = models.CharField(max_length=100)
+    storage = models.CharField(max_length=100)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
 
 class Scent(models.Model):
