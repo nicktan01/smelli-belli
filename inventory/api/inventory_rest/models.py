@@ -14,9 +14,9 @@ class Product(models.Model):
     limited_item = models.BooleanField()
     created = models.DateTimeField()
     image = models.URLField()
-    description = models.CharField(max_length=200)
-    usage = models.CharField(max_length=50)
-    storage = models.CharField(max_length=50)
+    description = models.CharField(max_length=400)
+    usage = models.CharField(max_length=100)
+    storage = models.CharField(max_length=100)
     
 class Scent(models.Model):
     FRESH = 'Fresh'
