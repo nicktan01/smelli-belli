@@ -1,6 +1,9 @@
 # Data models
 
-## Product
+## Inventory microservice
+---
+
+### Product
 
 | name           | type   | unique | optional |
 | -------------- | ------ | ------ | -------- |
@@ -8,10 +11,8 @@
 | scent          | string | no     | no       |
 | sku            | string | yes    | no       |
 | price          | int    | no     | no       |
-| rating         | int    | no     | yes      |
 | size           | int    | no     | no       |
 | quantity       | int    | no     | no       |
-| tags           | string | no     | no       |
 | ingredients    | string | no     | no       |
 | limited_item   | bool   | no     | no       |
 | created        | int    | no     | no       |
@@ -24,14 +25,32 @@
 The `product` entity contains the data about a specific product
 that a user can purchase.
 
-## Wish List
+### Scent
+| name    | type                        | unique | optional |
+|---------|-----------------------------|--------|----------|
+| scents  | string                      | true   | false    |
+| product | reference to product entity | true   | true     |
+
+The `scent` entity contains the string name as a unique tag that can be used to associate to a specific product. A scent can exist without being attached to a product listed in inventory
+
+### Rating
+
+This is a stretch goal to implement product ratings for our products!
+
+### Tags
+
+This is a stretch goal to implement product tags for our products!
+
+## Customer microservice
+---
+### Wish List
 
 | name    | type                        | unique | optional |
 | ------- | --------------------------- | ------ | -------- |
 | user    | reference to user entity    | true   | false    |
 | product | reference to product entity | true   | true     |
 
-## Account/User
+### Account/User
 
 | Name        | Type                        | Unique | Optional |
 | ----------- | --------------------------- | ------ | -------- |
@@ -44,14 +63,14 @@ that a user can purchase.
 | is_active   | bool                        | no     | no       |
 | date_joined | datetime                    | no     | no       |
 
-## Quiz Questions
+### Quiz Questions
 
 | name      | type   | unique | optional |
 | --------- | ------ | ------ | -------- |
 | questions | string | y      | n        |
 | answers   | string | y      | n        |
 
-## Quiz Models
+### Quiz Models
 
 | name      | type     | unique | optional |
 | --------- | -------- | ------ | -------- |
@@ -60,9 +79,18 @@ that a user can purchase.
 | responses | string   | n      | n        |
 | created   | datetime | n      | n        |
 
-## Cart
+### Cart
 
-## Order
+## Address
+
+| Name             | Type   | Unique | Optional |
+| ---------------- | ------ | ------ | -------- |
+| billing_address  | string | no     | no       |
+| shipping_address | string | no     | no       |
+
+## Employee microservice
+---
+### Order
 
 | Name         | Type     | Unique | Optional |
 | ------------ | -------- | ------ | -------- |
@@ -74,9 +102,3 @@ that a user can purchase.
 | customer     | int      | no     | no       |
 | created      | datetime | no     | no       |
 
-## Address
-
-| Name             | Type   | Unique | Optional |
-| ---------------- | ------ | ------ | -------- |
-| billing_address  | string | no     | no       |
-| shipping_address | string | no     | no       |
