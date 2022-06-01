@@ -68,19 +68,3 @@ class Scent(models.Model):
         on_delete=models.CASCADE
     )
 
-
-class Rating(models.Model):
-    value = models.PositiveSmallIntegerField(
-        validators=[
-            MaxValueValidator(5),
-            MinValueValidator(1),
-        ]
-    )
-    product = models.ForeignKey(
-        Product,
-        related_name="ratings",
-        on_delete=models.CASCADE,
-    )
-
-    def __str__(self):
-        return f"{self.value} Stars for {self.product}"
