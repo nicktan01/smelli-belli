@@ -27,6 +27,7 @@ class Product(models.Model):
         related_name="products",
         on_delete=models.PROTECT
     )
+    quantity = models.PositiveSmallIntegerField()
     # rating = models.PositiveSmallIntegerField()
     # rating should be its own model, like in Srumptious Recipes
     # tags = models.CharField(max_length=50)
