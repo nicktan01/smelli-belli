@@ -24,6 +24,13 @@
 The `product` entity contains the data about a specific product
 that a user can purchase.
 
+## Scent
+| name | type   | unique | optional |
+|------|--------|--------|----------|
+| name | string | true   | false    |
+
+The `scent` entity contains the string name as a unique tag that can be used to associate to a specific product.
+
 ## Wish List
 
 | name    | type                        | unique | optional |
