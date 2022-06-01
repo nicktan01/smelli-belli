@@ -6,10 +6,14 @@ class Size(models.Model):
     ONE_FL_OZ = "1.0 fl oz"
     TWO_FL_OZ = "2.0 fl oz"
     FOUR_FL_OZ = "4.0 fl oz"
+    EIGHT_FL_OZ = "8.0 fl oz"
+    SIXTEEN_FL_OZ = "16.0 fl oz"
     SIZE_CHOICES = [
         (ONE_FL_OZ, "1.0 fl oz"),
         (TWO_FL_OZ, "2.0 fl oz"),
         (FOUR_FL_OZ, "4.0 fl oz"),
+        (EIGHT_FL_OZ, "8.0 fl oz"),
+        (SIXTEEN_FL_OZ, "16.0 fl oz"),
     ]
     sizes = models.CharField(
         max_length=25,
@@ -28,10 +32,6 @@ class Product(models.Model):
         on_delete=models.PROTECT
     )
     quantity = models.PositiveSmallIntegerField()
-    # rating = models.PositiveSmallIntegerField()
-    # rating should be its own model, like in Srumptious Recipes
-    # tags = models.CharField(max_length=50)
-    # tags should be its own app with its own models, like in Scrumptious Recipes
     ingredients = models.CharField(max_length=500)
     limited_item = models.BooleanField()
     image = models.URLField()
@@ -67,3 +67,20 @@ class Scent(models.Model):
         related_name="scents",
         on_delete=models.CASCADE
     )
+
+
+class Rating(models.Model):
+    value = models.PositiveSmallIntegerField(
+        validators=[
+            MaxValueValidator(5),
+            MinValueValidator(1),
+        ]
+    )
+    product = models.ForeignKey(
+        Product,
+        related_name="ratings",
+        on_delete=models.CASCADE,
+    )
+
+    def __str__(self):
+        return f"{self.value} Stars for {self.product}"

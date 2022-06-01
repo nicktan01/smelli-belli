@@ -9,6 +9,7 @@ from .encoders import (
 )
 from .models import Product, Scent, Size
 
+
 @require_http_methods(["GET", "POST"])
 def api_products(request):
     if request.method == "GET":
@@ -163,7 +164,7 @@ def api_scent(request, pk):
             response.status_code = 404
             return response
 
-# GET and POST for Size
+
 @require_http_methods(["GET", "POST"])
 def api_sizes(request):
     if request.method == "GET":
@@ -189,7 +190,6 @@ def api_sizes(request):
             response.status_code = 400
             return response
 
-#GET, DELETE, and PUT for Size
 
 @require_http_methods(["DELETE", "GET", "PUT"])
 def api_size(request, pk):
@@ -216,7 +216,8 @@ def api_size(request, pk):
             )
         except Size.DoesNotExist:
             return JsonResponse({"message": "Does not exist"})
-    else: #PUT
+    # PUT
+    else: 
         try:
             content = json.loads(request.body)
             size = Size.objects.get(id=pk)
