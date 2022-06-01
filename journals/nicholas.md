@@ -18,3 +18,4 @@ Today, I worked on:
 
 -setting up models.py with Elliot and Jaiden
 -setting up the views.py with Elliot and Jaiden
+-set up the urls.py with Elliot
