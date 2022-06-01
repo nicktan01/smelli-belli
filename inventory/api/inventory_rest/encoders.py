@@ -1,5 +1,5 @@
 from common.json import ModelEncoder
-from .models import Product, Scent
+from .models import Product, Scent, Size
 
 class ProductEncoder(ModelEncoder):
     model = Product
@@ -8,7 +8,6 @@ class ProductEncoder(ModelEncoder):
         "sku",
         "price",
         "rating",
-        "size",
         "quantity",
         "tags",
         "ingredients",
@@ -24,3 +23,5 @@ class ProductEncoder(ModelEncoder):
 class ScentEncoder(ModelEncoder):
     pass
 
+class SizeEncoder(ModelEncoder):
+    pass
