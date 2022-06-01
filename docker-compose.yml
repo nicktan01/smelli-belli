@@ -47,10 +47,10 @@ services:
   #   volumes:
   #     - ./employee/api:/app
   #   depends_on:
-  #     - smelli-db
+  #     - database
   #   environment:
-  #     DATABASE_URL: postgres://employee:password@smelli-db:5432/employee
-  #     WAIT_HOSTS: smelli-db:5432
+  #     DATABASE_URL: postgres://employee:password@database:5432/employee
+  #     WAIT_HOSTS: database:5432
   #     WAIT_TIMEOUT: 240
   # employee-poller:
   #   build:
@@ -61,11 +61,11 @@ services:
   #     - ./employee/api/employee_project:/app/employee_project
   #     - ./employee/api/employee_rest:/app/employee_rest
   #   depends_on:
-  #     - smelli-db
+  #     - database
   #     - employee-api
   #   environment:
-  #     DATABASE_URL: postgres://employee:password@smelli-db:5432/employee
-  #     WAIT_HOSTS: smelli-db:5432,employee-api:8000
+  #     DATABASE_URL: postgres://employee:password@database:5432/employee
+  #     WAIT_HOSTS: database:5432,employee-api:8000
   #     WAIT_TIMEOUT: 240
   # customer-api:
   #   build:
@@ -76,10 +76,10 @@ services:
   #   volumes:
   #     - ./customer/api:/app
   #   depends_on:
-  #     - smelli-db
+  #     - database
   #   environment:
-  #     DATABASE_URL: postgres://customer:password@smelli-db:5432/customer
-  #     WAIT_HOSTS: smelli-db:5432
+  #     DATABASE_URL: postgres://customer:password@database:5432/customer
+  #     WAIT_HOSTS: database:5432
   #     WAIT_TIMEOUT: 240
   # customer-poller:
   #   build:
@@ -90,11 +90,11 @@ services:
   #     - ./customer/api/customer_project:/app/customer_project
   #     - ./customer/api/customer_rest:/app/customer_rest
   #   depends_on:
-  #     - smelli-db
+  #     - database
   #     - customer-api
   #   environment:
-  #     DATABASE_URL: postgres://customer:password@smelli-db:5432/customer
-  #     WAIT_HOSTS: smelli-db:5432,customer-api:8000
+  #     DATABASE_URL: postgres://customer:password@database:5432/customer
+  #     WAIT_HOSTS: database:5432,customer-api:8000
   #     WAIT_TIMEOUT: 240
   # accounts:
   #   build:
@@ -105,8 +105,8 @@ services:
   #   volumes:
   #     - ./accounts/api:/app
   #   depends_on:
-  #     - smelli-db
+  #     - database
   #   environment:
-  #     DATABASE_URL: postgres://accounts:password@smelli-db:5432/accounts
-  #     WAIT_HOSTS: smelli-db:5432
+  #     DATABASE_URL: postgres://accounts:password@database:5432/accounts
+  #     WAIT_HOSTS: database:5432
   #     WAIT_TIMEOUT: 240
