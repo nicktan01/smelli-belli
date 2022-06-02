@@ -9,9 +9,13 @@
     - Forest (woody)
     - Tropical Beach (fruity)
 
-3. How would you describe your pace? (scent)(slider)  *Amber>Woody>Gourmand>fresh>floral>fruity* 
-    - always on the move
-    - slow and steady
+2. How would you describe your pace? (scent)(slider)  *Amber>Woody>Gourmand>fresh>floral>fruity* 
+    - always on the move (fruity)
+    -
+    -
+    -
+    -
+    - slow and steady (amber)
 
 3. What is your favorite season? (Scent)
     - winter (gourmand/amber)
@@ -21,14 +25,23 @@
 
 4. intensity of scent? (slider) 
     - subtle
+    -
+    -
+    -
+    -
     - INTENSE
 
-5. What's your favorite home decor style?
+5. What's your favorite home decor style? (picture selection)
+    - modern/contemporary
+    - rustic
+    - minimalist
+    - industrial
+    - coastal
 
 ## Body Quiz
 1. What kind of product are you looking for? (type)
     - lotion
-    - perfume/clone
+    - perfume/cologne
     - body wash
     - oils
 
@@ -41,8 +54,12 @@
     - Cocktails (fruity)
 
 3. How would you describe your pace? (scent)(slider)  *Amber>Woody>Gourmand>fresh>floral>fruity* 
-    - always on the move
-    - slow and steady
+    - always on the move (fruity)
+    -
+    -
+    -
+    -
+    - slow and steady (amber)
 
 4. What is your favorite season? (Scent)
     - winter (gourmand/amber)
@@ -50,5 +67,10 @@
     - summer (fruity/fresh)
     - fall (amber/woody)
 
-5. 
+5. Which clothing style is your favorite?
+    - athleisure
+    - retro
+    - bohemian
+    - streetwear
+    - minimalist
 
