@@ -26,7 +26,7 @@ urlpatterns = [
         name="api_scents",
     ),
     path(
-        "scents/<int:pk>",
+        "scents/<int:pk>/",
         api_show_scent,
         name="api_scent",
     ),
@@ -36,7 +36,7 @@ urlpatterns = [
         name="api_sizes",
     ),
     path(
-        "size/<int:pk>",
+        "sizes/<int:pk>/",
         api_show_size,
         name="api_size",
     ),
