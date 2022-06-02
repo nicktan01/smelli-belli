@@ -1,6 +1,16 @@
 ## Jordan's Journal
 
 
+## June 2, 2022
+Morning:
+
+Afternoon:
+
+## June 1, 2022
+Morning: Started working on FastAPI set up for the customer microservice with Cindy. 
+
+Afternoon: After some further research and discussion with Cindy and Jaiden, as a whole team we decided to proceed with a django backend. After making this switch, Elliott added the necessary folders and we divided up the work for the models/paths/views for customer and employee microservices. We decided to hold off on the account microservice until after an authentication lecture to help guide us. 
+
 ## May 31, 2022
 We started working on editing the docker-compose file. Cindy, Nicholas, and I split off to start making issues in gitlab to begin organizing our workflow. 
 
