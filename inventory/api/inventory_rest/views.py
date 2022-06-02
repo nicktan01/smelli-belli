@@ -50,16 +50,13 @@ def api_show_product(request, sku):
             return response
     elif request.method == "DELETE":
         try:
-            product = Product.objects.get(sku=sku)
-            product.delete()
+            count, _ = Product.objects.filter(sku=sku).delete()
             return JsonResponse(
-                product,
-                encoder=ProductDetailEncoder,
-                safe=False
+                {"deleted": count > 0}
             )
         except Product.DoesNotExist:
             return JsonResponse({"message": "Product does not exist, could not delete."})
-    # PUT request
+    # PUT
     else:
         try:
             content = json.loads(request.body)
@@ -131,17 +128,14 @@ def api_show_scent(request, pk):
         except Scent.DoesNotExist:
             response = JsonResponse({"message": "Scent does not exist, could not display details."})
             response.status_code = 404
-            return response
-            
+            return response            
     elif request.method == "DELETE":
         try:
-            scent = Scent.objects.get(id=pk)
-            scent.delete()
+            count, _ = Scent.objects.filter(id=pk).delete()
             return JsonResponse(
-                scent,
-                encoder=ScentEncoder,
-                safe=False,
+                {"deleted": count > 0}
             )
+
         except Scent.DoesNotExist:
             return JsonResponse({"message": "Scent does not exist, could not delete."})
     # PUT
@@ -205,15 +199,11 @@ def api_show_size(request, pk):
             response = JsonResponse({"message": "Size does not exist, could not display details."})
             response.status_code = 404
             return response
-
     elif request.method == "DELETE":
         try:
-            size = Size.objects.get(id=pk)
-            size.delete()
+            count, _ = Size.objects.filter(id=pk).delete()
             return JsonResponse(
-                size,
-                encoder=SizeEncoder,
-                safe=False,
+                {"deleted": count > 0}
             )
         except Size.DoesNotExist:
             return JsonResponse({"message": "Size does not exist, could not delete."})
