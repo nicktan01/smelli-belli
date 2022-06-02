@@ -7,15 +7,16 @@ class ProductVOEncoder(ModelEncoder):
         "name",
         "sku",
         "price",
+        "size",
         "quantity",
         "ingredients",
         "limited_item",
-        "created",
         "image",
         "description",
         "usage",
         "storage",
-
+        "created",
+        "updated"
     ]
 
 class CustomerVOEncoder(ModelEncoder):
