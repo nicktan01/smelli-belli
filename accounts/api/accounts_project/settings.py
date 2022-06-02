@@ -29,6 +29,11 @@ DEBUG = True
 ALLOWED_HOSTS = ["localhost"]
 
 
+# Override the basic User model with a custom User model
+
+AUTH_USER_MODEL = "accounts_rest.User"
+
+
 # Application definition
 
 INSTALLED_APPS = [

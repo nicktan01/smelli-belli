@@ -9,7 +9,6 @@ class SizeEncoder(ModelEncoder):
         "sizes"
     ]
 
-
 class ProductListEncoder(ModelEncoder):
     model = Product
     properties = [
@@ -30,7 +29,6 @@ class ProductListEncoder(ModelEncoder):
                 "sizes": o.size.sizes,
             }
         }
-
 
 class ProductDetailEncoder(ModelEncoder):
     model = Product
@@ -60,7 +58,6 @@ class ProductDetailEncoder(ModelEncoder):
                 "sizes": o.size.sizes,
             }
         }
-
 
 class ScentEncoder(ModelEncoder):
     model = Scent
