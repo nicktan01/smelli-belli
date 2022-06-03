@@ -20,7 +20,7 @@ services:
       - smelli-db:/var/lib/postgresql/data
       - ./db:/docker-entrypoint-initdb.d
     environment:
-      - POSTGRES_MULTIPLE_DATABASES=inventory
+      - POSTGRES_MULTIPLE_DATABASES=inventory,accounts
       - POSTGRES_PASSWORD=test-databases
     ports:
       - 15432:5432
@@ -36,6 +36,20 @@ services:
       - database
     environment:
       DATABASE_URL: postgres://inventory:password@database:5432/inventory
+      WAIT_HOSTS: database:5432
+      WAIT_TIMEOUT: 240
+  accounts:
+    build:
+      context: ./accounts/api
+      dockerfile: ./Dockerfile.dev
+    ports:
+      - "9080:8000"
+    volumes:
+      - ./accounts/api:/app
+    depends_on:
+      - database
+    environment:
+      DATABASE_URL: postgres://accounts:password@database:5432/accounts
       WAIT_HOSTS: database:5432
       WAIT_TIMEOUT: 240
   # employee-api:

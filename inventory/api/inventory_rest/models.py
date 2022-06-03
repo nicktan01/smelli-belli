@@ -8,18 +8,31 @@ class Size(models.Model):
     FOUR_FL_OZ = "4.0 fl oz"
     EIGHT_FL_OZ = "8.0 fl oz"
     SIXTEEN_FL_OZ = "16.0 fl oz"
+    ONE_OZ = "1.0 oz"
+    TWO_OZ = "2.0 oz"
+    FOUR_OZ = "4.0 oz"
+    EIGHT_OZ = "8.0 oz"
+    SIXTEEN_OZ = "16.0 oz"
     SIZE_CHOICES = [
         (ONE_FL_OZ, "1.0 fl oz"),
         (TWO_FL_OZ, "2.0 fl oz"),
         (FOUR_FL_OZ, "4.0 fl oz"),
         (EIGHT_FL_OZ, "8.0 fl oz"),
         (SIXTEEN_FL_OZ, "16.0 fl oz"),
+        (ONE_OZ, "1.0 oz"),
+        (TWO_OZ, "2.0 oz"),
+        (FOUR_OZ, "4.0 oz"),
+        (EIGHT_OZ, "8.0 oz"),
+        (SIXTEEN_OZ, "16.0 oz"),
     ]
     sizes = models.CharField(
         max_length=25,
         choices=SIZE_CHOICES,
         default=''
     )
+
+    def __str__(self):
+        return f"{self.sizes}"
 
 
 class Product(models.Model):
@@ -40,6 +53,9 @@ class Product(models.Model):
     storage = models.CharField(max_length=100)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.name} - {self.size}, {self.sku}"
 
 
 class Scent(models.Model):
@@ -68,3 +84,5 @@ class Scent(models.Model):
         on_delete=models.CASCADE
     )
 
+    def __str__(self):
+        return f"{self.scents} associated with {self.product}"
