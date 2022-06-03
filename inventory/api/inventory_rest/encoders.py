@@ -12,7 +12,6 @@ class SizeEncoder(ModelEncoder):
 class ProductListEncoder(ModelEncoder):
     model = Product
     properties = [
-        "id",
         "name",
         "sku",
         "price",
@@ -31,7 +30,6 @@ class ProductListEncoder(ModelEncoder):
 class ProductDetailEncoder(ModelEncoder):
     model = Product
     properties = [
-        "id",
         "name",
         "sku",
         "price",
@@ -44,6 +42,7 @@ class ProductDetailEncoder(ModelEncoder):
         "usage",
         "storage",
         "created",
+        "updated"
     ]
     encoders = {
         "size": SizeEncoder()
@@ -57,7 +56,7 @@ class ProductDetailEncoder(ModelEncoder):
 
 class ScentEncoder(ModelEncoder):
     model = Scent
-    properties = ["id", "scents", "product"]
+    properties = ["scents", "product"]
     encoders = {
         "product": ProductListEncoder()
     }
@@ -65,6 +64,7 @@ class ScentEncoder(ModelEncoder):
     def get_extra_data(self, o):
         return {
             "product": {
-                "name": o.product.name,
+                "href": f'/api/products/{o.product.sku}/',
+                "name": o.product.name
             }
         }

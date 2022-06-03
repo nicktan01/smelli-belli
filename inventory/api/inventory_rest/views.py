@@ -3,6 +3,7 @@ from django.views.decorators.http import require_http_methods
 import json
 from .encoders import (
     ProductDetailEncoder,
+    ProductListEncoder,
     ScentEncoder,
     SizeEncoder
 )
@@ -15,7 +16,7 @@ def api_list_products(request):
         products = Product.objects.all()
         return JsonResponse(
             {"products": products},
-            encoder=ProductDetailEncoder,
+            encoder=ProductListEncoder,
         )
     # POST
     else:
@@ -156,10 +157,11 @@ def api_list_scents(request):
 def api_show_scent(request, pk):
     if request.method == "GET":
         try:
-            scents = Scent.objects.get(id=pk)
+            scent = Scent.objects.get(id=pk)
             return JsonResponse(
-                {"scents": scents},
+                scent,
                 encoder=ScentEncoder,
+                safe=False
             )
         except Scent.DoesNotExist:
             response = JsonResponse(
@@ -232,10 +234,11 @@ def api_list_sizes(request):
 def api_show_size(request, pk):
     if request.method == "GET":
         try:
-            sizes = Size.objects.get(id=pk)
+            size = Size.objects.get(id=pk)
             return JsonResponse(
-                {"sizes": sizes},
+                size,
                 encoder=SizeEncoder,
+                safe=False
             )
         except Size.DoesNotExist:
             response = JsonResponse(
