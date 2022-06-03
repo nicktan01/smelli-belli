@@ -1,7 +1,8 @@
 from django.contrib import admin
-from .models import Question, Answer
+from .models import Question, Answer, Quiz
 # Register your models here.
 
+admin.site.register(Quiz)
 class AnswerInline(admin.TabularInline):
     model = Answer
 

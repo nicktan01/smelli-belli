@@ -19,3 +19,10 @@ Today, I worked on:
 -setting up models.py with Elliot and Jaiden
 -setting up the views.py with Elliot and Jaiden
 -set up the urls.py with Elliot
+
+## June 2, 2022
+
+Today, I worked on:
+
+-setting up customer
+-setting up quiz within customer
