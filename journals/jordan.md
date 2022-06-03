@@ -2,9 +2,9 @@
 
 
 ## June 2, 2022
-Morning:
+Morning: Finalized quiz question and answer options. Updated docs to reflect our decisions. 
 
-Afternoon:
+Afternoon: Cindy, Nicholas, and I worked on the models for the customer microservice. We had to deal with some docker/mac vs windows troubleshooting. We were able to log in to the django admin page but we need to revisit our models. 
 
 ## June 1, 2022
 Morning: Started working on FastAPI set up for the customer microservice with Cindy. 
