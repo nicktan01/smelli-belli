@@ -29,3 +29,10 @@ Today, Nicolas, Jaiden, and I worked in the Inventory microservice. We started b
 We ran into some blockers when trying to conceptualize how best to build our backend, particularly our inventory database so that we would follow at least the first three levels of database normalization. Trying to figure out how foreign keys in Django related to business keys in postgres, and which things needed their own model class and table was challenging.
 
 A win I had today was probably finally getting a clear mental model of exactly what the "on_delete" property in Django does. I've previously just tried to copy examples we've done in the past when working with Foreign Keys, but it's nice now to have a better idea of the relation between the two models and which direction things will delete in.
+
+
+## June 2, 2022
+---
+Today I had incredibly bad luck with my connection and the hotel room we're staying in, so I hardly had any contact time with my team today. We were able to discuss the quiz questions and added a few more questions to fill out the quizzes. I reviewed a lot of the code that we've written so far and edited some things here and there. I also spent some time starting up our accounts microservice, and writing the back end in that app.
+
+Didn't really have a win today, to be honest. I wish I was not having so much difficulty working with and communicating with my team. Luckily, tomorrow is our last day on vacation, so hopefully things will run smoother for us once I am back home. 

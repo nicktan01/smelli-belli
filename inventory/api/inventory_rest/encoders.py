@@ -19,7 +19,7 @@ class ProductListEncoder(ModelEncoder):
         "size",
     ]
     encoders = {
-        "size": SizeEncoder
+        "size": SizeEncoder()
     }
 
     def get_extra_data(self, o):
@@ -46,7 +46,7 @@ class ProductDetailEncoder(ModelEncoder):
         "created",
     ]
     encoders = {
-        "size": SizeEncoder
+        "size": SizeEncoder()
     }
 
     def get_extra_data(self, o):
@@ -59,7 +59,7 @@ class ScentEncoder(ModelEncoder):
     model = Scent
     properties = ["id", "scents", "product"]
     encoders = {
-        "product": ProductListEncoder
+        "product": ProductListEncoder()
     }
 
     def get_extra_data(self, o):
