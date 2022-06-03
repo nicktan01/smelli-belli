@@ -95,7 +95,6 @@ This is a stretch goal to implement product tags for our products!
 | Name         | Type     | Unique | Optional |
 | ------------ | -------- | ------ | -------- |
 | products     | int      | no     | no       |
-| price        | int      | no     | no       |
 | quantity     | int      | no     | no       |
 | totals       | int      | no     | no       |
 | order_number | int      | yes    | no       |
