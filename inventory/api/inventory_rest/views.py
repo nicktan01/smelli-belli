@@ -17,9 +17,22 @@ def api_list_products(request):
             {"products": products},
             encoder=ProductDetailEncoder,
         )
+    # POST
     else:
+        content = json.loads(request.body)
+
+        # Get the size object and put it in the content dictionary
         try:
-            content = json.loads(request.body)
+            size = Size.objects.get(id=content["size"])
+            content["size"] = size
+        except Size.DoesNotExist:
+            return JsonResponse(
+                {"message": "Invalid location id"},
+                status=400,
+            )
+
+        # Then, grab the Product object
+        try:
             product = Product.objects.create(**content)
             return JsonResponse(
                 product,
@@ -99,8 +112,21 @@ def api_list_scents(request):
         )
     # POST
     else:
+        content = json.loads(request.body)
+
+        # Get the product object and put it in the content dictionary
         try:
-            content = json.loads(request.body)
+            product = Product.objects.get(id=content["product"])
+            content["product"] = product
+        except Product.DoesNotExist:
+            return JsonResponse(
+                {"message": "Invalid product id"},
+                status=400
+            )
+
+        # Then, grab the Scent object
+        try:
+            # content = json.loads(request.body)
             scent = Scent.objects.create(**content)
             return JsonResponse(
                 scent,
@@ -142,7 +168,7 @@ def api_show_scent(request, pk):
         try:
             content = json.loads(request.body)
             scent = Scent.objects.get(id=pk)
-
+            
             props = ["scents"]
             for prop in props:
                 if prop in content:
