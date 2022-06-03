@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ["localhost"]
 # Application definition
 
 INSTALLED_APPS = [
-    "employee_rest.apps.EmployeeRestConfig"
+    "employee_rest.apps.EmployeeRestConfig",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

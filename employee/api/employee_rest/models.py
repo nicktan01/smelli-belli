@@ -30,14 +30,14 @@ class Order(models.Model):
     products = models.ForeignKey(
         ProductVO,
         related_name="order",
-        on_delete=CASCADE
+        on_delete=models.CASCADE
     )
     quantity = models.PositiveSmallIntegerField()
     totals = models.DecimalField()
     order_number = models.IntegerField()
     customer = models.ForeignKey(
         CustomerVO,
-        related_name="order"
-        on_delete=CASCADE
+        related_name="order",
+        on_delete=models.CASCADE
     )
     created = models.DateTimeField(auto_now_add=True)
