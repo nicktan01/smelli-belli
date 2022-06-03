@@ -67,35 +67,35 @@ services:
   #     DATABASE_URL: postgres://employee:password@database:5432/employee
   #     WAIT_HOSTS: database:5432,employee-api:8000
   #     WAIT_TIMEOUT: 240
-  # customer-api:
-  #   build:
-  #     context: ./customer/api
-  #     dockerfile: ./Dockerfile.dev
-  #   ports:
-  #     - "8090:8000"
-  #   volumes:
-  #     - ./customer/api:/app
-  #   depends_on:
-  #     - database
-  #   environment:
-  #     DATABASE_URL: postgres://customer:password@database:5432/customer
-  #     WAIT_HOSTS: database:5432
-  #     WAIT_TIMEOUT: 240
-  # customer-poller:
-  #   build:
-  #     context: ./customer/poll
-  #     dockerfile: ./Dockerfile.dev
-  #   volumes:
-  #     - ./customer/poll:/app
-  #     - ./customer/api/customer_project:/app/customer_project
-  #     - ./customer/api/customer_rest:/app/customer_rest
-  #   depends_on:
-  #     - database
-  #     - customer-api
-  #   environment:
-  #     DATABASE_URL: postgres://customer:password@database:5432/customer
-  #     WAIT_HOSTS: database:5432,customer-api:8000
-  #     WAIT_TIMEOUT: 240
+  customer-api:
+    build:
+      context: ./customer/api
+      dockerfile: ./Dockerfile.dev
+    ports:
+      - "8090:8000"
+    volumes:
+      - ./customer/api:/app
+    depends_on:
+      - database
+    environment:
+      DATABASE_URL: postgres://customer:password@database:5432/customer
+      WAIT_HOSTS: database:5432
+      WAIT_TIMEOUT: 240
+  customer-poller:
+    build:
+      context: ./customer/poll
+      dockerfile: ./Dockerfile.dev
+    volumes:
+      - ./customer/poll:/app
+      - ./customer/api/customer_project:/app/customer_project
+      - ./customer/api/customer_rest:/app/customer_rest
+    depends_on:
+      - database
+      - customer-api
+    environment:
+      DATABASE_URL: postgres://customer:password@database:5432/customer
+      WAIT_HOSTS: database:5432,customer-api:8000
+      WAIT_TIMEOUT: 240
   # accounts:
   #   build:
   #     context: ./accounts/api
