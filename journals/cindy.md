@@ -33,6 +33,14 @@ We also are planning to implement the Customer microservice using FastAPI and th
 
 Today, we worked on:
 
-- Scrapping our thought of using FastAPI with one of the microservices (with Jordan, Jaiden)
+- Scrapping our thought of using FastAPI with the Customer Microservice (with Jordan, Jaiden)
 
 Jordan and I started off project time with making our Customer microservice using FastAPI. We had some issues trying to Dockerize it, but with help from Mitch were able to figure it out. Once we were able to get our Docker containers up and running, Jaiden joined us in trying to write the APIs. We had decided to work on our wishlist API together first since we all feel unfamliar with writing FastAPI but were having a hard time with figuring out how to go about writing the it since with our wishlist, we would need to poll data from our inventory microservice for products but also have access to our accounts microservice. We put in another help ticket where Mitch tried to explain to us an approach we could take but we felt it would be a rough path since we haven't had any experience writing table data that we could use with our API. After some thought, we decided to scrap using FastAPI and stick with writing the backend to our microservices with Django.
+
+# June 2, 2022
+
+Today, we worked on:
+
+- Customer Microservice (with Jordan, Nicholas)
+
+We decided to start working on the Quiz stuff since Curtis prioritized it as something we should figure out first and did some research on how we could design our quiz models. We found a Youtube video to start off with that gave us some ideas to try and wrote our quiz models based off of that. After some struggles with remembering to do little things and add a comma to get the container to run, we were able to get the containers running and were able to login to the admin page. It still needs some tinkering as the admin panel was only showing the question and answer model but not the quiz model.. Something to work on and figure out for tomorrow.
