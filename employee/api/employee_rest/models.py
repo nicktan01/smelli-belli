@@ -1,9 +1,9 @@
-from tkinter import CASCADE
 from django.db import models
 
-
 class SizeVO(models.Model):
-    pass
+    sizes = models.CharField(max_length=25)
+    import_href = models.CharField(max_length=200, unique=True)
+
 class ProductVO(models.Model):
     name = models.CharField(max_length=50)
     sku = models.CharField(max_length=12, unique=True)
@@ -14,17 +14,12 @@ class ProductVO(models.Model):
         on_delete=models.PROTECT
     )
     quantity = models.PositiveSmallIntegerField()
-    ingredients = models.CharField(max_length=500)
     limited_item = models.BooleanField()
     image = models.URLField()
-    description = models.CharField(max_length=400)
-    usage = models.CharField(max_length=100)
-    storage = models.CharField(max_length=100)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    import_href = models.CharField(max_length=200, unique=True)
 
 class CustomerVO(models.Model):
-    pass
+    import_href = models.CharField(max_length=200, unique=True)
 
 class Order(models.Model):
     products = models.ForeignKey(
@@ -33,7 +28,7 @@ class Order(models.Model):
         on_delete=models.CASCADE
     )
     quantity = models.PositiveSmallIntegerField()
-    totals = models.DecimalField()
+    totals = models.DecimalField(max_digits=10, decimal_places=2)
     order_number = models.IntegerField()
     customer = models.ForeignKey(
         CustomerVO,

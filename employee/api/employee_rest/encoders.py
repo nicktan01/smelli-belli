@@ -4,27 +4,26 @@ from .models import ProductVO, Order, CustomerVO
 class ProductVOEncoder(ModelEncoder):
     model = ProductVO
     properties = [
+        "id",
         "name",
         "sku",
         "price",
         "size",
         "quantity",
-        "ingredients",
         "limited_item",
         "image",
-        "description",
-        "usage",
-        "storage",
         "created",
-        "updated"
+        "updated",
+        "import_href"
     ]
 
 class CustomerVOEncoder(ModelEncoder):
-    pass
-
+    model = CustomerVO
+    properties = ["id", "import_href"]
 class OrderEncoder(ModelEncoder):
     model = Order
     properties = [
+        "id",
         "products",
         "quantity",
         "totals",

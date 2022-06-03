@@ -20,7 +20,7 @@ services:
       - smelli-db:/var/lib/postgresql/data
       - ./db:/docker-entrypoint-initdb.d
     environment:
-      - POSTGRES_MULTIPLE_DATABASES=inventory,accounts
+      - POSTGRES_MULTIPLE_DATABASES=inventory,accounts,employee
       - POSTGRES_PASSWORD=test-databases
     ports:
       - 15432:5432
