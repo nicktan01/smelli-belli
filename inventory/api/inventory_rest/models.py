@@ -31,6 +31,9 @@ class Size(models.Model):
         default=''
     )
 
+    def __str__(self):
+        return f"{self.sizes}"
+
 
 class Product(models.Model):
     name = models.CharField(max_length=50)
@@ -50,6 +53,9 @@ class Product(models.Model):
     storage = models.CharField(max_length=100)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.name} - {self.size}, {self.sku}"
 
 
 class Scent(models.Model):
@@ -78,3 +84,5 @@ class Scent(models.Model):
         on_delete=models.CASCADE
     )
 
+    def __str__(self):
+        return f"{self.scents} associated with {self.product}"

@@ -25,9 +25,7 @@ class ProductListEncoder(ModelEncoder):
     def get_extra_data(self, o):
         return {
             "price": float(o.price),
-            "size": {
-                "sizes": o.size.sizes,
-            }
+            "size": o.size.sizes
         }
 
 class ProductDetailEncoder(ModelEncoder):
@@ -54,9 +52,7 @@ class ProductDetailEncoder(ModelEncoder):
     def get_extra_data(self, o):
         return {
             "price": float(o.price),
-            "size": {
-                "sizes": o.size.sizes,
-            }
+            "size": o.size.sizes
         }
 
 class ScentEncoder(ModelEncoder):

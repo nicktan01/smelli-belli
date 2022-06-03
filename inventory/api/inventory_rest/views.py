@@ -3,7 +3,6 @@ from django.views.decorators.http import require_http_methods
 import json
 from .encoders import (
     ProductDetailEncoder,
-    ProductListEncoder,
     ScentEncoder,
     SizeEncoder
 )
@@ -16,7 +15,7 @@ def api_list_products(request):
         products = Product.objects.all()
         return JsonResponse(
             {"products": products},
-            encoder=ProductListEncoder,
+            encoder=ProductDetailEncoder,
         )
     else:
         try:
@@ -63,8 +62,8 @@ def api_show_product(request, sku):
             product = Product.objects.get(sku=sku)
 
             props = [
-                "sku",
                 "name",
+                "sku",
                 "price",
                 "size",
                 "quantity",
