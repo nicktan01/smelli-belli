@@ -9,8 +9,7 @@ sys.path.append("")
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "employee_project.settings")
 django.setup()
 
-from employee_rest.models import ProductVO
-# from customer_rest.models import UserVO
+from employee_rest.models import ProductVO, UserVO
 
 def get_products():
     response = requests.get("http://inventory-api:8000/api/products/")
@@ -29,18 +28,19 @@ def get_products():
             },
         )
 
-# def get_user():
-#     response = requests.get("http://user-api:8100/api/users/")
-#     content = json.loads(response.content)
-#     for user in content["users"]:
-#         UserVO.objects.update_or_create(
-#             import_href=user["href"],
-#             defaults={
-#                 "email": user["name"],
-#                 "first_name": user["name"],
-#                 "last_name": user["name"]
-#             },
-#         )
+def get_user():
+    response = requests.get("http://accounts:8000/api/accounts/")
+    content = json.loads(response.content)
+    for user in content["accounts"]:
+        UserVO.objects.update_or_create(
+            import_href=user["href"],
+            defaults={
+                "username": user["username"],
+                "email": user["email"],
+                "first_name": user["first_name"],
+                "last_name": user["last_name"]
+            },
+        )
 
 
 def poll():
@@ -48,6 +48,7 @@ def poll():
         print('employee poller polling for data')
         try:
             get_products()
+            get_user()
         except Exception as e:
             print(e, file=sys.stderr)
         time.sleep(60)

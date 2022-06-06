@@ -13,7 +13,10 @@ class ProductVO(models.Model):
 
 class UserVO(models.Model):
     import_href = models.CharField(max_length=200, unique=True)
-    user = models.CharField
+    username = models.CharField(max_length=200, unique=True)
+    email = models.CharField(max_length=250, unique=True)
+    first_name = models.CharField(max_length=250)
+    last_name = models.CharField(max_length=250)
 
 class Order(models.Model):
     products = models.ForeignKey(
