@@ -27,20 +27,6 @@ def get_products():
             },
         )
 
-<<<<<<< HEAD
-=======
-def get_scents():
-    response = requests.get("http://inventory-api:8000/api/scents/")
-    content = json.loads(response.content)
-    for scent in content["scent"]:
-        ScentVO.objects.update_or_create(
-            import_href=scent["href"],
-            defaults={
-                "name": scent["name"],
-            },
-        ) 
-
->>>>>>> main
 def poll():
     while True:
         print('Customer poller polling for data')
