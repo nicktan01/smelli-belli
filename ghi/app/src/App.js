@@ -49,6 +49,7 @@ function App() {
   }, [token]);
 
   return (
+    // <Nav token={token} />
     // <BrowserRouter>
     //   <Routes>
     //     <Route path="/login" element={<Login login={login} token={token} />} />
