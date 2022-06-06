@@ -18,9 +18,22 @@ def api_list_products(request):
             {"products": products},
             encoder=ProductListEncoder,
         )
+    # POST
     else:
+        content = json.loads(request.body)
+
+        # Get the size object and put it in the content dictionary
         try:
-            content = json.loads(request.body)
+            size = Size.objects.get(id=content["size"])
+            content["size"] = size
+        except Size.DoesNotExist:
+            return JsonResponse(
+                {"message": "Size does not exist"},
+                status=400,
+            )
+
+        # Then, grab the Product object
+        try:
             product = Product.objects.create(**content)
             return JsonResponse(
                 product,
@@ -38,6 +51,7 @@ def api_list_products(request):
 def api_show_product(request, sku):
     if request.method == "GET":
         try:
+            # Note: we are grabbing Product objects by their SKU
             product = Product.objects.get(sku=sku)
             return JsonResponse(
                 product,
@@ -45,26 +59,34 @@ def api_show_product(request, sku):
                 safe=False
             )
         except Product.DoesNotExist:
-            response = JsonResponse({"message": "Product does not exist, could not display details."})
+            response = JsonResponse(
+                {"message": "Product does not exist"}
+            )
             response.status_code = 404
             return response
     elif request.method == "DELETE":
         try:
+            # Again, making sure to grab Product objects by their SKU
+            # Count is being used here to display "deleted": true
+                # in the JSON response
             count, _ = Product.objects.filter(sku=sku).delete()
             return JsonResponse(
                 {"deleted": count > 0}
             )
         except Product.DoesNotExist:
-            return JsonResponse({"message": "Product does not exist, could not delete."})
+            return JsonResponse(
+                {"message": "Product does not exist"}
+            )
     # PUT
     else:
         try:
             content = json.loads(request.body)
+            # Grabbing Product objects by their SKU
             product = Product.objects.get(sku=sku)
 
             props = [
-                "sku",
                 "name",
+                "sku",
                 "price",
                 "size",
                 "quantity",
@@ -85,7 +107,9 @@ def api_show_product(request, sku):
                 safe=False
             )
         except Product.DoesNotExist:
-            response = JsonResponse({"message": "Product does not exist, could not update."})
+            response = JsonResponse(
+                {"message": "Product does not exist"}
+            )
             response.status_code = 404
             return response
 
@@ -100,8 +124,21 @@ def api_list_scents(request):
         )
     # POST
     else:
+        content = json.loads(request.body)
+
+        # Get the product object and put it in the content dictionary
         try:
-            content = json.loads(request.body)
+            # Scent and Product objects are bound by the Product ID, not SKU
+            product = Product.objects.get(id=content["product"])
+            content["product"] = product
+        except Product.DoesNotExist:
+            return JsonResponse(
+                {"message": "Product does not exist"},
+                status=400
+            )
+
+        # Then, grab the Scent object
+        try:
             scent = Scent.objects.create(**content)
             return JsonResponse(
                 scent,
@@ -120,13 +157,16 @@ def api_list_scents(request):
 def api_show_scent(request, pk):
     if request.method == "GET":
         try:
-            scents = Scent.objects.get(id=pk)
+            scent = Scent.objects.get(id=pk)
             return JsonResponse(
-                {"scents": scents},
+                scent,
                 encoder=ScentEncoder,
+                safe=False
             )
         except Scent.DoesNotExist:
-            response = JsonResponse({"message": "Scent does not exist, could not display details."})
+            response = JsonResponse(
+                {"message": "Scent does not exist"}
+                )
             response.status_code = 404
             return response            
     elif request.method == "DELETE":
@@ -137,13 +177,15 @@ def api_show_scent(request, pk):
             )
 
         except Scent.DoesNotExist:
-            return JsonResponse({"message": "Scent does not exist, could not delete."})
+            return JsonResponse(
+                {"message": "Scent does not exist"}
+        )
     # PUT
     else: 
         try:
             content = json.loads(request.body)
             scent = Scent.objects.get(id=pk)
-
+            
             props = ["scents"]
             for prop in props:
                 if prop in content:
@@ -155,7 +197,9 @@ def api_show_scent(request, pk):
                 safe=False,
             )
         except Scent.DoesNotExist:
-            response = JsonResponse({"message": "Scent does not exist, could not update."})
+            response = JsonResponse(
+                {"message": "Scent does not exist"}
+            )
             response.status_code = 404
             return response
 
@@ -190,13 +234,16 @@ def api_list_sizes(request):
 def api_show_size(request, pk):
     if request.method == "GET":
         try:
-            sizes = Size.objects.get(id=pk)
+            size = Size.objects.get(id=pk)
             return JsonResponse(
-                {"sizes": sizes},
+                size,
                 encoder=SizeEncoder,
+                safe=False
             )
         except Size.DoesNotExist:
-            response = JsonResponse({"message": "Size does not exist, could not display details."})
+            response = JsonResponse(
+                {"message": "Size does not exist"}
+                )
             response.status_code = 404
             return response
     elif request.method == "DELETE":
@@ -206,7 +253,9 @@ def api_show_size(request, pk):
                 {"deleted": count > 0}
             )
         except Size.DoesNotExist:
-            return JsonResponse({"message": "Size does not exist, could not delete."})
+            return JsonResponse(
+                {"message": "Size does not exist"}
+            )
     # PUT
     else: 
         try:
@@ -224,6 +273,8 @@ def api_show_size(request, pk):
                 safe=False,
             )
         except Size.DoesNotExist:
-            response = JsonResponse({"message": "Size does not exist, could not update."})
+            response = JsonResponse(
+                {"message": "Size does not exist"}
+            )
             response.status_code = 404
             return response

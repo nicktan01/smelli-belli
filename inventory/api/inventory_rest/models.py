@@ -1,4 +1,4 @@
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.urls import reverse
 from django.db import models
 
 # Create your models here.
@@ -31,6 +31,9 @@ class Size(models.Model):
         default=''
     )
 
+    def __str__(self):
+        return f"{self.sizes}"
+
 
 class Product(models.Model):
     name = models.CharField(max_length=50)
@@ -50,6 +53,17 @@ class Product(models.Model):
     storage = models.CharField(max_length=100)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.name} - {self.size}, {self.sku}"
+
+    # This function returns the href for a Product when an api_show_product
+        # request is made, storing it in the JSON response
+    def get_api_url(self):
+        return reverse("api_show_product", kwargs={"sku": self.sku}) # SKU!
+
+    class Meta:
+        ordering = ("size", "name") # Order Products first by size, then name
 
 
 class Scent(models.Model):
@@ -78,3 +92,10 @@ class Scent(models.Model):
         on_delete=models.CASCADE
     )
 
+    def __str__(self):
+        return f"{self.scents} associated with {self.product}"
+
+    # This function returns the href for a Scent when an api_show_scent
+        # request is made, storing it in the JSON response
+    def get_api_url(self):
+        return reverse("api_show_scent", kwargs={"pk": self.pk}) # PK!

@@ -13,7 +13,7 @@ from employee_rest.models import ProductVO
 # from customer_rest.models import CustomerVO
 
 def get_products():
-    response = requests.get("http://inventory-api:8100/api/products/")
+    response = requests.get("http://inventory-api:8000/api/products/")
     content = json.loads(response.content)
     for product in content["product"]:
         ProductVO.objects.update_or_create(
