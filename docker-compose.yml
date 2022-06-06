@@ -15,7 +15,7 @@ services:
       NODE_ENV: development
       HOST: "0.0.0.0"
       REACT_APP_ACCOUNTS_HOST: http://localhost:9080
-      REACT_APP_EMPLOYEES_HOST: http://localhost:8100
+      REACT_APP_INVENTORY_HOST: http://localhost:8100
   database:
     image: postgres:14.2-bullseye
     volumes:

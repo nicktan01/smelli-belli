@@ -9,14 +9,14 @@ function App() {
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [orders, setOrders] = useState(null);
+  const [orders, setProducts] = useState(null);
   const [error, setError] = useState(null);
   const canLogin = username && password;
   const canSignup = canLogin && email && firstName && lastName;
 
   useEffect(() => {
-    async function getOrders() {
-      const url = `${process.env.REACT_APP_EMPLOYEES_HOST}/api/products/`;
+    async function getProducts() {
+      const url = `${process.env.REACT_APP_INVENTORY_HOST}/api/products/`;
       const response = await fetch(url, {
         credentials: 'include',
         headers: {
@@ -24,28 +24,33 @@ function App() {
         },
       });
       if (response.ok) {
-        const orders = await response.json();
-        setOrders(orders);
+        const products = await response.json();
+        setProducts(products);
       } else {
         setError(await response.text())
       }
     }
     if (token) {
-      getOrders();
+      getProducts();
     }
   }, [token]);
 
   return (
+    // <BrowserRouter>
+    //   <Routes>
+    //     <Route path="/login" element={<Login login={login} token={token} />} />
+    //   </Routes>
+    // </BrowserRouter>
     <div>
       { error ? <div dangerouslySetInnerHTML={{__html: error}} /> : null }
       { token
       ? <div>
-          <h1>Logout</h1>
+          <h1>You're logged in!</h1>
           <div>{token}</div>
           <button onClick={logout}>Logout</button>
           { orders == null?
             <div>Orders loading...</div> :
-            <div>{orders.length || 'no'} orders</div>
+            <div>{orders.length || 'no'} products</div>
           }
         </div>
       : <div>
