@@ -6,12 +6,11 @@ import json
 import requests
 
 sys.path.append("")
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "sales_project.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "employee_project.settings")
 django.setup()
 
-from sales_rest.models import AutomobileVO, ManufacturerVO, VehicleModelVO
 from employee_rest.models import ProductVO
-from customer_rest.models import CustomerVO
+# from customer_rest.models import CustomerVO
 
 def get_products():
     response = requests.get("http://inventory-api:8100/api/products/")
