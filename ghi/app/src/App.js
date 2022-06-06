@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 import './App.css';
 import { useToken } from './authApi';
 
@@ -10,6 +10,7 @@ function App() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [orders, setProducts] = useState(null);
+  const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const canLogin = username && password;
   const canSignup = canLogin && email && firstName && lastName;
@@ -30,8 +31,20 @@ function App() {
         setError(await response.text())
       }
     }
+    async function getCurrentUser() {
+      const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/accounts/me/`;
+      const response = await fetch(url, {
+        credentials: 'include',
+      });
+      if (response.ok) {
+        const user = await response.json();
+        console.log(user);
+        setUser(user);
+      }
+    }
     if (token) {
       getProducts();
+      getCurrentUser();
     }
   }, [token]);
 
@@ -51,6 +64,10 @@ function App() {
           { orders == null?
             <div>Orders loading...</div> :
             <div>{orders.length || 'no'} products</div>
+          }
+          { user == null?
+            <div>Loading your information</div> :
+            <div>You are staff: {user.is_staff ? 'YES!' : 'no :-('}</div>
           }
         </div>
       : <div>

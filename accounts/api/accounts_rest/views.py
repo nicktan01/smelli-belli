@@ -1,3 +1,4 @@
+import djwto.authentication as auth
 from django.db import IntegrityError
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.http import require_http_methods
@@ -132,3 +133,14 @@ def api_user_token(request):
     response = JsonResponse({"detail": "no session"})
     response.status_code = 404
     return response
+
+
+@require_http_methods(["GET"])
+@auth.jwt_login_required
+def api_current_user(request):
+    print("I AM HERE")
+    user_id =request.payload["user"]["id"]
+    user = User.objects.get(id=user_id)
+    return JsonResponse({
+        "is_staff": user.is_staff,
+    })
