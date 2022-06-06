@@ -69,3 +69,12 @@ by adding the Employee service to `POSTGRES_MULTIPLE_DATABASES` and by discussin
 
 After finishing up what we had planned for the employee service, I helped Jordan and Cindy with the Customer views.
 
+## June 6, 2022
+Today I worked on:
+
+- fixing pollers and cleaning up the backend
+
+I worked with Elliot in a live share to iron out some issues we were having with the pollers for both employee and customer services. One problem just kept leading to another but we eventually got them all sorted out after reviewing sections of code in basically every service.
+
+Elliot and I reexperienced the pains of needing to remove volumes and recompose containers in order to get a clean database, and still be able to test that all our data was valid and able to be shared across services. Overall, I think we are pretty much done with the backend aside from maybe implementing some code Curtis showed us to verify that users are logged in or logged out.
+
