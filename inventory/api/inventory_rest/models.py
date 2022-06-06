@@ -1,4 +1,4 @@
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.urls import reverse
 from django.db import models
 
 # Create your models here.
@@ -36,6 +36,21 @@ class Size(models.Model):
 
 
 class Product(models.Model):
+    FRESH = 'Fresh'
+    AMBER = 'Amber'
+    FLORAL = 'Floral'
+    WOODY = 'Woody'
+    FRUITY = 'Fruity'
+    GOURMAND = 'Gourmand'
+    SCENT_CHOICES = [
+        ('', '-----------'),
+        (FRESH, 'Fresh'),
+        (AMBER, 'Amber'),
+        (FLORAL , 'Floral'),
+        (WOODY , 'Woody'),
+        (FRUITY , 'Fruity'),
+        (GOURMAND, 'Gourmand')
+    ]
     name = models.CharField(max_length=50)
     sku = models.CharField(max_length=12, unique=True)
     price = models.DecimalField(max_digits=5, decimal_places=2)
@@ -43,6 +58,25 @@ class Product(models.Model):
         Size,
         related_name="products",
         on_delete=models.PROTECT
+    )
+    scent1 = models.CharField(
+        max_length=25,
+        choices=SCENT_CHOICES,
+    )
+    scent2 = models.CharField(
+        max_length=25,
+        choices=SCENT_CHOICES,
+        blank=True,
+    )
+    scent3 = models.CharField(
+        max_length=25,
+        choices=SCENT_CHOICES,
+        blank=True,
+    )
+    scent4 = models.CharField(
+        max_length=25,
+        choices=SCENT_CHOICES,
+        blank=True,
     )
     quantity = models.PositiveSmallIntegerField()
     ingredients = models.CharField(max_length=500)
@@ -57,32 +91,10 @@ class Product(models.Model):
     def __str__(self):
         return f"{self.name} - {self.size}, {self.sku}"
 
+    # This function returns the href for a Product when an api_show_product
+        # request is made, storing it in the JSON response
+    def get_api_url(self):
+        return reverse("api_show_product", kwargs={"sku": self.sku}) # SKU!
 
-class Scent(models.Model):
-    FRESH = 'Fresh'
-    AMBER = 'Amber'
-    FLORAL = 'Floral'
-    WOODY = 'Woody'
-    FRUITY = 'Fruity'
-    GOURMAND = 'Gourmand'
-    SCENT_CHOICES = [
-        (FRESH, 'Fresh'),
-        (AMBER, 'Amber'),
-        (FLORAL , 'Floral'),
-        (WOODY , 'Woody'),
-        (FRUITY , 'Fruity'),
-        (GOURMAND, 'Gourmand')
-    ]
-    scents = models.CharField(
-        max_length=25,
-        choices=SCENT_CHOICES,
-        default=FRESH,
-    )
-    product = models.ForeignKey(
-        Product,
-        related_name="scents",
-        on_delete=models.CASCADE
-    )
-
-    def __str__(self):
-        return f"{self.scents} associated with {self.product}"
+    class Meta:
+        ordering = ("size", "name") # Order Products first by size, then name

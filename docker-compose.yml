@@ -20,7 +20,7 @@ services:
       - smelli-db:/var/lib/postgresql/data
       - ./db:/docker-entrypoint-initdb.d
     environment:
-      - POSTGRES_MULTIPLE_DATABASES=inventory,accounts,employee
+      - POSTGRES_MULTIPLE_DATABASES=inventory,accounts,employee,customer
       - POSTGRES_PASSWORD=test-databases
     ports:
       - 15432:5432
@@ -66,21 +66,21 @@ services:
       DATABASE_URL: postgres://employee:password@database:5432/employee
       WAIT_HOSTS: database:5432
       WAIT_TIMEOUT: 240
-  # employee-poller:
-  #   build:
-  #     context: ./employee/poll
-  #     dockerfile: ./Dockerfile.dev
-  #   volumes:
-  #     - ./employee/poll:/app
-  #     - ./employee/api/employee_project:/app/employee_project
-  #     - ./employee/api/employee_rest:/app/employee_rest
-  #   depends_on:
-  #     - database
-  #     - employee-api
-  #   environment:
-  #     DATABASE_URL: postgres://employee:password@database:5432/employee
-  #     WAIT_HOSTS: database:5432,employee-api:8000
-  #     WAIT_TIMEOUT: 240
+  employee-poller:
+    build:
+      context: ./employee/poll
+      dockerfile: ./Dockerfile.dev
+    volumes:
+      - ./employee/poll:/app
+      - ./employee/api/employee_project:/app/employee_project
+      - ./employee/api/employee_rest:/app/employee_rest
+    depends_on:
+      - database
+      - employee-api
+    environment:
+      DATABASE_URL: postgres://employee:password@database:5432/employee
+      WAIT_HOSTS: database:5432,employee-api:8000
+      WAIT_TIMEOUT: 240
   customer-api:
     build:
       context: ./customer/api

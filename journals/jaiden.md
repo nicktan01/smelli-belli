@@ -56,3 +56,16 @@ My wifi went down in the morning, so I mostly worked alone on the employee micro
 Today I learned that `.sh` and `.db` files should be using LF instead of CRLF, and this can be changed by adding a `.gitattributes` file.
 
 Tomorrow I need to fix another issue with the employee's service having an error regarding the password authentication.
+
+## June 3, 2022
+Today I worked on:
+
+- fixing the docker compose for the employee's service
+- updated some fields in the models and encoders in the employee's service and merged to main
+- helped create the views for the customer service
+
+I worked with Elliot in a live share that I got to host, so now I have some experience using VScode Live Share, and together, we fixed the docker compose file 
+by adding the Employee service to `POSTGRES_MULTIPLE_DATABASES` and by discussing what data should actually be polled into the service for the product. 
+
+After finishing up what we had planned for the employee service, I helped Jordan and Cindy with the Customer views.
+
