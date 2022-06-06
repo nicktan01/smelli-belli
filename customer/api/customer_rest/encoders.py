@@ -22,9 +22,7 @@ class ProductVOEncoder(ModelEncoder):
 
 class UserVOEncoder(ModelEncoder):
     model = UserVO
-    properties = [
-        "user"
-    ]
+    properties = ["id", "user"]
 
 class ScentVOEncoder(ModelEncoder):
     model = ScentVO
@@ -40,10 +38,7 @@ class QuestionEncoder(ModelEncoder):
 
 class AnswerEncoder(ModelEncoder):
     model = Answer
-    properties = [
-        "text", 
-        "question"
-    ]
+    properties = ["id", "text", "question"]
 
 class ResultEncoder(ModelEncoder):
     model = Result
