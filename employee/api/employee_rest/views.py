@@ -82,3 +82,11 @@ def api_order(request, pk):
             response.status_code = 404
             return response
 
+@require_http_methods(["GET"])
+def api_productvos(request):
+    if request.method == "GET":
+        productvos = ProductVO.objects.all()
+        return JsonResponse(
+            {"productvos": productvos},
+            encoder=ProductVOEncoder,
+        )

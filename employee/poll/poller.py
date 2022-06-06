@@ -9,8 +9,21 @@ sys.path.append("")
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "employee_project.settings")
 django.setup()
 
-from employee_rest.models import ProductVO
+from employee_rest.models import ProductVO, SizeVO
 # from customer_rest.models import CustomerVO
+
+
+def get_sizes():
+    response = requests.get("http://inventory-api:8000/api/sizes/")
+    content = json.loads(response.content)
+    for size in content["sizes"]:
+        ProductVO.objects.update_or_create(
+            import_href=size["href"],
+            defaults={
+                "id" : size["id"],
+                "sizes" : size["sizes"],
+            },
+        )
 
 def get_products():
     response = requests.get("http://inventory-api:8000/api/products/")
@@ -24,7 +37,7 @@ def get_products():
                 "price": product["price"],
                 "sku": product["sku"],
                 "image": product["image"],
-                "size": product["size"],
+                "size": SizeVO.objects.get(import_href=product["size"]["href"]),
                 "quantity": product["quantity"] ,
                 "limited_item": product["limited_item"],
                 "created": product["created"],
@@ -47,9 +60,10 @@ def get_products():
 
 def poll():
     while True:
-        print('Sales poller polling for data')
+        print('employee poller polling for data')
         try:
             get_products()
+            get_sizes()
         except Exception as e:
             print(e, file=sys.stderr)
         time.sleep(60)
