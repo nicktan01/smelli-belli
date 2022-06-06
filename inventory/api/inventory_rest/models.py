@@ -74,6 +74,7 @@ class Scent(models.Model):
     FRUITY = 'Fruity'
     GOURMAND = 'Gourmand'
     SCENT_CHOICES = [
+        ('', '-----------'),
         (FRESH, 'Fresh'),
         (AMBER, 'Amber'),
         (FLORAL , 'Floral'),
@@ -81,10 +82,24 @@ class Scent(models.Model):
         (FRUITY , 'Fruity'),
         (GOURMAND, 'Gourmand')
     ]
-    scents = models.CharField(
+    scent1 = models.CharField(
         max_length=25,
         choices=SCENT_CHOICES,
-        default=FRESH,
+    )
+    scent2 = models.CharField(
+        max_length=25,
+        choices=SCENT_CHOICES,
+        blank=True,
+    )
+    scent3 = models.CharField(
+        max_length=25,
+        choices=SCENT_CHOICES,
+        blank=True,
+    )
+    scent4 = models.CharField(
+        max_length=25,
+        choices=SCENT_CHOICES,
+        blank=True,
     )
     product = models.ForeignKey(
         Product,

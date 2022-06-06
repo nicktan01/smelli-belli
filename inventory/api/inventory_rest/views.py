@@ -4,10 +4,9 @@ import json
 from .encoders import (
     ProductDetailEncoder,
     ProductListEncoder,
-    ScentEncoder,
     SizeEncoder
 )
-from .models import Product, Scent, Size
+from .models import Product, Size
 
 
 @require_http_methods(["GET", "POST"])
@@ -109,96 +108,6 @@ def api_show_product(request, sku):
         except Product.DoesNotExist:
             response = JsonResponse(
                 {"message": "Product does not exist"}
-            )
-            response.status_code = 404
-            return response
-
-
-@require_http_methods(["GET", "POST"])
-def api_list_scents(request):
-    if request.method == "GET":
-        scents = Scent.objects.all()
-        return JsonResponse(
-            {"scents": scents},
-            encoder=ScentEncoder,
-        )
-    # POST
-    else:
-        content = json.loads(request.body)
-
-        # Get the product object and put it in the content dictionary
-        try:
-            # Scent and Product objects are bound by the Product ID, not SKU
-            product = Product.objects.get(id=content["product"])
-            content["product"] = product
-        except Product.DoesNotExist:
-            return JsonResponse(
-                {"message": "Product does not exist"},
-                status=400
-            )
-
-        # Then, grab the Scent object
-        try:
-            scent = Scent.objects.create(**content)
-            return JsonResponse(
-                scent,
-                encoder=ScentEncoder,
-                safe=False
-            )
-        except:
-            response = JsonResponse(
-                {"message": "Could not create the scent"}
-            )
-            response.status_code = 400
-            return response
-
-
-@require_http_methods(["DELETE", "GET", "PUT"])
-def api_show_scent(request, pk):
-    if request.method == "GET":
-        try:
-            scent = Scent.objects.get(id=pk)
-            return JsonResponse(
-                scent,
-                encoder=ScentEncoder,
-                safe=False
-            )
-        except Scent.DoesNotExist:
-            response = JsonResponse(
-                {"message": "Scent does not exist"}
-                )
-            response.status_code = 404
-            return response            
-    elif request.method == "DELETE":
-        try:
-            count, _ = Scent.objects.filter(id=pk).delete()
-            return JsonResponse(
-                {"deleted": count > 0}
-            )
-
-        except Scent.DoesNotExist:
-            return JsonResponse(
-                {"message": "Scent does not exist"}
-        )
-    # PUT
-    else: 
-        try:
-            content = json.loads(request.body)
-            scent = Scent.objects.get(id=pk)
-            
-            props = ["scents"]
-            for prop in props:
-                if prop in content:
-                    setattr(scent, prop, content[prop])
-            scent.save()
-            return JsonResponse(
-                scent,
-                encoder=ScentEncoder,
-                safe=False,
-            )
-        except Scent.DoesNotExist:
-            response = JsonResponse(
-                {"message": "Scent does not exist"}
             )
             response.status_code = 404
             return response
