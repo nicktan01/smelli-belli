@@ -1,6 +1,7 @@
 ## Jordan's Journal
 
 
+<<<<<<< HEAD
 
 ## June 3, 2022
 Morning: Cindy, Nicholas, and I worked on the models and wrote two of the poller functions for the customer service. Then we worked on the encoders and the views for the customer microservice
@@ -10,6 +11,11 @@ Afternoon: We continued working on the customer microservice and ran into some i
 ## June 2, 2022
 Morning: Finalized quiz question and answer options. Updated docs to reflect our decisions. 
 
+=======
+## June 2, 2022
+Morning: Finalized quiz question and answer options. Updated docs to reflect our decisions. 
+
+>>>>>>> main
 Afternoon: Cindy, Nicholas, and I worked on the models for the customer microservice. We had to deal with some docker/mac vs windows troubleshooting. We were able to log in to the django admin page but we need to revisit our models. 
 
 ## June 1, 2022

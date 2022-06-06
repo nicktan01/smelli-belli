@@ -14,7 +14,7 @@ django.setup()
 from customer_rest.models import ProductVO
 
 def get_products():
-    response = requests.get("http://inventory-api:8100/api/products/")
+    response = requests.get("http://inventory-api:8000/api/products/")
     content = json.loads(response.content)
     for product in content["product"]:
         ProductVO.objects.update_or_create(
@@ -27,6 +27,20 @@ def get_products():
             },
         )
 
+<<<<<<< HEAD
+=======
+def get_scents():
+    response = requests.get("http://inventory-api:8000/api/scents/")
+    content = json.loads(response.content)
+    for scent in content["scent"]:
+        ScentVO.objects.update_or_create(
+            import_href=scent["href"],
+            defaults={
+                "name": scent["name"],
+            },
+        ) 
+
+>>>>>>> main
 def poll():
     while True:
         print('Customer poller polling for data')

@@ -43,3 +43,29 @@ I worked with Elliot and Nicholas to (mostly) complete the inventory microservic
 I also tried out remote share with Jordan and Cindy, It was cool to see how we could interact within the same vs code at the same time and make changes directly, although I dont like how the writing seems to save based on the person who shares the link to remote share versus directly showing the individual that made the changes.
 
 - started on the creation of models for Employee, pushed it up to issue-03 branch
+
+## June 2, 2022
+Today I worked on:
+
+- creation of models for the Employee Microservice
+- creation of `GET` and `POST` request views for Orders and ProductVOs
+- creation of `DELETE`, `GET`, `POST` request views for Orders and ProductVOs
+
+My wifi went down in the morning, so I mostly worked alone on the employee microservice to get most of the barebones stuff done. I created the majority of the models, views, encoders, urls, but im sure my group will have some things to change or add to the microservice so it works seamlessly with the other microservices.
+
+Today I learned that `.sh` and `.db` files should be using LF instead of CRLF, and this can be changed by adding a `.gitattributes` file.
+
+Tomorrow I need to fix another issue with the employee's service having an error regarding the password authentication.
+
+## June 3, 2022
+Today I worked on:
+
+- fixing the docker compose for the employee's service
+- updated some fields in the models and encoders in the employee's service and merged to main
+- helped create the views for the customer service
+
+I worked with Elliot in a live share that I got to host, so now I have some experience using VScode Live Share, and together, we fixed the docker compose file 
+by adding the Employee service to `POSTGRES_MULTIPLE_DATABASES` and by discussing what data should actually be polled into the service for the product. 
+
+After finishing up what we had planned for the employee service, I helped Jordan and Cindy with the Customer views.
+
