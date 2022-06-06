@@ -18,8 +18,10 @@ class ProductVO(models.Model):
     image = models.URLField()
     import_href = models.CharField(max_length=200, unique=True)
 
-class CustomerVO(models.Model):
+
+class UserVO(models.Model):
     import_href = models.CharField(max_length=200, unique=True)
+    user = models.CharField
 
 class Order(models.Model):
     products = models.ForeignKey(
@@ -31,7 +33,7 @@ class Order(models.Model):
     totals = models.DecimalField(max_digits=10, decimal_places=2)
     order_number = models.IntegerField()
     customer = models.ForeignKey(
-        CustomerVO,
+        UserVO,
         related_name="order",
         on_delete=models.CASCADE
     )
