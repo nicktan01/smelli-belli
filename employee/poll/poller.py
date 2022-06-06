@@ -10,7 +10,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "employee_project.settings")
 django.setup()
 
 from employee_rest.models import ProductVO
-# from customer_rest.models import CustomerVO
+# from customer_rest.models import UserVO
 
 def get_products():
     response = requests.get("http://inventory-api:8000/api/products/")
@@ -36,7 +36,9 @@ def get_products():
 #         UserVO.objects.update_or_create(
 #             import_href=user["href"],
 #             defaults={
-#                 "name": user["name"],
+#                 "email": user["name"],
+#                 "first_name": user["name"],
+#                 "last_name": user["name"]
 #             },
 #         )
 
