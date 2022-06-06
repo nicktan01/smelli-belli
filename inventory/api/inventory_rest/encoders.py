@@ -1,5 +1,5 @@
 from common.json import ModelEncoder
-from .models import Product, Scent, Size
+from .models import Product, Size
 
 
 class SizeEncoder(ModelEncoder):
@@ -34,6 +34,10 @@ class ProductDetailEncoder(ModelEncoder):
         "sku",
         "price",
         "size",
+        "scent1",
+        "scent2",
+        "scent3",
+        "scent4",
         "quantity",
         "ingredients",
         "limited_item",
@@ -52,19 +56,4 @@ class ProductDetailEncoder(ModelEncoder):
         return {
             "price": float(o.price),
             "size": o.size.sizes
-        }
-
-class ScentEncoder(ModelEncoder):
-    model = Scent
-    properties = ["scents", "product"]
-    encoders = {
-        "product": ProductListEncoder()
-    }
-
-    def get_extra_data(self, o):
-        return {
-            "product": {
-                "href": f'/api/products/{o.product.sku}/',
-                "name": o.product.name
-            }
         }
