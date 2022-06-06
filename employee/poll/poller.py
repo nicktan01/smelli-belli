@@ -20,7 +20,6 @@ def get_sizes():
         ProductVO.objects.update_or_create(
             import_href=size["href"],
             defaults={
-                "id" : size["id"],
                 "sizes" : size["sizes"],
             },
         )
@@ -28,20 +27,17 @@ def get_sizes():
 def get_products():
     response = requests.get("http://inventory-api:8000/api/products/")
     content = json.loads(response.content)
-    for product in content["product"]:
+    for product in content["products"]:
         ProductVO.objects.update_or_create(
             import_href=product["href"],
             defaults={
-                "id" : product["id"],
                 "name": product["name"],
-                "price": product["price"],
                 "sku": product["sku"],
-                "image": product["image"],
+                "price": product["price"],
                 "size": SizeVO.objects.get(import_href=product["size"]["href"]),
                 "quantity": product["quantity"] ,
                 "limited_item": product["limited_item"],
-                "created": product["created"],
-                "updated": product["updated"],
+                "image": product["image"],
                 "import_href": product["import_href"]
             },
         )

@@ -16,7 +16,7 @@ from customer_rest.models import ProductVO
 def get_products():
     response = requests.get("http://inventory-api:8000/api/products/")
     content = json.loads(response.content)
-    for product in content["product"]:
+    for product in content["products"]:
         ProductVO.objects.update_or_create(
             import_href=product["href"],
             defaults={
