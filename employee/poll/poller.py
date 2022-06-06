@@ -9,53 +9,38 @@ sys.path.append("")
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "employee_project.settings")
 django.setup()
 
-from employee_rest.models import ProductVO, SizeVO
-# from customer_rest.models import CustomerVO
-
-
-def get_sizes():
-    response = requests.get("http://inventory-api:8000/api/sizes/")
-    content = json.loads(response.content)
-    for size in content["sizes"]:
-        ProductVO.objects.update_or_create(
-            import_href=size["href"],
-            defaults={
-                "id" : size["id"],
-                "sizes" : size["sizes"],
-            },
-        )
+from employee_rest.models import ProductVO, UserVO
 
 def get_products():
     response = requests.get("http://inventory-api:8000/api/products/")
     content = json.loads(response.content)
-    for product in content["product"]:
+    for product in content["products"]:
         ProductVO.objects.update_or_create(
             import_href=product["href"],
             defaults={
-                "id" : product["id"],
                 "name": product["name"],
-                "price": product["price"],
                 "sku": product["sku"],
-                "image": product["image"],
-                "size": SizeVO.objects.get(import_href=product["size"]["href"]),
+                "price": product["price"],
+                "size": product["size"],
                 "quantity": product["quantity"] ,
                 "limited_item": product["limited_item"],
-                "created": product["created"],
-                "updated": product["updated"],
-                "import_href": product["import_href"]
+                "image": product["image"],
             },
         )
 
-# def get_user():
-#     response = requests.get("http://user-api:8100/api/users/")
-#     content = json.loads(response.content)
-#     for user in content["users"]:
-#         UserVO.objects.update_or_create(
-#             import_href=user["href"],
-#             defaults={
-#                 "name": user["name"],
-#             },
-#         )
+def get_user():
+    response = requests.get("http://accounts:8000/api/accounts/")
+    content = json.loads(response.content)
+    for user in content["accounts"]:
+        UserVO.objects.update_or_create(
+            import_href=user["href"],
+            defaults={
+                "username": user["username"],
+                "email": user["email"],
+                "first_name": user["first_name"],
+                "last_name": user["last_name"]
+            },
+        )
 
 
 def poll():
@@ -63,7 +48,7 @@ def poll():
         print('employee poller polling for data')
         try:
             get_products()
-            get_sizes()
+            get_user()
         except Exception as e:
             print(e, file=sys.stderr)
         time.sleep(60)
