@@ -110,7 +110,7 @@ function Nav() {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <i class="bi bi-person-fill"></i>
+                <i className="bi bi-person-fill"></i>
               </NavLink>
               <div
                 style={{ left: "unset", right: "0" }}
@@ -133,8 +133,8 @@ function Nav() {
             </span>
             <span className="nav-item active">
               <NavLink className="nav-link" to="/cart">
-                <i class="bi bi-cart"></i>
-                <span class="position-absolute top-25 start-90 translate-middle badge rounded-pill bg-danger">
+                <i className="bi bi-cart"></i>
+                <span className="position-absolute top-25 start-90 translate-middle badge rounded-pill bg-danger">
                   3
                 </span>
               </NavLink>
