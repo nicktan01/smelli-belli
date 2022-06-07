@@ -1,9 +1,13 @@
 ## Jordan's Journal
 
+## June 7, 2022
+Morning:
+
+Afternoon:
 ## June 6, 2022
 Morning: Fixed our leftover Friday problem with the customer microservice. Created issues for the Fixer and Google Maps API integrations - we might be passing on the currency selector as this seems quite complicated. Cindy, Nicholas, and I worked on the integration of the Google Maps API by starting with making the react front end for the About page.
 
-Afternoon: 
+Afternoon: Worked on the maps integration and troubleshot how to add markers to the map. 
 ## June 3, 2022
 Morning: Cindy, Nicholas, and I worked on the models and wrote two of the poller functions for the customer service. Then we worked on the encoders and the views for the customer microservice
 

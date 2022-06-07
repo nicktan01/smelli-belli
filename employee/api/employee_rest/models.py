@@ -1,18 +1,10 @@
 from django.db import models
 
-class SizeVO(models.Model):
-    sizes = models.CharField(max_length=25)
-    import_href = models.CharField(max_length=200, unique=True)
-
 class ProductVO(models.Model):
     name = models.CharField(max_length=50)
     sku = models.CharField(max_length=12, unique=True)
     price = models.DecimalField(max_digits=5, decimal_places=2)
-    size = models.ForeignKey(
-        SizeVO,
-        related_name="products",
-        on_delete=models.PROTECT
-    )
+    size = models.CharField(max_length=25)
     quantity = models.PositiveSmallIntegerField()
     limited_item = models.BooleanField()
     image = models.URLField()
@@ -21,7 +13,10 @@ class ProductVO(models.Model):
 
 class UserVO(models.Model):
     import_href = models.CharField(max_length=200, unique=True)
-    user = models.CharField
+    username = models.CharField(max_length=200, unique=True)
+    email = models.CharField(max_length=250, unique=True)
+    first_name = models.CharField(max_length=250)
+    last_name = models.CharField(max_length=250)
 
 class Order(models.Model):
     products = models.ForeignKey(

@@ -16,6 +16,9 @@ class ProductListEncoder(ModelEncoder):
         "sku",
         "price",
         "size",
+        "image",
+        "quantity",
+        "limited_item"
     ]
     encoders = {
         "size": SizeEncoder()
