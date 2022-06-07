@@ -1,8 +1,9 @@
 ## Jordan's Journal
 
+## June 6, 2022
+Morning: Fixed our leftover Friday problem with the customer microservice. Created issues for the Fixer and Google Maps API integrations - we might be passing on the currency selector as this seems quite complicated. Cindy, Nicholas, and I worked on the integration of the Google Maps API by starting with making the react front end for the About page.
 
-<<<<<<< HEAD
-
+Afternoon: 
 ## June 3, 2022
 Morning: Cindy, Nicholas, and I worked on the models and wrote two of the poller functions for the customer service. Then we worked on the encoders and the views for the customer microservice
 
@@ -11,11 +12,6 @@ Afternoon: We continued working on the customer microservice and ran into some i
 ## June 2, 2022
 Morning: Finalized quiz question and answer options. Updated docs to reflect our decisions. 
 
-=======
-## June 2, 2022
-Morning: Finalized quiz question and answer options. Updated docs to reflect our decisions. 
-
->>>>>>> main
 Afternoon: Cindy, Nicholas, and I worked on the models for the customer microservice. We had to deal with some docker/mac vs windows troubleshooting. We were able to log in to the django admin page but we need to revisit our models. 
 
 ## June 1, 2022
