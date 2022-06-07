@@ -22,7 +22,7 @@ function Nav() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul className="navbar-nav">
+          <ul className="navbar-nav me-auto">
             <li className="nav-item dropdown">
               <NavLink
                 className="nav-link dropdown-toggle"
@@ -98,6 +98,47 @@ function Nav() {
                 </NavLink>
               </div>
             </li>
+          </ul>
+          <ul className="navbar-nav">
+            <span className="nav-item dropdown">
+              <NavLink
+                className="nav-link dropdown-toggle"
+                to="#"
+                id="navbarDropdownMenuLink"
+                data-toggle="dropdown"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="bi bi-person-fill"></i>
+              </NavLink>
+              <div
+                style={{ left: "unset", right: "0" }}
+                className="dropdown-menu"
+                aria-labelledby="navbarDropdownMenuLink"
+              >
+                <NavLink className="dropdown-item" to="/signin">
+                  My Account
+                </NavLink>
+                <NavLink className="dropdown-item" to="/orderhistory">
+                  Order History
+                </NavLink>
+                <NavLink className="dropdown-item" to="/wishlist">
+                  Wish List
+                </NavLink>
+                <NavLink className="dropdown-item" to="/scentprofile">
+                  Scent Profile
+                </NavLink>
+              </div>
+            </span>
+            <span className="nav-item active">
+              <NavLink className="nav-link" to="/cart">
+                <i class="bi bi-cart"></i>
+                <span class="position-absolute top-25 start-90 translate-middle badge rounded-pill bg-danger">
+                  3
+                </span>
+              </NavLink>
+            </span>
           </ul>
         </div>
       </div>
