@@ -18,7 +18,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 2,
+    "pk": 2,
     "fields": {
       "name": "Moss Ball Room Spray",
       "product_type": "Room Spray",
@@ -35,7 +35,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 3,
+    "pk": 3,
     "fields": {
       "name": "Moss Ball Lotion",
       "product_type": "Lotion",
@@ -52,7 +52,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 4,
+    "pk": 4,
     "fields": {
       "name": "Moss Ball Body Wash",
       "product_type": "Body Wash",
@@ -69,7 +69,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 5,
+    "pk": 5,
     "fields": {
       "name": "Cottage Bakery Incense Stick",
       "product_type": "Incense Stick",
@@ -86,7 +86,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 6,
+    "pk": 6,
     "fields": {
       "name": "Cottage Bakery Candle",
       "product_type": "Candle",
@@ -103,7 +103,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 7,
+    "pk": 7,
     "fields": {
       "name": "Cottage Bakery Soap",
       "product_type": "Soap",
@@ -120,7 +120,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 8,
+    "pk": 8,
     "fields": {
       "name": "Cottage Bakery Deodorant",
       "product_type": "Deodorant",
@@ -137,7 +137,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 9,
+    "pk": 9,
     "fields": {
       "name": "Orange Bark Candle",
       "product_type": "Candle",
@@ -154,7 +154,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 10,
+    "pk": 10,
     "fields": {
       "name": "Orange Bark Room Spray",
       "product_type": "Room Spray",
@@ -171,7 +171,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 11,
+    "pk": 11,
     "fields": {
       "name": "Orange Bark Body Wash",
       "product_type": "Body Wash",
@@ -188,7 +188,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 12,
+    "pk": 12,
     "fields": {
       "name": "Orange Bark Soap",
       "product_type": "Soap",
@@ -205,7 +205,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 13,
+    "pk": 13,
     "fields": {
       "name": "Lavendar Pine Incense Stick",
       "product_type": "Incense Stick",
@@ -222,7 +222,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 14,
+    "pk": 14,
     "fields": {
       "name": "Lavendar Pine Room Spray",
       "product_type": "Room Spray",
@@ -239,7 +239,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 15,
+    "pk": 15,
     "fields": {
       "name": "Lavendar Pine Lotion",
       "product_type": "Lotion",
@@ -256,7 +256,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 16,
+    "pk": 16,
     "fields": {
       "name": "Lavendar Pine Deodorant",
       "product_type": "Deodorant",
@@ -273,7 +273,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 17,
+    "pk": 17,
     "fields": {
       "name": "Mountaintop Candle",
       "product_type": "Candle",
@@ -290,7 +290,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 18,
+    "pk": 18,
     "fields": {
       "name": "Mountaintop Incense Stick",
       "product_type": "Incense Stick",
@@ -307,7 +307,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 19,
+    "pk": 19,
     "fields": {
       "name": "Mountaintop Lotion",
       "product_type": "Lotion",
@@ -324,7 +324,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 20,
+    "pk": 20,
     "fields": {
       "name": "Mountaintop Body Wash",
       "product_type": "Body Wash",
@@ -341,7 +341,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 21,
+    "pk": 21,
     "fields": {
       "name": "Beach Bonfire Candle",
       "product_type": "Candle",
@@ -358,7 +358,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 22,
+    "pk": 22,
     "fields": {
       "name": "Beach Bonfire Incense Stick",
       "product_type": "Incense Stick",
@@ -375,7 +375,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 23,
+    "pk": 23,
     "fields": {
       "name": "Beach Bonfire Lotion",
       "product_type": "Lotion",
@@ -392,7 +392,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 24,
+    "pk": 24,
     "fields": {
       "name": "Beach Bonfire Body Wash",
       "product_type": "Body Wash",
@@ -409,7 +409,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 25,
+    "pk": 25,
     "fields": {
       "name": "Pina Colada Candle",
       "product_type": "Candle",
@@ -426,7 +426,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 26,
+    "pk": 26,
     "fields": {
       "name": "Pina Colada Incense Stick",
       "product_type": "Incense Stick",
@@ -443,7 +443,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 27,
+    "pk": 27,
     "fields": {
       "name": "Pina Colada Lotion",
       "product_type": "Lotion",
@@ -460,7 +460,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 28,
+    "pk": 28,
     "fields": {
       "name": "Pina Colada Body Wash",
       "product_type": "Body Wash",
@@ -477,7 +477,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 29,
+    "pk": 29,
     "fields": {
       "name": "Garden Breeze Candle",
       "product_type": "Candle",
@@ -494,7 +494,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 30,
+    "pk": 30,
     "fields": {
       "name": "Garden Breeze Incense Stick",
       "product_type": "Incense Stick",
@@ -511,7 +511,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 31,
+    "pk": 31,
     "fields": {
       "name": "Garden Breeze Lotion",
       "product_type": "Lotion",
@@ -528,7 +528,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 32,
+    "pk": 32,
     "fields": {
       "name": "Garden Breeze Body Wash",
       "product_type": "Body Wash",
@@ -545,7 +545,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 33,
+    "pk": 33,
     "fields": {
       "name": "Smores Candle",
       "product_type": "Candle",
@@ -562,7 +562,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 34,
+    "pk": 34,
     "fields": {
       "name": "Smores Incense Stick",
       "product_type": "Incense Stick",
@@ -579,7 +579,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 35,
+    "pk": 35,
     "fields": {
       "name": "Smores Lotion",
       "product_type": "Lotion",
@@ -596,7 +596,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 36,
+    "pk": 36,
     "fields": {
       "name": "Smores Body Wash",
       "product_type": "Body Wash",
@@ -613,7 +613,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 37,
+    "pk": 37,
     "fields": {
       "name": "Earl Grey Latte Candle",
       "product_type": "Candle",
@@ -630,7 +630,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 38,
+    "pk": 38,
     "fields": {
       "name": "Earl Grey Latte Incense Stick",
       "product_type": "Incense Stick",
@@ -647,7 +647,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 39,
+    "pk": 39,
     "fields": {
       "name": "Earl Grey Latte Lotion",
       "product_type": "Lotion",
@@ -664,7 +664,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 40,
+    "pk": 40,
     "fields": {
       "name": "Earl Grey Latte Body Wash",
       "product_type": "Body Wash",
@@ -681,7 +681,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 41,
+    "pk": 41,
     "fields": {
       "name": "Cherry Pie Candle",
       "product_type": "Candle",
@@ -698,7 +698,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 42,
+    "pk": 42,
     "fields": {
       "name": "Cherry Pie Incense Stick",
       "product_type": "Incense Stick",
@@ -715,7 +715,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 43,
+    "pk": 43,
     "fields": {
       "name": "Cherry Pie Lotion",
       "product_type": "Lotion",
@@ -732,7 +732,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 44,
+    "pk": 44,
     "fields": {
       "name": "Cherry Pie Body Wash",
       "product_type": "Body Wash",
@@ -749,7 +749,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 45,
+    "pk": 45,
     "fields": {
       "name": "Vanilla Orchid Candle",
       "product_type": "Candle",
@@ -766,7 +766,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 46,
+    "pk": 46,
     "fields": {
       "name": "Vanilla Orchid Incense Stick",
       "product_type": "Incense Stick",
@@ -783,7 +783,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 47,
+    "pk": 47,
     "fields": {
       "name": "Vanilla Orchid Lotion",
       "product_type": "Lotion",
@@ -800,7 +800,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 48,
+    "pk": 48,
     "fields": {
       "name": "Vanilla Orchid Body Wash",
       "product_type": "Body Wash",
@@ -817,7 +817,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 49,
+    "pk": 49,
     "fields": {
       "name": "Apple Orchard Candle",
       "product_type": "Home",
@@ -834,7 +834,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 50,
+    "pk": 50,
     "fields": {
       "name": "Apple Orchard Room Spray",
       "product_type": "Home",
@@ -851,7 +851,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 51,
+    "pk": 51,
     "fields": {
       "name": "Apple Orchard Lotion",
       "product_type": "Body",
@@ -868,7 +868,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 52,
+    "pk": 52,
     "fields": {
       "name": "Apple Orchard Soap",
       "product_type": "Body",
@@ -885,7 +885,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 53,
+    "pk": 53,
     "fields": {
       "name": "Island Breeze Candle",
       "product_type": "Home",
@@ -902,7 +902,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 54,
+    "pk": 54,
     "fields": {
       "name": "Island Breeze Room Spray",
       "product_type": "Home",
@@ -919,7 +919,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 55,
+    "pk": 55,
     "fields": {
       "name": "Island Breeze Lotion",
       "product_type": "Body",
@@ -936,7 +936,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 56,
+    "pk": 56,
     "fields": {
       "name": "Island Breeze Soap",
       "product_type": "Body",
@@ -953,7 +953,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 57,
+    "pk": 57,
     "fields": {
       "name": "Rum Punch Candle",
       "product_type": "Home",
@@ -970,7 +970,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 58,
+    "pk": 58,
     "fields": {
       "name": "Rum Punch Room Spray",
       "product_type": "Home",
@@ -987,7 +987,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 59,
+    "pk": 59,
     "fields": {
       "name": "Rum Punch Lotion",
       "product_type": "Body",
@@ -1004,7 +1004,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 60,
+    "pk": 60,
     "fields": {
       "name": "Rum Punch Soap",
       "product_type": "Body",
@@ -1021,7 +1021,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 61,
+    "pk": 61,
     "fields": {
       "name": "Cherry Blossom Candle",
       "product_type": "Home",
@@ -1038,7 +1038,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 62,
+    "pk": 62,
     "fields": {
       "name": "Cherry Blossom Room Spray",
       "product_type": "Home",
@@ -1055,7 +1055,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 63,
+    "pk": 63,
     "fields": {
       "name": "Cherry Blossom Lotion",
       "product_type": "Body",
@@ -1072,7 +1072,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 64,
+    "pk": 64,
     "fields": {
       "name": "Cherry Blossom Soap",
       "product_type": "Body",
@@ -1089,7 +1089,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 65,
+    "pk": 65,
     "fields": {
       "name": "Wildflower Meadows Body Wash",
       "product_type": "Body",
@@ -1106,7 +1106,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 66,
+    "pk": 66,
     "fields": {
       "name": "Wildflower Meadows Soap",
       "product_type": "Body",
@@ -1123,7 +1123,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 67,
+    "pk": 67,
     "fields": {
       "name": "Wildflower Meadows Candle",
       "product_type": "Home",
@@ -1140,7 +1140,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 68,
+    "pk": 68,
     "fields": {
       "name": "Wildflower Meadows Room Spray",
       "product_type": "Home",
@@ -1157,7 +1157,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 69,
+    "pk": 69,
     "fields": {
       "name": "Rosé Lotion",
       "product_type": "Body",
@@ -1174,7 +1174,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 70,
+    "pk": 70,
     "fields": {
       "name": "Rosé Body Wash",
       "product_type": "Body",
@@ -1191,7 +1191,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 71,
+    "pk": 71,
     "fields": {
       "name": "Rosé Room Spray",
       "product_type": "Home",
@@ -1208,7 +1208,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 72,
+    "pk": 72,
     "fields": {
       "name": "Rosé Incense Stick",
       "product_type": "Home",
@@ -1225,7 +1225,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 73,
+    "pk": 73,
     "fields": {
       "name": "Raspberry Bouquet Soap",
       "product_type": "Body",
@@ -1242,7 +1242,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 74,
+    "pk": 74,
     "fields": {
       "name": "Raspberry Bouquet Lotion",
       "product_type": "Body",
@@ -1259,7 +1259,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 75,
+    "pk": 75,
     "fields": {
       "name": "Raspberry Bouquet Incense Stick",
       "product_type": "Home",
@@ -1276,7 +1276,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 76,
+    "pk": 76,
     "fields": {
       "name": "Raspberry Bouquet Candle",
       "product_type": "Home",
@@ -1293,7 +1293,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 77,
+    "pk": 77,
     "fields": {
       "name": "Jasmine Garden Lotion",
       "product_type": "Body",
@@ -1310,7 +1310,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 78,
+    "pk": 78,
     "fields": {
       "name": "Jasmine Garden Body Wash",
       "product_type": "Body",
@@ -1327,7 +1327,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 79,
+    "pk": 79,
     "fields": {
       "name": "Jasmine Garden Candle",
       "product_type": "Home",
@@ -1344,7 +1344,7 @@
   },
   {
     "model": "inventory_rest.product",
-    "id": 80,
+    "pk": 80,
     "fields": {
       "name": "Jasmine Garden Room Spray",
       "product_type": "Home",
