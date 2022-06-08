@@ -1,121 +1,81 @@
 import { useState } from "react";
 
 function BodyQuiz() {
-  const questionOne = "A or B?";
-  const questionTwo = "C or D?";
-  const [answer, setAnswer] = useState();
-  const [currentStep, setCurrentStep] = useState(1);
-
-  // JUST EXPLORING HOW TO MAKE A QUESTION ALL ON THE FRONT END SIDE PLEASE IGNORE THIS TEST CODE
+  const [answerOne, setAnswerOne] = useState();
+  const [answerTwo, setAnswerTwo] = useState();
+  const [answerThree, setAnswerThree] = useState();
+  const [answerFour, setAnswerFour] = useState();
+  // const [questionOneComplete, setQuestionOneComplete] = useState(false);
+  // ^ use this code for each question to set each questionComplete to false
+  // when an answer is clicked, set that to true.
+  // changing an answer shouldn't change this value
+  // then, when all questionComplete are true, allow user to click a submit button
 
   return (
-    <div className="px-4 py-5 my-5 text-center">
-      <h1 className="display-5 fw-bold">Scent Finder</h1>
-      <h2 className="display-7 fw-bold">Body Products</h2>
-      <div currentStep={1}>
-        <p>{questionOne}</p>
-        <button onClick={() => setCurrentStep(currentStep + 1)}>A</button>
-        <button onClick={() => setCurrentStep(currentStep + 1)}>B</button>
+    <div className="container">
+      <div className="px-4 py-5 my-5 text-center">
+        <h1 className="display-5 fw-bold">Scent Finder</h1>
+        <h2 className="display-7 fw-bold">Body Products</h2>
       </div>
-      <div currentStep={2}>
-        <p>{questionTwo}</p>
-        <button>C</button>
-        <button>D</button>
+      <div className="px-4 py-5 my-5 text-center" id="step-1">
+        <h1>Question One</h1>
+        <em>Please, choose one</em>
+        <p>What kind of product are you looking for?</p>
+        <div>
+          <button onClick={() => setAnswerOne("Lotion")}>Lotion</button>
+          <button onClick={() => setAnswerOne("Body Wash")}>Body Wash</button>
+          <button onClick={() => setAnswerOne("Oils")}>Oils</button>
+          <button onClick={() => setAnswerOne("Cologne/Perfume")}>
+            Cologne/Perfume
+          </button>
+        </div>
       </div>
-      {/* <p>What is your favorite scent from the options below?</p>
-      <button onClick={() => setAnswer("Woodsy")}>Woodsy</button>
-      <button onClick={() => setAnswer("Fresh")}>Fresh</button>
-      <button onClick={() => setAnswer("Fruity")}>Fruity</button>
-      <button onClick={() => setAnswer("Floral")}>Floral</button>
-      <button onClick={() => setAnswer("Amber")}>Amber</button> */}
+      <div className="px-4 py-5 my-5 text-center" id="step-2">
+        <h1>Question Two</h1>
+        <em>Please, choose one</em>
+        <p>Which activity do you enjoy most?</p>
+        <div>
+          <button onClick={() => setAnswerTwo("amber")}>Reading</button>
+          <button onClick={() => setAnswerTwo("fresh")}>Hiking</button>
+          <button onClick={() => setAnswerTwo("gourmand")}>Baking</button>
+          <button onClick={() => setAnswerTwo("floral")}>Gardening</button>
+          <button onClick={() => setAnswerTwo("woody")}>Camping</button>
+          <button onClick={() => setAnswerTwo("fruity")}>
+            Drinking Cocktails
+          </button>
+        </div>
+      </div>
+      <div className="px-4 py-5 my-5 text-center" id="step-3">
+        <h1>Question Three</h1>
+        <em>Please, choose one</em>
+        <p>What is your favorite season?</p>
+        <div>
+          <button onClick={() => setAnswerThree("amber")}>Winter</button>
+          <button onClick={() => setAnswerThree("fresh")}>Spring</button>
+          <button onClick={() => setAnswerThree("fruity")}>Summer</button>
+          <button onClick={() => setAnswerThree("woody")}>Fall</button>
+        </div>
+      </div>
+      <div className="px-4 py-5 my-5 text-center" id="step-4">
+        <h1>Question Four</h1>
+        <em>Please, choose one</em>
+        <p>What clothing style is your favorite?</p>
+        <div>
+          <button onClick={() => setAnswerFour("athleisure")}>
+            Athleisure
+          </button>
+          <button onClick={() => setAnswerFour("retro")}>Retro</button>
+          <button onClick={() => setAnswerFour("bohemian")}>Bohemian</button>
+          <button onClick={() => setAnswerFour("streetwear")}>
+            Streetwear
+          </button>
+          <button onClick={() => setAnswerFour("minimalist")}>
+            Minimalist
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
 
 export default BodyQuiz;
-
-// import React from "react";
-
-// class BodyQuiz extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       question: "",
-//       answer: "",
-//     };
-//     this.handleSubmit = this.handleSubmit.bind(this);
-//     this.handleAnswerChange = this.handleSubmit.bind(this);
-//   }
-
-//   async handleSubmit(event) {
-//     event.preventDefault();
-//     const data = { ...this.state };
-
-//     const url = "http://localhost:8090/api/customers/bodyquiz";
-//     const fetchConfig = {
-//       method: "post",
-//       body: JSON.stringify(data),
-//       headers: {
-//         "Content-type": "application/json",
-//       },
-//     };
-//     const response = await fetch(url, fetchConfig);
-//     if (response.ok) {
-//       const newBodyquiz = await response.json();
-//       console.log(newBodyquiz);
-//       this.setState({
-//         question: "",
-//         answer: "",
-//       });
-//     }
-//   }
-
-//   handleAnswerChange(event) {
-//     const value = event.target.value;
-//     this.setState({ answer: value });
-//   }
-
-//   handleQuestionChange(event) {
-//     const value = event.target.value;
-//     this.setState({ question: value });
-//   }
-
-//   render() {
-//     let messageClasses = "alert alert-success d-none mb-0";
-//     let formClasses = "";
-//     if (this.state.customerCreated) {
-//       messageClasses = "alert alert-success mb-0";
-//       formClasses = "d-none";
-//     }
-
-//     return (
-//       <div className="row">
-//         <div className="offset-3 col-6">
-//           <div className="shadow p-4 mt-4">
-//             <h1>Body Quiz</h1>
-//             <form
-//               className={formClasses}
-//               onSubmit={this.handleSubmit}
-//               id="bodyquiz"
-//             >
-//               <div className="form-floating mb-3">
-//                 <input
-//                   className="form-control"
-//                   onChange={this.handleQuestionChange}
-//                   value={this.state.question}
-//                   placeholder="Question"
-//                   required
-//                   type="text"
-//                   name="question"
-//                   id="name"
-//                 />
-//               </div>
-//             </form>
-//           </div>
-//         </div>
-//       </div>
-//     );
-//   }
-// }
-
-// export default BodyQuiz;
