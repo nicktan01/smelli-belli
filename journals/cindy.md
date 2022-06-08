@@ -64,3 +64,15 @@ Initially Jordan, Nicholas, and I were working to figure out how to integrate th
 - Nav Bar and skeleton Home Page
 
 I wanted to get the Nav Bar up so that we could have a semi complete looking React page when working with the About Page/map integration, so I quickly slapped in some code and got the nav drop downs up along with Bootstrap account and cart icons for accounts links and the cart. Using Bootstrap I was also able to add a counter for the cart. The number is currently hardcoded, but will figure out the proper cart items number later once we have more of the React pages made. I made a skeleton home page just to test out the nav bar before hopping into working on the map integration/about page.
+
+# June 7, 2022
+
+Today, I worked on:
+
+- Finishing the proper marker points on the map in the About Page
+
+Yesterday I had just put in random dummy data markers, but today I searched up what ingredients make up the different scents we will be using on our quiz/products and also looked up some locations on where those ingredients are farmed/made. While the data is still "fake", it's a bit more believable and done with some research!
+
+- Implementing the Footer
+
+While creating the footer wasn't too complicated since I used a Bootstrap template, I also added social media/contact icons that are fully functioning! There's an email, Instagram, Facebook, Facebook Messenger, and bonus Easter egg of our LinkedIn profiles! I made a Smelli Belli account for all contact/social medias so that they would be working links. The email icon directs the user to be able to send an email to us, Instagram leads to our IG page, Facebook also leads to our FB page, and the FB Messenger allows users to message us (HA! A work around to not creating our own websocket!)! Was pretty exciting and fun to be able to get all these things working.
