@@ -78,3 +78,12 @@ I worked with Elliot in a live share to iron out some issues we were having with
 
 Elliot and I reexperienced the pains of needing to remove volumes and recompose containers in order to get a clean database, and still be able to test that all our data was valid and able to be shared across services. Overall, I think we are pretty much done with the backend aside from maybe implementing some code Curtis showed us to verify that users are logged in or logged out.
 
+## June 7, 2022
+Today I worked on:
+
+- the main page
+- (started) the Accounts page
+
+I mostly worked by myself today, our group spread out to work on various things to make sure we can make it within the time constraints. I did get some help from Jordan a couple of times when I was having a blocker and Cindy helped direct me to the things I needed to get done. I completed a carousel as well as the buttons that lead to specific quizzes. The links all work, and the Carousel displays the 'top body product' and the 'top home product' which has the barebones filters in place. I will need to add more code once we get our orders and orderfufillment working so I can actually choose the most popular products to display.
+
+I took a look at the accounts pags, and they are set to be worked on tomorrow. I learned a lot more about the things you can do in bootstrap and just setting up my own css since I haven't successfully played around with it until now. Overall though, I think I am getting into the swing of things.
