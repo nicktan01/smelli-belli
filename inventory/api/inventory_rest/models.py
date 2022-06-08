@@ -98,7 +98,7 @@ class Product(models.Model):
     ]
     name = models.CharField(max_length=50)
     product_type = models.CharField(
-        max_length=10, choices=PRODUCT_TYPE_CHOICES, default=""
+        max_length=50, choices=PRODUCT_TYPE_CHOICES, default=""
     )
     product_category = models.CharField(
         max_length=25, choices=PRODUCT_CATEGORY_CHOICES, default=""
