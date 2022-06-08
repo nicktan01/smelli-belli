@@ -13,6 +13,7 @@ class ProductListEncoder(ModelEncoder):
     model = Product
     properties = [
         "name",
+        "product_type"
         "sku",
         "price",
         "size",
@@ -34,13 +35,12 @@ class ProductDetailEncoder(ModelEncoder):
     model = Product
     properties = [
         "name",
+        "product_type"
         "sku",
         "price",
         "size",
         "scent1",
         "scent2",
-        "scent3",
-        "scent4",
         "quantity",
         "ingredients",
         "limited_item",

@@ -85,13 +85,12 @@ def api_show_product(request, sku):
 
             props = [
                 "name",
+                "product_type"
                 "sku",
                 "price",
                 "size",
                 "scent1",
                 "scent2",
-                "scent3",
-                "scent4",
                 "quantity",
                 "ingredients",
                 "limited_item",

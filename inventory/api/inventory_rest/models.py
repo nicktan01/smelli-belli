@@ -51,7 +51,19 @@ class Product(models.Model):
         (FRUITY , 'Fruity'),
         (GOURMAND, 'Gourmand')
     ]
+    HOME = 'Home'
+    BODY = 'Body'
+    PRODUCT_TYPE_CHOICES = [
+        ('', '-----------'),
+        (HOME, 'Home'),
+        (BODY, 'Body')
+    ]
     name = models.CharField(max_length=50)
+    product_type = models.CharField(
+        max_length=10, 
+        choices=PRODUCT_TYPE_CHOICES, 
+        default=''
+    )
     sku = models.CharField(max_length=12, unique=True)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     size = models.ForeignKey(
@@ -62,18 +74,9 @@ class Product(models.Model):
     scent1 = models.CharField(
         max_length=25,
         choices=SCENT_CHOICES,
+        blank=True
     )
     scent2 = models.CharField(
-        max_length=25,
-        choices=SCENT_CHOICES,
-        blank=True,
-    )
-    scent3 = models.CharField(
-        max_length=25,
-        choices=SCENT_CHOICES,
-        blank=True,
-    )
-    scent4 = models.CharField(
         max_length=25,
         choices=SCENT_CHOICES,
         blank=True,
@@ -81,7 +84,7 @@ class Product(models.Model):
     quantity = models.PositiveSmallIntegerField()
     ingredients = models.CharField(max_length=500)
     limited_item = models.BooleanField()
-    image = models.URLField()
+    image = models.URLField(blank=True)
     description = models.CharField(max_length=400)
     usage = models.CharField(max_length=100)
     storage = models.CharField(max_length=100)
