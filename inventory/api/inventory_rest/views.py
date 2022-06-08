@@ -85,19 +85,16 @@ def api_show_product(request, sku):
 
             props = [
                 "name",
-                "product_type"
+                "product_type",
+                "product_category",
                 "sku",
                 "price",
                 "size",
                 "scent1",
                 "scent2",
                 "quantity",
-                "ingredients",
-                "limited_item",
                 "image",
-                "description",
-                "usage",
-                "storage"
+                "description"
             ]
             for prop in props:
                 if prop in content:
