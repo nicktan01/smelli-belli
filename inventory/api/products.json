@@ -1,7 +1,7 @@
 [
   {
     "model": "inventory_rest.product",
-    "id": 1,
+    "pk": 1,
     "fields": {
       "name": "Moss Ball Candle",
       "product_type": "Candle",
