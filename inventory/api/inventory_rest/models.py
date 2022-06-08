@@ -1,3 +1,4 @@
+from socket import CAN_BCM_RX_DELETE
 from django.urls import reverse
 from django.db import models
 
@@ -41,15 +42,13 @@ class Product(models.Model):
     FLORAL = 'Floral'
     WOODY = 'Woody'
     FRUITY = 'Fruity'
-    GOURMAND = 'Gourmand'
     SCENT_CHOICES = [
         ('', '-----------'),
         (FRESH, 'Fresh'),
         (AMBER, 'Amber'),
         (FLORAL , 'Floral'),
         (WOODY , 'Woody'),
-        (FRUITY , 'Fruity'),
-        (GOURMAND, 'Gourmand')
+        (FRUITY , 'Fruity')
     ]
     HOME = 'Home'
     BODY = 'Body'
@@ -58,10 +57,32 @@ class Product(models.Model):
         (HOME, 'Home'),
         (BODY, 'Body')
     ]
+    CANDLE = 'Candle'
+    INCENSE_STICK = 'Incense Stick'
+    ROOM_SPRAY = 'Room Spray'
+    LOTION = 'Lotion'
+    BODY_WASH = 'Body Wash'
+    SOAP = 'Soap'
+    DEODORANT = 'Deodorant'
+    PRODUCT_CATEGORY_CHOICES = [
+        ('', '-----------'),
+        (CANDLE, 'Candle'),
+        (INCENSE_STICK, 'Incense Stick'),
+        (ROOM_SPRAY, 'Room Spray'),
+        (LOTION, 'Lotion'),
+        (BODY_WASH, 'Body Wash'),
+        (SOAP, 'Soap'),
+        (DEODORANT, 'Deodorant'),
+    ]
     name = models.CharField(max_length=50)
     product_type = models.CharField(
         max_length=10, 
         choices=PRODUCT_TYPE_CHOICES, 
+        default=''
+    )
+    product_category = models.CharField(
+        max_length=25,
+        choices=PRODUCT_CATEGORY_CHOICES,
         default=''
     )
     sku = models.CharField(max_length=12, unique=True)
@@ -82,12 +103,8 @@ class Product(models.Model):
         blank=True,
     )
     quantity = models.PositiveSmallIntegerField()
-    ingredients = models.CharField(max_length=500)
-    limited_item = models.BooleanField()
     image = models.URLField(blank=True)
     description = models.CharField(max_length=400)
-    usage = models.CharField(max_length=100)
-    storage = models.CharField(max_length=100)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
