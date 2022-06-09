@@ -1,5 +1,10 @@
 ## Jordan's Journal
 
+
+## June 8, 2022
+Morning: As a group we discussed the quiz data modelling. I researched ways to create and load in our own data for the products on the site. I found that we can create a fixture file with json objects within and load the data within the appropriate api container.
+
+Afternoon: As a team we made the .json fixture file and worked through some errors to get it loading into the database correctly. It was a success and felt great to have a consistent repository of data available. Individually, I continued working on the product shopping pages - I changed the displayed information and filtered the home and body shopping pages for their respective items. I added dropdown buttons for the filtering and sorting options but I still need to figure out how to implement the functionality of these.
 ## June 7, 2022
 Morning: Started work on the front end product shopping pages. 
 
