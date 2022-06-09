@@ -1,62 +1,42 @@
 from common.json import ModelEncoder
-from .models import Product, Size
+from .models import Product
 
-
-class SizeEncoder(ModelEncoder):
-    model = Size
-    properties = [
-        "id",
-        "sizes"
-    ]
 
 class ProductListEncoder(ModelEncoder):
     model = Product
     properties = [
         "name",
+        "product_type",
+        "product_category",
         "sku",
         "price",
         "size",
         "image",
-        "quantity",
-        "limited_item"
+        "quantity"
     ]
-    encoders = {
-        "size": SizeEncoder()
-    }
 
     def get_extra_data(self, o):
         return {
-            "price": float(o.price),
-            "size": o.size.sizes
+            "price": float(o.price)
         }
 
 class ProductDetailEncoder(ModelEncoder):
     model = Product
     properties = [
         "name",
+        "product_type",
+        "product_category",
         "sku",
         "price",
         "size",
         "scent1",
         "scent2",
-        "scent3",
-        "scent4",
         "quantity",
-        "ingredients",
-        "limited_item",
         "image",
-        "description",
-        "usage",
-        "storage",
-        "created",
-        "updated"
+        "description"
     ]
-    encoders = {
-        "size": SizeEncoder()
-    }
 
     def get_extra_data(self, o):
         return {
-            "price": float(o.price),
-            "size": o.size.sizes
+            "price": float(o.price)
         }
