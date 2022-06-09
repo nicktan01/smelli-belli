@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 let internalToken = null;
 
 export function getToken() {
@@ -9,7 +10,7 @@ async function getTokenInternal() {
   const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/accounts/me/token/`;
   try {
     const response = await fetch(url, {
-      credentials: 'include',
+      credentials: "include",
     });
     if (response.ok) {
       const data = await response.json();
@@ -26,20 +27,25 @@ function handleErrorMessage(error) {
     try {
       error = JSON.parse(error);
       if ("__all__" in error) {
-        error = error.__all__
+        error = error.__all__;
       }
     } catch {}
   }
   if (Array.isArray(error)) {
     error = error.join("<br>");
-  } else if (typeof(error) === "object") {
-    error = Object.entries(error).reduce((acc, x) => `${acc}<br>${x[0]}: ${x[1]}`, '');
+  } else if (typeof error === "object") {
+    error = Object.entries(error).reduce(
+      (acc, x) => `${acc}<br>${x[0]}: ${x[1]}`,
+      ""
+    );
   }
   return error;
 }
 
 export function useToken() {
   const [token, setToken] = useState(null);
+  const navigate = useNavigate();
+
   useEffect(() => {
     async function fetchToken() {
       const token = await getTokenInternal();
@@ -53,20 +59,21 @@ export function useToken() {
   async function logout() {
     if (token) {
       const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/token/refresh/logout/`;
-      await fetch(url, {method: 'delete', credentials: 'include'});
+      await fetch(url, { method: "delete", credentials: "include" });
       internalToken = null;
       setToken(null);
+      navigate("/");
     }
   }
 
   async function login(username, password) {
     const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/login/`;
     const form = new FormData();
-    form.append('username', username);
-    form.append('password', password);
+    form.append("username", username);
+    form.append("password", password);
     const response = await fetch(url, {
-      method: 'post',
-      credentials: 'include',
+      method: "post",
+      credentials: "include",
       body: form,
     });
     if (response.ok) {
@@ -81,11 +88,17 @@ export function useToken() {
   async function signup(username, password, email, firstName, lastName) {
     const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/accounts/`;
     const response = await fetch(url, {
-      method: 'post',
-      body: JSON.stringify({username, password, email, first_name: firstName, last_name: lastName}),
+      method: "post",
+      body: JSON.stringify({
+        username,
+        password,
+        email,
+        first_name: firstName,
+        last_name: lastName,
+      }),
       headers: {
-        'Content-Type': 'application/json',
-      }
+        "Content-Type": "application/json",
+      },
     });
     if (response.ok) {
       await login(username, password);
