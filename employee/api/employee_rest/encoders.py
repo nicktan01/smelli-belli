@@ -1,5 +1,6 @@
 from common.json import ModelEncoder
-from .models import ProductVO, Order, CustomerVO
+from .models import ProductVO, Order, UserVO
+
 
 class ProductVOEncoder(ModelEncoder):
     model = ProductVO
@@ -14,12 +15,15 @@ class ProductVOEncoder(ModelEncoder):
         "image",
         "created",
         "updated",
-        "import_href"
+        "import_href",
     ]
 
-class CustomerVOEncoder(ModelEncoder):
-    model = CustomerVO
-    properties = ["id", "import_href"]
+
+class UserVOEncoder(ModelEncoder):
+    model = UserVO
+    properties = ["user"]
+
+
 class OrderEncoder(ModelEncoder):
     model = Order
     properties = [
@@ -29,9 +33,9 @@ class OrderEncoder(ModelEncoder):
         "totals",
         "order_number",
         "customer",
-        "created"
+        "created",
     ]
     encoders = {
         "products": ProductVOEncoder(),
-        "customer": CustomerVOEncoder(),
+        "customer": UserVOEncoder(),
     }

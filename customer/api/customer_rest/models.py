@@ -7,10 +7,6 @@ class ProductVO(models.Model):
     sku = models.CharField(max_length=12, unique=True)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     image = models.URLField()
-
-class ScentVO(models.Model):
-    import_href = models.CharField(max_length=200, unique=True)
-    name = models.CharField(max_length=50)
     
 class UserVO(models.Model):
     import_href = models.CharField(max_length=200, unique=True)
@@ -39,7 +35,6 @@ class Question(models.Model):
 class Answer(models.Model):
     text = models.CharField(max_length=200)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    scent = models.CharField(max_length=20)
     
     def __str__(self):
         return f"question: {self.question.text}, answer: {self.text}"
@@ -53,3 +48,19 @@ class Result(models.Model):
     
     def __str__(self):
         return str(self.pk)
+
+class Cart(models.Model):
+    product = models.ForeignKey(
+        ProductVO,
+        related_name="cart",
+        on_delete=models.CASCADE,
+    )
+    user = models.ForeignKey(UserVO, on_delete=models.CASCADE)
+    quantity = models.PositiveSmallIntegerField()
+    totals = models.DecimalField(max_digits=5, decimal_places=2)
+    created = models.DateTimeField(auto_now_add=True)
+
+
+class WishList(models.Model):
+    user = models.ForeignKey(UserVO, on_delete=models.CASCADE)
+    product = models.ForeignKey(ProductVO, related_name="wishlist", on_delete=models.CASCADE)

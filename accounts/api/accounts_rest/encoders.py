@@ -5,6 +5,7 @@ from .models import User
 class AccountModelEncoder(ModelEncoder):
     model = User
     properties = [
+        "username",
         "email",
         "first_name",
         "last_name"
@@ -13,6 +14,7 @@ class AccountModelEncoder(ModelEncoder):
 class AccountInfoModelEncoder(ModelEncoder):
     model = User
     properties = [
+        "username",
         "email",
         "first_name",
         "last_name",

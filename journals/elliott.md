@@ -1,4 +1,5 @@
 ## May 27, 2022
+
 ---
 
 We discussed the architecture of our project on this day, particularly about the microservices and which parts of the app would get their own microservices. The microservices we decided to include are:
@@ -9,9 +10,10 @@ We also briefly discussed employing both Django and FastAPI in this project, dep
 
 Unfortunately, I developed a migraine some point shortly after this conversation, so I missed the rest of the day working on the Docker Compose file and the quiz questions!
 
-
 ## May 31, 2022
+
 ---
+
 Today, we worked on:
 
 - Updating the docker-compose.yml to begin bringing up our microservices
@@ -21,30 +23,56 @@ We ran into some blockers when bringing things up for the first time, including 
 
 We had some good discussions yesterday, and continued to discuss how the project will take shape not just immediately, with immediate priorities on our issues board being identified by Jordan, Cindy, and Nicholas, but also longterm and beyond. We are all very excited to jump into the code and get this thing going!
 
-
 ## June 1, 2022
+
 ---
+
 Today, Nicolas, Jaiden, and I worked in the Inventory microservice. We started building out all of our data models, model encoders, and view functions for the inventory microservice.
 
 We ran into some blockers when trying to conceptualize how best to build our backend, particularly our inventory database so that we would follow at least the first three levels of database normalization. Trying to figure out how foreign keys in Django related to business keys in postgres, and which things needed their own model class and table was challenging.
 
 A win I had today was probably finally getting a clear mental model of exactly what the "on_delete" property in Django does. I've previously just tried to copy examples we've done in the past when working with Foreign Keys, but it's nice now to have a better idea of the relation between the two models and which direction things will delete in.
 
-
 ## June 2, 2022
+
 ---
+
 Today I had incredibly bad luck with my connection and the hotel room we're staying in, so I hardly had any contact time with my team today. We were able to discuss the quiz questions and added a few more questions to fill out the quizzes. I reviewed a lot of the code that we've written so far and edited some things here and there. I also spent some time starting up our accounts microservice, and writing the back end in that app.
 
 Didn't really have a win today, to be honest. I wish I was not having so much difficulty working with and communicating with my team. Luckily, tomorrow is our last day on vacation, so hopefully things will run smoother for us once I am back home.
 
 ## June 3, 2022
+
 ---
-Today I spent a lot of time proofing the code for the inventory microservice. I did a lot of minor rewrites, fixed typos, spruced things up, debugged some errors after thorough testing on both the admin panel and every http request with a view function written for it for all of the models inside of inventory. I even went through and started adding comments to the code in particularly weird or complicated bits -- parts that I looked at and, subjectively, said, "Hey, Me! I don't know if I'll understand this portion of code in 3 months if I came back inside this repository! Let's clarify things here." So, that was a lot of fun. 
+
+Today I spent a lot of time proofing the code for the inventory microservice. I did a lot of minor rewrites, fixed typos, spruced things up, debugged some errors after thorough testing on both the admin panel and every http request with a view function written for it for all of the models inside of inventory. I even went through and started adding comments to the code in particularly weird or complicated bits -- parts that I looked at and, subjectively, said, "Hey, Me! I don't know if I'll understand this portion of code in 3 months if I came back inside this repository! Let's clarify things here." So, that was a lot of fun.
 
 Then I spent some time pair coding with Jaiden and debugging some issues in our employee microsevice -- code I believe he had mostly written by himself. I believe we got things pretty well and ironed out over there in that microservice. We were both happy with the pair coding session, so I hopped over to a breakout room where Nicholas, Jordan, and Cindy were working on the rather difficult customer microservice -- where our pesky quizzes live.
 
-We finished the day in customer, getting it most of the way finished before running into some weird, complicated, and entirely unfamiliar errors before we decided to call it for an exhaustive week as a group. 
+We finished the day in customer, getting it most of the way finished before running into some weird, complicated, and entirely unfamiliar errors before we decided to call it for an exhaustive week as a group.
 
 Things were very tough for me this week, and I feel bad for my group for having to deal with my situation when the pedal is really hitting the metal. I drove to Phoenix with my family last weekend to visit my younger brother and celebrate his recent graduation from culinary school, and the internet at our hotel I've been staying at has been extremely difficult to work with and around. Frequently, I was dropped from the Zoom call. Frequently, I had to turn off my camera and mute my mic because my son was taking a nap in the hotel room with me. We made it work, and I still got a lot done and a lot of pair coding in -- we found some luck working on Discord and in smaller breakout groups on my connection -- so I think it was still a successful week. Just don't want the group thinking I'm not dedicated to a project that will be in all of our professional portfolios!
 
 One success for me this week was my discovery how much I enjoyed reviewing the code, proofing the code, and writing up comments in the code! I know a lot of people find technical writing "boring," but I'll have to admit that I find myself really enjoying it! I just hope the group doesn't think I'm trying to micromanage... Maybe we can do some group proofing of the other microservices when we find time. I'm super excited to get the backend done or at least serviceable next week so we can really move full speed in to the frontend -- where I think we'll find a lot of fun designing the quizzes and overall user experience. The group seems to all have an eye for detail, and brings a lot of unique design experience and styles to the end product. I love it!
+
+## June 6, 2022
+
+---
+
+Today we accomplished a lot! I started the day trolling around Inventory's backend. I removed the Scent model class because we decided as a team that it didn't make sense and wasn't helping us accomplish what we wanted to accomplish with scents. We added 4 scent properties to the product model instead, and made 3 of them optional, forcing at least one scent to be associated with each project. This may need to change down the line if Smelli Belli ever gets in the business of selling ANYTHING that doesn't have a scent, like, maybe skincare or beauty tools or accessories? Who knows! We cleaned up all references to the Scent model from the Inventory service then.
+
+After the Inventory backend was back to looking like we wanted it, I paired up with Jaiden to work on our Employee and Customer pollers. While exploring the code in those two pollers and debugging the issues we ran into getting those to work and populate our Value Objects with information from the other services' Entity objects, we went about cleaning up a lot of the backend code that we looked at and found errors while debugging our poller code. We changed quite about while live share coding that pair coding session.
+
+We eventually got the poller in the employee section working, correctly grabbing the relevant infromation from Products and populating ProductVOs for the Employee side of the web application. The employee poller also grabs User information from the Accounts microservice and attaches it to a UserVO so the Employees can create and view order fulfillment forms with the information from a customer's order.
+
+We also got the Customer microservice's poller running, which, similar to the Employee poller is grabbing infromation from Products out of the Inventory microservice and attaching it to a ProductVO in the Customer microservice that will, hopefully, down the line allow customers to add items to their cart. We are still busy fleshing out the cart and checkout process, but we will get there when we get there! Overall, Jaiden and I were very happy to test the pollers and see both of them working only a few minutes before Curtis was scheduled to join our breakout room on Zoom and walk us through the authentication that he worked on for our app!
+
+Closing the day on so many successive successes is quite a nice feeling, and to chase those successes and end the day on a Curtis live demonstration that clarifies a few blockers we foresaw regarding authentication within our app is simply _submlime_. Thanks, Curtis. It really means a lot to me and all of the other team members and cohort students that you take such an active involvement in our learning and project building experiences. Your generosity will not be forgotten!
+
+## June 7, 2022
+
+---
+
+Today was a rough day. I paired with Nicholas at the beginning of the day on the home and body scent finder quiz issues, and very quickly into our work he unfortunately had to leave for a family emergency. I spent most of the day planning out how I thought the quizzes could work with pen and paper, and spent a large portion of that time reading documentation and other resources online to try and give me ideas. I am still tinkering with the code, but I have a good mental model of the steps I will need to take to get the quizzes to work as we want them to. Now, it's just a matter of achieving each of those steps one at a time until the quizzes are complete!
+
+I saw that the rest of the team has been putting in absolutely amazing work on a lot of the other pages on our front end, and it fills me with joy. Everything is coming together, but these last steps of the MVP are quite the doozy!

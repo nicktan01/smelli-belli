@@ -45,10 +45,34 @@ Today, we worked on:
 
 We decided to start working on the Quiz stuff since Curtis prioritized it as something we should figure out first and did some research on how we could design our quiz models. We found a Youtube video to start off with that gave us some ideas to try and wrote our quiz models based off of that. After some struggles with remembering to do little things and add a comma to get the container to run, we were able to get the containers running and were able to login to the admin page. It still needs some tinkering as the admin panel was only showing the question and answer model but not the quiz model.. Something to work on and figure out for tomorrow.
 
-June 3, 2022
+# June 3, 2022
 
 Today, we worked on:
 
 - Customer Microservice (with Group)
 
 Jordan, Nicholas, and I did more work today on the quiz models and made a couple changes to the original models we had written yesterday to incorporate scents into the answers and we added the cart and wishlist models as well. We realized we didn't make the admin for the quiz model which is why it wasn't showing up in the admin panel yesterday so after we added that, we were able to see it. We also wrote the pollers for scents and products. Elliot and I wrote the encoders for the views. Then we ran into some issues with running our containers after we made some tweaks to get the scent to be a foreign key and poll from the Scent property in the inventory. It's been a long week, but I'm still proud of the progress we've made!
+
+# June 6, 2022
+
+Today, I worked on:
+
+- About Page and GoogleMaps API integration
+
+Initially Jordan, Nicholas, and I were working to figure out how to integrate the GoogleMaps API and we were able to get a map to show up on the page but weren't able to get multiple markers on the map. I continued to work on this on my own after class and was able to find the @react-google-maps/api package and followed the documentation to get the map working with markers! I also added info windows to appear that list what ingredients were sourced at the marker when clicking on the markers. To finish the about page, I added some information about Smelli Belli and a few FAQ questions.
+
+- Nav Bar and skeleton Home Page
+
+I wanted to get the Nav Bar up so that we could have a semi complete looking React page when working with the About Page/map integration, so I quickly slapped in some code and got the nav drop downs up along with Bootstrap account and cart icons for accounts links and the cart. Using Bootstrap I was also able to add a counter for the cart. The number is currently hardcoded, but will figure out the proper cart items number later once we have more of the React pages made. I made a skeleton home page just to test out the nav bar before hopping into working on the map integration/about page.
+
+# June 7, 2022
+
+Today, I worked on:
+
+- Finishing the proper marker points on the map in the About Page
+
+Yesterday I had just put in random dummy data markers, but today I searched up what ingredients make up the different scents we will be using on our quiz/products and also looked up some locations on where those ingredients are farmed/made. While the data is still "fake", it's a bit more believable and done with some research!
+
+- Implementing the Footer
+
+While creating the footer wasn't too complicated since I used a Bootstrap template, I also added social media/contact icons that are fully functioning! There's an email, Instagram, Facebook, Facebook Messenger, and bonus Easter egg of our LinkedIn profiles! I made a Smelli Belli account for all contact/social medias so that they would be working links. The email icon directs the user to be able to send an email to us, Instagram leads to our IG page, Facebook also leads to our FB page, and the FB Messenger allows users to message us (HA! A work around to not creating our own websocket!)! Was pretty exciting and fun to be able to get all these things working.
