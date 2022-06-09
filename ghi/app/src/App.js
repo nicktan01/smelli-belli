@@ -5,20 +5,7 @@ import Nav from "./Nav";
 import HomePage from "./HomePage";
 import Footer from "./Footer";
 import About from "./About";
-<<<<<<< HEAD
 import AccountPage from "./AccountPage";
-
-function App() {
-  return (
-    <BrowserRouter>
-      <Nav />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/account" element={<AccountPage />} />
-      </Routes>
-    </BrowserRouter>
-=======
 import AllProducts from "./product_pages/AllProducts";
 import BodyProducts from "./product_pages/BodyProducts";
 import HomeProducts from "./product_pages/HomeProducts";
@@ -38,11 +25,11 @@ function App() {
           <Route path="/home" element={<HomeProducts />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/account" element={<AccountPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>
     </>
->>>>>>> main
   );
 }
 

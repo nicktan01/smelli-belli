@@ -1,22 +1,47 @@
 import React from "react";
+import { useToken } from "./authApi";
+import { useState, useEffect } from "react";
 
-class AccountPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {}
+
+function AccountPage() {
+const [token] = useToken();
+const [user, setUser] = useState(null);
+const [error, setError] = useState(null);
+
+useEffect(() => {
+    async function getCurrentUser() {
+      const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/accounts/me/`;
+      const response = await fetch(url, {
+        credentials: "include",
+      });
+      if (response.ok) {
+        const user = await response.json();
+        console.log(user);
+        setUser(user);
+      }
     }
+    if (token) {
+      getCurrentUser();
+    }
+  }, [token]);
+
     // accounts/<str:email>/
-    render() {
+
         return (
-            <div className="px-4 py-5 my-5 text-center">
-                <h1 className="display-5 fw-bold">Smelli Belli</h1>
-                <div className="col-lg-6 mx-auto">
-                    <p className="lead mb-4">Home and body products</p>
+            <div className="container shadow p-4 mt-4">
+                <h1>Account Page</h1>
+                <h4>username</h4>
+                <div className="container p-4 mt-4">
+                    Change Account Details
+                </div>
+                <div className="container p-4 mt-4">
+                    View Orders
+                </div>
+                <div className="container p-4 mt-4">
+                    {token}
                 </div>
             </div>
         )
     }
-
-}
 
 export default AccountPage;

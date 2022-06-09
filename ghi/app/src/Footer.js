@@ -20,7 +20,7 @@ function Footer() {
             href="mailto:smelliibellii@gmail.com"
             className="nav-link px-2 text-muted"
           >
-            <i class="bi bi-envelope"></i>
+            <i className="bi bi-envelope"></i>
           </a>
         </li>
         <li className="nav-item">
@@ -28,7 +28,7 @@ function Footer() {
             href="https://www.instagram.com/smellibelli22/"
             className="nav-link px-2 text-muted"
           >
-            <i class="bi bi-instagram"></i>
+            <i className="bi bi-instagram"></i>
           </a>
         </li>
         <li className="nav-item">
@@ -36,7 +36,7 @@ function Footer() {
             href="https://www.facebook.com/smellibelli22/"
             className="nav-link px-2 text-muted"
           >
-            <i class="bi bi-facebook"></i>
+            <i className="bi bi-facebook"></i>
           </a>
         </li>
         <li className="nav-item">
@@ -44,7 +44,7 @@ function Footer() {
             href="https://m.me/smellibelli22"
             className="nav-link px-2 text-muted"
           >
-            <i class="bi bi-messenger"></i>
+            <i className="bi bi-messenger"></i>
           </a>
         </li>
         <li className="nav-item">
@@ -59,7 +59,7 @@ function Footer() {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <i class="bi bi-linkedin"></i>
+                <i className="bi bi-linkedin"></i>
               </NavLink>
               <div
                 style={{ left: "unset", right: "0" }}
