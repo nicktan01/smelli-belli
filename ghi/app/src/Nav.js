@@ -117,7 +117,7 @@ function Nav() {
                 className="dropdown-menu"
                 aria-labelledby="navbarDropdownMenuLink"
               >
-                <NavLink className="dropdown-item" to="/signin">
+                <NavLink className="dropdown-item" to="/login">
                   My Account
                 </NavLink>
                 <NavLink className="dropdown-item" to="/orderhistory">

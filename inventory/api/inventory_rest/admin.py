@@ -1,11 +1,7 @@
 from django.contrib import admin
-from .models import Product, Size
+from .models import Product
 
 # Register your models here.
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    pass
-
-@admin.register(Size)
-class SizeAdmin(admin.ModelAdmin):
     pass
