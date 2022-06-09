@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BodyQuiz, Cart, WishList, ProductVO
+from .models import BodyQuiz, HomeQuiz, Cart, WishList, ProductVO
 # Register your models here.
 
 
@@ -9,6 +9,10 @@ class ProductVOAdmin(admin.ModelAdmin):
 
 @admin.register(BodyQuiz)
 class BodyQuizAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(HomeQuiz)
+class HomeQuizAdmin(admin.ModelAdmin):
     pass
 
 admin.site.register(Cart)
