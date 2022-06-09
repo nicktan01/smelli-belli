@@ -1,6 +1,5 @@
 import { useToken } from "./authApi";
 import { useState, useEffect } from "react";
-import SignUp from "./SignUp";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
