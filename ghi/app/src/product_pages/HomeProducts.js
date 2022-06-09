@@ -1,10 +1,12 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 function ProductColumn(props) {
     return (
         <div className="col">
           {props.list.map(product => {
             return (
+              <Link to={`/products/${product.sku}`}>
               <div key={product.id} className="card mb-3 shadow">
                 <img src={ !product.image ? 'https://tracerproducts.com/wp-content/uploads/2019/12/Product-Image-Coming-Soon.jpg' : product.image } className="card-img-top" />
                 <div className="card-body">
@@ -14,6 +16,7 @@ function ProductColumn(props) {
                   </h6>
                 </div>
               </div>
+              </Link>
             );
           })}
         </div>
