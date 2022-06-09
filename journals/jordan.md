@@ -1,6 +1,9 @@
 ## Jordan's Journal
 
+## June 9, 2022
+Morning:
 
+Afternoon:
 ## June 8, 2022
 Morning: As a group we discussed the quiz data modelling. I researched ways to create and load in our own data for the products on the site. I found that we can create a fixture file with json objects within and load the data within the appropriate api container.
 

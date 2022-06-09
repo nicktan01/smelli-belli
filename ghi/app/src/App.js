@@ -8,6 +8,7 @@ import About from "./About";
 import AllProducts from "./product_pages/AllProducts";
 import BodyProducts from "./product_pages/BodyProducts";
 import HomeProducts from "./product_pages/HomeProducts";
+import ProductDetails from "./product_pages/ProductDetail";
 import Login from "./Login";
 import SignUp from "./SignUp";
 
@@ -19,9 +20,12 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<About />} />
-          <Route path="/shopall" element={<AllProducts />} />
-          <Route path="/body" element={<BodyProducts />} />
-          <Route path="/home" element={<HomeProducts />} />
+          <Route path="/products">
+            <Route exact path="/products/:sku"  element={ <ProductDetails />} />
+            <Route path="/products//body" element={<BodyProducts />} />
+            <Route path="/products//home" element={<HomeProducts />} />
+            <Route path="/products/all" element={<AllProducts />} />
+          </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
