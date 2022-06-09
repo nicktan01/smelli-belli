@@ -76,3 +76,9 @@ Closing the day on so many successive successes is quite a nice feeling, and to 
 Today was a rough day. I paired with Nicholas at the beginning of the day on the home and body scent finder quiz issues, and very quickly into our work he unfortunately had to leave for a family emergency. I spent most of the day planning out how I thought the quizzes could work with pen and paper, and spent a large portion of that time reading documentation and other resources online to try and give me ideas. I am still tinkering with the code, but I have a good mental model of the steps I will need to take to get the quizzes to work as we want them to. Now, it's just a matter of achieving each of those steps one at a time until the quizzes are complete!
 
 I saw that the rest of the team has been putting in absolutely amazing work on a lot of the other pages on our front end, and it fills me with joy. Everything is coming together, but these last steps of the MVP are quite the doozy!
+
+## June 8, 2022
+
+---
+
+Today I continued thinking about and working on the quizzes to find our users' scent profiles. We also spent a while as a team writing up a decently sized products.json file to populate our development database whenever we need to. Before, it was getting very annoying creating instances of our data models every time we needed to bring our volume down for some reason. Looking forward to getting these quizzes finished...
