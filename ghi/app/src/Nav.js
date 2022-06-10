@@ -10,11 +10,11 @@ function Nav() {
   return (
     <nav
       className="navbar navbar-expand-lg navbar-light"
-      style={{ backgroundColor: "#f4a261" }}
+      style={{ backgroundColor: "#ccd5ae" }}
     >
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
-          Smelli Belli
+          <img src="/images/sblogo2.png" alt="" width="110" height="25" />
         </NavLink>
         <button
           className="navbar-toggler"
@@ -69,13 +69,13 @@ function Nav() {
                 className="dropdown-menu"
                 aria-labelledby="navbarDropdownMenuLink"
               >
-                <NavLink className="dropdown-item" to="/home">
+                <NavLink className="dropdown-item" to="/products/home">
                   Home Products
                 </NavLink>
-                <NavLink className="dropdown-item" to="/body">
+                <NavLink className="dropdown-item" to="/products/body">
                   Body Products
                 </NavLink>
-                <NavLink className="dropdown-item" to="/shopall">
+                <NavLink className="dropdown-item" to="/products/all">
                   Shop all
                 </NavLink>
               </div>

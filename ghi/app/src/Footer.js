@@ -105,8 +105,16 @@ function Footer() {
       <NavLink
         to="/"
         className="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"
-      ></NavLink>
-
+      >
+        <div className="justify-content-center">
+          <img
+            src="/images/fulltranssb.png"
+            className="bi me-2"
+            width="115"
+            height="70"
+          />
+        </div>
+      </NavLink>
       <ul className="nav col-md-4 justify-content-end">
         <li className="nav-item">
           <NavLink to="/login" className="nav-link px-2 text-muted">
