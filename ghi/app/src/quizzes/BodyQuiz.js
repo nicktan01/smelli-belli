@@ -32,6 +32,7 @@ class BodyQuiz extends React.Component {
   }
 
   handleQuestionOne(event) {
+    // sets answer = to the id of the button clicked by the user
     const id = event.currentTarget.id;
     this.setState({ answerOne: id });
     this.setState({ questionOneAnswered: true }); // marks q as answered
@@ -61,9 +62,7 @@ class BodyQuiz extends React.Component {
     this.setState({ questionFiveAnswered: true });
   }
 
-  handlePageOneComplete(event) {
-    const value = event.currentTarget.value;
-
+  async handlePageOneComplete() {
     // We need to pull the date when the user clicks the next button
     // and set it to the created property, which is on our quiz data models
     const date = new Date().toISOString().slice(0, 10);
@@ -71,19 +70,43 @@ class BodyQuiz extends React.Component {
 
     // Checks that each question was answered
     if (
-      this.state.questionOneAnswered && 
-      this.state.questionTwoAnswered && 
-      this.state.questionThreeAnswered && 
-      this.state.questionFourAnswered && 
+      this.state.questionOneAnswered &&
+      this.state.questionTwoAnswered &&
+      this.state.questionThreeAnswered &&
+      this.state.questionFourAnswered &&
       this.state.questionFiveAnswered
     ) {
-      // We change this boolean so we can change the classNames stored in our 
+      // We change this boolean so we can change the classNames stored in our
       // quizPageOneClasses variable to control displaying the quiz's "pages"
       this.setState({ pageOneComplete: true });
     } else {
       this.setState({ incompleteQuiz: true });
     }
+
+    /*****************************************************************************/
+    // THE BELOW CODE DOES NOT WORK, I AM TRYING TO CHECK TO SEE IF A TOKEN
+    // EXISTS AT THE ENDPOINT LISTED. THEN, IF ONE DOES JUST SKIP STRAIGHT TO
+    // DISPLAYING THE SCENT PROFILE AND FILTERED PRODUCT PAGE USING resultsClasses
+
+    // ELSE, IF THERE IS NO AUTH TOKEN, DISPLAY A CONDENSED USER SIGN UP FORM
+    // OFFERING USER TO SAVE THE RESULTS OF THEIR QUIZ USING signupClasses.
+    // THEN, PROCEED AS ABOVE.
+
+    // const authTokenUrl = "http://localhost:9080/api/accounts/me/token/";
+    // const authTokenResponse = await fetch(authTokenUrl);
+
+    // if (authTokenResponse.ok) {
+    //   const authTokenData = await authTokenResponse.json();
+    //   console.log("what is authTokenData:", authTokenData);
+    // }
+    /*****************************************************************************/
   }
+
+  /*****************************************************************************/
+  // THIS CODE WILL MAKE CALLS TO OUR USER ENDPOINT TO PULL THE USERNAME AND
+  // STASH IT IN THE USER FIELD ON THE QUIZ DATA MODEL SO IT CAN SAVE
+  // AS WELL AS CALLS TO OUR PRODUCTS ENDPOINT TO MAKE THE QUERIES BASED ON
+  // SCENT PROFILE RESULTS
 
   // async componentDidMount() {
   //   const productUrl = "http://localhost:8100/api/products/";
@@ -94,11 +117,14 @@ class BodyQuiz extends React.Component {
   //     const productData = await productResponse.json();
   //   }
   // }
+  /*****************************************************************************/
 
   async handleSubmit(event) {
     event.preventDefault();
     const data = { ...this.state };
 
+    // Converting our camel case javascript variables to variables named with
+    // snake case to match the endpoints in our python backend
     data.answer_1 = data.answerOne;
     data.answer_2 = data.answerTwo;
     data.answer_3 = data.answerThree;
@@ -153,18 +179,16 @@ class BodyQuiz extends React.Component {
   }
 
   render() {
-    let messageClasses = "alert alert-success d-none mb-0";
     let quizPageOneClasses = "";
-    let quizPageOneButtonClass = "px-4 py-5 my-5 text-center"
+    let quizPageOneButtonClasses = "px-4 py-5 my-5 text-center";
     let quizPageTwoClasses = "";
-    let incompleteClass = "d-none";
+    let incompleteClasses = "d-none";
     if (this.state.incompleteQuiz) {
-      incompleteClass = "alert alert-warning mb-0";
+      incompleteClasses = "alert alert-warning mb-0";
     }
     if (this.state.pageOneComplete) {
-      messageClasses = "alert alert-success mb-0";
       quizPageOneClasses = "d-none";
-      quizPageOneButtonClass = "px-4 py-5 my-5 text-center d-none"
+      quizPageOneButtonClasses = "px-4 py-5 my-5 text-center d-none";
     }
 
     return (
@@ -348,11 +372,14 @@ class BodyQuiz extends React.Component {
             </div>
           </div>
         </div>
-        <div className={quizPageOneButtonClass}>
-          <button onClick={this.handlePageOneComplete} className="btn btn-primary">
+        <div className={quizPageOneButtonClasses}>
+          <button
+            onClick={this.handlePageOneComplete}
+            className="btn btn-primary"
+          >
             Next
           </button>
-          <p className={incompleteClass}>Please answer all questions.</p>
+          <p className={incompleteClasses}>Please answer all questions.</p>
         </div>
       </div>
     );
