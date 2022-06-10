@@ -19,6 +19,9 @@ class ProductVOEncoder(ModelEncoder):
         "price",
         "image"
     ]
+class UserVOEncoder(ModelEncoder):
+    model = UserVO
+    properties = ["id", "user"]
 
 class CartEncoder(ModelEncoder):
     model = Cart
@@ -32,11 +35,6 @@ class CartEncoder(ModelEncoder):
         "products": ProductVOEncoder(),
         "user": UserVOEncoder()
         }
-
-class UserVOEncoder(ModelEncoder):
-    model = UserVO
-    properties = ["id", "user"]
-
 # class ScentVOEncoder(ModelEncoder):
 #     model = ScentVO
 #     properties = ["import_href", "name"]
