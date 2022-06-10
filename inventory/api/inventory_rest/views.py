@@ -75,6 +75,7 @@ def api_show_product(request, sku):
                 "quantity",
                 "image",
                 "description",
+                "status",
             ]
             for prop in props:
                 if prop in content:

@@ -1,12 +1,12 @@
 from common.json import ModelEncoder
 from .models import (
     ProductVO, 
-    ScentVO, 
     UserVO, 
     Quiz, 
     Question, 
     Answer,
-    Result
+    Result,
+    Cart
 )
 
 class ProductVOEncoder(ModelEncoder):
@@ -20,13 +20,26 @@ class ProductVOEncoder(ModelEncoder):
         "image"
     ]
 
+class CartEncoder(ModelEncoder):
+    model = Cart
+    properties = [
+        "products",
+        "user",
+        "quantity",
+        "totals"
+    ] 
+    encoders = {
+        "products": ProductVOEncoder(),
+        "user": UserVOEncoder()
+        }
+
 class UserVOEncoder(ModelEncoder):
     model = UserVO
     properties = ["id", "user"]
 
-class ScentVOEncoder(ModelEncoder):
-    model = ScentVO
-    properties = ["import_href", "name"]
+# class ScentVOEncoder(ModelEncoder):
+#     model = ScentVO
+#     properties = ["import_href", "name"]
 
 class QuizEncoder(ModelEncoder):
     model = Quiz

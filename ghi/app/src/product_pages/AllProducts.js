@@ -1,6 +1,29 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
+// async function AddToCart(product){
+//   console.log("this is the product", product)
+//   const data = {...this.state};
+//   const url = `http://localhost:8090/api/cart`
+//   const fetchConfig = {
+//     method: "post",
+//     body: JSON.stringify(data),
+//     headers: {
+//       'Content-type': 'application/json',
+//     },
+//   };
+
+//   const response = await fetch(url, fetchConfig);
+//   if(response.ok){
+//     const carted = await response.json();
+//     console.log(carted)
+//     this.setState({
+//         "products": [],
+//     });
+//     this.props.loadProduct();
+//   }
+
+// }
 
 function ProductColumn(props) {
     return (
@@ -14,6 +37,9 @@ function ProductColumn(props) {
                   <h6 className="card-subtitle mb-2 text-muted">
                     {product.scent1} {product.price}
                   </h6>
+                </div>
+                <div>
+                  <button className="btn btn-success" onClick={() => {props.AddToCart(product)}}>Add To Cart</button>
                 </div>
                 <div className="card-footer">
                   {product.description}
@@ -29,8 +55,9 @@ class ListProducts extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          productColumns: [[], [], []]
+          productColumns: [[], [], []],
         };
+        this.AddToCart=this.AddToCart.bind(this)
       }
     
       async componentDidMount() {
@@ -71,7 +98,34 @@ class ListProducts extends React.Component {
               console.error("error:", e)
           }
       }
-
+      async AddToCart(product){
+        console.log("this is the product", product)
+        const data = {        
+              "product_sku": product.sku,
+              "user_id": 1,
+              "quantity": 1,
+              "totals": product.price
+            };
+        const url = `http://localhost:8090/api/cart/`
+        const fetchConfig = {
+          method: "post",
+          body: JSON.stringify(data),
+          headers: {
+            'Content-type': 'application/json',
+          },
+        };
+      
+        const response = await fetch(url, fetchConfig);
+        if(response.ok){
+          const carted = await response.json();
+          console.log(carted)
+          this.setState({
+              "products": [],
+          });
+          this.props.loadProduct();
+        }
+      
+      }
     render() {
         return (
             <>
@@ -89,7 +143,7 @@ class ListProducts extends React.Component {
             <div className="row">
                 {this.state.productColumns.map((productList, index) => {
                 return (
-                    <ProductColumn key={index} list={productList} />
+                    <ProductColumn AddToCart={this.AddToCart} key={index} list={productList} />
                 );
                 })}
             </div>

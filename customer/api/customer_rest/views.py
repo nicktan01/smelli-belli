@@ -1,14 +1,17 @@
 import json
+from logging import exception
 from django.http import JsonResponse
 from django.shortcuts import render
-from .models import Quiz, Answer, Question, Result
+from .models import Quiz, Answer, Question, Result, Cart
 from django.views.generic import ListView
 from django.views.decorators.http import require_http_methods
 from .encoders import (
+    CartEncoder,
     QuizEncoder,
     QuestionEncoder,
     AnswerEncoder,
-    ResultEncoder
+    ResultEncoder,
+    CartEncoder
     )
 
 # Create your views here.
@@ -67,3 +70,28 @@ def api_result(request):
             {"results": results},
             encoder=ResultEncoder
         )
+
+@require_http_methods(["GET", "POST"])
+def api_cart(request):
+    if request.method == "GET":
+        cart = Cart.objects.all()
+        return JsonResponse(
+            {"cart": cart},
+            encoder=CartEncoder
+        )
+    else: #POST
+        try:
+            content = json.loads(request.body)
+            cart = Cart.objects.create(**content)
+            return JsonResponse(
+                cart,
+                encoder=CartEncoder,
+                safe=False,
+            )
+        except Exception as e:
+            print(e)
+            response = JsonResponse(
+                {"message": "Could not add cart"}
+            )
+            response.status_code = 400
+            return response

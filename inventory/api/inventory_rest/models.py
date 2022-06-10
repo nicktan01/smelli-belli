@@ -114,7 +114,7 @@ class Product(models.Model):
     quantity = models.PositiveSmallIntegerField()
     image = models.URLField(blank=True, null=True)
     description = models.CharField(max_length=400)
-
+    
     def __str__(self):
         return f"{self.name} - {self.size}, {self.sku}"
 
