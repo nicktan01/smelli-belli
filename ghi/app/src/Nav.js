@@ -6,6 +6,22 @@ function Nav() {
   const [token] = useToken();
   const [user, setUser] = useState(null);
   
+  useEffect(() => {
+    async function getCurrentUser() {
+      const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/accounts/me/`;
+      const response = await fetch(url, {
+        credentials: "include",
+      });
+      if (response.ok) {
+        const user = await response.json();
+        console.log(user);
+        setUser(user);
+      }
+    }
+    if (token) {
+      getCurrentUser();
+    }
+  }, [token]);
 
   return (
     <nav
