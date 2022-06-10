@@ -176,47 +176,78 @@ function Map() {
 
 function About() {
   return (
-    <div className="px-4 py-5 my-5 text-center">
-      <h1 className="display-6 fw-bold">
-        Making Bellis around the world happier through our Smellis
-      </h1>
-      <div className="col-lg-6 mx-auto">
-        <p className="lead mb-4">
-          Smelli Belli is an organic, ethically sourced home and body products
-          brand that caters to every individual. Take our quizzes to see what
-          scents and products we reccommend for you!
-        </p>
+    <>
+      <div className="d-flex justify-content-center position-relative">
+        <img
+          src="/images/bannerimg.jpeg"
+          height={300}
+          width={null}
+          style={{ objectFit: "cover", width: "100%" }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            transform: "translateY(-50%)",
+            width: "100%",
+            height: "200px",
+            background: "#fff",
+            opacity: "0.5",
+          }}
+        />
+        <img
+          src="/images/sbabout.png"
+          height={200}
+          width={null}
+          style={{
+            position: "absolute",
+            top: "50%",
+            transform: "translateY(-50%)",
+          }}
+        />
       </div>
-      <h1 className="display-6 fw-bold">FAQ</h1>
-      <div className="col-lg-6 mx-auto">
-        <p className="lead mb-4 fw-bold">
-          Where do you source your ingredients?
-        </p>
-        <p className="lead mb-4">
-          <Map />
-          Here's a map showing the different locations we harvest ingredients to
-          make the essential oils used in our fragrances! Click the markers to
-          see which scent ingredients are harvested.
-        </p>
-        <p className="lead mb-4 fw-bold">Returns & Exchanges</p>
-        <p className="lead mb-4">
-          We want you to love our products! Return anything, anytime for any
-          reason. 100% Guaranteed.
-        </p>
-        <p className="lead mb-4 fw-bold">What if my item arrives damaged?</p>
-        <p className="lead mb-4">
-          We're sorry to hear your item arrived damaged. Please contact us so we
-          can make it right.
-        </p>
-        <p className="lead mb-4 fw-bold">
-          Can I purchase Smelli Belli products in-store?
-        </p>
-        <p className="lead mb-4">
-          Unfortunately, at the moment we are only an online store. We are
-          looking to expand to retailers near you soon!
-        </p>
+      <div className="px-4 py-3 my-1 text-center">
+        <h1 className="display-6 fw-bold">
+          Making Bellis around the world happier through our Smellis
+        </h1>
+        <div className="col-lg-6 mx-auto">
+          <p className="lead mb-4">
+            Smelli Belli is an organic, ethically sourced home and body products
+            brand that caters to every individual. Take our quizzes to see what
+            scents and products we reccommend for you!
+          </p>
+        </div>
+        <h1 className="display-6 fw-bold">FAQ</h1>
+        <div className="col-lg-6 mx-auto">
+          <p className="lead mb-4 fw-bold">
+            Where do you source your ingredients?
+          </p>
+          <p className="lead mb-4">
+            <Map />
+            Here's a map showing the different locations we harvest ingredients
+            to make the essential oils used in our fragrances! Click the markers
+            to see which scent ingredients are harvested.
+          </p>
+          <p className="lead mb-4 fw-bold">Returns & Exchanges</p>
+          <p className="lead mb-4">
+            We want you to love our products! Return anything, anytime for any
+            reason. 100% Guaranteed.
+          </p>
+          <p className="lead mb-4 fw-bold">What if my item arrives damaged?</p>
+          <p className="lead mb-4">
+            We're sorry to hear your item arrived damaged. Please contact us so
+            we can make it right.
+          </p>
+          <p className="lead mb-4 fw-bold">
+            Can I purchase Smelli Belli products in-store?
+          </p>
+          <p className="lead mb-4">
+            Unfortunately, at the moment we are only an online store. We are
+            looking to expand to retailers near you soon!
+          </p>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
