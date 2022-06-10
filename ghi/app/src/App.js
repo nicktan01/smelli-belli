@@ -1,13 +1,11 @@
-import { useEffect, useState, useSyncExternalStore } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Nav from "./Nav";
 import HomePage from "./HomePage";
 import Footer from "./Footer";
 import About from "./About";
-import AllProducts from "./product_pages/AllProducts";
-import BodyProducts from "./product_pages/BodyProducts";
-import HomeProducts from "./product_pages/HomeProducts";
+import ProductList from "./product_pages/ProductList";
+import ProductDetails from "./product_pages/ProductDetail";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import Cart from "./Cart/Cart";
@@ -21,9 +19,18 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<About />} />
-          <Route path="/shopall" element={<AllProducts />} />
-          <Route path="/body" element={<BodyProducts />} />
-          <Route path="/home" element={<HomeProducts />} />
+          <Route path="/products">
+            <Route exact path="/products/:sku" element={<ProductDetails />} />
+            <Route
+              path="/products/body"
+              element={<ProductList category="Body" />}
+            />
+            <Route
+              path="/products/home"
+              element={<ProductList category="Home" />}
+            />
+            <Route path="/products/all" element={<ProductList />} />
+          </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/cart" element={<Cart />} />

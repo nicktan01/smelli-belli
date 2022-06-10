@@ -58,7 +58,6 @@ class Product(models.Model):
         (EIGHT_OZ, "8.0 oz"),
         (SIXTEEN_OZ, "16.0 oz"),
     ]
-    size = models.CharField(max_length=25, choices=SIZE_CHOICES, default="")
     FRESH = "Fresh"
     AMBER = "Amber"
     FLORAL = "Floral"
@@ -103,6 +102,7 @@ class Product(models.Model):
     product_category = models.CharField(
         max_length=25, choices=PRODUCT_CATEGORY_CHOICES, default=""
     )
+    size = models.CharField(max_length=25, choices=SIZE_CHOICES, default="")
     sku = models.CharField(max_length=12, unique=True)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     scent1 = models.CharField(max_length=25, choices=SCENT_CHOICES, blank=True)
