@@ -57,7 +57,7 @@ class BodyQuiz extends React.Component {
 
   handleQuestionFive(event) {
     const value = event.currentTarget.value;
-    this.setState({ answerFive: value });
+    this.setState({ answerFive: parseInt(value) });
     this.setState({ questionFiveAnswered: true });
   }
 
@@ -344,6 +344,7 @@ class BodyQuiz extends React.Component {
                 max="5"
                 id="smellIntensity"
               />
+              <p>Intensity: {this.state.answerFive}</p>
             </div>
           </div>
         </div>
