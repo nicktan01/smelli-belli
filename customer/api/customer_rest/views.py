@@ -23,14 +23,14 @@ def api_list_body_quizzes(request):
         content = json.loads(request.body)
 
         # Get the user object and put it in the content dictionary
-        try:
-            user = UserVO.objects.get(id=content["user"])
-            content["user"] = user
-        except UserVO.DoesNotExist:
-            return JsonResponse(
-                {"message": "User does not exist"},
-                status=400,
-            )
+        # try:
+        #     user = UserVO.objects.get(id=content["user"])
+        #     content["user"] = user
+        # except UserVO.DoesNotExist:
+        #     return JsonResponse(
+        #         {"message": "User does not exist"},
+        #         status=400,
+        #     )
 
         # Then, grab the Body Quiz object
         try:
@@ -86,8 +86,7 @@ def api_show_body_quiz(request, pk):
                 "answer_3",
                 "answer_4",
                 "answer_5",
-                "created",
-                "user"
+                # "user"
             ]
             for prop in props:
                 if prop in content:
@@ -119,14 +118,14 @@ def api_list_home_quizzes(request):
         content = json.loads(request.body)
 
         # Get the user object and put it in the content dictionary
-        try:
-            user = UserVO.objects.get(id=content["user"])
-            content["user"] = user
-        except UserVO.DoesNotExist:
-            return JsonResponse(
-                {"message": "User does not exist"},
-                status=400,
-            )
+        # try:
+        #     user = UserVO.objects.get(id=content["user"])
+        #     content["user"] = user
+        # except UserVO.DoesNotExist:
+        #     return JsonResponse(
+        #         {"message": "User does not exist"},
+        #         status=400,
+        #     )
 
         # Then, grab the Home Quiz object
         try:
@@ -182,8 +181,7 @@ def api_show_home_quiz(request, pk):
                 "answer_3",
                 "answer_4",
                 "answer_5",
-                "created",
-                "user"
+                # "user"
             ]
             for prop in props:
                 if prop in content:

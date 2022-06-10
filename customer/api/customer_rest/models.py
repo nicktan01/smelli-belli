@@ -19,11 +19,13 @@ class BodyQuiz(models.Model):
     answer_4 = models.CharField(max_length=50)
     answer_5 = models.CharField(max_length=50)
     created = models.DateField(auto_now_add=True)
-    user = models.ForeignKey(
-        UserVO,
-        related_name="body_quiz",
-        on_delete=models.CASCADE
-    )
+    # user = models.ForeignKey(
+    #     UserVO,
+    #     related_name="body_quiz",
+    #     on_delete=models.CASCADE,
+    #     blank=True,
+    #     null=True
+    # )
 
 class HomeQuiz(models.Model):
     answer_1 = models.CharField(max_length=50)
@@ -35,7 +37,9 @@ class HomeQuiz(models.Model):
     user = models.ForeignKey(
         UserVO,
         related_name="home_quiz",
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True
     )
 
 class Cart(models.Model):

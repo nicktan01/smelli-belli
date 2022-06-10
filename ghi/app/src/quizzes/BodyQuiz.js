@@ -5,13 +5,22 @@ class BodyQuiz extends React.Component {
     super(props);
     this.state = {
       answerOne: "",
+      questionOneAnswered: false,
       answerTwo: "",
+      questionTwoAnswered: false,
       answerThree: "",
+      questionThreeAnswered: false,
       answerFour: "",
+      questionFourAnswered: false,
       answerFive: "",
+      questionFiveAnswered: false,
+      created: "",
+      incompleteQuiz: false,
       quizCompleted: false,
     };
 
+    // We need to bind this to all of these properties so that we can track
+    // when a user has answered a question, or clicked the "Next" button
     this.handleQuestionOne = this.handleQuestionOne.bind(this);
     this.handleQuestionTwo = this.handleQuestionTwo.bind(this);
     this.handleQuestionThree = this.handleQuestionThree.bind(this);
@@ -23,59 +32,123 @@ class BodyQuiz extends React.Component {
   handleQuestionOne(event) {
     const id = event.currentTarget.id;
     this.setState({ answerOne: id });
+    this.setState({ questionOneAnswered: true }); // marks q as answered
   }
 
   handleQuestionTwo(event) {
     const id = event.currentTarget.id;
     this.setState({ answerTwo: id });
+    this.setState({ questionTwoAnswered: true });
   }
 
   handleQuestionThree(event) {
     const id = event.currentTarget.id;
     this.setState({ answerThree: id });
+    this.setState({ questionThreeAnswered: true });
   }
 
   handleQuestionFour(event) {
     const id = event.currentTarget.id;
     this.setState({ answerFour: id });
+    this.setState({ questionFourAnswered: true });
   }
 
   handleQuestionFive(event) {
     const value = event.currentTarget.value;
     this.setState({ answerFive: value });
+    this.setState({ questionFiveAnswered: true });
   }
+
+  // async componentDidMount() {
+  //   const productUrl = "http://localhost:8100/api/products/";
+
+  //   const productResponse = await fetch(productUrl);
+
+  //   if (productResponse.ok) {
+  //     const productData = await productResponse.json();
+  //   }
+  // }
 
   async handleSubmit(event) {
     event.preventDefault();
+
+    // We need to pull the date when the user clicks the next button
+    // and set it to the created property, which is on our quiz data models
+    const date = new Date().toISOString().slice(0, 10);
+    this.setState({ created: date });
+
     const data = { ...this.state };
-    delete data.quizCompleted;
 
-    const quizResultsUrl = "http://localhost:8090/api/bodyprofiles/";
-    const fetchConfig = {
-      method: "post",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
+    // Checks that each question was answered
+    if (
+      data.questionOneAnswered === true &&
+      data.questionTwoAnswered === true &&
+      data.questionThreeAnswered === true &&
+      data.questionFourAnswered === true &&
+      data.questionFiveAnswered === true
+    ) {
+      data.answer_1 = data.answerOne;
+      data.answer_2 = data.answerTwo;
+      data.answer_3 = data.answerThree;
+      data.answer_4 = data.answerFour;
+      data.answer_5 = data.answerFive;
 
-    const response = await fetch(quizResultsUrl, fetchConfig);
+      // Delete the properties that don't appear on our quiz data models . . .
+      delete data.answerOne;
+      delete data.answerTwo;
+      delete data.answerThree;
+      delete data.answerFour;
+      delete data.answerFive;
+      delete data.created;
+      delete data.incompleteQuiz;
+      delete data.questionOneAnswered;
+      delete data.questionTwoAnswered;
+      delete data.questionThreeAnswered;
+      delete data.questionFourAnswered;
+      delete data.questionFiveAnswered;
+      delete data.quizCompleted;
 
-    if (response.ok) {
-      this.setState({
-        answerOne: "",
-        answerTwo: "",
-        answerThree: "",
-        answerFour: "",
-        answerFive: "",
-        quizCompleted: true,
-      });
+      // . . . so that we can POST a quiz object into our database!
+      const quizResultsUrl = "http://localhost:8090/api/bodyquizzes/";
+      const fetchConfig = {
+        method: "post",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+
+      const response = await fetch(quizResultsUrl, fetchConfig);
+
+      // then clear the responses after posting to the backend's endpoint
+      if (response.ok) {
+        this.setState({
+          answerOne: "",
+          questionOneAnswered: false,
+          answerTwo: "",
+          questionTwoAnswered: false,
+          answerThree: "",
+          questionThreeAnswered: false,
+          answerFour: "",
+          questionFourAnswered: false,
+          answerFive: "",
+          questionFiveAnswered: false,
+          created: "",
+          quizCompleted: true,
+        });
+      }
+    } else {
+      this.setState({ incompleteQuiz: true });
     }
   }
 
   render() {
     let messageClasses = "alert alert-success d-none mb-0";
     let formClasses = "";
+    let incompleteClass = "d-none";
+    if (this.state.incompleteQuiz) {
+      incompleteClass = "alert alert-warning mb-0";
+    }
     if (this.state.quizCompleted) {
       messageClasses = "alert alert-success mb-0";
       formClasses = "d-none";
@@ -91,7 +164,7 @@ class BodyQuiz extends React.Component {
           <h1>Question One</h1>
           <em>Please, choose one</em>
           <p>What kind of product are you looking for?</p>
-          <div>
+          <div className="d-grid gap-4 d-md-flex justify-content-center">
             <button
               onClick={this.handleQuestionOne}
               value={this.state.answerOne}
@@ -126,7 +199,7 @@ class BodyQuiz extends React.Component {
           <h1>Question Two</h1>
           <em>Please, choose one</em>
           <p>Which activity do you enjoy most?</p>
-          <div>
+          <div className="d-grid gap-4 d-md-flex justify-content-center">
             <button
               onClick={this.handleQuestionTwo}
               value={this.state.answerTwo}
@@ -168,7 +241,7 @@ class BodyQuiz extends React.Component {
           <h1>Question Three</h1>
           <em>Please, choose one</em>
           <p>What is your favorite season?</p>
-          <div>
+          <div className="d-grid gap-4 d-md-flex justify-content-center">
             <button
               onClick={this.handleQuestionThree}
               value={this.state.answerThree}
@@ -203,7 +276,7 @@ class BodyQuiz extends React.Component {
           <h1>Question Four</h1>
           <em>Please, choose one</em>
           <p>What clothing style is your favorite?</p>
-          <div>
+          <div className="d-grid gap-4 d-md-flex justify-content-center">
             <button
               onClick={this.handleQuestionFour}
               value={this.state.answerFour}
@@ -259,7 +332,12 @@ class BodyQuiz extends React.Component {
             />
           </div>
         </div>
-        <button className="btn btn-primary">Create</button>
+        <div className="px-4 py-5 my-5 text-center">
+          <button onClick={this.handleSubmit} className="btn btn-primary">
+            Next
+          </button>
+          <p className={incompleteClass}>Please answer all questions.</p>
+        </div>
       </div>
     );
   }
@@ -352,7 +430,7 @@ export default BodyQuiz;
 //           </label>
 //           <input
 //             type="range"
-//             class="form-range"
+//             className="form-range"
 //             min="0"
 //             max="5"
 //             id="smellIntensity"

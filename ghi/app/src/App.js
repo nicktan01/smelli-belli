@@ -10,6 +10,8 @@ import BodyProducts from "./product_pages/BodyProducts";
 import HomeProducts from "./product_pages/HomeProducts";
 import Login from "./Login";
 import SignUp from "./SignUp";
+import BodyQuiz from "./quizzes/BodyQuiz";
+import HomeQuiz from "./quizzes/HomeQuiz";
 
 function App() {
   return (

@@ -30,7 +30,7 @@ class BodyQuizEncoder(ModelEncoder):
         "answer_4", 
         "answer_5",
         "created",
-        "user" 
+        # "user" 
     ]
 
 class HomeQuizEncoder(ModelEncoder):
@@ -42,5 +42,5 @@ class HomeQuizEncoder(ModelEncoder):
         "answer_4", 
         "answer_5",
         "created",
-        "user" 
+        # "user" 
     ]
