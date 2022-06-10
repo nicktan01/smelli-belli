@@ -11,6 +11,7 @@ import BodyProducts from "./product_pages/BodyProducts";
 import HomeProducts from "./product_pages/HomeProducts";
 import Login from "./Login";
 import SignUp from "./SignUp";
+import EditAccount from "./EditAccount";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/account" element={<AccountPage />} />
+          <Route path="/account/edit" element={<EditAccount />} />
         </Routes>
         <Footer />
       </BrowserRouter>

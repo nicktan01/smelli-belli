@@ -117,6 +117,15 @@ function Nav() {
                 className="dropdown-menu"
                 aria-labelledby="navbarDropdownMenuLink"
               >
+                {token ? (
+                  <NavLink className="dropdown-item" to="/account">
+                    My Account
+                  </NavLink>
+                ) : (
+                  <NavLink className="dropdown-item" to="/login">
+                    My Account
+                  </NavLink>
+                )}
                 <NavLink className="dropdown-item" to="/login">
                   My Account
                 </NavLink>
@@ -129,6 +138,7 @@ function Nav() {
                 <NavLink className="dropdown-item" to="/scentprofile">
                   Scent Profile
                 </NavLink>
+                
               </div>
             </span>
             <span className="nav-item active">

@@ -1,16 +1,18 @@
 import { useToken } from "./authApi";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-function SignUp() {
-  const [token, login, logout, signup] = useToken();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [user, setUser] = useState(null);
-  const [error, setError] = useState(null);
-  const canSignup = username && password && email && firstName && lastName;
+function EditAccount() {
+    const [token, update] = useToken();
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [user, setUser] = useState([]);
+    const [error, setError] = useState(null);
+    const canSignup = username && password && email && firstName && lastName;
+
 
   useEffect(() => {
     async function getCurrentUser() {
@@ -31,13 +33,10 @@ function SignUp() {
 
   return (
     <div>
-      {token ? (
-        window.location.replace("http://localhost:3000/")
-      ) : (
         <div className="row">
           <div className="offset-4 col-4 mt-4 mb-4">
             <div className="shadow p-4 mt-4">
-              <h1>Sign Up</h1>
+              <h1>Edit Account</h1>
               <div className="form-floating mb-3">
                 <input
                   className="form-control"
@@ -46,7 +45,7 @@ function SignUp() {
                   value={username}
                   placeholder="username"
                 />
-                <label htmlFor="username">Username</label>
+                <label htmlFor="username">{user.username}</label>
               </div>
               <div className="form-floating mb-3">
                 <input
@@ -56,7 +55,7 @@ function SignUp() {
                   value={email}
                   placeholder="email"
                 />
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">{user.email}</label>
               </div>
               <div className="form-floating mb-3">
                 <input
@@ -66,7 +65,7 @@ function SignUp() {
                   value={firstName}
                   placeholder="first name"
                 />
-                <label htmlFor="first_name">First Name</label>
+                <label htmlFor="first_name">{user.first_name}</label>
               </div>
               <div className="form-floating mb-3">
                 <input
@@ -76,7 +75,7 @@ function SignUp() {
                   value={lastName}
                   placeholder="last name"
                 />
-                <label htmlFor="last_name">Last Name</label>
+                <label htmlFor="last_name">{user.username}</label>
               </div>
               <div className="form-floating mb-3">
                 <input
@@ -102,18 +101,17 @@ function SignUp() {
                 disabled={!canSignup}
                 onClick={async () =>
                   setError(
-                    await signup(username, password, email, firstName, lastName)
+                    await update(username, password, email, firstName, lastName)
                   )
                 }
               >
-                Sign up
+                update
               </button>
             </div>
           </div>
         </div>
-      )}
     </div>
   );
 }
 
-export default SignUp;
+export default EditAccount;
