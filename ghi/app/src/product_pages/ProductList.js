@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useToken } from "../authApi";
 import "./products.css";
 
 function ProductColumn(props) {
@@ -10,6 +11,7 @@ function ProductColumn(props) {
           <Product
             sku={product.sku}
             onClickLikeProduct={props.onClickLikeProduct}
+            onClickCartProduct={props.onClickCartProduct}
             liked={props.likedProducts[product.sku]}
           />
         );
@@ -18,14 +20,35 @@ function ProductColumn(props) {
   );
 }
 
-function Product({ sku, onClickLikeProduct, liked }) {
+function Product({ sku, onClickLikeProduct, onClickCartProduct, liked, carted }) {
   const navigate = useNavigate();
+  const [token] = useToken();
+  const [user, setUser] = useState([]);
+
+  //current user
+  useEffect(() => {
+    async function getCurrentUser() {
+    const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/accounts/me/`;
+    const response = await fetch(url, {
+        credentials: "include",
+    });
+    if (response.ok) {
+        const user = await response.json();
+        console.log(user);
+        setUser(user);
+    }
+    }
+    if (token) {
+    getCurrentUser();
+    }
+}, [token]);
 
   function likeProductHandler(e, sku) {
     e.stopPropagation();
     onClickLikeProduct(sku);
   }
 
+  //wishlist
   const [product, setProduct] = useState({});
 
   useEffect(() => {
@@ -42,6 +65,28 @@ function Product({ sku, onClickLikeProduct, liked }) {
           });
       } catch (e) {
         console.error("error:", e);
+      }
+    }
+    fetchData();
+  }, [sku]);
+
+// cart
+function cartProductHandler(e, product) {
+  e.stopPropagation();
+  onClickCartProduct(product);
+}
+  useEffect(() => {
+    async function fetchData() {
+      const url = "http://localhost:8090/api/cart/";
+      const fetchConfig = {
+        method: "post",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const response = await fetch(url, fetchConfig);
+      if(response.ok){
+        console.log("this is the response", response)
       }
     }
     fetchData();
@@ -66,7 +111,7 @@ function Product({ sku, onClickLikeProduct, liked }) {
           onClick={(e) => likeProductHandler(e, product.sku)}
         >
           <path
-            fill-rule="evenodd"
+            fillRule="evenodd"
             d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
           />
         </svg>
@@ -97,6 +142,18 @@ function Product({ sku, onClickLikeProduct, liked }) {
           ${product.price} - {product.size}
         </h6>
       </div>
+      <div>
+        <button className="btn" >{carted ? (
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="cart bi bi-cart-check-fill" viewBox="0 0 16 16" onClick={(e) => cartProductHandler(e, product.sku)}> 
+          <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+        </svg> 
+      ) : (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className=" cart bi bi-cart-plus" viewBox="0 0 16 16" onClick={(e) => cartProductHandler(e, product.sku)}> 
+  <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
+  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+</svg> 
+      )}</button>
+      </div>
     </div>
   );
 }
@@ -104,7 +161,9 @@ function Product({ sku, onClickLikeProduct, liked }) {
 function ProductList({ category }) {
   const [productColumns, setProductColumns] = useState([[], [], [], []]);
   const [likedProducts, setLikedProducts] = useState({});
-  console.log(likedProducts);
+  const [cartedProducts, setCartedProducts] = useState({});
+  console.log("liked product:", likedProducts);
+  console.log("carted products:", cartedProducts);
 
   useEffect(() => {
     async function fetchData() {
@@ -243,10 +302,17 @@ function ProductList({ category }) {
                 key={index}
                 list={productList}
                 likedProducts={likedProducts}
+                cartedProducts={cartedProducts}
                 onClickLikeProduct={(productId) =>
                   setLikedProducts({
                     ...likedProducts,
                     [productId]: !likedProducts[productId],
+                  })
+                }
+                onClickCartProduct={(productId) =>
+                  setCartedProducts({
+                    ...cartedProducts,
+                  [productId]: !cartedProducts[productId],
                   })
                 }
               />

@@ -1,5 +1,4 @@
 import React from 'react';
-import AllProducts from "../product_pages/AllProducts"
 
 
 
