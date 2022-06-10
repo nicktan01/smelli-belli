@@ -60,7 +60,7 @@ function Login() {
               <p>
                 {error ? (
                   <div
-                    className="alert alert-danger"
+                    class="alert alert-danger"
                     role="alert"
                     dangerouslySetInnerHTML={{ __html: error }}
                   />
@@ -89,5 +89,6 @@ function Login() {
     </div>
   );
 }
+
 
 export default Login;
