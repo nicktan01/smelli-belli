@@ -94,3 +94,15 @@ Today I worked on:
 - populating and refactoring the inventory microservice
 
 Our entire group worked together to get a json we could use to populate data for products within our inventory service. I learned how to do that from Jordan, and we ran into some blockers and realized that our models needed some refactoring or just had some flaws. We updated the code through a live share cindy had and then troubleshooted individually thinking that one of us had a database issue when it was just poorly designed models. Luckily we now have data we can actively use for things like our products page now and soon, orders and to use for our carousel to display the most popular items. Tomorrow we plan on making quizzes and relating them to the products we populated the database with
+
+## June 9, 2022
+Today I worked on:
+
+- The Account Page
+- cart
+
+I worked on the front end for the Account page and I think it is in a good barebone state where I can read the properties of a user. I tried adding a form to be able to edit details of a user but I am currently unsure of how that will work since changing any property of the user will change the token and I am unfamiliar with tokens and authentication. I also went through some of the other files in the project that relate to users and tried adding some logic that would let the link `my account` lead to a user's account when logged in or the `signup/login` page when the current user doesnt have an active token. 
+
+I tried helping Nick with his implementation of the cart, and we made a bit of progress in terms of knowing the direction that we need to move in to get things working, but there are some nuances we will need help ironing out tomorrow.
+
+I learned a bit more about jwt and authentication from rewatching curtis' private lecture for our group as well as watching some extra tutorials online. I am still a bit anxious to work on things requiring authentication but I definitely feel like im learning something important as I keep working.
