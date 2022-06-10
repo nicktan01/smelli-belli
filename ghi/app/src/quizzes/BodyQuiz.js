@@ -16,6 +16,7 @@ class BodyQuiz extends React.Component {
       questionFiveAnswered: false,
       created: "",
       incompleteQuiz: false,
+      pageOneComplete: false,
       quizCompleted: false,
     };
 
@@ -26,6 +27,7 @@ class BodyQuiz extends React.Component {
     this.handleQuestionThree = this.handleQuestionThree.bind(this);
     this.handleQuestionFour = this.handleQuestionFour.bind(this);
     this.handleQuestionFive = this.handleQuestionFive.bind(this);
+    this.handlePageOneComplete = this.handlePageOneComplete.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -59,6 +61,30 @@ class BodyQuiz extends React.Component {
     this.setState({ questionFiveAnswered: true });
   }
 
+  handlePageOneComplete(event) {
+    const value = event.currentTarget.value;
+
+    // We need to pull the date when the user clicks the next button
+    // and set it to the created property, which is on our quiz data models
+    const date = new Date().toISOString().slice(0, 10);
+    this.setState({ created: date });
+
+    // Checks that each question was answered
+    if (
+      this.state.questionOneAnswered && 
+      this.state.questionTwoAnswered && 
+      this.state.questionThreeAnswered && 
+      this.state.questionFourAnswered && 
+      this.state.questionFiveAnswered
+    ) {
+      // We change this boolean so we can change the classNames stored in our 
+      // quizPageOneClasses variable to control displaying the quiz's "pages"
+      this.setState({ pageOneComplete: true });
+    } else {
+      this.setState({ incompleteQuiz: true });
+    }
+  }
+
   // async componentDidMount() {
   //   const productUrl = "http://localhost:8100/api/products/";
 
@@ -71,87 +97,74 @@ class BodyQuiz extends React.Component {
 
   async handleSubmit(event) {
     event.preventDefault();
-
-    // We need to pull the date when the user clicks the next button
-    // and set it to the created property, which is on our quiz data models
-    const date = new Date().toISOString().slice(0, 10);
-    this.setState({ created: date });
-
     const data = { ...this.state };
 
-    // Checks that each question was answered
-    if (
-      data.questionOneAnswered === true &&
-      data.questionTwoAnswered === true &&
-      data.questionThreeAnswered === true &&
-      data.questionFourAnswered === true &&
-      data.questionFiveAnswered === true
-    ) {
-      data.answer_1 = data.answerOne;
-      data.answer_2 = data.answerTwo;
-      data.answer_3 = data.answerThree;
-      data.answer_4 = data.answerFour;
-      data.answer_5 = data.answerFive;
+    data.answer_1 = data.answerOne;
+    data.answer_2 = data.answerTwo;
+    data.answer_3 = data.answerThree;
+    data.answer_4 = data.answerFour;
+    data.answer_5 = data.answerFive;
 
-      // Delete the properties that don't appear on our quiz data models . . .
-      delete data.answerOne;
-      delete data.answerTwo;
-      delete data.answerThree;
-      delete data.answerFour;
-      delete data.answerFive;
-      delete data.created;
-      delete data.incompleteQuiz;
-      delete data.questionOneAnswered;
-      delete data.questionTwoAnswered;
-      delete data.questionThreeAnswered;
-      delete data.questionFourAnswered;
-      delete data.questionFiveAnswered;
-      delete data.quizCompleted;
+    // Delete the properties that don't appear on our quiz data models . . .
+    delete data.answerOne;
+    delete data.answerTwo;
+    delete data.answerThree;
+    delete data.answerFour;
+    delete data.answerFive;
+    delete data.created;
+    delete data.incompleteQuiz;
+    delete data.questionOneAnswered;
+    delete data.questionTwoAnswered;
+    delete data.questionThreeAnswered;
+    delete data.questionFourAnswered;
+    delete data.questionFiveAnswered;
+    delete data.pageOneComplete;
+    delete data.quizCompleted;
 
-      // . . . so that we can POST a quiz object into our database!
-      const quizResultsUrl = "http://localhost:8090/api/bodyquizzes/";
-      const fetchConfig = {
-        method: "post",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
+    // . . . so that we can POST a quiz object into our database!
+    const quizResultsUrl = "http://localhost:8090/api/bodyquizzes/";
+    const fetchConfig = {
+      method: "post",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
 
-      const response = await fetch(quizResultsUrl, fetchConfig);
+    const response = await fetch(quizResultsUrl, fetchConfig);
 
-      // then clear the responses after posting to the backend's endpoint
-      if (response.ok) {
-        this.setState({
-          answerOne: "",
-          questionOneAnswered: false,
-          answerTwo: "",
-          questionTwoAnswered: false,
-          answerThree: "",
-          questionThreeAnswered: false,
-          answerFour: "",
-          questionFourAnswered: false,
-          answerFive: "",
-          questionFiveAnswered: false,
-          created: "",
-          quizCompleted: true,
-        });
-      }
-    } else {
-      this.setState({ incompleteQuiz: true });
+    // then clear the responses after posting to the backend's endpoint
+    if (response.ok) {
+      this.setState({
+        answerOne: "",
+        questionOneAnswered: false,
+        answerTwo: "",
+        questionTwoAnswered: false,
+        answerThree: "",
+        questionThreeAnswered: false,
+        answerFour: "",
+        questionFourAnswered: false,
+        answerFive: "",
+        questionFiveAnswered: false,
+        created: "",
+        pageOneComplete: false,
+      });
     }
   }
 
   render() {
     let messageClasses = "alert alert-success d-none mb-0";
-    let formClasses = "";
+    let quizPageOneClasses = "";
+    let quizPageOneButtonClass = "px-4 py-5 my-5 text-center"
+    let quizPageTwoClasses = "";
     let incompleteClass = "d-none";
     if (this.state.incompleteQuiz) {
       incompleteClass = "alert alert-warning mb-0";
     }
-    if (this.state.quizCompleted) {
+    if (this.state.pageOneComplete) {
       messageClasses = "alert alert-success mb-0";
-      formClasses = "d-none";
+      quizPageOneClasses = "d-none";
+      quizPageOneButtonClass = "px-4 py-5 my-5 text-center d-none"
     }
 
     return (
@@ -160,180 +173,182 @@ class BodyQuiz extends React.Component {
           <h1 className="display-5 fw-bold">Scent Finder</h1>
           <h2 className="display-7 fw-bold">Body Products</h2>
         </div>
-        <div className="px-4 py-5 my-5 text-center" id="step-1">
-          <h1>Question One</h1>
-          <em>Please, choose one</em>
-          <p>What kind of product are you looking for?</p>
-          <div className="d-grid gap-4 d-md-flex justify-content-center">
-            <button
-              onClick={this.handleQuestionOne}
-              value={this.state.answerOne}
-              id="Lotion"
-            >
-              Lotion
-            </button>
-            <button
-              onClick={this.handleQuestionOne}
-              value={this.state.answerOne}
-              id="Body Wash"
-            >
-              Body Wash
-            </button>
-            <button
-              onClick={this.handleQuestionOne}
-              value={this.state.answerOne}
-              id="Soap"
-            >
-              Soap
-            </button>
-            <button
-              onClick={this.handleQuestionOne}
-              value={this.state.answerOne}
-              id="Deodorant"
-            >
-              Deodorant
-            </button>
+        <div className={quizPageOneClasses}>
+          <div className="px-4 py-5 my-5 text-center" id="step-1">
+            <h1>Question One</h1>
+            <em>Please, choose one</em>
+            <p>What kind of product are you looking for?</p>
+            <div className="d-grid gap-4 d-md-flex justify-content-center">
+              <button
+                onClick={this.handleQuestionOne}
+                value={this.state.answerOne}
+                id="Lotion"
+              >
+                Lotion
+              </button>
+              <button
+                onClick={this.handleQuestionOne}
+                value={this.state.answerOne}
+                id="Body Wash"
+              >
+                Body Wash
+              </button>
+              <button
+                onClick={this.handleQuestionOne}
+                value={this.state.answerOne}
+                id="Soap"
+              >
+                Soap
+              </button>
+              <button
+                onClick={this.handleQuestionOne}
+                value={this.state.answerOne}
+                id="Deodorant"
+              >
+                Deodorant
+              </button>
+            </div>
+          </div>
+          <div className="px-4 py-5 my-5 text-center" id="step-2">
+            <h1>Question Two</h1>
+            <em>Please, choose one</em>
+            <p>Which activity do you enjoy most?</p>
+            <div className="d-grid gap-4 d-md-flex justify-content-center">
+              <button
+                onClick={this.handleQuestionTwo}
+                value={this.state.answerTwo}
+                id="Fresh"
+              >
+                Hiking
+              </button>
+              <button
+                onClick={this.handleQuestionTwo}
+                value={this.state.answerTwo}
+                id="Amber"
+              >
+                Baking
+              </button>
+              <button
+                onClick={this.handleQuestionTwo}
+                value={this.state.answerTwo}
+                id="Floral"
+              >
+                Gardening
+              </button>
+              <button
+                onClick={this.handleQuestionTwo}
+                value={this.state.answerTwo}
+                id="Woody"
+              >
+                Camping
+              </button>
+              <button
+                onClick={this.handleQuestionTwo}
+                value={this.state.answerTwo}
+                id="Fruity"
+              >
+                Drinking Cocktails
+              </button>
+            </div>
+          </div>
+          <div className="px-4 py-5 my-5 text-center" id="step-3">
+            <h1>Question Three</h1>
+            <em>Please, choose one</em>
+            <p>What is your favorite season?</p>
+            <div className="d-grid gap-4 d-md-flex justify-content-center">
+              <button
+                onClick={this.handleQuestionThree}
+                value={this.state.answerThree}
+                id="Amber"
+              >
+                Winter
+              </button>
+              <button
+                onClick={this.handleQuestionThree}
+                value={this.state.answerThree}
+                id="Fresh"
+              >
+                Spring
+              </button>
+              <button
+                onClick={this.handleQuestionThree}
+                value={this.state.answerThree}
+                id="Fruity"
+              >
+                Summer
+              </button>
+              <button
+                onClick={this.handleQuestionThree}
+                value={this.state.answerThree}
+                id="Woody"
+              >
+                Fall
+              </button>
+            </div>
+          </div>
+          <div className="px-4 py-5 my-5 text-center" id="step-4">
+            <h1>Question Four</h1>
+            <em>Please, choose one</em>
+            <p>What clothing style is your favorite?</p>
+            <div className="d-grid gap-4 d-md-flex justify-content-center">
+              <button
+                onClick={this.handleQuestionFour}
+                value={this.state.answerFour}
+                id="Athleisure"
+              >
+                Athleisure
+              </button>
+              <button
+                onClick={this.handleQuestionFour}
+                value={this.state.answerFour}
+                id="Retro"
+              >
+                Retro
+              </button>
+              <button
+                onClick={this.handleQuestionFour}
+                value={this.state.answerFour}
+                id="Bohemian"
+              >
+                Bohemian
+              </button>
+              <button
+                onClick={this.handleQuestionFour}
+                value={this.state.answerFour}
+                id="Streetwear"
+              >
+                Streetwear
+              </button>
+              <button
+                onClick={this.handleQuestionFour}
+                value={this.state.answerFour}
+                id="Minimalist"
+              >
+                Minimalist
+              </button>
+            </div>
+          </div>
+          <div className="px-4 py-5 my-5 text-center" id="step-5">
+            <h1>Question Five</h1>
+            <p>How intense would you like your scent?</p>
+            <div>
+              <label htmlFor="smellIntensity" className="form-label">
+                On a scale of 1 (subtle) to 5 (INTENSE)
+              </label>
+              <input
+                onChange={this.handleQuestionFive}
+                defaultValue={this.state.answerFive}
+                type="range"
+                className="form-range"
+                min="1"
+                max="5"
+                id="smellIntensity"
+              />
+            </div>
           </div>
         </div>
-        <div className="px-4 py-5 my-5 text-center" id="step-2">
-          <h1>Question Two</h1>
-          <em>Please, choose one</em>
-          <p>Which activity do you enjoy most?</p>
-          <div className="d-grid gap-4 d-md-flex justify-content-center">
-            <button
-              onClick={this.handleQuestionTwo}
-              value={this.state.answerTwo}
-              id="Fresh"
-            >
-              Hiking
-            </button>
-            <button
-              onClick={this.handleQuestionTwo}
-              value={this.state.answerTwo}
-              id="Amber"
-            >
-              Baking
-            </button>
-            <button
-              onClick={this.handleQuestionTwo}
-              value={this.state.answerTwo}
-              id="Floral"
-            >
-              Gardening
-            </button>
-            <button
-              onClick={this.handleQuestionTwo}
-              value={this.state.answerTwo}
-              id="Woody"
-            >
-              Camping
-            </button>
-            <button
-              onClick={this.handleQuestionTwo}
-              value={this.state.answerTwo}
-              id="Fruity"
-            >
-              Drinking Cocktails
-            </button>
-          </div>
-        </div>
-        <div className="px-4 py-5 my-5 text-center" id="step-3">
-          <h1>Question Three</h1>
-          <em>Please, choose one</em>
-          <p>What is your favorite season?</p>
-          <div className="d-grid gap-4 d-md-flex justify-content-center">
-            <button
-              onClick={this.handleQuestionThree}
-              value={this.state.answerThree}
-              id="Amber"
-            >
-              Winter
-            </button>
-            <button
-              onClick={this.handleQuestionThree}
-              value={this.state.answerThree}
-              id="Fresh"
-            >
-              Spring
-            </button>
-            <button
-              onClick={this.handleQuestionThree}
-              value={this.state.answerThree}
-              id="Fruity"
-            >
-              Summer
-            </button>
-            <button
-              onClick={this.handleQuestionThree}
-              value={this.state.answerThree}
-              id="Woody"
-            >
-              Fall
-            </button>
-          </div>
-        </div>
-        <div className="px-4 py-5 my-5 text-center" id="step-4">
-          <h1>Question Four</h1>
-          <em>Please, choose one</em>
-          <p>What clothing style is your favorite?</p>
-          <div className="d-grid gap-4 d-md-flex justify-content-center">
-            <button
-              onClick={this.handleQuestionFour}
-              value={this.state.answerFour}
-              id="Athleisure"
-            >
-              Athleisure
-            </button>
-            <button
-              onClick={this.handleQuestionFour}
-              value={this.state.answerFour}
-              id="Retro"
-            >
-              Retro
-            </button>
-            <button
-              onClick={this.handleQuestionFour}
-              value={this.state.answerFour}
-              id="Bohemian"
-            >
-              Bohemian
-            </button>
-            <button
-              onClick={this.handleQuestionFour}
-              value={this.state.answerFour}
-              id="Streetwear"
-            >
-              Streetwear
-            </button>
-            <button
-              onClick={this.handleQuestionFour}
-              value={this.state.answerFour}
-              id="Minimalist"
-            >
-              Minimalist
-            </button>
-          </div>
-        </div>
-        <div className="px-4 py-5 my-5 text-center" id="step-5">
-          <h1>Question Five</h1>
-          <p>How intense would you like your scent?</p>
-          <div>
-            <label htmlFor="smellIntensity" className="form-label">
-              On a scale of 1 (subtle) to 5 (INTENSE)
-            </label>
-            <input
-              onChange={this.handleQuestionFive}
-              defaultValue={this.state.answerFive}
-              type="range"
-              className="form-range"
-              min="1"
-              max="5"
-              id="smellIntensity"
-            />
-          </div>
-        </div>
-        <div className="px-4 py-5 my-5 text-center">
-          <button onClick={this.handleSubmit} className="btn btn-primary">
+        <div className={quizPageOneButtonClass}>
+          <button onClick={this.handlePageOneComplete} className="btn btn-primary">
             Next
           </button>
           <p className={incompleteClass}>Please answer all questions.</p>
