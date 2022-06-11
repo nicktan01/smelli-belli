@@ -16,8 +16,8 @@ class BodyQuiz extends React.Component {
       questionFiveAnswered: false,
       created: "",
       incompleteQuiz: false,
-      pageOneComplete: false,
       quizCompleted: false,
+      products: [],
     };
 
     // We need to bind this to all of these properties so that we can track
@@ -62,7 +62,7 @@ class BodyQuiz extends React.Component {
     this.setState({ questionFiveAnswered: true });
   }
 
-  async handlePageOneComplete() {
+  handlePageOneComplete() {
     // We need to pull the date when the user clicks the next button
     // and set it to the created property, which is on our quiz data models
     const date = new Date().toISOString().slice(0, 10);
@@ -83,6 +83,18 @@ class BodyQuiz extends React.Component {
       this.setState({ incompleteQuiz: true });
     }
 
+    // async function getUser() {
+    //   const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/accounts/me/`;
+    //   const response = await fetch(url, {
+    //     credentials: "include",
+    //   });
+    //   if (response.ok) {
+    //     const user = await response.json();
+    //     console.log(user);
+    //     setUser(user);
+    //   }
+    // }
+
     /*****************************************************************************/
     // THE BELOW CODE DOES NOT WORK, I AM TRYING TO CHECK TO SEE IF A TOKEN
     // EXISTS AT THE ENDPOINT LISTED. THEN, IF ONE DOES JUST SKIP STRAIGHT TO
@@ -92,7 +104,7 @@ class BodyQuiz extends React.Component {
     // OFFERING USER TO SAVE THE RESULTS OF THEIR QUIZ USING signupClasses.
     // THEN, PROCEED AS ABOVE.
 
-    // const authTokenUrl = "http://localhost:9080/api/accounts/me/token/";
+    // const authTokenUrl = "http://localhost:9080/api/accounts/me/";
     // const authTokenResponse = await fetch(authTokenUrl);
 
     // if (authTokenResponse.ok) {
@@ -108,19 +120,65 @@ class BodyQuiz extends React.Component {
   // AS WELL AS CALLS TO OUR PRODUCTS ENDPOINT TO MAKE THE QUERIES BASED ON
   // SCENT PROFILE RESULTS
 
-  // async componentDidMount() {
+  // componentDidMount() {
+  //   async function getUserData() {
+  //     const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/accounts/me/`;
+  //     const response = await fetch(url, { credentials: "include" });
+  //     if (response.ok) {
+  //       const data = await response.json();
+  //       console.log(data);
+  //       this.setState({
+  //         username: data.username,
+  //       });
+  //     }
+  //   }
+  //   getUserData();
+  //   console.log(this.state.username);
+
   //   const productUrl = "http://localhost:8100/api/products/";
-
   //   const productResponse = await fetch(productUrl);
-
   //   if (productResponse.ok) {
   //     const productData = await productResponse.json();
   //   }
   // }
   /*****************************************************************************/
 
+  async componentDidMount() {
+    const productUrl = "http://localhost:8100/api/products/";
+    const productResponse = await fetch(productUrl);
+
+    if (productResponse.ok) {
+      let emptyProductsList = [];
+      this.setState({ products: emptyProductsList });
+    }
+  }
+
   async handleSubmit(event) {
     event.preventDefault();
+
+    this.setState({ quizCompleted: true });
+
+    const productUrl = "http://localhost:8100/api/products/";
+    const productResponse = await fetch(productUrl);
+
+    if (productResponse.ok) {
+      const productData = await productResponse.json();
+
+      let filteredProductsList = [];
+      for (const product of productData.products) {
+        if (String(product.product_category) === this.state.answerOne) {
+          if (
+            String(product.scent1) === this.state.answerTwo ||
+            String(product.scent1) === this.state.answerThree
+          ) {
+            filteredProductsList.push(product);
+          }
+        }
+      }
+
+      this.setState({ products: filteredProductsList });
+    }
+
     const data = { ...this.state };
 
     // Converting our camel case javascript variables to variables named with
@@ -132,63 +190,68 @@ class BodyQuiz extends React.Component {
     data.answer_5 = data.answerFive;
 
     // Delete the properties that don't appear on our quiz data models . . .
-    delete data.answerOne;
-    delete data.answerTwo;
-    delete data.answerThree;
-    delete data.answerFour;
-    delete data.answerFive;
-    delete data.created;
-    delete data.incompleteQuiz;
-    delete data.questionOneAnswered;
-    delete data.questionTwoAnswered;
-    delete data.questionThreeAnswered;
-    delete data.questionFourAnswered;
-    delete data.questionFiveAnswered;
-    delete data.pageOneComplete;
-    delete data.quizCompleted;
+    // delete data.answerOne;
+    // delete data.answerTwo;
+    // delete data.answerThree;
+    // delete data.answerFour;
+    // delete data.answerFive;
+    // delete data.created;
+    // delete data.incompleteQuiz;
+    // delete data.questionOneAnswered;
+    // delete data.questionTwoAnswered;
+    // delete data.questionThreeAnswered;
+    // delete data.questionFourAnswered;
+    // delete data.questionFiveAnswered;
+    // delete data.pageOneComplete;
+    // delete data.quizCompleted;
 
     // . . . so that we can POST a quiz object into our database!
-    const quizResultsUrl = "http://localhost:8090/api/bodyquizzes/";
-    const fetchConfig = {
-      method: "post",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
+    // const quizResultsUrl = "http://localhost:8090/api/bodyquizzes/";
+    // const fetchConfig = {
+    //   method: "post",
+    //   body: JSON.stringify(data),
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // };
 
-    const response = await fetch(quizResultsUrl, fetchConfig);
+    // const response = await fetch(quizResultsUrl, fetchConfig);
 
     // then clear the responses after posting to the backend's endpoint
-    if (response.ok) {
-      this.setState({
-        answerOne: "",
-        questionOneAnswered: false,
-        answerTwo: "",
-        questionTwoAnswered: false,
-        answerThree: "",
-        questionThreeAnswered: false,
-        answerFour: "",
-        questionFourAnswered: false,
-        answerFive: "",
-        questionFiveAnswered: false,
-        created: "",
-        pageOneComplete: false,
-      });
-    }
+    // if (response.ok) {
+    //   this.setState({
+    //     answerOne: "",
+    //     questionOneAnswered: false,
+    //     answerTwo: "",
+    //     questionTwoAnswered: false,
+    //     answerThree: "",
+    //     questionThreeAnswered: false,
+    //     answerFour: "",
+    //     questionFourAnswered: false,
+    //     answerFive: "",
+    //     questionFiveAnswered: false,
+    //     created: "",
+    //     pageOneComplete: false,
+    //   });
+    // }
   }
 
   render() {
     let quizPageOneClasses = "";
     let quizPageOneButtonClasses = "px-4 py-5 my-5 text-center";
-    let quizPageTwoClasses = "";
+    let quizPageTwoClasses = "d-none";
     let incompleteClasses = "d-none";
+    let filteredProductsListClasses = "d-none";
     if (this.state.incompleteQuiz) {
       incompleteClasses = "alert alert-warning mb-0";
     }
     if (this.state.pageOneComplete) {
       quizPageOneClasses = "d-none";
       quizPageOneButtonClasses = "px-4 py-5 my-5 text-center d-none";
+      quizPageTwoClasses = "";
+    }
+    if (this.state.quizCompleted) {
+      filteredProductsListClasses = "";
     }
 
     return (
@@ -380,6 +443,42 @@ class BodyQuiz extends React.Component {
             Next
           </button>
           <p className={incompleteClasses}>Please answer all questions.</p>
+        </div>
+        <div className={quizPageTwoClasses}>
+          <div className="px-4 py-5 my-5 text-center">
+            <h2>
+              You got {this.state.answerTwo} and {this.state.answerThree}! Here
+              are some {this.state.answerOne} products that match your Scent
+              Profile:
+            </h2>
+            <button onClick={this.handleSubmit} className="btn btn-primary">
+              See Products
+            </button>
+            <div className={filteredProductsListClasses}>
+              <table className="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Size</th>
+                    <th>SKU</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.state.products.map((product) => {
+                    return (
+                      <tr key={product.sku}>
+                        <td>{product.name}</td>
+                        <td>{product.size}</td>
+                        <td>{product.sku}</td>
+                        <td>${product.price}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     );
