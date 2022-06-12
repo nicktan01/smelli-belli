@@ -1,14 +1,36 @@
 import { NavLink } from "react-router-dom";
+import { useToken } from "./authApi";
+import { useState, useEffect } from "react";
 
 function Nav() {
+  const [token] = useToken();
+  const [user, setUser] = useState(null);
+  
+  useEffect(() => {
+    async function getCurrentUser() {
+      const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/accounts/me/`;
+      const response = await fetch(url, {
+        credentials: "include",
+      });
+      if (response.ok) {
+        const user = await response.json();
+        console.log(user);
+        setUser(user);
+      }
+    }
+    if (token) {
+      getCurrentUser();
+    }
+  }, [token]);
+
   return (
     <nav
       className="navbar navbar-expand-lg navbar-light"
-      style={{ backgroundColor: "#f4a261" }}
+      style={{ backgroundColor: "#ccd5ae" }}
     >
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
-          Smelli Belli
+          <img src="/images/sblogo2.png" alt="" width="110" height="25" />
         </NavLink>
         <button
           className="navbar-toggler"
@@ -63,13 +85,13 @@ function Nav() {
                 className="dropdown-menu"
                 aria-labelledby="navbarDropdownMenuLink"
               >
-                <NavLink className="dropdown-item" to="/home">
+                <NavLink className="dropdown-item" to="/products/home">
                   Home Products
                 </NavLink>
-                <NavLink className="dropdown-item" to="/body">
+                <NavLink className="dropdown-item" to="/products/body">
                   Body Products
                 </NavLink>
-                <NavLink className="dropdown-item" to="/shopall">
+                <NavLink className="dropdown-item" to="/products/all">
                   Shop all
                 </NavLink>
               </div>
@@ -116,10 +138,15 @@ function Nav() {
                 style={{ left: "unset", right: "0" }}
                 className="dropdown-menu"
                 aria-labelledby="navbarDropdownMenuLink"
-              >
-                <NavLink className="dropdown-item" to="/login">
-                  My Account
-                </NavLink>
+              >{token ? (
+              <NavLink className="dropdown-item" to="/account">
+                My Account
+              </NavLink>
+              ): (
+              <NavLink className="dropdown-item" to="/login">
+                My Account
+              </NavLink>
+              )}
                 <NavLink className="dropdown-item" to="/orderhistory">
                   Order History
                 </NavLink>
@@ -129,6 +156,7 @@ function Nav() {
                 <NavLink className="dropdown-item" to="/scentprofile">
                   Scent Profile
                 </NavLink>
+                
               </div>
             </span>
             <span className="nav-item active">

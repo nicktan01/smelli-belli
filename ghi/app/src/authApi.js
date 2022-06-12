@@ -106,5 +106,26 @@ export function useToken() {
     return false;
   }
 
-  return [token, login, logout, signup];
+  async function update(username, password, email, firstName, lastName) {
+    const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/accounts/`;
+    const response = await fetch(url, {
+      method: "put",
+      body: JSON.stringify({
+        username,
+        password,
+        email,
+        first_name: firstName,
+        last_name: lastName,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.ok) {
+      await login(username, password);
+    }
+    return false;
+  }
+
+  return [token, login, logout, signup, update];
 }

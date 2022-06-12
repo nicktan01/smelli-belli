@@ -143,4 +143,8 @@ def api_current_user(request):
     user = User.objects.get(id=user_id)
     return JsonResponse({
         "is_staff": user.is_staff,
+        "username": user.username,
+        "email": user.email,
+        "first_name": user.first_name,
+        "last_name": user.last_name
     })
