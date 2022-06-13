@@ -34,6 +34,18 @@ class BodyQuiz extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  // This function creates an empty list when the page is first rendered
+  // that we can later add products to when the user finishes the quiz
+  async componentDidMount() {
+    const productUrl = "http://localhost:8100/api/products/";
+    const productResponse = await fetch(productUrl);
+
+    if (productResponse.ok) {
+      let emptyProductsList = [];
+      this.setState({ products: emptyProductsList });
+    }
+  }
+
   handleQuestionOne(event) {
     // sets answer = to the id of the button clicked by the user
     const id = event.currentTarget.id;
@@ -65,7 +77,7 @@ class BodyQuiz extends React.Component {
     this.setState({ questionFiveAnswered: true });
   }
 
-  handlePageOneComplete() {
+  async handlePageOneComplete() {
     // We need to pull the date when the user clicks the next button
     // and set it to the created property, which is on our quiz data models
     const date = new Date().toISOString().slice(0, 10);
@@ -82,6 +94,33 @@ class BodyQuiz extends React.Component {
       // We change this boolean so we can change the classNames stored in our
       // quizPageOneClasses variable to control displaying the quiz's "pages"
       this.setState({ quizQuestionsComplete: true });
+    }
+
+    const productUrl = "http://localhost:8100/api/products/";
+    const productResponse = await fetch(productUrl);
+
+    if (productResponse.ok) {
+      const productData = await productResponse.json();
+
+      let filteredProductsList = [];
+      for (const product of productData.products) {
+        // First, filter the list of products to match the product category
+        // that the user is looking for: Lotion, Body Wash, Soap, or Deodorant
+        if (String(product.product_category) === this.state.answerOne) {
+          // Then, check for any products that match either of the two scent
+          // categories that the user matched with in their scent profile quiz
+          if (
+            String(product.scent1) === this.state.answerTwo ||
+            String(product.scent1) === this.state.answerThree
+          ) {
+            // Add these products to the filtered products list
+            filteredProductsList.push(product);
+          }
+        }
+      }
+
+      // Then, finally, set the state of products = to that filtered list!
+      this.setState({ products: filteredProductsList });
     }
 
     // async function getUser() {
@@ -115,50 +154,11 @@ class BodyQuiz extends React.Component {
     /*****************************************************************************/
   }
 
-  // This function creates an empty list when the page is first rendered
-  // that we can later add products to when the user finishes the quiz
-  async componentDidMount() {
-    const productUrl = "http://localhost:8100/api/products/";
-    const productResponse = await fetch(productUrl);
-
-    if (productResponse.ok) {
-      let emptyProductsList = [];
-      this.setState({ products: emptyProductsList });
-    }
-  }
-
   // This is the code that handles filtering the products based on the user's
   // input and adding those products to the products list that is then
   // kicked back to the user
   async handleSeeFilteredProducts() {
     this.setState({ quizCompleted: true });
-
-    const productUrl = "http://localhost:8100/api/products/";
-    const productResponse = await fetch(productUrl);
-
-    if (productResponse.ok) {
-      const productData = await productResponse.json();
-
-      let filteredProductsList = [];
-      for (const product of productData.products) {
-        // First, filter the list of products to match the product category
-        // that the user is looking for: Lotion, Body Wash, Soap, or Deodorant
-        if (String(product.product_category) === this.state.answerOne) {
-          // Then, check for any products that match either of the two scent
-          // categories that the user matched with in their scent profile quiz
-          if (
-            String(product.scent1) === this.state.answerTwo ||
-            String(product.scent1) === this.state.answerThree
-          ) {
-            // Add these products to the filtered products list
-            filteredProductsList.push(product);
-          }
-        }
-      }
-
-      // Then, finally, set the state of products = to that filtered list!
-      this.setState({ products: filteredProductsList });
-    }
 
     if (this.state.products.length === 0) {
       this.setState({ noMatches: true });
@@ -305,8 +305,8 @@ class BodyQuiz extends React.Component {
           <h2 className="display-7 fw-bold">Body Products</h2>
         </div>
         <div className={quiz}>
-          <div className={quizPageOneClasses}>
-            <div className="px-4 py-5 my-5 text-center" id="step-1">
+          <div className={quizPageOneClasses} id="step-1">
+            <div className="px-4 py-5 my-5 text-center">
               <h1>Question One</h1>
               <em>Please, choose one</em>
               <p>What kind of product are you looking for?</p>
