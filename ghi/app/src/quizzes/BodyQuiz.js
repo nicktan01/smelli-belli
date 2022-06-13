@@ -14,6 +14,7 @@ class BodyQuiz extends React.Component {
       questionFourAnswered: false,
       answerFive: "",
       questionFiveAnswered: false,
+      noMatches: false,
       created: "",
       quizQuestionsComplete: false,
       quizCompleted: false,
@@ -158,6 +159,10 @@ class BodyQuiz extends React.Component {
       // Then, finally, set the state of products = to that filtered list!
       this.setState({ products: filteredProductsList });
     }
+
+    if (this.state.products.length === 0) {
+      this.setState({ noMatches: true });
+    }
   }
 
   // This block handles quiz completion and the optional saving of a user's
@@ -235,7 +240,8 @@ class BodyQuiz extends React.Component {
     let quizPageFiveClasses = "d-none";
     let quizResultsClasses = "d-none";
     let quizPageFiveButtonClasses = "d-none";
-    let filteredProductsListClasses = "d-none";
+    let displayProductsClasses = "d-none";
+    let noProductsClasses = "d-none";
     let resultsSubmittedClasses = "alert alert-success mb-0 d-none";
 
     // If the user clicks an answer for Question One, then hide Question One
@@ -274,7 +280,13 @@ class BodyQuiz extends React.Component {
     // If the User clicks the "See Products" button, then display the filtered
     // products cards!
     if (this.state.quizCompleted) {
-      filteredProductsListClasses = "";
+      displayProductsClasses = "";
+    }
+
+    // If there are no matches, display an error message!
+    if (this.state.noMatches) {
+      quizResultsClasses = "d-none";
+      noProductsClasses = "";
     }
 
     // If the User clicks the "Save My Results" button, then display a success
@@ -283,7 +295,7 @@ class BodyQuiz extends React.Component {
       resultsSubmittedClasses = "alert alert-success mb-0";
       quiz = "d-none";
       quizResultsClasses = "d-none";
-      filteredProductsListClasses = "d-none";
+      displayProductsClasses = "d-none";
     }
 
     return (
@@ -515,7 +527,7 @@ class BodyQuiz extends React.Component {
               >
                 See Products
               </button>
-              <div className={filteredProductsListClasses}>
+              <div className={displayProductsClasses}>
                 <table className="table table-striped">
                   <thead>
                     <tr>
@@ -543,6 +555,12 @@ class BodyQuiz extends React.Component {
                 </button>
               </div>
             </div>
+          </div>
+          <div className={noProductsClasses}>
+            <h3>
+              We are so sorry. Unfortunately, we do not yet have any products
+              that match your scent profile. Please check again soon!
+            </h3>
           </div>
         </div>
         <div className={resultsSubmittedClasses} id="success-message">
