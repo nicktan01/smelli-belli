@@ -16,6 +16,7 @@ class BodyQuiz extends React.Component {
       questionFiveAnswered: false,
       created: "",
       incompleteQuiz: false,
+      quizQuestionsComplete: false,
       quizCompleted: false,
       products: [],
     };
@@ -78,7 +79,7 @@ class BodyQuiz extends React.Component {
     ) {
       // We change this boolean so we can change the classNames stored in our
       // quizPageOneClasses variable to control displaying the quiz's "pages"
-      this.setState({ pageOneComplete: true });
+      this.setState({ quizQuestionsComplete: true });
     } else {
       this.setState({ incompleteQuiz: true });
     }
@@ -238,17 +239,40 @@ class BodyQuiz extends React.Component {
 
   render() {
     let quizPageOneClasses = "";
-    let quizPageOneButtonClasses = "px-4 py-5 my-5 text-center";
     let quizPageTwoClasses = "d-none";
+    let quizPageThreeClasses = "d-none";
+    let quizPageFourClasses = "d-none";
+    let quizPageFiveClasses = "d-none";
+    let quizResultsClasses = "d-none";
+    let quizPageFiveButtonClasses = "d-none";
     let incompleteClasses = "d-none";
     let filteredProductsListClasses = "d-none";
     if (this.state.incompleteQuiz) {
       incompleteClasses = "alert alert-warning mb-0";
     }
-    if (this.state.pageOneComplete) {
+    if (this.state.questionOneAnswered) {
       quizPageOneClasses = "d-none";
-      quizPageOneButtonClasses = "px-4 py-5 my-5 text-center d-none";
       quizPageTwoClasses = "";
+    }
+    if (this.state.questionTwoAnswered) {
+      quizPageTwoClasses = "d-none";
+      quizPageThreeClasses = "";
+    }
+    if (this.state.questionThreeAnswered) {
+      quizPageThreeClasses = "d-none";
+      quizPageFourClasses = "";
+    }
+    if (this.state.questionFourAnswered) {
+      quizPageFourClasses = "d-none";
+      quizPageFiveClasses = "";
+    }
+    if (this.state.questionFiveAnswered) {
+      quizPageFiveButtonClasses = "px-4 py-5 my-5 text-center";
+    }
+    if (this.state.quizQuestionsComplete) {
+      quizResultsClasses = "";
+      quizPageFiveClasses = "d-none";
+      quizPageFiveButtonClasses = "d-none";
     }
     if (this.state.quizCompleted) {
       filteredProductsListClasses = "";
@@ -296,6 +320,8 @@ class BodyQuiz extends React.Component {
               </button>
             </div>
           </div>
+        </div>
+        <div className={quizPageTwoClasses}>
           <div className="px-4 py-5 my-5 text-center" id="step-2">
             <h1>Question Two</h1>
             <em>Please, choose one</em>
@@ -338,6 +364,8 @@ class BodyQuiz extends React.Component {
               </button>
             </div>
           </div>
+        </div>
+        <div className={quizPageThreeClasses}>
           <div className="px-4 py-5 my-5 text-center" id="step-3">
             <h1>Question Three</h1>
             <em>Please, choose one</em>
@@ -373,6 +401,8 @@ class BodyQuiz extends React.Component {
               </button>
             </div>
           </div>
+        </div>
+        <div className={quizPageFourClasses}>
           <div className="px-4 py-5 my-5 text-center" id="step-4">
             <h1>Question Four</h1>
             <em>Please, choose one</em>
@@ -415,6 +445,8 @@ class BodyQuiz extends React.Component {
               </button>
             </div>
           </div>
+        </div>
+        <div className={quizPageFiveClasses}>
           <div className="px-4 py-5 my-5 text-center" id="step-5">
             <h1>Question Five</h1>
             <p>How intense would you like your scent?</p>
@@ -435,7 +467,7 @@ class BodyQuiz extends React.Component {
             </div>
           </div>
         </div>
-        <div className={quizPageOneButtonClasses}>
+        <div className={quizPageFiveButtonClasses}>
           <button
             onClick={this.handlePageOneComplete}
             className="btn btn-primary"
@@ -444,7 +476,7 @@ class BodyQuiz extends React.Component {
           </button>
           <p className={incompleteClasses}>Please answer all questions.</p>
         </div>
-        <div className={quizPageTwoClasses}>
+        <div className={quizResultsClasses}>
           <div className="px-4 py-5 my-5 text-center">
             <h2>
               You got {this.state.answerTwo} and {this.state.answerThree}! Here
