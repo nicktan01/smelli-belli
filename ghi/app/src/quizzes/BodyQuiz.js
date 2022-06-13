@@ -1,5 +1,21 @@
 import React from "react";
 
+// This function populates the page with Product Cards matching the user's
+// scent profile results
+function ProductColumn(props) {
+  return (
+    <div className="card col-3 my-2 mx-2">
+      {props.product.image && (
+        <img src={props.product.image} className="card-img-top" alt="Product" />
+      )}
+      <div className="card-body">
+        <h5 className="card-title">{props.product.name}</h5>
+        <h6 className="card-subtitle text-muted">{props.product.price}</h6>
+      </div>
+    </div>
+  );
+}
+
 class BodyQuiz extends React.Component {
   constructor(props) {
     super(props);
@@ -20,6 +36,7 @@ class BodyQuiz extends React.Component {
       quizCompleted: false,
       resultsSubmitted: false,
       products: [],
+      // productColumns: [[], [], [], []],
     };
 
     // We need to bind this to all of these properties so that we can track
@@ -73,7 +90,7 @@ class BodyQuiz extends React.Component {
 
   handleQuestionFive(event) {
     const value = event.currentTarget.value;
-    this.setState({ answerFive: parseInt(value) });
+    this.setState({ answerFive: parseInt(value) }); // parses the int value
     this.setState({ questionFiveAnswered: true });
   }
 
@@ -96,33 +113,59 @@ class BodyQuiz extends React.Component {
       this.setState({ quizQuestionsComplete: true });
     }
 
-    const productUrl = "http://localhost:8100/api/products/";
-    const productResponse = await fetch(productUrl);
+    const url = "http://localhost:8100/api/products/";
 
-    if (productResponse.ok) {
-      const productData = await productResponse.json();
+    try {
+      const response = await fetch(url);
+      if (response.ok) {
+        const data = await response.json();
 
-      let filteredProductsList = [];
-      for (const product of productData.products) {
-        // First, filter the list of products to match the product category
-        // that the user is looking for: Lotion, Body Wash, Soap, or Deodorant
-        if (String(product.product_category) === this.state.answerOne) {
-          // Then, check for any products that match either of the two scent
-          // categories that the user matched with in their scent profile quiz
-          if (
-            String(product.scent1) === this.state.answerTwo ||
-            String(product.scent1) === this.state.answerThree
-          ) {
-            // Add these products to the filtered products list
-            filteredProductsList.push(product);
+        const products = [];
+        for (let product of data.products) {
+          // First, filter the list of products to match the product category
+          // that the user is looking for: Lotion, Body Wash, Soap, or Deodorant
+          if (String(product.product_category) === this.state.answerOne) {
+            // Then, check for any products that match either of the two scent
+            // categories that the user matched with in their scent profile quiz
+            if (
+              String(product.scent1) === this.state.answerTwo ||
+              String(product.scent1) === this.state.answerThree
+            ) {
+              // Add these products to the filtered products list
+              products.push(product);
+            }
           }
         }
-      }
 
-      // Then, finally, set the state of products = to that filtered list!
-      this.setState({ products: filteredProductsList });
+        /*****************************************************************************/
+        // CANOT GET THIS CODE TO WORK
+        // const productColumns = [[], [], [], []];
+
+        // let i = 0;
+        // for (const product of products) {
+        //   productColumns[i].push(product);
+        //   i += 1;
+        //   if (i > 3) {
+        //     i = 0;
+        //   }
+        // }
+
+        // Then, finally, set the state of productColumns = to that filtered list!
+        // this.setState({ productColumns: productColumns });
+        /*****************************************************************************/
+
+        // We also set products = to the filtered list, so we can track if
+        // there are no matches
+        this.setState({ products: products });
+      }
+    } catch (e) {
+      console.error("error:", e);
     }
 
+    /*****************************************************************************/
+    // THIS CODE WAS ATTEMPTING TO GET THE USER TO DROP IT INTO THE REQUEST
+    // SENT TO THE DATABASE, SINCE USERVO IS A PROP ON THE QUIZ MODELS BUT IT
+    // DID NOT WORK
     // async function getUser() {
     //   const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/accounts/me/`;
     //   const response = await fetch(url, {
@@ -169,7 +212,6 @@ class BodyQuiz extends React.Component {
   // scent profile results.
   async handleSubmit(event) {
     event.preventDefault();
-
     const data = { ...this.state };
 
     // Converting our camel case javascript variables to variables named with
@@ -194,7 +236,9 @@ class BodyQuiz extends React.Component {
     delete data.quizQuestionsComplete;
     delete data.quizCompleted;
     delete data.products;
+    // delete data.productsColumns;
     delete data.resultsSubmitted;
+    delete data.noMatches;
 
     // . . . so that we can POST a quiz object into our database!
     const quizResultsUrl = "http://localhost:8090/api/bodyquizzes/";
@@ -222,7 +266,10 @@ class BodyQuiz extends React.Component {
         answerFive: "",
         questionFiveAnswered: false,
         created: "",
+        quizQuestionsComplete: false,
+        quizCompleted: false,
         pageOneComplete: false,
+        products: [],
         resultsSubmitted: true,
       });
     }
@@ -528,28 +575,14 @@ class BodyQuiz extends React.Component {
                 See Products
               </button>
               <div className={displayProductsClasses}>
-                <table className="table table-striped">
-                  <thead>
-                    <tr>
-                      <th>Product</th>
-                      <th>Size</th>
-                      <th>SKU</th>
-                      <th>Price</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {this.state.products.map((product) => {
-                      return (
-                        <tr key={product.sku}>
-                          <td>{product.name}</td>
-                          <td>{product.size}</td>
-                          <td>{product.sku}</td>
-                          <td>${product.price}</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
+                <h2>Your Matched Products</h2>
+                <div className="row">
+                  {this.state.products.map((product) => {
+                    return (
+                      <ProductColumn product={product} key={product.href} />
+                    );
+                  })}
+                </div>
                 <button onClick={this.handleSubmit} className="btn btn-primary">
                   Save My Scent Profile!
                 </button>
