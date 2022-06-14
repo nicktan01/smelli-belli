@@ -34,13 +34,13 @@ class HomeQuiz(models.Model):
     answer_4 = models.CharField(max_length=50)
     answer_5 = models.CharField(max_length=50)
     created = models.DateField(auto_now_add=True)
-    user = models.ForeignKey(
-        UserVO,
-        related_name="home_quiz",
-        on_delete=models.CASCADE,
-        blank=True,
-        null=True
-    )
+    # user = models.ForeignKey(
+    #     UserVO,
+    #     related_name="home_quiz",
+    #     on_delete=models.CASCADE,
+    #     blank=True,
+    #     null=True
+    # )
 
 class Cart(models.Model):
     product = models.ForeignKey(
