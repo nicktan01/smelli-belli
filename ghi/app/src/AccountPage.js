@@ -60,7 +60,6 @@ function AccountPage() {
                         <h1>Account</h1>
                         <div>you are currently logged in as: {user.username}</div>
                     </header>
-                    <body>
                         <div className="container p-4 mt-4">
                                 <h3>Account Details:
                                     <NavLink to="/account/edit" className="nowrap">
@@ -71,7 +70,6 @@ function AccountPage() {
                             <div>last name: {user.last_name}</div>
                             <div>email: {user.email}</div>
                         </div>
-                    </body>
                 </div>
                     </div>
                   ) : (
@@ -80,7 +78,7 @@ function AccountPage() {
                         <h1>Account</h1>
                         <div>you are currently logged in as: {user.username}</div>
                     </header>
-                    <body>
+                  
                         <div className="container p-4 mt-4">
                                 <h3>Account Details:
                                     <NavLink to="/account/edit" className="nowrap">
@@ -91,7 +89,6 @@ function AccountPage() {
                             <div>last name: {user.last_name}</div>
                             <div>email: {user.email}</div>
                         </div>
-                    </body>
                 </div>
                  )}
                 </div>

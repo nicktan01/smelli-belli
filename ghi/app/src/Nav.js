@@ -144,7 +144,7 @@ function Nav() {
               </NavLink>
               ): (
               <NavLink className="dropdown-item" to="/login">
-                My Account
+                LOGIN
               </NavLink>
               )}
                 <NavLink className="dropdown-item" to="/orderhistory">

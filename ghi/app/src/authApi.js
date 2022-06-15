@@ -63,6 +63,7 @@ export function useToken() {
       internalToken = null;
       setToken(null);
       navigate("/");
+      window.location.reload()
     }
   }
 
