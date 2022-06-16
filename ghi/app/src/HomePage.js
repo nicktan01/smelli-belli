@@ -27,27 +27,87 @@ class HomePage extends React.Component {
   }
 
   render() {
+
     let top_lotion = this.state.products[0];
     let top_candle = this.state.products[1];
-    console.log(top_lotion)
     return (
       <React.Fragment>
-      <div className="MainPage">
-        <div className="quiz-buttons container mt-5">
-            <div className="row">
-              <div className="col text-center">
+      <div className="Mainpage d-flex justify-content-center position-relative">
+        <img className="hero-img-blur"
+          src="/images/hero-img.jpg"
+          height={300}
+          width={null}
+          style={{ objectFit: "cover", width: "100%" }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            transform: "translateY(-50%)",
+            width: "100%",
+            height: "200px",
+            background: "#fff",
+            opacity: "0.5",
+          }}
+        />
+        <img
+          src="/images/sbmain.png"
+          height={200}
+          width={null}
+          style={{
+            position: "absolute",
+            top: "50%",
+            transform: "translateY(-50%)",
+          }}
+        />
+      </div>
+
+      <div className="Quiz d-flex justify-content-center position-relative">
+        <img className="hero-img-blur flipped"
+          src="/images/hero-img.jpg"
+          height={300}
+          width={null}
+          style={{ objectFit: "cover", width: "100%" }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            transform: "translateY(-50%)",
+            width: "100%",
+            height: "200px",
+            background: "#fff",
+            opacity: "0.5",
+          }}
+        />
+        <div height={500}
+          width={null} style={{
+            position: "absolute",
+            top: "50%",
+            transform: "translateY(-50%)",
+          }}>
+            <h3 style={{
+            position: "absolute",
+            transform: "translateY(-100%)"}}>Find Products Suited For You!</h3>       
+
+            <div width={1000} className="row">
+              <div width={1000} className="col text-center px-5">
               <NavLink to="/bodyquiz" role="button" className="col text-center btn btn-outline-dark btn-lg">
-                  Scent for Body Quiz
+                Body Quiz Scent
               </NavLink >
               </div>
-              <div className="col text-center">
+              <div width={1000} className="col text-center px-5">
                 <NavLink to="/homequiz" role="button" className="col text-center btn btn-outline-dark btn-lg">
-                    Scent for Home Quiz
+                    Home Quiz Scent
                 </NavLink>
               </div>
             </div>
-        </div>
 
+
+
+        </div>
+      </div>
+      
       <div className="carousel container x-5 y-5">
         <div id="carouselExampleCaptions" className="carousel slide mt-5" data-bs-ride="false">
         <div className="carousel-indicators">
@@ -64,8 +124,8 @@ class HomePage extends React.Component {
                       <img height={630} key={product.sku} src={product.image} className="d-block height-80 mx-auto" alt="headphones.jpeg"/>
                     </NavLink>
                     <div className="carousel-caption d-none d-md-block stroke-text">
-                      <h5>Our top Candle</h5>
-                      <p>Enjoy the woody scent of our candle!</p>
+                      <h5>Our top Home Product!</h5>
+                      <p>{product.name}</p>
                     </div>
                   </div>
                 );
@@ -81,8 +141,8 @@ class HomePage extends React.Component {
                       <img height={630} key={product.sku} src={product.image} className="d-block height-80 mx-auto" alt="headphones.jpeg"/>
                     </NavLink>
                     <div className="carousel-caption d-none d-md-block stroke-text">
-                      <h5>Our top Lotion</h5>
-                      <p>Enjoy the fresh scent of our lotion!</p>
+                      <h5>Our top Body Product</h5>
+                      <p>{product.name}</p>
                     </div>
                   </div>
                 );
@@ -100,8 +160,6 @@ class HomePage extends React.Component {
         </button>
         </div>
       </div>
-      </div>
-
       </React.Fragment>
     );
   }
