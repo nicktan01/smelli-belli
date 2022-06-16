@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useToken } from "../authApi";
 import "./products.css";
 
 function ProductColumn(props) {
@@ -22,26 +21,6 @@ function ProductColumn(props) {
 
 function Product({ sku, onClickLikeProduct, onClickCartProduct, liked, carted }) {
   const navigate = useNavigate();
-  const [token] = useToken();
-  const [user, setUser] = useState([]);
-
-  //current user
-  useEffect(() => {
-    async function getCurrentUser() {
-    const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/accounts/me/`;
-    const response = await fetch(url, {
-        credentials: "include",
-    });
-    if (response.ok) {
-        const user = await response.json();
-        console.log(user);
-        setUser(user);
-    }
-    }
-    if (token) {
-    getCurrentUser();
-    }
-}, [token]);
 
   function likeProductHandler(e, sku) {
     e.stopPropagation();
@@ -325,3 +304,4 @@ function ProductList({ category }) {
 }
 
 export default ProductList;
+
