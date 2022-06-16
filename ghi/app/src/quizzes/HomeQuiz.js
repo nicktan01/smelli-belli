@@ -1,20 +1,5 @@
 import React from "react";
-
-// This function populates the page with Product Cards matching the user's
-// scent profile results
-function ProductColumn(props) {
-  return (
-    <div className="card col-3 my-2 mx-2">
-      {props.product.image && (
-        <img src={props.product.image} className="card-img-top" alt="Product" />
-      )}
-      <div className="card-body">
-        <h5 className="card-title">{props.product.name}</h5>
-        <h6 className="card-subtitle text-muted">{props.product.price}</h6>
-      </div>
-    </div>
-  );
-}
+import { ProductColumn } from "../quizzes/BodyQuiz";
 
 class HomeQuiz extends React.Component {
   constructor(props) {
@@ -36,6 +21,7 @@ class HomeQuiz extends React.Component {
       quizCompleted: false,
       resultsSubmitted: false,
       products: [],
+      productColumns: [[], [], [], []],
     };
 
     // We need to bind this to all of these properties so that we can track
@@ -119,6 +105,12 @@ class HomeQuiz extends React.Component {
       if (response.ok) {
         const data = await response.json();
 
+        const requests = [];
+        for (let product of data.products) {
+          const detailUrl = `http://localhost:8100${product.href}`;
+          requests.push(fetch(detailUrl));
+        }
+
         const products = [];
         for (let product of data.products) {
           // First, filter the list of products to match the product category
@@ -135,6 +127,20 @@ class HomeQuiz extends React.Component {
             }
           }
         }
+
+        const productColumns = [[], [], [], []];
+
+        let i = 0;
+        for (const product of products) {
+          productColumns[i].push(product);
+          i += 1;
+          if (i > 3) {
+            i = 0;
+          }
+        }
+
+        // Then, finally, set the state of productColumns = to that filtered list!
+        this.setState({ productColumns: productColumns });
 
         // We also set products = to the filtered list, so we can track if
         // there are no matches
@@ -184,7 +190,7 @@ class HomeQuiz extends React.Component {
     delete data.quizQuestionsComplete;
     delete data.quizCompleted;
     delete data.products;
-    // delete data.productsColumns;
+    delete data.productsColumns;
     delete data.resultsSubmitted;
     delete data.noMatches;
 
@@ -218,6 +224,7 @@ class HomeQuiz extends React.Component {
         quizCompleted: false,
         pageOneComplete: false,
         products: [],
+        productColumns: [],
         resultsSubmitted: true,
       });
     }
@@ -228,11 +235,11 @@ class HomeQuiz extends React.Component {
     // displaying or hiding certain "pages" of the quiz
     // An empty string is displayed, and "d-none" will be hidden!
     let quiz = "";
-    let quizPageOneClasses = "";
-    let quizPageTwoClasses = "d-none";
-    let quizPageThreeClasses = "d-none";
-    let quizPageFourClasses = "d-none";
-    let quizPageFiveClasses = "d-none";
+    let quizPageOneClasses = "my-5";
+    let quizPageTwoClasses = "my-5 d-none";
+    let quizPageThreeClasses = "my-5 d-none";
+    let quizPageFourClasses = "my-5 d-none";
+    let quizPageFiveClasses = "my-5 d-none";
     let quizResultsClasses = "d-none";
     let quizPageFiveButtonClasses = "d-none";
     let displayProductsClasses = "d-none";
@@ -243,19 +250,19 @@ class HomeQuiz extends React.Component {
     // and display Question Two
     if (this.state.questionOneAnswered) {
       quizPageOneClasses = "d-none";
-      quizPageTwoClasses = "";
+      quizPageTwoClasses = "my-5";
     }
     if (this.state.questionTwoAnswered) {
       quizPageTwoClasses = "d-none";
-      quizPageThreeClasses = "";
+      quizPageThreeClasses = "my-5";
     }
     if (this.state.questionThreeAnswered) {
       quizPageThreeClasses = "d-none";
-      quizPageFourClasses = "";
+      quizPageFourClasses = "my-5";
     }
     if (this.state.questionFourAnswered) {
       quizPageFourClasses = "d-none";
-      quizPageFiveClasses = "";
+      quizPageFiveClasses = "my-5";
     }
 
     // If the user clicks an answer for Question Five, then display the Next
@@ -267,9 +274,8 @@ class HomeQuiz extends React.Component {
     //If all the questions have been answered, and the Next button has been
     // clicked by the User, then display the Results page
     if (this.state.quizQuestionsComplete) {
-      quizResultsClasses = "";
-      quizPageFiveClasses = "d-none";
-      quizPageFiveButtonClasses = "d-none";
+      quizResultsClasses = "my-5";
+      quiz = "d-none";
     }
 
     // If the User clicks the "See Products" button, then display the filtered
@@ -294,203 +300,187 @@ class HomeQuiz extends React.Component {
     }
 
     return (
-      <div className="container">
-        <div className="px-4 py-5 my-5 text-center">
-          <h1 className="display-5 fw-bold">Scent Finder</h1>
-          <h2 className="display-7 fw-bold">Home Products</h2>
-        </div>
+      <div className="container px-4 py-5 my-5 text-center">
         <div className={quiz}>
+          <h1 className="display-3 fw-bold">Scent Finder</h1>
+          <h2 className="display-7 fw-bold">Home Products</h2>
           <div className={quizPageOneClasses} id="step-1">
-            <div className="px-4 py-5 my-5 text-center">
-              <h1>Question One</h1>
-              <em>Please, choose one</em>
-              <p>What kind of product are you looking for?</p>
-              <div className="d-grid gap-4 d-md-flex justify-content-center">
-                <button
-                  onClick={this.handleQuestionOne}
-                  value={this.state.answerOne}
-                  id="Candle"
-                  className="btn btn-primary"
-                >
-                  Candle
-                </button>
-                <button
-                  onClick={this.handleQuestionOne}
-                  value={this.state.answerOne}
-                  id="Room Spray"
-                  className="btn btn-primary"
-                >
-                  Room Spray
-                </button>
-                <button
-                  onClick={this.handleQuestionOne}
-                  value={this.state.answerOne}
-                  id="Incense"
-                  className="btn btn-primary"
-                >
-                  Incense
-                </button>
-              </div>
+            <h4>What kind of product are you looking for?</h4>
+            <em>Please, choose one</em>
+            <div className="my-5 d-grid gap-4 d-md-flex justify-content-center">
+              <button
+                onClick={this.handleQuestionOne}
+                value={this.state.answerOne}
+                id="Candle"
+                className="btn btn-primary"
+              >
+                Candle
+              </button>
+              <button
+                onClick={this.handleQuestionOne}
+                value={this.state.answerOne}
+                id="Room Spray"
+                className="btn btn-primary"
+              >
+                Room Spray
+              </button>
+              <button
+                onClick={this.handleQuestionOne}
+                value={this.state.answerOne}
+                id="Incense"
+                className="btn btn-primary"
+              >
+                Incense
+              </button>
             </div>
           </div>
-          <div className={quizPageTwoClasses}>
-            <div className="px-4 py-5 my-5 text-center" id="step-2">
-              <h1>Question Two</h1>
-              <em>Please, choose one</em>
-              <p>Where is your happy place?</p>
-              <div className="d-grid gap-4 d-md-flex justify-content-center">
-                <button
-                  onClick={this.handleQuestionTwo}
-                  value={this.state.answerTwo}
-                  id="Fresh"
-                  className="btn btn-primary"
-                >
-                  Mountain
-                </button>
-                <button
-                  onClick={this.handleQuestionTwo}
-                  value={this.state.answerTwo}
-                  id="Amber"
-                  className="btn btn-primary"
-                >
-                  Bookstore
-                </button>
-                <button
-                  onClick={this.handleQuestionTwo}
-                  value={this.state.answerTwo}
-                  id="Floral"
-                  className="btn btn-primary"
-                >
-                  Garden
-                </button>
-                <button
-                  onClick={this.handleQuestionTwo}
-                  value={this.state.answerTwo}
-                  id="Woody"
-                  className="btn btn-primary"
-                >
-                  Forest
-                </button>
-                <button
-                  onClick={this.handleQuestionTwo}
-                  value={this.state.answerTwo}
-                  id="Fruity"
-                  className="btn btn-primary"
-                >
-                  Tropical Beach
-                </button>
-              </div>
+          <div className={quizPageTwoClasses} id="step-2">
+            <h4>Where is your happy place?</h4>
+            <em>Please, choose one</em>
+            <div className="my-5 d-grid gap-4 d-md-flex justify-content-center">
+              <button
+                onClick={this.handleQuestionTwo}
+                value={this.state.answerTwo}
+                id="Fresh"
+                className="btn btn-primary"
+              >
+                Mountain
+              </button>
+              <button
+                onClick={this.handleQuestionTwo}
+                value={this.state.answerTwo}
+                id="Amber"
+                className="btn btn-primary"
+              >
+                Bookstore
+              </button>
+              <button
+                onClick={this.handleQuestionTwo}
+                value={this.state.answerTwo}
+                id="Floral"
+                className="btn btn-primary"
+              >
+                Garden
+              </button>
+              <button
+                onClick={this.handleQuestionTwo}
+                value={this.state.answerTwo}
+                id="Woody"
+                className="btn btn-primary"
+              >
+                Forest
+              </button>
+              <button
+                onClick={this.handleQuestionTwo}
+                value={this.state.answerTwo}
+                id="Fruity"
+                className="btn btn-primary"
+              >
+                Tropical Beach
+              </button>
             </div>
           </div>
-          <div className={quizPageThreeClasses}>
-            <div className="px-4 py-5 my-5 text-center" id="step-3">
-              <h1>Question Three</h1>
-              <em>Please, choose one</em>
-              <p>What is your favorite season?</p>
-              <div className="d-grid gap-4 d-md-flex justify-content-center">
-                <button
-                  onClick={this.handleQuestionThree}
-                  value={this.state.answerThree}
-                  id="Amber"
-                  className="btn btn-primary"
-                >
-                  Winter
-                </button>
-                <button
-                  onClick={this.handleQuestionThree}
-                  value={this.state.answerThree}
-                  id="Fresh"
-                  className="btn btn-primary"
-                >
-                  Spring
-                </button>
-                <button
-                  onClick={this.handleQuestionThree}
-                  value={this.state.answerThree}
-                  id="Fruity"
-                  className="btn btn-primary"
-                >
-                  Summer
-                </button>
-                <button
-                  onClick={this.handleQuestionThree}
-                  value={this.state.answerThree}
-                  id="Woody"
-                  className="btn btn-primary"
-                >
-                  Fall
-                </button>
-              </div>
+          <div className={quizPageThreeClasses} id="step-3">
+            <h4>What is your favorite season?</h4>
+            <em>Please, choose one</em>
+            <div className="my-5 d-grid gap-4 d-md-flex justify-content-center">
+              <button
+                onClick={this.handleQuestionThree}
+                value={this.state.answerThree}
+                id="Amber"
+                className="btn btn-primary"
+              >
+                Winter
+              </button>
+              <button
+                onClick={this.handleQuestionThree}
+                value={this.state.answerThree}
+                id="Fresh"
+                className="btn btn-primary"
+              >
+                Spring
+              </button>
+              <button
+                onClick={this.handleQuestionThree}
+                value={this.state.answerThree}
+                id="Fruity"
+                className="btn btn-primary"
+              >
+                Summer
+              </button>
+              <button
+                onClick={this.handleQuestionThree}
+                value={this.state.answerThree}
+                id="Woody"
+                className="btn btn-primary"
+              >
+                Fall
+              </button>
             </div>
           </div>
-          <div className={quizPageFourClasses}>
-            <div className="px-4 py-5 my-5 text-center" id="step-4">
-              <h1>Question Four</h1>
-              <em>Please, choose one</em>
-              <p>What clothing style is your favorite?</p>
-              <div className="d-grid gap-4 d-md-flex justify-content-center">
-                <button
-                  onClick={this.handleQuestionFour}
-                  value={this.state.answerFour}
-                  id="Modern"
-                  className="btn btn-primary"
-                >
-                  Modern
-                </button>
-                <button
-                  onClick={this.handleQuestionFour}
-                  value={this.state.answerFour}
-                  id="Rustic"
-                  className="btn btn-primary"
-                >
-                  Rustic
-                </button>
-                <button
-                  onClick={this.handleQuestionFour}
-                  value={this.state.answerFour}
-                  id="Minimalist"
-                  className="btn btn-primary"
-                >
-                  Minimalist
-                </button>
-                <button
-                  onClick={this.handleQuestionFour}
-                  value={this.state.answerFour}
-                  id="Industrial"
-                  className="btn btn-primary"
-                >
-                  Industrial
-                </button>
-                <button
-                  onClick={this.handleQuestionFour}
-                  value={this.state.answerFour}
-                  id="Coastal"
-                  className="btn btn-primary"
-                >
-                  Coastal
-                </button>
-              </div>
+          <div className={quizPageFourClasses} id="step-4">
+            <h4>What clothing style is your favorite?</h4>
+            <em>Please, choose one</em>
+            <div className="my-5 d-grid gap-4 d-md-flex justify-content-center">
+              <button
+                onClick={this.handleQuestionFour}
+                value={this.state.answerFour}
+                id="Modern"
+                className="btn btn-primary"
+              >
+                Modern
+              </button>
+              <button
+                onClick={this.handleQuestionFour}
+                value={this.state.answerFour}
+                id="Rustic"
+                className="btn btn-primary"
+              >
+                Rustic
+              </button>
+              <button
+                onClick={this.handleQuestionFour}
+                value={this.state.answerFour}
+                id="Minimalist"
+                className="btn btn-primary"
+              >
+                Minimalist
+              </button>
+              <button
+                onClick={this.handleQuestionFour}
+                value={this.state.answerFour}
+                id="Industrial"
+                className="btn btn-primary"
+              >
+                Industrial
+              </button>
+              <button
+                onClick={this.handleQuestionFour}
+                value={this.state.answerFour}
+                id="Coastal"
+                className="btn btn-primary"
+              >
+                Coastal
+              </button>
             </div>
           </div>
-          <div className={quizPageFiveClasses}>
-            <div className="px-4 py-5 my-5 text-center" id="step-5">
-              <h1>Question Five</h1>
-              <p>How intense would you like your scent?</p>
-              <div>
-                <label htmlFor="smellIntensity" className="form-label">
-                  On a scale of 1 (subtle) to 5 (INTENSE)
-                </label>
-                <input
-                  onChange={this.handleQuestionFive}
-                  defaultValue={this.state.answerFive}
-                  type="range"
-                  className="form-range"
-                  min="1"
-                  max="5"
-                  id="smellIntensity"
-                />
-                <p>Intensity: {this.state.answerFive}</p>
-              </div>
+          <div className={quizPageFiveClasses} id="step-5">
+            <h4>How intense would you like your scent?</h4>
+            <em>Drag the slider to the desired value</em>
+            <div className="my-5">
+              <label htmlFor="smellIntensity" className="form-label">
+                On a scale of 1 (subtle) to 5 (INTENSE)
+              </label>
+              <input
+                onChange={this.handleQuestionFive}
+                defaultValue={this.state.answerFive}
+                type="range"
+                className="form-range"
+                min="1"
+                max="5"
+                id="smellIntensity"
+              />
+              <p>Intensity: {this.state.answerFive}</p>
             </div>
           </div>
           <div className={quizPageFiveButtonClasses}>
@@ -501,40 +491,40 @@ class HomeQuiz extends React.Component {
               Next
             </button>
           </div>
-          <div className={quizResultsClasses}>
-            <div className="px-4 py-5 my-5 text-center">
-              <h2>
-                You got {this.state.answerTwo} and {this.state.answerThree}!
-                Here are some {this.state.answerOne} products that match your
-                Scent Profile:
-              </h2>
-              <button
-                onClick={this.handleSeeFilteredProducts}
-                className="btn btn-primary"
-              >
-                See Products
-              </button>
-              <div className={displayProductsClasses}>
-                <h2>Your Matched Products</h2>
-                <div className="row">
-                  {this.state.products.map((product) => {
-                    return (
-                      <ProductColumn product={product} key={product.href} />
-                    );
-                  })}
-                </div>
-                <button onClick={this.handleSubmit} className="btn btn-primary">
-                  Save My Scent Profile!
-                </button>
-              </div>
+        </div>
+        <div className={quizResultsClasses}>
+          <h2>
+            You got {this.state.answerTwo} and {this.state.answerThree}! Here
+            are some {this.state.answerOne} products that match your Scent
+            Profile:
+          </h2>
+          <button
+            onClick={this.handleSeeFilteredProducts}
+            className="my-5 btn btn-primary"
+          >
+            See Products
+          </button>
+          <div className={displayProductsClasses}>
+            <h2>Your Matched Products</h2>
+            <div className="row">
+              {this.state.productColumns.map((productList, index) => {
+                return <ProductColumn key={index} list={productList} />;
+              })}
             </div>
+            <button
+              onClick={this.handleSubmit}
+              className="my-5 btn btn-primary"
+            >
+              Save My Scent Profile!
+            </button>
           </div>
-          <div className={noProductsClasses}>
-            <h3>
-              We are so sorry. Unfortunately, we do not yet have any products
-              that match your scent profile. Please check again soon!
-            </h3>
-          </div>
+        </div>
+        <div className={noProductsClasses}>
+          <h2 className="fw-bold mt-5">We are so sorry.</h2>
+          <h3>
+            Unfortunately, we do not yet have any products that match your scent
+            profile. Please check again soon!
+          </h3>
         </div>
         <div className={resultsSubmittedClasses} id="success-message">
           You have saved your Body Scent Profile results!
