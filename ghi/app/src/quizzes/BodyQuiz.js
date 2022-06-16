@@ -16,13 +16,11 @@ export function ProductColumn(props) {
             )}
             <div className="card-body">
               <h5 className="card-title">{product.name}</h5>
-              <p className="card-text">
-                Scent Categories: {product.scent1} | {product.scent2}
-              </p>
+              <p className="card-text">${product.price}.00</p>
             </div>
             <div className="card-footer text-muted">
               <h6 className="card-subtitle mb-2 text-muted">
-                ${product.price}.00
+                Scent Categories: {product.scent1} | {product.scent2}
               </h6>
             </div>
           </div>
@@ -308,6 +306,7 @@ class BodyQuiz extends React.Component {
     let quizResultsClasses = "d-none";
     let quizPageFiveButtonClasses = "d-none";
     let displayProductsClasses = "d-none";
+    let seeProductsButtonClasses = "d-none";
     let noProductsClasses = "d-none";
     let resultsSubmittedClasses = "alert alert-success mb-0 d-none";
 
@@ -340,6 +339,7 @@ class BodyQuiz extends React.Component {
     // clicked by the User, then display the Results page
     if (this.state.quizQuestionsComplete) {
       quizResultsClasses = "my-5";
+      seeProductsButtonClasses = "my-5 btn btn-primary";
       quiz = "d-none";
     }
 
@@ -347,6 +347,7 @@ class BodyQuiz extends React.Component {
     // products cards!
     if (this.state.quizCompleted) {
       displayProductsClasses = "";
+      seeProductsButtonClasses = "d-none";
     }
 
     // If there are no matches, display an error message!
@@ -575,12 +576,11 @@ class BodyQuiz extends React.Component {
           </h2>
           <button
             onClick={this.handleSeeFilteredProducts}
-            className="my-5 btn btn-primary"
+            className={seeProductsButtonClasses}
           >
             See Products
           </button>
           <div className={displayProductsClasses}>
-            <h2>Your Matched Products</h2>
             <div className="row">
               {this.state.productColumns.map((productList, index) => {
                 return <ProductColumn key={index} list={productList} />;

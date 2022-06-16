@@ -190,7 +190,7 @@ class HomeQuiz extends React.Component {
     delete data.quizQuestionsComplete;
     delete data.quizCompleted;
     delete data.products;
-    delete data.productsColumns;
+    delete data.productColumns;
     delete data.resultsSubmitted;
     delete data.noMatches;
 
@@ -243,6 +243,7 @@ class HomeQuiz extends React.Component {
     let quizResultsClasses = "d-none";
     let quizPageFiveButtonClasses = "d-none";
     let displayProductsClasses = "d-none";
+    let seeProductsButtonClasses = "d-none";
     let noProductsClasses = "d-none";
     let resultsSubmittedClasses = "alert alert-success mb-0 d-none";
 
@@ -275,6 +276,7 @@ class HomeQuiz extends React.Component {
     // clicked by the User, then display the Results page
     if (this.state.quizQuestionsComplete) {
       quizResultsClasses = "my-5";
+      seeProductsButtonClasses = "my-5 btn btn-primary";
       quiz = "d-none";
     }
 
@@ -282,6 +284,7 @@ class HomeQuiz extends React.Component {
     // products cards!
     if (this.state.quizCompleted) {
       displayProductsClasses = "";
+      seeProductsButtonClasses = "d-none";
     }
 
     // If there are no matches, display an error message!
@@ -500,12 +503,11 @@ class HomeQuiz extends React.Component {
           </h2>
           <button
             onClick={this.handleSeeFilteredProducts}
-            className="my-5 btn btn-primary"
+            className={seeProductsButtonClasses}
           >
             See Products
           </button>
           <div className={displayProductsClasses}>
-            <h2>Your Matched Products</h2>
             <div className="row">
               {this.state.productColumns.map((productList, index) => {
                 return <ProductColumn key={index} list={productList} />;
