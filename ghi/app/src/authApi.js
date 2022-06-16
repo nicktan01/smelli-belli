@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 let internalToken = null;
 
@@ -42,8 +42,25 @@ function handleErrorMessage(error) {
   return error;
 }
 
-export function useToken() {
+const AuthContext = createContext({
+  token: null,
+  setToken: () => null,
+});
+
+export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
+
+  return (
+    <AuthContext.Provider value={{ token, setToken }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export const useAuthContext = () => useContext(AuthContext);
+
+export function useToken() {
+  const { token, setToken } = useAuthContext();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -106,5 +123,26 @@ export function useToken() {
     return false;
   }
 
-  return [token, login, logout, signup];
+  async function update(username, password, email, firstName, lastName) {
+    const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/accounts/`;
+    const response = await fetch(url, {
+      method: "put",
+      body: JSON.stringify({
+        username,
+        password,
+        email,
+        first_name: firstName,
+        last_name: lastName,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.ok) {
+      await login(username, password);
+    }
+    return false;
+  }
+
+  return [token, login, logout, signup, update];
 }

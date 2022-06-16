@@ -96,3 +96,15 @@ Today I worked on:
 - Improvements to our website
 
 This morning, Jordan sent us a design she came up with for our logo and it was really amazing! I loved it! Now that I had the logo, I wanted to spruce up our website and make it look more official and nice! So I spent quite a bit of time looking for product photos to fill our product image cards and input them into all of our products. Later Jordan mentioned that there could be an issue with using images that weren't free source so I had to find free source images through Pexels but this time I decided I wanted to have more variety to our product photos and I also wanted to brand some of the products with Smelli Belli and so I took the extra time to do that as well. Unnecessary? Totally. Worth it? YES. I also added our new logo to the nav and footers! And I wanted to make a banner for the About page as well! It's looking really put together now and I love all of the styling updates!
+
+# June 15, 2022
+
+Today I worked on:
+
+- Fixing Auth so that the token would be global
+
+As Jaiden was working on our accounts pages, he noticed an issue while logging a user out - the account page was not redirecting to the login page. Upon further inspection, we discovered that the token's state was only local to the page and wasn't being updated globally which was why the navigation wasn't reflecting that a user was logged out. With some help, I learned a little bit on how to use React's context API (createContext, useContext and Provider) to get the token to sync globally.
+
+- Hiding Employee Nav from non-staff users
+
+Got started on some Employee page work and hid the employee nav from users who are not staff. Will plan to work on the inventory page tomorrow.

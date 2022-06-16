@@ -12,7 +12,9 @@ class ProductListEncoder(ModelEncoder):
         "price",
         "size",
         "image",
-        "quantity"
+        "quantity",
+        "scent1",
+        "scent2"
     ]
 
     def get_extra_data(self, o):

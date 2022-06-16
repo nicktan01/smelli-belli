@@ -106,3 +106,13 @@ I worked on the front end for the Account page and I think it is in a good bareb
 I tried helping Nick with his implementation of the cart, and we made a bit of progress in terms of knowing the direction that we need to move in to get things working, but there are some nuances we will need help ironing out tomorrow.
 
 I learned a bit more about jwt and authentication from rewatching curtis' private lecture for our group as well as watching some extra tutorials online. I am still a bit anxious to work on things requiring authentication but I definitely feel like im learning something important as I keep working.
+
+## June 15, 2022
+Today I worked on:
+
+- Reloading the page
+
+Currently, even after making some changes, the `my account` button doesnt work properly due to the main page or the nav not refreshing and registering that there is no longer 
+an active token. I will look into this further tonight and hopefully have a fix by tomorrow's project time so I can debug any other issues we are currently experiencing.
+It is especially strange to me because I pulled the logout component with the same imports from our original login/signup pages and while it does redirect to the main page
+upon logging out, it doesnt register that there is not an active token.

@@ -1,6 +1,28 @@
 import { NavLink } from "react-router-dom";
+import { useToken } from "./authApi";
+import { useState, useEffect } from "react";
 
 function Nav() {
+  const [token] = useToken();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    async function getCurrentUser() {
+      const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/accounts/me/`;
+      const response = await fetch(url, {
+        credentials: "include",
+      });
+      if (response.ok) {
+        const user = await response.json();
+        console.log(user);
+        setUser(user);
+      }
+    }
+    if (token) {
+      getCurrentUser();
+    }
+  }, [token]);
+
   return (
     <nav
       className="navbar navbar-expand-lg navbar-light"
@@ -23,30 +45,32 @@ function Nav() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav me-auto">
-            <li className="nav-item dropdown">
-              <NavLink
-                className="nav-link dropdown-toggle"
-                to="#"
-                id="navbarDropdownMenuLink"
-                data-toggle="dropdown"
-                data-bs-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Employee
-              </NavLink>
-              <div
-                className="dropdown-menu"
-                aria-labelledby="navbarDropdownMenuLink"
-              >
-                <NavLink className="dropdown-item" to="/inventory">
-                  Inventory
+            {token && user && user.is_staff && (
+              <li className="nav-item dropdown">
+                <NavLink
+                  className="nav-link dropdown-toggle"
+                  to="#"
+                  id="navbarDropdownMenuLink"
+                  data-toggle="dropdown"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Employee
                 </NavLink>
-                <NavLink className="dropdown-item" to="/orderfulfillment">
-                  Order Fulfillment
-                </NavLink>
-              </div>
-            </li>
+                <div
+                  className="dropdown-menu"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
+                  <NavLink className="dropdown-item" to="/inventory">
+                    Inventory
+                  </NavLink>
+                  <NavLink className="dropdown-item" to="/orderfulfillment">
+                    Order Fulfillment
+                  </NavLink>
+                </div>
+              </li>
+            )}
             <li className="nav-item dropdown">
               <NavLink
                 className="nav-link dropdown-toggle"
@@ -110,16 +134,20 @@ function Nav() {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <i class="bi bi-person-fill"></i>
+                <i className="bi bi-person-fill"></i>
               </NavLink>
               <div
                 style={{ left: "unset", right: "0" }}
                 className="dropdown-menu"
                 aria-labelledby="navbarDropdownMenuLink"
               >
-                <NavLink className="dropdown-item" to="/login">
+                <NavLink
+                  className="dropdown-item"
+                  to={token ? "/account" : "/login"}
+                >
                   My Account
                 </NavLink>
+
                 <NavLink className="dropdown-item" to="/orderhistory">
                   Order History
                 </NavLink>
@@ -133,8 +161,8 @@ function Nav() {
             </span>
             <span className="nav-item active">
               <NavLink className="nav-link" to="/cart">
-                <i class="bi bi-cart"></i>
-                <span class="position-absolute top-25 start-90 translate-middle badge rounded-pill bg-danger">
+                <i className="bi bi-cart"></i>
+                <span className="position-absolute top-25 start-90 translate-middle badge rounded-pill bg-danger">
                   3
                 </span>
               </NavLink>
