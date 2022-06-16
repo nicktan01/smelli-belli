@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 // This function populates the columns with Product Cards matching the user's
 // scent profile results
@@ -9,9 +10,9 @@ function ProductColumn(props) {
         return (
           <div key={product.href} className="card mb-3 shadow">
             {product.image && (
-              <a href={`http://localhost:8100${product.href}`}>
+              <Link to={`/products/${product.sku}`}>
                 <img src={product.image} className="card-img-top" />
-              </a>
+              </Link>
             )}
             <div className="card-body">
               <h5 className="card-title">{product.name}</h5>
