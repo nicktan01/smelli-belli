@@ -8,13 +8,21 @@ function ProductColumn(props) {
       {props.list.map((product) => {
         return (
           <div key={product.href} className="card mb-3 shadow">
-            <img src={product.image} className="card-img-top" alt="Product" />
+            {product.image && (
+              <a href={`http://localhost:8100${product.href}`}>
+                <img src={product.image} className="card-img-top" />
+              </a>
+            )}
             <div className="card-body">
               <h5 className="card-title">{product.name}</h5>
-              <h6 className="card-subtitle mb-2 text-muted">{product.price}</h6>
               <p className="card-text">
                 Scent Categories: {product.scent1} | {product.scent2}
               </p>
+            </div>
+            <div className="card-footer text-muted">
+              <h6 className="card-subtitle mb-2 text-muted">
+                ${product.price}.00
+              </h6>
             </div>
           </div>
         );
