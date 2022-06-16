@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 // This function populates the columns with Product Cards matching the user's
 // scent profile results
-function ProductColumn(props) {
+export function ProductColumn(props) {
   return (
     <div className="col">
       {props.list.map((product) => {
