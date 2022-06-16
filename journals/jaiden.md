@@ -78,3 +78,41 @@ I worked with Elliot in a live share to iron out some issues we were having with
 
 Elliot and I reexperienced the pains of needing to remove volumes and recompose containers in order to get a clean database, and still be able to test that all our data was valid and able to be shared across services. Overall, I think we are pretty much done with the backend aside from maybe implementing some code Curtis showed us to verify that users are logged in or logged out.
 
+## June 7, 2022
+Today I worked on:
+
+- the main page
+- (started) the Accounts page
+
+I mostly worked by myself today, our group spread out to work on various things to make sure we can make it within the time constraints. I did get some help from Jordan a couple of times when I was having a blocker and Cindy helped direct me to the things I needed to get done. I completed a carousel as well as the buttons that lead to specific quizzes. The links all work, and the Carousel displays the 'top body product' and the 'top home product' which has the barebones filters in place. I will need to add more code once we get our orders and orderfufillment working so I can actually choose the most popular products to display.
+
+I took a look at the accounts pags, and they are set to be worked on tomorrow. I learned a lot more about the things you can do in bootstrap and just setting up my own css since I haven't successfully played around with it until now. Overall though, I think I am getting into the swing of things.
+
+## June 8, 2022
+Today I worked on:
+
+- populating and refactoring the inventory microservice
+
+Our entire group worked together to get a json we could use to populate data for products within our inventory service. I learned how to do that from Jordan, and we ran into some blockers and realized that our models needed some refactoring or just had some flaws. We updated the code through a live share cindy had and then troubleshooted individually thinking that one of us had a database issue when it was just poorly designed models. Luckily we now have data we can actively use for things like our products page now and soon, orders and to use for our carousel to display the most popular items. Tomorrow we plan on making quizzes and relating them to the products we populated the database with
+
+## June 9, 2022
+Today I worked on:
+
+- The Account Page
+- cart
+
+I worked on the front end for the Account page and I think it is in a good barebone state where I can read the properties of a user. I tried adding a form to be able to edit details of a user but I am currently unsure of how that will work since changing any property of the user will change the token and I am unfamiliar with tokens and authentication. I also went through some of the other files in the project that relate to users and tried adding some logic that would let the link `my account` lead to a user's account when logged in or the `signup/login` page when the current user doesnt have an active token. 
+
+I tried helping Nick with his implementation of the cart, and we made a bit of progress in terms of knowing the direction that we need to move in to get things working, but there are some nuances we will need help ironing out tomorrow.
+
+I learned a bit more about jwt and authentication from rewatching curtis' private lecture for our group as well as watching some extra tutorials online. I am still a bit anxious to work on things requiring authentication but I definitely feel like im learning something important as I keep working.
+
+## June 15, 2022
+Today I worked on:
+
+- Reloading the page
+
+Currently, even after making some changes, the `my account` button doesnt work properly due to the main page or the nav not refreshing and registering that there is no longer 
+an active token. I will look into this further tonight and hopefully have a fix by tomorrow's project time so I can debug any other issues we are currently experiencing.
+It is especially strange to me because I pulled the logout component with the same imports from our original login/signup pages and while it does redirect to the main page
+upon logging out, it doesnt register that there is not an active token.

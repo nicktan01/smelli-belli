@@ -1,12 +1,9 @@
 from common.json import ModelEncoder
 from .models import (
+    HomeQuiz,
     ProductVO, 
-    ScentVO, 
     UserVO, 
-    Quiz, 
-    Question, 
-    Answer,
-    Result
+    BodyQuiz, 
 )
 
 class ProductVOEncoder(ModelEncoder):
@@ -24,22 +21,26 @@ class UserVOEncoder(ModelEncoder):
     model = UserVO
     properties = ["id", "user"]
 
-class ScentVOEncoder(ModelEncoder):
-    model = ScentVO
-    properties = ["import_href", "name"]
+class BodyQuizEncoder(ModelEncoder):
+    model = BodyQuiz
+    properties = [
+        "answer_1", 
+        "answer_2", 
+        "answer_3", 
+        "answer_4", 
+        "answer_5",
+        "created",
+        # "user" 
+    ]
 
-class QuizEncoder(ModelEncoder):
-    model = Quiz
-    properties = ["topic"]
-
-class QuestionEncoder(ModelEncoder):
-    model = Question
-    properties = ["id", "text", "quiz"]
-
-class AnswerEncoder(ModelEncoder):
-    model = Answer
-    properties = ["id", "text", "question"]
-
-class ResultEncoder(ModelEncoder):
-    model = Result
-    properties = ["id", "quiz", "user", "recommendation", "created"]
+class HomeQuizEncoder(ModelEncoder):
+    model = HomeQuiz
+    properties = [
+        "answer_1", 
+        "answer_2", 
+        "answer_3", 
+        "answer_4", 
+        "answer_5",
+        "created",
+        # "user" 
+    ]

@@ -12,42 +12,35 @@ class UserVO(models.Model):
     import_href = models.CharField(max_length=200, unique=True)
     user = models.CharField
 
-class Quiz(models.Model):
-    topic = models.CharField(max_length=20)
+class BodyQuiz(models.Model):
+    answer_1 = models.CharField(max_length=50)
+    answer_2 = models.CharField(max_length=50)
+    answer_3 = models.CharField(max_length=50)
+    answer_4 = models.CharField(max_length=50)
+    answer_5 = models.CharField(max_length=50)
+    created = models.DateField(auto_now_add=True)
+    # user = models.ForeignKey(
+    #     UserVO,
+    #     related_name="body_quiz",
+    #     on_delete=models.CASCADE,
+    #     blank=True,
+    #     null=True
+    # )
 
-    def __str__(self):
-        return f"{self.topic}"
-
-    def get_questions(self):
-        return self.question_set.all()
-        
-class Question(models.Model):
-    text = models.CharField(max_length=200)
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
-    
-    def __str__(self):
-        return f"{self.text}"
-    
-    def get_answers(self):
-        return self.answer_set.all()
-
-
-class Answer(models.Model):
-    text = models.CharField(max_length=200)
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    
-    def __str__(self):
-        return f"question: {self.question.text}, answer: {self.text}"
-
-
-class Result(models.Model):
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
-    user = models.ForeignKey(UserVO, on_delete=models.CASCADE)
-    recommendation = models.ForeignKey(ProductVO, on_delete=models.CASCADE)
-    created = models.DateTimeField(auto_now_add=True)
-    
-    def __str__(self):
-        return str(self.pk)
+class HomeQuiz(models.Model):
+    answer_1 = models.CharField(max_length=50)
+    answer_2 = models.CharField(max_length=50)
+    answer_3 = models.CharField(max_length=50)
+    answer_4 = models.CharField(max_length=50)
+    answer_5 = models.CharField(max_length=50)
+    created = models.DateField(auto_now_add=True)
+    # user = models.ForeignKey(
+    #     UserVO,
+    #     related_name="home_quiz",
+    #     on_delete=models.CASCADE,
+    #     blank=True,
+    #     null=True
+    # )
 
 class Cart(models.Model):
     product = models.ForeignKey(

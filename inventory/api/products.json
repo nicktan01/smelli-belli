@@ -1,0 +1,1362 @@
+[
+  {
+    "model": "inventory_rest.product",
+    "pk": 1,
+    "fields": {
+      "name": "Moss Ball Candle",
+      "product_type": "Candle",
+      "product_category": "Home",
+      "sku": "145Z4",
+      "price": 10,
+      "size": "8.0 oz",
+      "scent1": "Woody",
+      "scent2": "Fresh",
+      "quantity": 5,
+      "image": "https://i.ibb.co/CK4fvvf/candle3.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 2,
+    "fields": {
+      "name": "Moss Ball Room Spray",
+      "product_type": "Room Spray",
+      "product_category": "Home",
+      "sku": "16Y24",
+      "price": 10,
+      "size": "8.0 fl oz",
+      "scent1": "Woody",
+      "scent2": "Fresh",
+      "quantity": 5,
+      "image": "https://i.ibb.co/4sf2wqC/roomspray2.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 3,
+    "fields": {
+      "name": "Moss Ball Lotion",
+      "product_type": "Lotion",
+      "product_category": "Body",
+      "sku": "128V7",
+      "price": 12,
+      "size": "8.0 fl oz",
+      "scent1": "Woody",
+      "scent2": "Fresh",
+      "quantity": 5,
+      "image": "https://i.ibb.co/6NvVnnh/lotion.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 4,
+    "fields": {
+      "name": "Moss Ball Body Wash",
+      "product_type": "Body Wash",
+      "product_category": "Body",
+      "sku": "19Q34",
+      "price": 12,
+      "size": "8.0 fl oz",
+      "scent1": "Woody",
+      "scent2": "Fresh",
+      "quantity": 5,
+      "image": "https://i.ibb.co/XZL6XpJ/bodywash.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 5,
+    "fields": {
+      "name": "Cottage Bakery Incense Stick",
+      "product_type": "Incense Stick",
+      "product_category": "Home",
+      "sku": "1D045",
+      "price": 2,
+      "size": "8.0 oz",
+      "scent1": "Woody",
+      "scent2": "Amber",
+      "quantity": 5,
+      "image": "https://i.ibb.co/SR1wypm/incense2.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 6,
+    "fields": {
+      "name": "Cottage Bakery Candle",
+      "product_type": "Candle",
+      "product_category": "Home",
+      "sku": "102L4",
+      "price": 10,
+      "size": "8.0 oz",
+      "scent1": "Woody",
+      "scent2": "Amber",
+      "quantity": 5,
+      "image": "https://i.ibb.co/B4MxQ2N/candle.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 7,
+    "fields": {
+      "name": "Cottage Bakery Soap",
+      "product_type": "Soap",
+      "product_category": "Body",
+      "sku": "15H82",
+      "price": 10,
+      "size": "8.0 oz",
+      "scent1": "Woody",
+      "scent2": "Amber",
+      "quantity": 5,
+      "image": "https://i.ibb.co/rGrr4H4/soap3.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 8,
+    "fields": {
+      "name": "Cottage Bakery Deodorant",
+      "product_type": "Deodorant",
+      "product_category": "Body",
+      "sku": "192R4",
+      "price": 10,
+      "size": "8.0 oz",
+      "scent1": "Woody",
+      "scent2": "Amber",
+      "quantity": 5,
+      "image": "https://i.ibb.co/TRLSGr2/deodorant.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 9,
+    "fields": {
+      "name": "Orange Bark Candle",
+      "product_type": "Candle",
+      "product_category": "Home",
+      "sku": "1C582",
+      "price": 10,
+      "size": "8.0 oz",
+      "scent1": "Woody",
+      "scent2": "Fruity",
+      "quantity": 5,
+      "image": "https://i.ibb.co/B4MxQ2N/candle.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 10,
+    "fields": {
+      "name": "Orange Bark Room Spray",
+      "product_type": "Room Spray",
+      "product_category": "Home",
+      "sku": "182M3",
+      "price": 10,
+      "size": "8.0 fl oz",
+      "scent1": "Woody",
+      "scent2": "Fruity",
+      "quantity": 5,
+      "image": "https://i.ibb.co/mHgt57r/roomspray.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 11,
+    "fields": {
+      "name": "Orange Bark Body Wash",
+      "product_type": "Body Wash",
+      "product_category": "Body",
+      "sku": "15K40",
+      "price": 12,
+      "size": "8.0 fl oz",
+      "scent1": "Woody",
+      "scent2": "Fruity",
+      "quantity": 5,
+      "image": "https://i.ibb.co/Hxhqr2R/bodywash2.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 12,
+    "fields": {
+      "name": "Orange Bark Soap",
+      "product_type": "Soap",
+      "product_category": "Body",
+      "sku": "100W3",
+      "price": 10,
+      "size": "8.0 oz",
+      "scent1": "Woody",
+      "scent2": "Fruity",
+      "quantity": 5,
+      "image": "https://i.ibb.co/FV00NSF/soap2.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 13,
+    "fields": {
+      "name": "Lavendar Pine Incense Stick",
+      "product_type": "Incense Stick",
+      "product_category": "Home",
+      "sku": "189P4",
+      "price": 2,
+      "size": "8.0 oz",
+      "scent1": "Woody",
+      "scent2": "Floral",
+      "quantity": 5,
+      "image": "https://i.ibb.co/Yk4cFWy/incense.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 14,
+    "fields": {
+      "name": "Lavendar Pine Room Spray",
+      "product_type": "Room Spray",
+      "product_category": "Home",
+      "sku": "1B302",
+      "price": 10,
+      "size": "8.0 fl oz",
+      "scent1": "Woody",
+      "scent2": "Floral",
+      "quantity": 5,
+      "image": "https://i.ibb.co/4sf2wqC/roomspray2.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 15,
+    "fields": {
+      "name": "Lavendar Pine Lotion",
+      "product_type": "Lotion",
+      "product_category": "Body",
+      "sku": "188N6",
+      "price": 12,
+      "size": "8.0 fl oz",
+      "scent1": "Woody",
+      "scent2": "Floral",
+      "quantity": 5,
+      "image": "https://i.ibb.co/1JW5xNN/lotion2.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 16,
+    "fields": {
+      "name": "Lavendar Pine Deodorant",
+      "product_type": "Deodorant",
+      "product_category": "Body",
+      "sku": "18A94",
+      "price": 10,
+      "size": "8.0 oz",
+      "scent1": "Woody",
+      "scent2": "Floral",
+      "quantity": 5,
+      "image": "https://i.ibb.co/TRLSGr2/deodorant.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 17,
+    "fields": {
+      "name": "Mountaintop Candle",
+      "product_type": "Candle",
+      "product_category": "Home",
+      "sku": "2MTC8",
+      "price": 10,
+      "size": "8.0 oz",
+      "scent1": "Fresh",
+      "scent2": "Woody",
+      "quantity": 5,
+      "image": "https://i.ibb.co/CK4fvvf/candle3.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 18,
+    "fields": {
+      "name": "Mountaintop Incense Stick",
+      "product_type": "Incense Stick",
+      "product_category": "Home",
+      "sku": "2MTI8",
+      "price": 2,
+      "size": "8.0 oz",
+      "scent1": "Fresh",
+      "scent2": "Woody",
+      "quantity": 5,
+      "image": "https://i.ibb.co/SR1wypm/incense2.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 19,
+    "fields": {
+      "name": "Mountaintop Lotion",
+      "product_type": "Lotion",
+      "product_category": "Body",
+      "sku": "2MTL8",
+      "price": 2,
+      "size": "8.0 fl oz",
+      "scent1": "Fresh",
+      "scent2": "Woody",
+      "quantity": 5,
+      "image": "https://i.ibb.co/6NvVnnh/lotion.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 20,
+    "fields": {
+      "name": "Mountaintop Body Wash",
+      "product_type": "Body Wash",
+      "product_category": "Body",
+      "sku": "2MTB8",
+      "price": 12,
+      "size": "8.0 fl oz",
+      "scent1": "Fresh",
+      "scent2": "Woody",
+      "quantity": 5,
+      "image": "https://i.ibb.co/XZL6XpJ/bodywash.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 21,
+    "fields": {
+      "name": "Beach Bonfire Candle",
+      "product_type": "Candle",
+      "product_category": "Home",
+      "sku": "2BBC8",
+      "price": 10.0,
+      "size": "8.0 oz",
+      "scent1": "Fresh",
+      "scent2": "Amber",
+      "quantity": 5,
+      "image": "https://i.ibb.co/B4MxQ2N/candle.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 22,
+    "fields": {
+      "name": "Beach Bonfire Incense Stick",
+      "product_type": "Incense Stick",
+      "product_category": "Home",
+      "sku": "2BBI8",
+      "price": 2.0,
+      "size": "8.0 oz",
+      "scent1": "Fresh",
+      "scent2": "Amber",
+      "quantity": 5,
+      "image": "https://i.ibb.co/Yk4cFWy/incense.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 23,
+    "fields": {
+      "name": "Beach Bonfire Soap",
+      "product_type": "Soap",
+      "product_category": "Body",
+      "sku": "2BBL8",
+      "price": 2.0,
+      "size": "8.0 fl oz",
+      "scent1": "Fresh",
+      "scent2": "Amber",
+      "quantity": 5,
+      "image": "https://i.ibb.co/YdYX3gm/soap.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 24,
+    "fields": {
+      "name": "Beach Bonfire Deodorant",
+      "product_type": "Deodorant",
+      "product_category": "Body",
+      "sku": "2BBB8",
+      "price": 12.0,
+      "size": "8.0 fl oz",
+      "scent1": "Fresh",
+      "scent2": "Amber",
+      "quantity": 5,
+      "image": "https://i.ibb.co/TRLSGr2/deodorant.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 25,
+    "fields": {
+      "name": "Pina Colada Candle",
+      "product_type": "Candle",
+      "product_category": "Home",
+      "sku": "2PCC8",
+      "price": 10.0,
+      "size": "8.0 oz",
+      "scent1": "Fresh",
+      "scent2": "Woody",
+      "quantity": 5,
+      "image": "https://i.ibb.co/xgTqRs3/candle2.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 26,
+    "fields": {
+      "name": "Pina Colada Incense Stick",
+      "product_type": "Incense Stick",
+      "product_category": "Home",
+      "sku": "2PCI8",
+      "price": 2.0,
+      "size": "8.0 oz",
+      "scent1": "Fresh",
+      "scent2": "Fruity",
+      "quantity": 5,
+      "image": "https://i.ibb.co/SR1wypm/incense2.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 27,
+    "fields": {
+      "name": "Pina Colada Lotion",
+      "product_type": "Lotion",
+      "product_category": "Body",
+      "sku": "2PCL8",
+      "price": 2.0,
+      "size": "8.0 fl oz",
+      "scent1": "Fresh",
+      "scent2": "Fruity",
+      "quantity": 5,
+      "image": "https://i.ibb.co/1JW5xNN/lotion2.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 28,
+    "fields": {
+      "name": "Pina Colada Body Wash",
+      "product_type": "Body Wash",
+      "product_category": "Body",
+      "sku": "2PCB8",
+      "price": 12.0,
+      "size": "8.0 fl oz",
+      "scent1": "Fresh",
+      "scent2": "Fruity",
+      "quantity": 5,
+      "image": "https://i.ibb.co/Hxhqr2R/bodywash2.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 29,
+    "fields": {
+      "name": "Garden Breeze Candle",
+      "product_type": "Candle",
+      "product_category": "Home",
+      "sku": "2GBC8",
+      "price": 10.0,
+      "size": "8.0 oz",
+      "scent1": "Fresh",
+      "scent2": "Floral",
+      "quantity": 5,
+      "image": "https://i.ibb.co/B4MxQ2N/candle.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 30,
+    "fields": {
+      "name": "Garden Breeze Incense Stick",
+      "product_type": "Incense Stick",
+      "product_category": "Home",
+      "sku": "2GBI8",
+      "price": 2.0,
+      "size": "8.0 oz",
+      "scent1": "Fresh",
+      "scent2": "Floral",
+      "quantity": 5,
+      "image": "https://i.ibb.co/Yk4cFWy/incense.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 31,
+    "fields": {
+      "name": "Garden Breeze Soap",
+      "product_type": "Soap",
+      "product_category": "Body",
+      "sku": "2GBL8",
+      "price": 2.0,
+      "size": "8.0 fl oz",
+      "scent1": "Fresh",
+      "scent2": "Floral",
+      "quantity": 5,
+      "image": "https://i.ibb.co/rGrr4H4/soap3.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 32,
+    "fields": {
+      "name": "Garden Breeze Body Wash",
+      "product_type": "Body Wash",
+      "product_category": "Body",
+      "sku": "2GBB8",
+      "price": 12.0,
+      "size": "8.0 fl oz",
+      "scent1": "Fresh",
+      "scent2": "Floral",
+      "quantity": 5,
+      "image": "https://i.ibb.co/XZL6XpJ/bodywash.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuppkatat non propkent."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 33,
+    "fields": {
+      "name": "Smores Candle",
+      "product_type": "Candle",
+      "product_category": "Home",
+      "sku": "31111",
+      "price": 10.0,
+      "size": "8.0 oz",
+      "scent1": "Amber",
+      "scent2": "Woody",
+      "quantity": 5,
+      "image": "https://i.ibb.co/xgTqRs3/candle2.jpg",
+      "description": ""
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 34,
+    "fields": {
+      "name": "Smores Incense Stick",
+      "product_type": "Incense Stick",
+      "product_category": "Home",
+      "sku": "31112",
+      "price": 2.0,
+      "size": "8.0 oz",
+      "scent1": "Amber",
+      "scent2": "Woody",
+      "quantity": 5,
+      "image": "https://i.ibb.co/SR1wypm/incense2.jpg",
+      "description": ""
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 35,
+    "fields": {
+      "name": "Smores Soap",
+      "product_type": "Soap",
+      "product_category": "Body",
+      "sku": "31113",
+      "price": 12.0,
+      "size": "8.0 oz",
+      "scent1": "Amber",
+      "scent2": "Woody",
+      "quantity": 5,
+      "image": "https://i.ibb.co/FV00NSF/soap2.jpg",
+      "description": ""
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 36,
+    "fields": {
+      "name": "Smores Body Wash",
+      "product_type": "Body Wash",
+      "product_category": "Body",
+      "sku": "31114",
+      "price": 12.0,
+      "size": "8.0 oz",
+      "scent1": "Amber",
+      "scent2": "Woody",
+      "quantity": 5,
+      "image": "https://i.ibb.co/XZL6XpJ/bodywash.jpg",
+      "description": ""
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 37,
+    "fields": {
+      "name": "Earl Grey Latte Room Spray",
+      "product_type": "Room Spray",
+      "product_category": "Home",
+      "sku": "31115",
+      "price": 10.0,
+      "size": "8.0 oz",
+      "scent1": "Amber",
+      "scent2": "Fresh",
+      "quantity": 5,
+      "image": "https://i.ibb.co/mHgt57r/roomspray.jpg",
+      "description": ""
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 38,
+    "fields": {
+      "name": "Earl Grey Latte Incense Stick",
+      "product_type": "Incense Stick",
+      "product_category": "Home",
+      "sku": "31116",
+      "price": 2.0,
+      "size": "8.0 oz",
+      "scent1": "Amber",
+      "scent2": "Fresh",
+      "quantity": 5,
+      "image": "https://i.ibb.co/Yk4cFWy/incense.jpg",
+      "description": ""
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 39,
+    "fields": {
+      "name": "Earl Grey Latte Lotion",
+      "product_type": "Lotion",
+      "product_category": "Body",
+      "sku": "31117",
+      "price": 12.0,
+      "size": "8.0 oz",
+      "scent1": "Amber",
+      "scent2": "Fresh",
+      "quantity": 5,
+      "image": "https://i.ibb.co/6NvVnnh/lotion.jpg",
+      "description": ""
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 40,
+    "fields": {
+      "name": "Earl Grey Latte Body Wash",
+      "product_type": "Body Wash",
+      "product_category": "Body",
+      "sku": "31118",
+      "price": 12.0,
+      "size": "8.0 oz",
+      "scent1": "Amber",
+      "scent2": "Fresh",
+      "quantity": 5,
+      "image": "https://i.ibb.co/XZL6XpJ/bodywash.jpg",
+      "description": ""
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 41,
+    "fields": {
+      "name": "Cherry Pie Room Spray",
+      "product_type": "Room Spray",
+      "product_category": "Home",
+      "sku": "31119",
+      "price": 12.0,
+      "size": "8.0 oz",
+      "scent1": "Amber",
+      "scent2": "Fresh",
+      "quantity": 5,
+      "image": "https://i.ibb.co/4sf2wqC/roomspray2.jpg",
+      "description": ""
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 42,
+    "fields": {
+      "name": "Cherry Pie Incense Stick",
+      "product_type": "Incense Stick",
+      "product_category": "Home",
+      "sku": "31120",
+      "price": 2.0,
+      "size": "8.0 oz",
+      "scent1": "Amber",
+      "scent2": "Fresh",
+      "quantity": 5,
+      "image": "https://i.ibb.co/Yk4cFWy/incense.jpg",
+      "description": ""
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 43,
+    "fields": {
+      "name": "Cherry Pie Lotion",
+      "product_type": "Lotion",
+      "product_category": "Body",
+      "sku": "31121",
+      "price": 12.0,
+      "size": "8.0 oz",
+      "scent1": "Amber",
+      "scent2": "Fresh",
+      "quantity": 5,
+      "image": "https://i.ibb.co/1JW5xNN/lotion2.jpg",
+      "description": ""
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 44,
+    "fields": {
+      "name": "Cherry Pie Body Wash",
+      "product_type": "Body Wash",
+      "product_category": "Body",
+      "sku": "31122",
+      "price": 12.0,
+      "size": "8.0 oz",
+      "scent1": "Amber",
+      "scent2": "Fresh",
+      "quantity": 5,
+      "image": "https://i.ibb.co/XZL6XpJ/bodywash.jpg",
+      "description": ""
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 45,
+    "fields": {
+      "name": "Vanilla Orchid Candle",
+      "product_type": "Candle",
+      "product_category": "Home",
+      "sku": "31123",
+      "price": 10.0,
+      "size": "8.0 oz",
+      "scent1": "Amber",
+      "scent2": "Woody",
+      "quantity": 5,
+      "image": "https://i.ibb.co/CK4fvvf/candle3.jpg",
+      "description": ""
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 46,
+    "fields": {
+      "name": "Vanilla Orchid Incense Stick",
+      "product_type": "Incense Stick",
+      "product_category": "Home",
+      "sku": "31124",
+      "price": 2.0,
+      "size": "8.0 oz",
+      "scent1": "Amber",
+      "scent2": "Woody",
+      "quantity": 5,
+      "image": "https://i.ibb.co/SR1wypm/incense2.jpg",
+      "description": ""
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 47,
+    "fields": {
+      "name": "Vanilla Orchid Lotion",
+      "product_type": "Lotion",
+      "product_category": "Body",
+      "sku": "31125",
+      "price": 12.0,
+      "size": "8.0 fl oz",
+      "scent1": "Amber",
+      "scent2": "Woody",
+      "quantity": 5,
+      "image": "https://i.ibb.co/6NvVnnh/lotion.jpg",
+      "description": ""
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 48,
+    "fields": {
+      "name": "Vanilla Orchid Body Wash",
+      "product_type": "Body Wash",
+      "product_category": "Body",
+      "sku": "31126",
+      "price": 12.0,
+      "size": "8.0 fl oz",
+      "scent1": "Amber",
+      "scent2": "Fresh",
+      "quantity": 5,
+      "image": "https://i.ibb.co/Hxhqr2R/bodywash2.jpg",
+      "description": ""
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 49,
+    "fields": {
+      "name": "Apple Orchard Candle",
+      "product_type": "Home",
+      "product_category": "Candle",
+      "sku": "45678",
+      "price": 10.0,
+      "size": "8.0 oz",
+      "scent1": "Fruity",
+      "scent2": "Woody",
+      "quantity": 5,
+      "image": "https://i.ibb.co/xgTqRs3/candle2.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 50,
+    "fields": {
+      "name": "Apple Orchard Room Spray",
+      "product_type": "Home",
+      "product_category": "Room Spray",
+      "sku": "45679",
+      "price": 10.0,
+      "size": "8.0 fl oz",
+      "scent1": "Fruity",
+      "scent2": "Woody",
+      "quantity": 5,
+      "image": "https://i.ibb.co/mHgt57r/roomspray.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 51,
+    "fields": {
+      "name": "Apple Orchard Lotion",
+      "product_type": "Body",
+      "product_category": "Lotion",
+      "sku": "45680",
+      "price": 12.0,
+      "size": "8.0 fl oz",
+      "scent1": "Fruity",
+      "scent2": "Woody",
+      "quantity": 5,
+      "image": "https://i.ibb.co/1JW5xNN/lotion2.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 52,
+    "fields": {
+      "name": "Apple Orchard Deodorant",
+      "product_type": "Body",
+      "product_category": "Deodorant",
+      "sku": "45681",
+      "price": 10.0,
+      "size": "8.0 oz",
+      "scent1": "Fruity",
+      "scent2": "Woody",
+      "quantity": 5,
+      "image": "https://i.ibb.co/TRLSGr2/deodorant.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 53,
+    "fields": {
+      "name": "Island Breeze Candle",
+      "product_type": "Home",
+      "product_category": "Candle",
+      "sku": "45682",
+      "price": 10.0,
+      "size": "8.0 oz",
+      "scent1": "Fruity",
+      "scent2": "Fresh",
+      "quantity": 5,
+      "image": "https://i.ibb.co/B4MxQ2N/candle.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 54,
+    "fields": {
+      "name": "Island Breeze Room Spray",
+      "product_type": "Home",
+      "product_category": "Room Spray",
+      "sku": "45683",
+      "price": 10.0,
+      "size": "8.0 fl oz",
+      "scent1": "Fruity",
+      "scent2": "Fresh",
+      "quantity": 5,
+      "image": "https://i.ibb.co/4sf2wqC/roomspray2.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 55,
+    "fields": {
+      "name": "Island Breeze Lotion",
+      "product_type": "Body",
+      "product_category": "Lotion",
+      "sku": "45684",
+      "price": 12.0,
+      "size": "8.0 fl oz",
+      "scent1": "Fruity",
+      "scent2": "Fresh",
+      "quantity": 5,
+      "image": "https://i.ibb.co/6NvVnnh/lotion.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 56,
+    "fields": {
+      "name": "Island Breeze Soap",
+      "product_type": "Body",
+      "product_category": "Soap",
+      "sku": "45685",
+      "price": 10.0,
+      "size": "8.0 oz",
+      "scent1": "Fruity",
+      "scent2": "Fresh",
+      "quantity": 5,
+      "image": "https://i.ibb.co/YdYX3gm/soap.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 57,
+    "fields": {
+      "name": "Rum Punch Candle",
+      "product_type": "Home",
+      "product_category": "Candle",
+      "sku": "45686",
+      "price": 10.0,
+      "size": "8.0 oz",
+      "scent1": "Fruity",
+      "scent2": "Amber",
+      "quantity": 5,
+      "image": "https://i.ibb.co/CK4fvvf/candle3.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 58,
+    "fields": {
+      "name": "Rum Punch Room Spray",
+      "product_type": "Home",
+      "product_category": "Room Spray",
+      "sku": "45687",
+      "price": 10.0,
+      "size": "8.0 fl oz",
+      "scent1": "Fruity",
+      "scent2": "Amber",
+      "quantity": 5,
+      "image": "https://i.ibb.co/mHgt57r/roomspray.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 59,
+    "fields": {
+      "name": "Rum Punch Deodorant",
+      "product_type": "Body",
+      "product_category": "Deodorant",
+      "sku": "45688",
+      "price": 12.0,
+      "size": "8.0 fl oz",
+      "scent1": "Fruity",
+      "scent2": "Amber",
+      "quantity": 5,
+      "image": "https://i.ibb.co/TRLSGr2/deodorant.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 60,
+    "fields": {
+      "name": "Rum Punch Soap",
+      "product_type": "Body",
+      "product_category": "Soap",
+      "sku": "45689",
+      "price": 10.0,
+      "size": "8.0 oz",
+      "scent1": "Fruity",
+      "scent2": "Amber",
+      "quantity": 5,
+      "image": "https://i.ibb.co/rGrr4H4/soap3.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 61,
+    "fields": {
+      "name": "Cherry Blossom Candle",
+      "product_type": "Home",
+      "product_category": "Candle",
+      "sku": "45690",
+      "price": 10.0,
+      "size": "8.0 oz",
+      "scent1": "Fruity",
+      "scent2": "Floral",
+      "quantity": 5,
+      "image": "https://i.ibb.co/xgTqRs3/candle2.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 62,
+    "fields": {
+      "name": "Cherry Blossom Room Spray",
+      "product_type": "Home",
+      "product_category": "Room Spray",
+      "sku": "45691",
+      "price": 10.0,
+      "size": "8.0 fl oz",
+      "scent1": "Fruity",
+      "scent2": "Floral",
+      "quantity": 5,
+      "image": "https://i.ibb.co/4sf2wqC/roomspray2.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 63,
+    "fields": {
+      "name": "Cherry Blossom Lotion",
+      "product_type": "Body",
+      "product_category": "Lotion",
+      "sku": "45692",
+      "price": 12.0,
+      "size": "8.0 fl oz",
+      "scent1": "Fruity",
+      "scent2": "Floral",
+      "quantity": 5,
+      "image": "https://i.ibb.co/1JW5xNN/lotion2.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 64,
+    "fields": {
+      "name": "Cherry Blossom Soap",
+      "product_type": "Body",
+      "product_category": "Soap",
+      "sku": "45693",
+      "price": 10.0,
+      "size": "8.0 oz",
+      "scent1": "Fruity",
+      "scent2": "Floral",
+      "quantity": 5,
+      "image": "https://i.ibb.co/FV00NSF/soap2.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 65,
+    "fields": {
+      "name": "Wildflower Meadows Body Wash",
+      "product_type": "Body",
+      "product_category": "Body Wash",
+      "sku": "5WFMB",
+      "price": 12.0,
+      "size": "8.0 fl oz",
+      "scent1": "Floral",
+      "scent2": "Woody",
+      "quantity": 5,
+      "image": "https://i.ibb.co/XZL6XpJ/bodywash.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 66,
+    "fields": {
+      "name": "Wildflower Meadows Deodorant",
+      "product_type": "Body",
+      "product_category": "Deodorant",
+      "sku": "5WFMS",
+      "price": 10.0,
+      "size": "8.0 oz",
+      "scent1": "Floral",
+      "scent2": "Woody",
+      "quantity": 5,
+      "image": "https://i.ibb.co/TRLSGr2/deodorant.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 67,
+    "fields": {
+      "name": "Wildflower Meadows Candle",
+      "product_type": "Home",
+      "product_category": "Candle",
+      "sku": "5WFMC",
+      "price": 10.0,
+      "size": "8.0 oz",
+      "scent1": "Floral",
+      "scent2": "Woody",
+      "quantity": 5,
+      "image": "https://i.ibb.co/xgTqRs3/candle2.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 68,
+    "fields": {
+      "name": "Wildflower Meadows Room Spray",
+      "product_type": "Home",
+      "product_category": "Room Spray",
+      "sku": "5WFMR",
+      "price": 10.0,
+      "size": "8.0 fl oz",
+      "scent1": "Floral",
+      "scent2": "Woody",
+      "quantity": 5,
+      "image": "https://i.ibb.co/mHgt57r/roomspray.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 69,
+    "fields": {
+      "name": "Rosé Lotion",
+      "product_type": "Body",
+      "product_category": "Lotion",
+      "sku": "5ROBL",
+      "price": 12.0,
+      "size": "8.0 fl oz",
+      "scent1": "Floral",
+      "scent2": "Amber",
+      "quantity": 5,
+      "image": "https://i.ibb.co/1JW5xNN/lotion2.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 70,
+    "fields": {
+      "name": "Rosé Body Wash",
+      "product_type": "Body",
+      "product_category": "Body Wash",
+      "sku": "5ROBW",
+      "price": 12.0,
+      "size": "8.0 fl oz",
+      "scent1": "Floral",
+      "scent2": "Amber",
+      "quantity": 5,
+      "image": "https://i.ibb.co/Hxhqr2R/bodywash2.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 71,
+    "fields": {
+      "name": "Rosé Room Spray",
+      "product_type": "Home",
+      "product_category": "Room Spray",
+      "sku": "5RORS",
+      "price": 10.0,
+      "size": "8.0 fl oz",
+      "scent1": "Floral",
+      "scent2": "Amber",
+      "quantity": 5,
+      "image": "https://i.ibb.co/4sf2wqC/roomspray2.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 72,
+    "fields": {
+      "name": "Rosé Incense Stick",
+      "product_type": "Home",
+      "product_category": "Incense Stick",
+      "sku": "5ROIS",
+      "price": 2.0,
+      "size": "8.0 oz",
+      "scent1": "Floral",
+      "scent2": "Amber",
+      "quantity": "5",
+      "image": "https://i.ibb.co/SR1wypm/incense2.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 73,
+    "fields": {
+      "name": "Raspberry Bouquet Soap",
+      "product_type": "Body",
+      "product_category": "Soap",
+      "sku": "5RBSO",
+      "price": 10.0,
+      "size": "8.0 oz",
+      "scent1": "Floral",
+      "scent2": "Fruity",
+      "quantity": 5,
+      "image": "https://i.ibb.co/rGrr4H4/soap3.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 74,
+    "fields": {
+      "name": "Raspberry Bouquet Lotion",
+      "product_type": "Body",
+      "product_category": "Lotion",
+      "sku": "5RBBL",
+      "price": 12.0,
+      "size": "8.0 fl oz",
+      "scent1": "Floral",
+      "scent2": "Fruity",
+      "quantity": 5,
+      "image": "https://i.ibb.co/6NvVnnh/lotion.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 75,
+    "fields": {
+      "name": "Raspberry Bouquet Incense Stick",
+      "product_type": "Home",
+      "product_category": "Incense Stick",
+      "sku": "5RBIS",
+      "price": 2.0,
+      "size": "8.0 oz",
+      "scent1": "Floral",
+      "scent2": "Fruity",
+      "quantity": 5,
+      "image": "https://i.ibb.co/Yk4cFWy/incense.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 76,
+    "fields": {
+      "name": "Raspberry Bouquet Candle",
+      "product_type": "Home",
+      "product_category": "Candle",
+      "sku": "5RBCA",
+      "price": 10.0,
+      "size": "8.0 oz",
+      "scent1": "Floral",
+      "scent2": "Fruity",
+      "quantity": 5,
+      "image": "https://i.ibb.co/CK4fvvf/candle3.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 77,
+    "fields": {
+      "name": "Jasmine Garden Lotion",
+      "product_type": "Body",
+      "product_category": "Lotion",
+      "sku": "5JAGL",
+      "price": 12.0,
+      "size": "8.0 fl oz",
+      "scent1": "Floral",
+      "scent2": "Fresh",
+      "quantity": 5,
+      "image": "https://i.ibb.co/1JW5xNN/lotion2.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 78,
+    "fields": {
+      "name": "Jasmine Garden Deodorant",
+      "product_type": "Body",
+      "product_category": "Deodorant",
+      "sku": "5JAGB",
+      "price": 12.0,
+      "size": "8.0 fl oz",
+      "scent1": "Floral",
+      "scent2": "Fresh",
+      "quantity": 5,
+      "image": "https://i.ibb.co/TRLSGr2/deodorant.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 79,
+    "fields": {
+      "name": "Jasmine Garden Candle",
+      "product_type": "Home",
+      "product_category": "Candle",
+      "sku": "5JAGC",
+      "price": 10.0,
+      "size": "8.0 oz",
+      "scent1": "Floral",
+      "scent2": "Fresh",
+      "quantity": 5,
+      "image": "https://i.ibb.co/B4MxQ2N/candle.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  },
+  {
+    "model": "inventory_rest.product",
+    "pk": 80,
+    "fields": {
+      "name": "Jasmine Garden Room Spray",
+      "product_type": "Home",
+      "product_category": "Room Spray",
+      "sku": "5JAGR",
+      "price": 10.0,
+      "size": "8.0 fl oz",
+      "scent1": "Floral",
+      "scent2": "Fresh",
+      "quantity": 5,
+      "image": "https://i.ibb.co/mHgt57r/roomspray.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incpkpkunt ut labore et dolore magna aliqua. Mattis ullamcorper velit sed ullamcorper morbi tincpkunt ornare massa eget."
+    }
+  }
+]
