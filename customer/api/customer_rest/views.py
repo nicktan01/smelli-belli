@@ -2,7 +2,7 @@ import json
 from logging import exception
 from django.http import JsonResponse
 from django.shortcuts import render
-from .models import Quiz, Answer, Question, Result, Cart
+from .models import Cart
 from django.views.generic import ListView
 from urllib import response
 from django.http import JsonResponse
@@ -11,10 +11,6 @@ from django.views.decorators.http import require_http_methods
 from .models import BodyQuiz, HomeQuiz
 from .encoders import (
     CartEncoder,
-    QuizEncoder,
-    QuestionEncoder,
-    AnswerEncoder,
-    ResultEncoder,
     CartEncoder,
     BodyQuizEncoder,
     HomeQuizEncoder,
