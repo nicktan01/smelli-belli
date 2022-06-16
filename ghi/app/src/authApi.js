@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 let internalToken = null;
 
@@ -42,8 +42,25 @@ function handleErrorMessage(error) {
   return error;
 }
 
-export function useToken() {
+const AuthContext = createContext({
+  token: null,
+  setToken: () => null,
+});
+
+export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
+
+  return (
+    <AuthContext.Provider value={{ token, setToken }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export const useAuthContext = () => useContext(AuthContext);
+
+export function useToken() {
+  const { token, setToken } = useAuthContext();
   const navigate = useNavigate();
 
   useEffect(() => {
