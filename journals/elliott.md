@@ -85,6 +85,8 @@ Today I continued thinking about and working on the quizzes to find our users' s
 
 ## June 9, 2022
 
+---
+
 Got a lot done today!
 
 - Refactored Body and Home scent profile quizzes into class components
@@ -93,3 +95,19 @@ Got a lot done today!
 - Stopped working on the home and body quizzes in tandem because the code is more or less copy and pastable from body into home once I'm done, just changing the names of values, IDs, and some slightly different wording
 
 The front end portion of the quizzes is proving to be quite a hurdle, but it has been an incredibly enjoyable challenge. Using state and binding this to certain event handlers in order to save which answer a user has clicked on the quiz is really cool and it felt really exciting to see that working the way I intended it. Then, I worked on breaking the quiz into multiple pages, at least two for now, so that we can prompt the user with a sign up screen in order to save their quiz results if no authentication is detected. If authentication is detected, or once a user has signed up or refused to sign up, then I'd like that page to present the user with the results of their quiz, make a POST request to our backend endpoints to save those results if the conditions are met, and present the user with a filtered list of the products based on a query that matches products to the values of the answers from their quizzes! I left off last night having figured out different ways I can render multiple "pages" on a single React component, excited to spend today (June 10, when I am writing this entry) chugging along on figuring out the authentication portion and filtering the products list!! I figured out a funky way to make a POST request to our endpoints and I'm really excited about that.
+
+## June 10, 2022
+
+---
+
+Got it done right in time before the start of mandatory fun time!!
+
+ADD MORE HERE, DORK
+
+## June 13, 2022
+
+---
+
+Separated each question into its own page, added a lot of explanatory comments in the code, brought the home products quiz up to speed with the body quiz so far. Just finishing touches on the quiz and adding authentication to it, so users can access their quiz results.
+
+ADD MORE HERE, BOZO

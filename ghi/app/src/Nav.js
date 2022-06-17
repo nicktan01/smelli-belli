@@ -45,7 +45,7 @@ function Nav() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav me-auto">
-            {user && user.is_staff && (
+            {token && user && user.is_staff && (
               <li className="nav-item dropdown">
                 <NavLink
                   className="nav-link dropdown-toggle"
