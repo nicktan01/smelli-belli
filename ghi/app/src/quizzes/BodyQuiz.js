@@ -178,40 +178,6 @@ class BodyQuiz extends React.Component {
     } catch (e) {
       console.error("error:", e);
     }
-
-    /*****************************************************************************/
-    // THIS CODE WAS ATTEMPTING TO GET THE USER TO DROP IT INTO THE REQUEST
-    // SENT TO THE DATABASE, SINCE USERVO IS A PROP ON THE QUIZ MODELS BUT IT
-    // DID NOT WORK
-    // async function getUser() {
-    //   const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/accounts/me/`;
-    //   const response = await fetch(url, {
-    //     credentials: "include",
-    //   });
-    //   if (response.ok) {
-    //     const user = await response.json();
-    //     console.log(user);
-    //     setUser(user);
-    //   }
-    // }
-
-    /*****************************************************************************/
-    // THE BELOW CODE DOES NOT WORK, I AM TRYING TO CHECK TO SEE IF A TOKEN
-    // EXISTS AT THE ENDPOINT LISTED. THEN, IF ONE DOES JUST SKIP STRAIGHT TO
-    // DISPLAYING THE SCENT PROFILE AND FILTERED PRODUCT PAGE USING resultsClasses
-
-    // ELSE, IF THERE IS NO AUTH TOKEN, DISPLAY A CONDENSED USER SIGN UP FORM
-    // OFFERING USER TO SAVE THE RESULTS OF THEIR QUIZ USING signupClasses.
-    // THEN, PROCEED AS ABOVE.
-
-    // const authTokenUrl = "http://localhost:9080/api/accounts/me/";
-    // const authTokenResponse = await fetch(authTokenUrl);
-
-    // if (authTokenResponse.ok) {
-    //   const authTokenData = await authTokenResponse.json();
-    //   console.log("what is authTokenData:", authTokenData);
-    // }
-    /*****************************************************************************/
   }
 
   // This is the code that handles filtering the products based on the user's
