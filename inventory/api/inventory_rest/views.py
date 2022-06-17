@@ -11,7 +11,11 @@ from .models import Product
 @require_http_methods(["GET", "POST"])
 def api_list_products(request):
     if request.method == "GET":
-        products = Product.objects.all()
+        filters = {}
+        search = request.GET.get("name")
+        if search:
+            filters["name__icontains"] = search
+        products = Product.objects.filter(**filters)
         return JsonResponse(
             {"products": products},
             encoder=ProductListEncoder,
