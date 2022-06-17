@@ -1,8 +1,7 @@
 from common.json import ModelEncoder
 from .models import (
     HomeQuiz,
-    ProductVO, 
-    UserVO, 
+    ProductVO,
     BodyQuiz, 
 )
 
@@ -17,10 +16,6 @@ class ProductVOEncoder(ModelEncoder):
         "image"
     ]
 
-class UserVOEncoder(ModelEncoder):
-    model = UserVO
-    properties = ["id", "user"]
-
 class BodyQuizEncoder(ModelEncoder):
     model = BodyQuiz
     properties = [
@@ -30,7 +25,7 @@ class BodyQuizEncoder(ModelEncoder):
         "answer_4", 
         "answer_5",
         "created",
-        # "user" 
+        "user" 
     ]
 
 class HomeQuizEncoder(ModelEncoder):
@@ -42,5 +37,5 @@ class HomeQuizEncoder(ModelEncoder):
         "answer_4", 
         "answer_5",
         "created",
-        # "user" 
+        "user" 
     ]

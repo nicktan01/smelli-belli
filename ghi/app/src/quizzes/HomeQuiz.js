@@ -22,10 +22,13 @@ class HomeQuiz extends React.Component {
       resultsSubmitted: false,
       products: [],
       productColumns: [[], [], [], []],
+      currentStep: 1,
     };
 
     // We need to bind this to all of these properties so that we can track
     // when a user has answered a question, or clicked the "Next" button
+    this.handlePageBack = this.handlePageBack.bind(this);
+    this.handlePageForward = this.handlePageForward.bind(this);
     this.handleQuestionOne = this.handleQuestionOne.bind(this);
     this.handleQuestionTwo = this.handleQuestionTwo.bind(this);
     this.handleQuestionThree = this.handleQuestionThree.bind(this);
@@ -53,30 +56,42 @@ class HomeQuiz extends React.Component {
     const id = event.currentTarget.id;
     this.setState({ answerOne: id });
     this.setState({ questionOneAnswered: true }); // marks q as answered
+    this.setState({ currentStep: this.state.currentStep + 1 });
   }
 
   handleQuestionTwo(event) {
     const id = event.currentTarget.id;
     this.setState({ answerTwo: id });
     this.setState({ questionTwoAnswered: true });
+    this.setState({ currentStep: this.state.currentStep + 1 });
   }
 
   handleQuestionThree(event) {
     const id = event.currentTarget.id;
     this.setState({ answerThree: id });
     this.setState({ questionThreeAnswered: true });
+    this.setState({ currentStep: this.state.currentStep + 1 });
   }
 
   handleQuestionFour(event) {
     const id = event.currentTarget.id;
     this.setState({ answerFour: id });
     this.setState({ questionFourAnswered: true });
+    this.setState({ currentStep: this.state.currentStep + 1 });
   }
 
   handleQuestionFive(event) {
     const value = event.currentTarget.value;
     this.setState({ answerFive: parseInt(value) }); // parses the int value
     this.setState({ questionFiveAnswered: true });
+  }
+
+  handlePageBack() {
+    this.setState({ currentStep: this.state.currentStep - 1 });
+  }
+
+  handlePageForward() {
+    this.setState({ currentStep: this.state.currentStep + 1 });
   }
 
   async handlePageOneComplete() {
@@ -190,9 +205,10 @@ class HomeQuiz extends React.Component {
     delete data.quizQuestionsComplete;
     delete data.quizCompleted;
     delete data.products;
-    delete data.productsColumns;
+    delete data.productColumns;
     delete data.resultsSubmitted;
     delete data.noMatches;
+    delete data.currentStep;
 
     // . . . so that we can POST a quiz object into our database!
     const quizResultsUrl = "http://localhost:8090/api/homequizzes/";
@@ -201,6 +217,7 @@ class HomeQuiz extends React.Component {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
+        Authorization: `bearer ${token}`,
       },
     };
 
@@ -226,6 +243,7 @@ class HomeQuiz extends React.Component {
         products: [],
         productColumns: [],
         resultsSubmitted: true,
+        currentStep: 1,
       });
     }
   }
@@ -243,24 +261,44 @@ class HomeQuiz extends React.Component {
     let quizResultsClasses = "d-none";
     let quizPageFiveButtonClasses = "d-none";
     let displayProductsClasses = "d-none";
+    let seeProductsButtonClasses = "d-none";
     let noProductsClasses = "d-none";
     let resultsSubmittedClasses = "alert alert-success mb-0 d-none";
 
     // If the user clicks an answer for Question One, then hide Question One
     // and display Question Two
-    if (this.state.questionOneAnswered) {
+    if (this.state.currentStep == 1) {
+      quizPageOneClasses = "my-5";
+      quizPageTwoClasses = "d-none";
+      quizPageThreeClasses = "d-none";
+      quizPageFourClasses = "d-none";
+      quizPageFiveClasses = "d-none";
+    }
+    if (this.state.currentStep == 2) {
       quizPageOneClasses = "d-none";
       quizPageTwoClasses = "my-5";
+      quizPageThreeClasses = "d-none";
+      quizPageFourClasses = "d-none";
+      quizPageFiveClasses = "d-none";
     }
-    if (this.state.questionTwoAnswered) {
+    if (this.state.currentStep == 3) {
+      quizPageOneClasses = "d-none";
       quizPageTwoClasses = "d-none";
       quizPageThreeClasses = "my-5";
+      quizPageFourClasses = "d-none";
+      quizPageFiveClasses = "d-none";
     }
-    if (this.state.questionThreeAnswered) {
+    if (this.state.currentStep == 4) {
+      quizPageOneClasses = "d-none";
+      quizPageTwoClasses = "d-none";
       quizPageThreeClasses = "d-none";
       quizPageFourClasses = "my-5";
+      quizPageFiveClasses = "d-none";
     }
-    if (this.state.questionFourAnswered) {
+    if (this.state.currentStep == 5) {
+      quizPageOneClasses = "d-none";
+      quizPageTwoClasses = "d-none";
+      quizPageThreeClasses = "d-none";
       quizPageFourClasses = "d-none";
       quizPageFiveClasses = "my-5";
     }
@@ -275,6 +313,7 @@ class HomeQuiz extends React.Component {
     // clicked by the User, then display the Results page
     if (this.state.quizQuestionsComplete) {
       quizResultsClasses = "my-5";
+      seeProductsButtonClasses = "my-5 btn btn-primary";
       quiz = "d-none";
     }
 
@@ -282,6 +321,7 @@ class HomeQuiz extends React.Component {
     // products cards!
     if (this.state.quizCompleted) {
       displayProductsClasses = "";
+      seeProductsButtonClasses = "d-none";
     }
 
     // If there are no matches, display an error message!
@@ -305,6 +345,28 @@ class HomeQuiz extends React.Component {
           <h1 className="display-3 fw-bold">Scent Finder</h1>
           <h2 className="display-7 fw-bold">Home Products</h2>
           <div className={quizPageOneClasses} id="step-1">
+            <div
+              className="btn-toolbar justify-content-around mb-5"
+              role="toolbar"
+              aria-label="Toolbar with button groups"
+            >
+              <button
+                type="button"
+                className="btn-sm btn-secondary"
+                disabled={true}
+              >
+                Previous
+              </button>
+              <h6>Quiz Navigation</h6>
+              <button
+                type="button"
+                className="btn-sm btn-primary"
+                disabled={!this.state.questionOneAnswered}
+                onClick={this.handlePageForward}
+              >
+                Next
+              </button>
+            </div>
             <h4>What kind of product are you looking for?</h4>
             <em>Please, choose one</em>
             <div className="my-5 d-grid gap-4 d-md-flex justify-content-center">
@@ -335,6 +397,28 @@ class HomeQuiz extends React.Component {
             </div>
           </div>
           <div className={quizPageTwoClasses} id="step-2">
+            <div
+              className="btn-toolbar justify-content-around mb-5"
+              role="toolbar"
+              aria-label="Toolbar with button groups"
+            >
+              <button
+                type="button"
+                className="btn-sm btn-primary"
+                onClick={this.handlePageBack}
+              >
+                Previous
+              </button>
+              <h6>Quiz Navigation</h6>
+              <button
+                type="button"
+                className="btn-sm btn-primary"
+                disabled={!this.state.questionTwoAnswered}
+                onClick={this.handlePageForward}
+              >
+                Next
+              </button>
+            </div>
             <h4>Where is your happy place?</h4>
             <em>Please, choose one</em>
             <div className="my-5 d-grid gap-4 d-md-flex justify-content-center">
@@ -381,6 +465,28 @@ class HomeQuiz extends React.Component {
             </div>
           </div>
           <div className={quizPageThreeClasses} id="step-3">
+            <div
+              className="btn-toolbar justify-content-around mb-5"
+              role="toolbar"
+              aria-label="Toolbar with button groups"
+            >
+              <button
+                type="button"
+                className="btn-sm btn-primary"
+                onClick={this.handlePageBack}
+              >
+                Previous
+              </button>
+              <h6>Quiz Navigation</h6>
+              <button
+                type="button"
+                className="btn-sm btn-primary"
+                disabled={!this.state.questionThreeAnswered}
+                onClick={this.handlePageForward}
+              >
+                Next
+              </button>
+            </div>
             <h4>What is your favorite season?</h4>
             <em>Please, choose one</em>
             <div className="my-5 d-grid gap-4 d-md-flex justify-content-center">
@@ -419,6 +525,28 @@ class HomeQuiz extends React.Component {
             </div>
           </div>
           <div className={quizPageFourClasses} id="step-4">
+            <div
+              className="btn-toolbar justify-content-around mb-5"
+              role="toolbar"
+              aria-label="Toolbar with button groups"
+            >
+              <button
+                type="button"
+                className="btn-sm btn-primary"
+                onClick={this.handlePageBack}
+              >
+                Previous
+              </button>
+              <h6>Quiz Navigation</h6>
+              <button
+                type="button"
+                className="btn-sm btn-primary"
+                disabled={!this.state.questionFourAnswered}
+                onClick={this.handlePageForward}
+              >
+                Next
+              </button>
+            </div>
             <h4>What clothing style is your favorite?</h4>
             <em>Please, choose one</em>
             <div className="my-5 d-grid gap-4 d-md-flex justify-content-center">
@@ -465,6 +593,27 @@ class HomeQuiz extends React.Component {
             </div>
           </div>
           <div className={quizPageFiveClasses} id="step-5">
+            <div
+              className="btn-toolbar justify-content-around mb-5"
+              role="toolbar"
+              aria-label="Toolbar with button groups"
+            >
+              <button
+                type="button"
+                className="btn-sm btn-primary"
+                onClick={this.handlePageBack}
+              >
+                Previous
+              </button>
+              <h6>Quiz Navigation</h6>
+              <button
+                type="button"
+                className="btn-sm btn-secondary"
+                disabled={true}
+              >
+                Next
+              </button>
+            </div>
             <h4>How intense would you like your scent?</h4>
             <em>Drag the slider to the desired value</em>
             <div className="my-5">
@@ -500,12 +649,11 @@ class HomeQuiz extends React.Component {
           </h2>
           <button
             onClick={this.handleSeeFilteredProducts}
-            className="my-5 btn btn-primary"
+            className={seeProductsButtonClasses}
           >
             See Products
           </button>
           <div className={displayProductsClasses}>
-            <h2>Your Matched Products</h2>
             <div className="row">
               {this.state.productColumns.map((productList, index) => {
                 return <ProductColumn key={index} list={productList} />;
