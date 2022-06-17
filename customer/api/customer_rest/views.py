@@ -2,7 +2,7 @@ import json
 from logging import exception
 from django.http import JsonResponse
 from django.shortcuts import render
-from .models import Cart
+from .models import Cart, ProductVO
 from django.views.generic import ListView
 from urllib import response
 from django.http import JsonResponse
@@ -218,6 +218,13 @@ def api_cart(request):
     else: #POST
         try:
             content = json.loads(request.body)
+            print("This is the content: ",content)
+            content["product"] = ProductVO.objects.get(sku=content["product"]["sku"])
+            # add a fake user temp bypass until account is setup
+            try:
+                content["user"] = UserVO.objects.get(id=1)
+            except UserVO.DoesNotExist:
+                content["user"] = UserVO.objects.create(import_href = "a", user="Nick")
             cart = Cart.objects.create(**content)
             return JsonResponse(
                 cart,
@@ -230,3 +237,4 @@ def api_cart(request):
                 {"message": "Could not add cart"}
             )
             response.status_code = 400
+            return(response)

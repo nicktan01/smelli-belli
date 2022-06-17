@@ -48,12 +48,12 @@ class HomeQuizEncoder(ModelEncoder):
 class CartEncoder(ModelEncoder):
     model = Cart
     properties = [
-        "products",
+        "product",
         "user",
         "quantity",
         "totals"
     ] 
     encoders = {
-        "products": ProductVOEncoder(),
+        "product": ProductVOEncoder(),
         "user": UserVOEncoder()
         }
