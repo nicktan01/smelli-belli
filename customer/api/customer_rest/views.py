@@ -1,4 +1,3 @@
-from urllib import response
 import djwto.authentication as auth
 from django.http import JsonResponse
 import json
@@ -72,6 +71,7 @@ def api_show_body_quiz(request, pk):
             )
 
 
+@auth.jwt_login_required
 @require_http_methods(["GET", "POST"])
 def api_list_home_quizzes(request):
     if request.method == "GET":

@@ -1,8 +1,15 @@
 import React from "react";
 import { ProductColumn } from "../quizzes/BodyQuiz";
-import { useToken } from "../authApi";
+import { AuthContext, AuthProvider } from "../authApi";
+
+// export function HomeQuizWrapper() {
+//   const [token] = useToken();
+//   return <HomeQuiz token={token} />;
+// }
 
 class HomeQuiz extends React.Component {
+  static contextType = AuthContext;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -181,7 +188,6 @@ class HomeQuiz extends React.Component {
   // This block handles quiz completion and the optional saving of a user's
   // scent profile results.
   async handleSubmit(event) {
-    // const [token] = useToken();
     event.preventDefault();
     const data = { ...this.state };
 
@@ -214,12 +220,13 @@ class HomeQuiz extends React.Component {
 
     // . . . so that we can POST a quiz object into our database!
     const quizResultsUrl = "http://localhost:8090/api/homequizzes/";
+    const { token } = this.context.token;
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
-        // Authorization: `bearer ${token}`,
+        Authorization: `bearer ${token}`,
       },
     };
 
@@ -684,4 +691,5 @@ class HomeQuiz extends React.Component {
   }
 }
 
+HomeQuiz.contextType = AuthContext;
 export default HomeQuiz;
