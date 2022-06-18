@@ -13,6 +13,8 @@ import EditAccount from "./EditAccount";
 import BodyQuiz from "./quizzes/BodyQuiz";
 import HomeQuiz from "./quizzes/HomeQuiz";
 import { AuthProvider } from "./authApi";
+import InventoryList from "./employee_pages/Inventory";
+import NewProductForm from "./employee_pages/NewProductForm";
 
 function App() {
   return (
@@ -34,6 +36,13 @@ function App() {
                 element={<ProductList category="Home" />}
               />
               <Route path="/products/all" element={<ProductList />} />
+            </Route>
+            <Route path="/employees">
+              <Route path="/employees/inventory" element={<InventoryList />} />
+              <Route
+                path="/employees/newproduct"
+                element={<NewProductForm />}
+              />
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
