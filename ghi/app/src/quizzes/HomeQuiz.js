@@ -1,5 +1,6 @@
 import React from "react";
 import { ProductColumn } from "../quizzes/BodyQuiz";
+import { useToken } from "../authApi";
 
 class HomeQuiz extends React.Component {
   constructor(props) {
@@ -180,6 +181,7 @@ class HomeQuiz extends React.Component {
   // This block handles quiz completion and the optional saving of a user's
   // scent profile results.
   async handleSubmit(event) {
+    // const [token] = useToken();
     event.preventDefault();
     const data = { ...this.state };
 
@@ -217,7 +219,7 @@ class HomeQuiz extends React.Component {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
-        Authorization: `bearer ${token}`,
+        // Authorization: `bearer ${token}`,
       },
     };
 
