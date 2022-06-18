@@ -1,11 +1,6 @@
 import React from "react";
 import { ProductColumn } from "../quizzes/BodyQuiz";
-import { AuthContext, AuthProvider } from "../authApi";
-
-// export function HomeQuizWrapper() {
-//   const [token] = useToken();
-//   return <HomeQuiz token={token} />;
-// }
+import { AuthContext } from "../authApi";
 
 class HomeQuiz extends React.Component {
   static contextType = AuthContext;
@@ -220,7 +215,7 @@ class HomeQuiz extends React.Component {
 
     // . . . so that we can POST a quiz object into our database!
     const quizResultsUrl = "http://localhost:8090/api/homequizzes/";
-    const { token } = this.context.token;
+    const token = this.context.token;
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(data),
