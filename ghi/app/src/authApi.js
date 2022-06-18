@@ -42,7 +42,7 @@ function handleErrorMessage(error) {
   return error;
 }
 
-const AuthContext = createContext({
+export const AuthContext = createContext({
   token: null,
   setToken: () => null,
 });
