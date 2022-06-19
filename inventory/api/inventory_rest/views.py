@@ -33,6 +33,11 @@ def api_list_products(request):
         if len(scents) > 0:
             products = products.filter(scent1__in=scents)
         
+        filters = {}
+        search = request.GET.get("name")
+        if search:
+            filters["name__icontains"] = search
+        products = products.filter(**filters)
         return JsonResponse(
             {"products": products.all()},
             encoder=ProductListEncoder,

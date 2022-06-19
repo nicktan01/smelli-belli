@@ -1,4 +1,4 @@
-from urllib import response
+import djwto.authentication as auth
 from django.http import JsonResponse
 import json
 from django.views.decorators.http import require_http_methods
@@ -6,10 +6,9 @@ from .models import BodyQuiz, HomeQuiz
 from .encoders import (
     BodyQuizEncoder,
     HomeQuizEncoder,
-    UserVO
     )
 
-
+@auth.jwt_login_required
 @require_http_methods(["GET", "POST"])
 def api_list_body_quizzes(request):
     if request.method == "GET":
@@ -20,17 +19,13 @@ def api_list_body_quizzes(request):
         )
     # POST
     else:
+        # This grabs all of the user information out of the authorization token
+        user_information = json.loads(request.payload)
+        # Stores the id of the user grabbed from the token, and saves to a variable
+        user_id = user_information["user"]["id"]
         content = json.loads(request.body)
-
-        # Get the user object and put it in the content dictionary
-        # try:
-        #     user = UserVO.objects.get(id=content["user"])
-        #     content["user"] = user
-        # except UserVO.DoesNotExist:
-        #     return JsonResponse(
-        #         {"message": "User does not exist"},
-        #         status=400,
-        #     )
+        # Updates the content dictionary with the user id stored in user_id
+        content["user"] = user_id
 
         # Then, grab the Body Quiz object
         try:
@@ -74,37 +69,9 @@ def api_show_body_quiz(request, pk):
             return JsonResponse(
                 {"message": "That body scent profile does not exist!"}
             )
-    # PUT
-    else:
-        try:
-            content = json.loads(request.body)
-            body_quiz = BodyQuiz.objects.get(id=pk)
-
-            props = [
-                "answer_1",
-                "answer_2",
-                "answer_3",
-                "answer_4",
-                "answer_5",
-                # "user"
-            ]
-            for prop in props:
-                if prop in content:
-                    setattr(body_quiz, prop, content[prop])
-            body_quiz.save()
-            return JsonResponse(
-                body_quiz,
-                encoder=BodyQuizEncoder,
-                safe=False
-            )
-        except BodyQuiz.DoesNotExist:
-            response = JsonResponse(
-                {"message": "That body scent profile does not exist!"}
-            )
-            response.status_code = 404
-            return response
 
 
+@auth.jwt_login_required
 @require_http_methods(["GET", "POST"])
 def api_list_home_quizzes(request):
     if request.method == "GET":
@@ -115,17 +82,13 @@ def api_list_home_quizzes(request):
         )
     # POST
     else:
+        # This grabs all of the user information out of the authorization token
+        user_information = json.loads(request.payload)
+        # Stores the id of the user grabbed from the token, and saves to a variable
+        user_id = user_information["user"]["id"]
         content = json.loads(request.body)
-
-        # Get the user object and put it in the content dictionary
-        # try:
-        #     user = UserVO.objects.get(id=content["user"])
-        #     content["user"] = user
-        # except UserVO.DoesNotExist:
-        #     return JsonResponse(
-        #         {"message": "User does not exist"},
-        #         status=400,
-        #     )
+        # Updates the content dictionary with the user id stored in user_id
+        content["user"] = user_id
 
         # Then, grab the Home Quiz object
         try:
@@ -169,36 +132,8 @@ def api_show_home_quiz(request, pk):
             return JsonResponse(
                 {"message": "That home scent profile does not exist!"}
             )
-    # PUT
-    else:
-        try:
-            content = json.loads(request.body)
-            home_quiz = HomeQuiz.objects.get(id=pk)
 
-            props = [
-                "answer_1",
-                "answer_2",
-                "answer_3",
-                "answer_4",
-                "answer_5",
-                # "user"
-            ]
-            for prop in props:
-                if prop in content:
-                    setattr(home_quiz, prop, content[prop])
-            home_quiz.save()
-            return JsonResponse(
-                home_quiz,
-                encoder=HomeQuizEncoder,
-                safe=False
-            )
-        except HomeQuiz.DoesNotExist:
-            response = JsonResponse(
-                {"message": "That home scent profile does not exist!"}
-            )
-            response.status_code = 404
-            return response
-
+# Wishlist functionality - Jordan
 def get_wishlist(request):
     pass
     # query wishlist table for all products matching current user id
@@ -220,4 +155,3 @@ def delete_wishlist(request):
     # get to user/wishlist
     # put to user/wishlist
     # delete to user/wishlist
-    
