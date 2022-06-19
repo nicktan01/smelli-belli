@@ -1,4 +1,4 @@
-# Graphical Human Interface
+# Customer Graphical Human Interface
 
 ## Home Page
 
@@ -56,31 +56,32 @@ Users can also visit a scent profile page to see their past results/recommendati
 
 ## About Page
 
-- Contains company information (description and social media links), and ingredient sourcing information (google maps integration)
+- Contains a brief description of Smelli Belli
+- Ingredient sourcing information (Google Maps integration)
 - FAQ
 
 ![About Page](wireframes/about.PNG)
 
 ---
 
-# Employee side
+# Employee Graphical Human Interface
 
 ## Inventory Page
 
-- table containing a list of products and their stocks, quantity counter per row
-- a button to create new products that will be stored in inventory, redirects to [create new product form](##New-Product-Form-Page)
+- Table containing a list of products with the product's SKU, quantity, and price
+- Quantity is adjustable on the table
 - search bar to find a specific item to add stock to
 
 ![Inventory](wireframes/inventory.PNG)
 
 ## New Product Form Page
 
-- a form to add new products to inventory
+- A form to add new products to inventory
 
-## Order Fulfillment
+<!-- ## Order Fulfillment
 
 - table of orders with tags to mark status of order
 - link to a detail view containing product info, quantity, price, customer info
 - (in detail view) button to update completion of order
 
-![Order Fulfillment](wireframes/order-fufillment.PNG)
+![Order Fulfillment](wireframes/order-fufillment.PNG) -->
