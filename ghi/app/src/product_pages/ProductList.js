@@ -11,18 +11,18 @@ const sortOptions = [
   { value: "name-desc", label: "Z to A" },
 ];
 const scentOptions = [
-  { value: "amber", label: "Amber" },
-  { value: "floral", label: "Floral" },
-  { value: "woody", label: "Woody" },
-  { value: "fresh", label: "Fresh" },
-  { value: "fruity", label: "Fruity" },
+  { value: "Amber", label: "Amber" },
+  { value: "Floral", label: "Floral" },
+  { value: "Woody", label: "Woody" },
+  { value: "Fresh", label: "Fresh" },
+  { value: "Fruity", label: "Fruity" },
 ];
 
 function ProductList({ category }) {
   const [productColumns, setProductColumns] = useState([[], [], [], []]);
   const [likedProducts, setLikedProducts] = useState({});
   const [sortBy, setSortBy] = useState(sortOptions[0]);
-  const [filterBy, setFilterBy] = useState({});
+  const [filterBy, setFilterBy] = useState([]);
 
   const customStyles = {
     menu: (provided, state) => ({
@@ -43,7 +43,12 @@ function ProductList({ category }) {
 
   useEffect(() => {
     async function fetchData() {
-      const url = `http://localhost:8100/api/products?sortBy=${sortBy.value}`;
+      const url = `http://localhost:8100/api/products?sortBy=${
+        sortBy.value
+      }&scents=${filterBy.reduce(
+        (a, b) => (a ? a + "," + b.value : b.value),
+        ""
+      )}`;
 
       try {
         const response = await fetch(url);
@@ -75,7 +80,7 @@ function ProductList({ category }) {
       }
     }
     fetchData();
-  }, [category, sortBy]);
+  }, [category, filterBy, sortBy]);
 
   return (
     <>
@@ -110,7 +115,6 @@ function ProductList({ category }) {
             className="me-3"
             onChange={(option) => {
               setSortBy(option);
-              console.log(option);
             }}
           />
           <Select
@@ -119,6 +123,10 @@ function ProductList({ category }) {
             placeholder="Primary Scent"
             width="200px"
             styles={customStyles}
+            onChange={(option) => {
+              setFilterBy(option);
+            }}
+            value={filterBy}
           />
         </div>
       </div>

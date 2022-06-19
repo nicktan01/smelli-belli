@@ -198,3 +198,26 @@ def api_show_home_quiz(request, pk):
             )
             response.status_code = 404
             return response
+
+def get_wishlist(request):
+    pass
+    # query wishlist table for all products matching current user id
+    # return all products in an array
+
+def add_wishlist(request):
+    pass
+    # get current user id
+    # receive sku from request
+    # add an entry to table
+
+def delete_wishlist(request):
+    pass
+    # get current user id
+    # receive sku from request
+    # remove entry from table
+
+    # urls to map to wishlist views
+    # get to user/wishlist
+    # put to user/wishlist
+    # delete to user/wishlist
+    

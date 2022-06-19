@@ -18,17 +18,23 @@ def get_name(e):
 def api_list_products(request):
     if request.method == "GET":
         sortBy = request.GET.get('sortBy', 'bestselling')
-        products = Product.objects.all()
+        scents = list(filter(bool, request.GET.get('scents', '').split(',')))
+        print(scents)
+        products = Product.objects
         if sortBy == 'name-desc':
-            products= Product.objects.order_by(Lower('name').desc()).all()
+            products = products.order_by(Lower('name').desc())
         elif sortBy == 'name-asc':
-            products= Product.objects.order_by(Lower('name').asc()).all()
+            products = products.order_by(Lower('name').asc())
         elif sortBy == 'price-asc':
-            products= Product.objects.order_by('price').all()
+            products = products.order_by('price')
         elif sortBy == 'price-desc':
-            products= Product.objects.order_by('-price').all()
+            products = products.order_by('-price')
+        
+        if len(scents) > 0:
+            products = products.filter(scent1__in=scents)
+        
         return JsonResponse(
-            {"products": products},
+            {"products": products.all()},
             encoder=ProductListEncoder,
         )
     # POST
