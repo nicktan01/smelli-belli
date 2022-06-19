@@ -6,6 +6,7 @@ function ProductColumn(props) {
       {props.list.map((product) => {
         return (
           <Product
+            key={product.sku}
             sku={product.sku}
             onClickLikeProduct={props.onClickLikeProduct}
             liked={props.likedProducts[product.sku]}

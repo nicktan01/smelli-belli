@@ -40,7 +40,6 @@ function ProductList({ category }) {
       return { ...provided, opacity, transition };
     },
   };
-  console.log(likedProducts);
 
   useEffect(() => {
     async function fetchData() {
