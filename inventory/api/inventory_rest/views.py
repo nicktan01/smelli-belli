@@ -1,5 +1,6 @@
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
+from django.db.models.functions import Lower
 import json
 from .encoders import (
     ProductDetailEncoder,
@@ -7,13 +8,38 @@ from .encoders import (
 )
 from .models import Product
 
+def get_price(e):
+    return e["price"]
+
+def get_name(e):
+    return e["name"]
 
 @require_http_methods(["GET", "POST"])
 def api_list_products(request):
     if request.method == "GET":
-        products = Product.objects.all()
+        sortBy = request.GET.get('sortBy', 'bestselling')
+        scents = list(filter(bool, request.GET.get('scents', '').split(',')))
+        print(scents)
+        products = Product.objects
+        if sortBy == 'name-desc':
+            products = products.order_by(Lower('name').desc())
+        elif sortBy == 'name-asc':
+            products = products.order_by(Lower('name').asc())
+        elif sortBy == 'price-asc':
+            products = products.order_by('price')
+        elif sortBy == 'price-desc':
+            products = products.order_by('-price')
+        
+        if len(scents) > 0:
+            products = products.filter(scent1__in=scents)
+        
+        filters = {}
+        search = request.GET.get("name")
+        if search:
+            filters["name__icontains"] = search
+        products = products.filter(**filters)
         return JsonResponse(
-            {"products": products},
+            {"products": products.all()},
             encoder=ProductListEncoder,
         )
     # POST

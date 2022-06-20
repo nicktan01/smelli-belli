@@ -19,13 +19,7 @@ class BodyQuiz(models.Model):
     answer_4 = models.CharField(max_length=50)
     answer_5 = models.CharField(max_length=50)
     created = models.DateField(auto_now_add=True)
-    # user = models.ForeignKey(
-    #     UserVO,
-    #     related_name="body_quiz",
-    #     on_delete=models.CASCADE,
-    #     blank=True,
-    #     null=True
-    # )
+    user = models.IntegerField(null=True)
 
 class HomeQuiz(models.Model):
     answer_1 = models.CharField(max_length=50)
@@ -34,13 +28,7 @@ class HomeQuiz(models.Model):
     answer_4 = models.CharField(max_length=50)
     answer_5 = models.CharField(max_length=50)
     created = models.DateField(auto_now_add=True)
-    # user = models.ForeignKey(
-    #     UserVO,
-    #     related_name="home_quiz",
-    #     on_delete=models.CASCADE,
-    #     blank=True,
-    #     null=True
-    # )
+    user = models.IntegerField(null=True)
 
 class Cart(models.Model):
     product = models.ForeignKey(
@@ -48,12 +36,12 @@ class Cart(models.Model):
         related_name="cart",
         on_delete=models.CASCADE,
     )
-    user = models.ForeignKey(UserVO, on_delete=models.CASCADE)
+    user = models.IntegerField(null=True) # changed this to match the changes from the quiz models. check ./views.py to see how the user information was grabbed out of the token
     quantity = models.PositiveSmallIntegerField()
     totals = models.FloatField()
     created = models.DateTimeField(auto_now_add=True)
 
 
 class WishList(models.Model):
-    user = models.ForeignKey(UserVO, on_delete=models.CASCADE)
+    user = models.IntegerField(null=True) # same as line 35 on user prop for cart
     product = models.ForeignKey(ProductVO, related_name="wishlist", on_delete=models.CASCADE)

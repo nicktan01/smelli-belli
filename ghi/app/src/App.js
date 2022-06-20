@@ -15,6 +15,8 @@ import HomeQuiz from "./quizzes/HomeQuiz";
 import Cart from "./Cart/Cart";
 import Checkout from "./Cart/Checkout";
 import { AuthProvider } from "./authApi";
+import InventoryList from "./employee_pages/Inventory";
+import NewProductForm from "./employee_pages/NewProductForm";
 
 function App() {
   return (
@@ -36,6 +38,13 @@ function App() {
                 element={<ProductList category="Home" />}
               />
               <Route path="/products/all" element={<ProductList />} />
+            </Route>
+            <Route path="/employees">
+              <Route path="/employees/inventory" element={<InventoryList />} />
+              <Route
+                path="/employees/newproduct"
+                element={<NewProductForm />}
+              />
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
