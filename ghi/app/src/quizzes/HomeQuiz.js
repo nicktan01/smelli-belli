@@ -221,7 +221,7 @@ class HomeQuiz extends React.Component {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
-        Authorization: `bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     };
 
@@ -647,8 +647,10 @@ class HomeQuiz extends React.Component {
         </div>
         <div className={quizResultsClasses}>
           <h2>
-            You got {this.state.answerTwo} and {this.state.answerThree}! Here
-            are some {this.state.answerOne} products that match your Scent
+            You got {this.state.answerTwo} and {this.state.answerThree}!
+          </h2>
+          <h2>
+            Here are some {this.state.answerOne} products that match your Scent
             Profile:
           </h2>
           <button
@@ -679,7 +681,7 @@ class HomeQuiz extends React.Component {
           </h3>
         </div>
         <div className={resultsSubmittedClasses} id="success-message">
-          You have saved your Body Scent Profile results!
+          You have saved your Home Scent Profile results!
         </div>
       </div>
     );

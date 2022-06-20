@@ -20,7 +20,8 @@ def api_list_body_quizzes(request):
     # POST
     else:
         # This grabs all of the user information out of the authorization token
-        user_information = json.loads(request.payload)
+        payload_dict = json.dumps(request.payload)
+        user_information = json.loads(payload_dict)
         # Stores the id of the user grabbed from the token, and saves to a variable
         user_id = user_information["user"]["id"]
         content = json.loads(request.body)
@@ -83,7 +84,8 @@ def api_list_home_quizzes(request):
     # POST
     else:
         # This grabs all of the user information out of the authorization token
-        user_information = json.loads(request.payload)
+        payload_dict = json.dumps(request.payload)
+        user_information = json.loads(payload_dict)
         # Stores the id of the user grabbed from the token, and saves to a variable
         user_id = user_information["user"]["id"]
         content = json.loads(request.body)

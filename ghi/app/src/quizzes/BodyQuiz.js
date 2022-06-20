@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../authApi";
 
 // This function populates the columns with Product Cards matching the user's
 // scent profile results
@@ -31,6 +32,8 @@ export function ProductColumn(props) {
 }
 
 class BodyQuiz extends React.Component {
+  static contextType = AuthContext;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -51,10 +54,13 @@ class BodyQuiz extends React.Component {
       resultsSubmitted: false,
       products: [],
       productColumns: [[], [], [], []],
+      currentStep: 1,
     };
 
     // We need to bind this to all of these properties so that we can track
     // when a user has answered a question, or clicked the "Next" button
+    this.handlePageBack = this.handlePageBack.bind(this);
+    this.handlePageForward = this.handlePageForward.bind(this);
     this.handleQuestionOne = this.handleQuestionOne.bind(this);
     this.handleQuestionTwo = this.handleQuestionTwo.bind(this);
     this.handleQuestionThree = this.handleQuestionThree.bind(this);
@@ -82,30 +88,42 @@ class BodyQuiz extends React.Component {
     const id = event.currentTarget.id;
     this.setState({ answerOne: id });
     this.setState({ questionOneAnswered: true }); // marks q as answered
+    this.setState({ currentStep: this.state.currentStep + 1 });
   }
 
   handleQuestionTwo(event) {
     const id = event.currentTarget.id;
     this.setState({ answerTwo: id });
     this.setState({ questionTwoAnswered: true });
+    this.setState({ currentStep: this.state.currentStep + 1 });
   }
 
   handleQuestionThree(event) {
     const id = event.currentTarget.id;
     this.setState({ answerThree: id });
     this.setState({ questionThreeAnswered: true });
+    this.setState({ currentStep: this.state.currentStep + 1 });
   }
 
   handleQuestionFour(event) {
     const id = event.currentTarget.id;
     this.setState({ answerFour: id });
     this.setState({ questionFourAnswered: true });
+    this.setState({ currentStep: this.state.currentStep + 1 });
   }
 
   handleQuestionFive(event) {
     const value = event.currentTarget.value;
     this.setState({ answerFive: parseInt(value) }); // parses the int value
     this.setState({ questionFiveAnswered: true });
+  }
+
+  handlePageBack() {
+    this.setState({ currentStep: this.state.currentStep - 1 });
+  }
+
+  handlePageForward() {
+    this.setState({ currentStep: this.state.currentStep + 1 });
   }
 
   async handlePageOneComplete() {
@@ -222,14 +240,17 @@ class BodyQuiz extends React.Component {
     delete data.productColumns;
     delete data.resultsSubmitted;
     delete data.noMatches;
+    delete data.currentStep;
 
     // . . . so that we can POST a quiz object into our database!
     const quizResultsUrl = "http://localhost:8090/api/bodyquizzes/";
+    const token = this.context.token;
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
     };
 
@@ -255,6 +276,7 @@ class BodyQuiz extends React.Component {
         products: [],
         productColumns: [],
         resultsSubmitted: true,
+        currentStep: 1,
       });
     }
   }
@@ -278,19 +300,38 @@ class BodyQuiz extends React.Component {
 
     // If the user clicks an answer for Question One, then hide Question One
     // and display Question Two
-    if (this.state.questionOneAnswered) {
+    if (this.state.currentStep == 1) {
+      quizPageOneClasses = "my-5";
+      quizPageTwoClasses = "d-none";
+      quizPageThreeClasses = "d-none";
+      quizPageFourClasses = "d-none";
+      quizPageFiveClasses = "d-none";
+    }
+    if (this.state.currentStep == 2) {
       quizPageOneClasses = "d-none";
       quizPageTwoClasses = "my-5";
+      quizPageThreeClasses = "d-none";
+      quizPageFourClasses = "d-none";
+      quizPageFiveClasses = "d-none";
     }
-    if (this.state.questionTwoAnswered) {
+    if (this.state.currentStep == 3) {
+      quizPageOneClasses = "d-none";
       quizPageTwoClasses = "d-none";
       quizPageThreeClasses = "my-5";
+      quizPageFourClasses = "d-none";
+      quizPageFiveClasses = "d-none";
     }
-    if (this.state.questionThreeAnswered) {
+    if (this.state.currentStep == 4) {
+      quizPageOneClasses = "d-none";
+      quizPageTwoClasses = "d-none";
       quizPageThreeClasses = "d-none";
       quizPageFourClasses = "my-5";
+      quizPageFiveClasses = "d-none";
     }
-    if (this.state.questionFourAnswered) {
+    if (this.state.currentStep == 5) {
+      quizPageOneClasses = "d-none";
+      quizPageTwoClasses = "d-none";
+      quizPageThreeClasses = "d-none";
       quizPageFourClasses = "d-none";
       quizPageFiveClasses = "my-5";
     }
@@ -337,6 +378,28 @@ class BodyQuiz extends React.Component {
           <h1 className="display-3 fw-bold">Scent Finder</h1>
           <h2 className="display-7 fw-bold">Body Products</h2>
           <div className={quizPageOneClasses} id="step-1">
+            <div
+              className="btn-toolbar justify-content-around mb-5"
+              role="toolbar"
+              aria-label="Toolbar with button groups"
+            >
+              <button
+                type="button"
+                className="btn-sm btn-secondary"
+                disabled={true}
+              >
+                Previous
+              </button>
+              <h6>Quiz Navigation</h6>
+              <button
+                type="button"
+                className="btn-sm btn-primary"
+                disabled={!this.state.questionOneAnswered}
+                onClick={this.handlePageForward}
+              >
+                Next
+              </button>
+            </div>
             <h4>What kind of product are you looking for?</h4>
             <em>Please, choose one</em>
             <div className="my-5 d-grid gap-4 d-md-flex justify-content-center">
@@ -375,6 +438,28 @@ class BodyQuiz extends React.Component {
             </div>
           </div>
           <div className={quizPageTwoClasses} id="step-2">
+            <div
+              className="btn-toolbar justify-content-around mb-5"
+              role="toolbar"
+              aria-label="Toolbar with button groups"
+            >
+              <button
+                type="button"
+                className="btn-sm btn-primary"
+                onClick={this.handlePageBack}
+              >
+                Previous
+              </button>
+              <h6>Quiz Navigation</h6>
+              <button
+                type="button"
+                className="btn-sm btn-primary"
+                disabled={!this.state.questionTwoAnswered}
+                onClick={this.handlePageForward}
+              >
+                Next
+              </button>
+            </div>
             <h4>Which activity do you enjoy most?</h4>
             <em>Please, choose one</em>
             <div className="my-5 d-grid gap-4 d-md-flex justify-content-center">
@@ -421,6 +506,28 @@ class BodyQuiz extends React.Component {
             </div>
           </div>
           <div className={quizPageThreeClasses} id="step-3">
+            <div
+              className="btn-toolbar justify-content-around mb-5"
+              role="toolbar"
+              aria-label="Toolbar with button groups"
+            >
+              <button
+                type="button"
+                className="btn-sm btn-primary"
+                onClick={this.handlePageBack}
+              >
+                Previous
+              </button>
+              <h6>Quiz Navigation</h6>
+              <button
+                type="button"
+                className="btn-sm btn-primary"
+                disabled={!this.state.questionThreeAnswered}
+                onClick={this.handlePageForward}
+              >
+                Next
+              </button>
+            </div>
             <h4>What is your favorite season?</h4>
             <em>Please, choose one</em>
             <div className="my-5 d-grid gap-4 d-md-flex justify-content-center">
@@ -459,6 +566,28 @@ class BodyQuiz extends React.Component {
             </div>
           </div>
           <div className={quizPageFourClasses} id="step-4">
+            <div
+              className="btn-toolbar justify-content-around mb-5"
+              role="toolbar"
+              aria-label="Toolbar with button groups"
+            >
+              <button
+                type="button"
+                className="btn-sm btn-primary"
+                onClick={this.handlePageBack}
+              >
+                Previous
+              </button>
+              <h6>Quiz Navigation</h6>
+              <button
+                type="button"
+                className="btn-sm btn-primary"
+                disabled={!this.state.questionFourAnswered}
+                onClick={this.handlePageForward}
+              >
+                Next
+              </button>
+            </div>
             <h4>What clothing style is your favorite?</h4>
             <em>Please, choose one</em>
             <div className="my-5 d-grid gap-4 d-md-flex justify-content-center">
@@ -505,6 +634,27 @@ class BodyQuiz extends React.Component {
             </div>
           </div>
           <div className={quizPageFiveClasses} id="step-5">
+            <div
+              className="btn-toolbar justify-content-around mb-5"
+              role="toolbar"
+              aria-label="Toolbar with button groups"
+            >
+              <button
+                type="button"
+                className="btn-sm btn-primary"
+                onClick={this.handlePageBack}
+              >
+                Previous
+              </button>
+              <h6>Quiz Navigation</h6>
+              <button
+                type="button"
+                className="btn-sm btn-secondary"
+                disabled={true}
+              >
+                Next
+              </button>
+            </div>
             <h4>How intense would you like your scent?</h4>
             <em>Drag the slider to the desired value</em>
             <div className="my-5">
@@ -575,4 +725,5 @@ class BodyQuiz extends React.Component {
   }
 }
 
+BodyQuiz.contextType = AuthContext;
 export default BodyQuiz;

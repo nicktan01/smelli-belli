@@ -1,8 +1,8 @@
 from common.json import ModelEncoder
 from .models import (
-    HomeQuiz,
     ProductVO,
-    BodyQuiz, 
+    BodyQuiz,
+    HomeQuiz 
 )
 
 class ProductVOEncoder(ModelEncoder):
