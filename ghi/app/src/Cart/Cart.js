@@ -1,11 +1,13 @@
-import React from 'react';
-
+import React from "react";
 
 class Cart extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        products: [],
+        product: {},
+        user: "",
+        quantity: "",
+        totals: ""
       };
     }
 
@@ -23,16 +25,17 @@ class Cart extends React.Component {
     } 
         
     render() {
-      console.log("this is the state", this.state.cart)
-      // const cartItems = this.state.map((d) => <li key={d.sku}>{d.name}</li>)
+      console.log("this is the state", this.props.products)
+     
         return (
-          
+            
             <div className="row">
               <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
                   <h1>Cart</h1>
-                  {/* <h2>This is h2 { this.state }</h2>
-                  <div>This is div { this.state }</div> */}
+                  <h2>
+                    {this.props.products}
+                  </h2>
                   <table className="table table-striped">
                     <thead>
                       <tr>

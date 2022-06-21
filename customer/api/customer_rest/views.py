@@ -166,8 +166,9 @@ def api_cart(request):
     if request.method == "GET":
         cart = Cart.objects.all()
         return JsonResponse(
-            {"cart": cart},
-            encoder=CartEncoder
+            cart,
+            encoder=CartEncoder,
+            safe=False
         )
     else: #POST
         # payload_dict = json.dumps(request.payload)
