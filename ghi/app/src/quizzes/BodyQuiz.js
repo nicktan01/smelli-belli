@@ -793,5 +793,4 @@ class BodyQuiz extends React.Component {
   }
 }
 
-BodyQuiz.contextType = AuthContext;
 export default BodyQuiz;
