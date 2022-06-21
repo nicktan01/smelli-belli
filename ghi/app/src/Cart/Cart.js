@@ -4,7 +4,7 @@ class Cart extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        product: {},
+        products: [],
         user: "",
         quantity: "",
         totals: ""
@@ -15,7 +15,7 @@ class Cart extends React.Component {
         const response = await fetch(`${process.env.REACT_APP_CUSTOMER_HOST}/api/cart/`);
         if (response.ok) {
           const data = await response.json();
-          console.log(data)
+          console.log("this is the data ", data)
           this.setState({
             products: data,
           }); 
@@ -25,7 +25,8 @@ class Cart extends React.Component {
     } 
         
     render() {
-      console.log("this is the state", this.props.products)
+      let first_product = this.state.products[0]
+      console.log("this is the products", first_product)
      
         return (
             
@@ -33,21 +34,22 @@ class Cart extends React.Component {
               <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
                   <h1>Cart</h1>
-                  <h2>
-                    {this.props.products}
-                  </h2>
                   <table className="table table-striped">
                     <thead>
                       <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <th>Item Name</th>
+                        <th>Price</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                          <td>{ this.state.cart }</td>
-                      </tr>
+                    {this.state.products.map(cart => {
+                      return (
+                        <tr key={cart.product.sku}>
+                          <td>{cart.product.name}</td>
+                          <td>{cart.product.price}</td>
+                        </tr>
+                      );
+                    })}
                     </tbody>
                   </table>
                 </div>
