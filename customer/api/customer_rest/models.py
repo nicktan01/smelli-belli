@@ -5,8 +5,12 @@ class ProductVO(models.Model):
     import_href = models.CharField(max_length=200, unique=True)
     name = models.CharField(max_length=50)
     sku = models.CharField(max_length=12, unique=True)
-    price = models.DecimalField(max_digits=5, decimal_places=2)
+    price = models.FloatField()
     image = models.URLField()
+    
+class UserVO(models.Model):
+    import_href = models.CharField(max_length=200, unique=True)
+    user = models.CharField(max_length=50)
 
 class BodyQuiz(models.Model):
     answer_1 = models.CharField(max_length=50)
@@ -34,8 +38,8 @@ class Cart(models.Model):
     )
     user = models.IntegerField(null=True) # changed this to match the changes from the quiz models. check ./views.py to see how the user information was grabbed out of the token
     quantity = models.PositiveSmallIntegerField()
-    totals = models.DecimalField(max_digits=5, decimal_places=2)
-    created = models.DateTimeField(auto_now_add=True)
+    totals = models.FloatField()
+    created = models.DateField(auto_now_add=True)
 
 
 class WishList(models.Model):
