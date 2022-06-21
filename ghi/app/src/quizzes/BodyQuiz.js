@@ -429,9 +429,9 @@ class BodyQuiz extends React.Component {
           <div className={noAuthClasses}>
             <h2>Save Your Scent Profile Results For Later</h2>
             <em>
-              We see you aren't logged in today. Sign up today and enjoy access
-              to the latest Smelli Belli news and save your Scent Profile
-              results for later!
+              We see you aren't logged in today. Sign up and enjoy access to the
+              latest Smelli Belli news and save your Scent Profile results for
+              later!
             </em>
             <div className="my-5 d-grid gap-4 d-md-flex justify-content-center">
               <button

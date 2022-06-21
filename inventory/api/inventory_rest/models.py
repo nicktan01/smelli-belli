@@ -2,39 +2,6 @@ from django.urls import reverse
 from django.db import models
 
 # Create your models here.
-# class Size(models.Model):
-#     ONE_FL_OZ = "1.0 fl oz"
-#     TWO_FL_OZ = "2.0 fl oz"
-#     FOUR_FL_OZ = "4.0 fl oz"
-#     EIGHT_FL_OZ = "8.0 fl oz"
-#     SIXTEEN_FL_OZ = "16.0 fl oz"
-#     ONE_OZ = "1.0 oz"
-#     TWO_OZ = "2.0 oz"
-#     FOUR_OZ = "4.0 oz"
-#     EIGHT_OZ = "8.0 oz"
-#     SIXTEEN_OZ = "16.0 oz"
-#     SIZE_CHOICES = [
-#         (ONE_FL_OZ, "1.0 fl oz"),
-#         (TWO_FL_OZ, "2.0 fl oz"),
-#         (FOUR_FL_OZ, "4.0 fl oz"),
-#         (EIGHT_FL_OZ, "8.0 fl oz"),
-#         (SIXTEEN_FL_OZ, "16.0 fl oz"),
-#         (ONE_OZ, "1.0 oz"),
-#         (TWO_OZ, "2.0 oz"),
-#         (FOUR_OZ, "4.0 oz"),
-#         (EIGHT_OZ, "8.0 oz"),
-#         (SIXTEEN_OZ, "16.0 oz"),
-#     ]
-#     sizes = models.CharField(
-#         max_length=25,
-#         choices=SIZE_CHOICES,
-#         default=''
-#     )
-
-#     def __str__(self):
-#         return f"{self.sizes}"
-
-
 class Product(models.Model):
     ONE_FL_OZ = "1.0 fl oz"
     TWO_FL_OZ = "2.0 fl oz"
