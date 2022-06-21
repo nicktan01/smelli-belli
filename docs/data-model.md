@@ -1,48 +1,32 @@
 # Data models
 
 ## Inventory microservice
+
 ---
 
 ### Product
 
-| name           | type   | unique | optional |
-| -------------- | ------ | ------ | -------- |
-| name           | string | yes    | no       |
-| scent          | string | no     | no       |
-| sku            | string | yes    | no       |
-| price          | int    | no     | no       |
-| size           | int    | no     | no       |
-| quantity       | int    | no     | no       |
-| ingredients    | string | no     | no       |
-| limited_item   | bool   | no     | no       |
-| created        | int    | no     | no       |
-| image          | string | no     | no       |
-| description    | string | no     | no       |
-| usage          | string | no     | no       |
-| storage        | string | no     | no       |
-| is_wish_listed | bool   | no     | no       |
+| name             | type   | unique | optional |
+| ---------------- | ------ | ------ | -------- |
+| name             | string | yes    | no       |
+| product_type     | string | no     | no       |
+| product_category | string | no     | no       |
+| size             | string | no     | no       |
+| sku              | string | yes    | no       |
+| price            | int    | no     | no       |
+| scent1           | string | no     | no       |
+| scent2           | string | no     | no       |
+| quantity         | int    | no     | no       |
+| image            | string | no     | no       |
+| description      | string | no     | no       |
 
 The `product` entity contains the data about a specific product
 that a user can purchase.
 
-### Scent
-| name    | type                        | unique | optional |
-|---------|-----------------------------|--------|----------|
-| scents  | string                      | true   | false    |
-| product | reference to product entity | true   | true     |
-
-The `scent` entity contains the string name as a unique tag that can be used to associate to a specific product. A scent can exist without being attached to a product listed in inventory
-
-### Rating
-
-This is a stretch goal to implement product ratings for our products!
-
-### Tags
-
-This is a stretch goal to implement product tags for our products!
-
 ## Customer microservice
+
 ---
+
 ### Wish List
 
 | name    | type                        | unique | optional |
@@ -89,7 +73,9 @@ This is a stretch goal to implement product tags for our products!
 | shipping_address | string | no     | no       |
 
 ## Employee microservice
+
 ---
+
 ### Order
 
 | Name         | Type     | Unique | Optional |
@@ -100,4 +86,3 @@ This is a stretch goal to implement product tags for our products!
 | order_number | int      | yes    | no       |
 | customer     | int      | no     | no       |
 | created      | datetime | no     | no       |
-
