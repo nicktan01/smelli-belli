@@ -44,3 +44,7 @@
   height: 500px;
   width: 1200px; }
 .div3 { grid-area: 1 / 2 / 4 / 5; }
+
+.break-word {
+  word-wrap: break-word;
+}

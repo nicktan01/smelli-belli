@@ -64,29 +64,44 @@ class HomePage extends React.Component {
         <h3 className="text-center" style={{
         transform: "translateY(-90%)"}}>Find Products Suited For You!</h3>       
      
-     <div className="px-5">
-     <div className="quiz-container px-5">
-      <div className="div1 text-center left-img">
-        <img src="/images/body-quiz.jpg"
-        height={500}
-        width={1200}
-        style={{ objectFit: "cover", width: "100%" }}
-        ></img>
-        <NavLink to="/bodyquiz" role="button" className="col text-center btn btn-outline-dark btn-lg">
-          Body Quiz Scent
-        </NavLink >
+     <div className="pxy-5 shadow offset-3 col-6 mt-4 mb-5" width={1000}>
+      <div className="container px-5">
+          <div className=" text-centered row position-relative">
+            <div className="text-centered">
+              <h3 className="">Body Scent Quiz</h3>
+                <p className="">Take a short quiz to determine your ideal scent profile for all body related products!</p>
+                  <NavLink to="/bodyquiz" role="button" className="col text-center btn btn-outline-dark btn-lg">
+                        Body Quiz Scent
+                  </NavLink >
+          </div>
+            
+            <div className="text-center left-img">
+              <img src="/images/body-quiz.jpg"
+                    height={300}
+                    width={null}
+                    style={{ objectFit: "cover", width: "100%" }}
+              ></img>
+          </div>
+            </div>
+
+        
+        <div className="row position-relative">
+          <div className="position-absolute top-50 start-100 translate-middle">
+          <h3>Home Scent Quiz</h3>
+              <p>Take a short quiz to determine your ideal scent profile for all home related products!</p>
+                <NavLink to="/homequiz" role="button" className="col text-center btn btn-outline-dark btn-lg">
+                  Home Quiz Scent
+                </NavLink> 
+          </div>
+          <div className="text-center right-img">
+            <img src="/images/home-quiz.jpg"
+                  height={300}
+                  width={null}
+                  style={{ objectFit: "cover", width: "100%",}}>
+            </img>
+          </div>
+        </div>
       </div>
-      <div className="div2 text-center right-img">
-        <img src="/images/home-quiz.jpg"
-        height={500}
-        width={1200}
-        style={{ objectFit: "cover", width: "100%",}}
-        ></img>
-        <NavLink to="/homequiz" role="button" className="col text-center btn btn-outline-dark btn-lg">
-          Home Quiz Scent
-        </NavLink> 
-      </div>
-    </div>
       
         
     <div className="carousel-container carousel-dark">
