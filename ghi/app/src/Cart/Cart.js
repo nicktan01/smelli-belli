@@ -12,7 +12,7 @@ class Cart extends React.Component {
     }
 
     async componentDidMount() {
-        const response = await fetch('http://localhost:8090/api/cart/');
+        const response = await fetch(`${process.env.REACT_APP_CUSTOMER_HOST}/api/cart/`);
         if (response.ok) {
           const data = await response.json();
           console.log(data)

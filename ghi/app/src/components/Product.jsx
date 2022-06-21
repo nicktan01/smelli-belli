@@ -16,10 +16,10 @@ function Product({ sku, onClickLikeProduct, onClickCartProduct, liked, carted}) 
 
   useEffect(() => {
     async function fetchData() {
-      const url = "http://localhost:8100/api/products/";
+      const url = `${process.env.REACT_APP_INVENTORY_HOST}/api/products/`;
 
       try {
-        const detailUrl = `http://localhost:8100/api/products/${sku}`;
+        const detailUrl = `${process.env.REACT_APP_INVENTORY_HOST}/api/products/${sku}`;
         setProduct("loading");
         fetch(detailUrl)
           .then((res) => res.json())
@@ -32,12 +32,13 @@ function Product({ sku, onClickLikeProduct, onClickCartProduct, liked, carted}) 
     }
     fetchData();
   }, [sku]);
+
   function cartProductHandler(e, product, price) {
     e.stopPropagation();
     onClickCartProduct(product.sku);
     console.log("The product: ",product)
     async function fetchData() {
-      const url = "http://localhost:8090/api/cart/";
+      const url = `${process.env.REACT_APP_CUSTOMER_HOST}/api/cart/`;
       const fetchConfig = {
         method: "post",
         headers: {

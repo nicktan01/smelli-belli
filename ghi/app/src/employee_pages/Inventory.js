@@ -90,7 +90,7 @@ function InventoryList(props) {
   }
 
   async function updateQuantity(sku, quantity) {
-    const url = `http://localhost:8100/api/products/${sku}/`;
+    const url = `${process.env.REACT_APP_INVENTORY_HOST}/api/products/${sku}/`;
 
     const params = {
       quantity,
@@ -123,7 +123,7 @@ function InventoryList(props) {
 
   async function productSearch(event) {
     event.preventDefault();
-    const searchUrl = `http://localhost:8100/api/products/?name=${product}`;
+    const searchUrl = `${process.env.REACT_APP_INVENTORY_HOST}/api/products/?name=${product}`;
     const fetchConfig = {
       method: "GET",
       headers: {
@@ -140,7 +140,7 @@ function InventoryList(props) {
 
   useEffect(() => {
     async function fetchData() {
-      const url = "http://localhost:8100/api/products/";
+      const url = `${process.env.REACT_APP_INVENTORY_HOST}/api/products/`;
 
       const response = await fetch(url);
       const data = await response.json();

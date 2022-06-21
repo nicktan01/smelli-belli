@@ -76,7 +76,7 @@ class BodyQuiz extends React.Component {
   // This function creates an empty list when the page is first rendered
   // that we can later add products to when the user finishes the quiz
   async componentDidMount() {
-    const productUrl = "http://localhost:8100/api/products/";
+    const productUrl = `${process.env.REACT_APP_INVENTORY_HOST}/api/products/`;
     const productResponse = await fetch(productUrl);
 
     if (productResponse.ok) {
@@ -151,7 +151,7 @@ class BodyQuiz extends React.Component {
       this.setState({ quizQuestionsComplete: true });
     }
 
-    const url = "http://localhost:8100/api/products/";
+    const url = `${process.env.REACT_APP_INVENTORY_HOST}/api/products/`;
 
     try {
       const response = await fetch(url);
@@ -160,7 +160,7 @@ class BodyQuiz extends React.Component {
 
         const requests = [];
         for (let product of data.products) {
-          const detailUrl = `http://localhost:8100${product.href}`;
+          const detailUrl = `${process.env.REACT_APP_INVENTORY_HOST}${product.href}`;
           requests.push(fetch(detailUrl));
         }
 
@@ -250,7 +250,7 @@ class BodyQuiz extends React.Component {
     delete data.currentStep;
 
     // . . . so that we can POST a quiz object into our database!
-    const quizResultsUrl = "http://localhost:8090/api/bodyquizzes/";
+    const quizResultsUrl = `${process.env.REACT_APP_CUSTOMER_HOST}/api/bodyquizzes/`;
     const token = this.context.token;
     const fetchConfig = {
       method: "post",

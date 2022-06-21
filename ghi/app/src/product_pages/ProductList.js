@@ -44,7 +44,7 @@ function ProductList({ category }) {
 
   useEffect(() => {
     async function fetchData() {
-      const url = `http://localhost:8100/api/products?sortBy=${
+      const url = `${process.env.REACT_APP_INVENTORY_HOST}/api/products?sortBy=${
         sortBy.value
       }&scents=${filterBy.reduce(
         (a, b) => (a ? a + "," + b.value : b.value),
