@@ -68,8 +68,8 @@ class HomePage extends React.Component {
      <div className="quiz-container px-5">
       <div className="div1 text-center left-img">
         <img src="/images/body-quiz.jpg"
-        height={300}
-        width={null}
+        height={500}
+        width={1200}
         style={{ objectFit: "cover", width: "100%" }}
         ></img>
         <NavLink to="/bodyquiz" role="button" className="col text-center btn btn-outline-dark btn-lg">
@@ -78,8 +78,8 @@ class HomePage extends React.Component {
       </div>
       <div className="div2 text-center right-img">
         <img src="/images/home-quiz.jpg"
-        height={300}
-        width={null}
+        height={500}
+        width={1200}
         style={{ objectFit: "cover", width: "100%",}}
         ></img>
         <NavLink to="/homequiz" role="button" className="col text-center btn btn-outline-dark btn-lg">

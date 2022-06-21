@@ -37,6 +37,10 @@
     grid-row-gap: 0px;
     }
   
-.div1 { grid-area: 1 / 1 / 2 / 2; }
-.div2 { grid-area: 1 / 2 / 2 / 3; }
+.div1 { grid-area: 1 / 1 / 2 / 2;
+  height: 500px;
+  width: 1200px; }
+.div2 { grid-area: 1 / 2 / 2 / 3;   
+  height: 500px;
+  width: 1200px; }
 .div3 { grid-area: 1 / 2 / 4 / 5; }
