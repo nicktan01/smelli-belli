@@ -34,43 +34,49 @@ that a user can purchase.
 | user    | reference to user entity    | true   | false    |
 | product | reference to product entity | true   | true     |
 
-### Account/User
+### ProductVO
 
-| Name        | Type                        | Unique | Optional |
+| name        | type                        | unique | optional |
 | ----------- | --------------------------- | ------ | -------- |
-| first_name  | string                      | no     | no       |
-| last_name   | string                      | no     | no       |
-| email       | string                      | no     | no       |
-| address     | reference to Address entity | no     | no       |
-| password    | string                      | no     | no       |
-| is_staff    | bool                        | no     | no       |
-| is_active   | bool                        | no     | no       |
-| date_joined | datetime                    | no     | no       |
+| import_href | reference to Product entity | yes    | no       |
+| name        | reference to Product entity | no     | no       |
+| sku         | reference to Product entity | yes    | no       |
+| price       | reference to Product entity | no     | no       |
+| image       | reference to Product entity | no     | no       |
 
-### Quiz Questions
+### Home Quiz
 
-| name      | type   | unique | optional |
-| --------- | ------ | ------ | -------- |
-| questions | string | y      | n        |
-| answers   | string | y      | n        |
+| name     | type                     | unique | optional |
+| -------- | ------------------------ | ------ | -------- |
+| answer_1 | string                   | no     | no       |
+| answer_2 | string                   | no     | no       |
+| answer_3 | string                   | no     | no       |
+| answer_4 | string                   | no     | no       |
+| answer_5 | string                   | no     | no       |
+| created  | datetime                 | no     | no       |
+| user     | reference to User entity | no     | no       |
 
-### Quiz Models
+### Body Quiz
 
-| name      | type     | unique | optional |
-| --------- | -------- | ------ | -------- |
-| user      | string   | n      | n        |
-| questions | string   | n      | n        |
-| responses | string   | n      | n        |
-| created   | datetime | n      | n        |
+| name     | type                     | unique | optional |
+| -------- | ------------------------ | ------ | -------- |
+| answer_1 | string                   | no     | no       |
+| answer_2 | string                   | no     | no       |
+| answer_3 | string                   | no     | no       |
+| answer_4 | string                   | no     | no       |
+| answer_5 | string                   | no     | no       |
+| created  | datetime                 | no     | no       |
+| user     | reference to User entity | no     | no       |
 
 ### Cart
 
-## Address
-
-| Name             | Type   | Unique | Optional |
-| ---------------- | ------ | ------ | -------- |
-| billing_address  | string | no     | no       |
-| shipping_address | string | no     | no       |
+| name     | type                        | unique | optional |
+| -------- | --------------------------- | ------ | -------- |
+| product  | reference to Product entity | no     | no       |
+| user     | reference to User entity    | no     | no       |
+| quantity | int                         | no     | no       |
+| totals   | int                         | no     | no       |
+| created  | datetime                    | no     | no       |
 
 ## Employee microservice
 
