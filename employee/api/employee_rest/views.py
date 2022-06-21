@@ -1,6 +1,3 @@
-from django.shortcuts import render
-
-from urllib import response
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 import json
@@ -24,15 +21,9 @@ def api_orders(request):
         try:
             content = json.loads(request.body)
             order = Order.objects.create(**content)
-            return JsonResponse(
-                order,
-                encoder=OrderEncoder,
-                safe=False
-            )
+            return JsonResponse(order, encoder=OrderEncoder, safe=False)
         except:
-            response = JsonResponse(
-                {"message": "Could not create the order"}
-            )
+            response = JsonResponse({"message": "Could not create the order"})
             response.status_code = 400
             return response
 
@@ -50,7 +41,7 @@ def api_order(request, pk):
             response = JsonResponse({"message": "Does not exist"})
             response.status_code = 404
             return response
-            
+
     elif request.method == "DELETE":
         try:
             order = Order.objects.get(id=pk)
@@ -62,7 +53,7 @@ def api_order(request, pk):
             )
         except Order.DoesNotExist:
             return JsonResponse({"message": "Does not exist"})
-    else: # PUT
+    else:  # PUT
         try:
             content = json.loads(request.body)
             order = Order.objects.get(id=pk)
@@ -81,6 +72,7 @@ def api_order(request, pk):
             response = JsonResponse({"message": "Does not exist"})
             response.status_code = 404
             return response
+
 
 @require_http_methods(["GET"])
 def api_productvos(request):
