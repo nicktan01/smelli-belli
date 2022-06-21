@@ -8,7 +8,6 @@ from .encoders import (
     CartEncoder,
     BodyQuizEncoder,
     HomeQuizEncoder,
-    UserVO
     )
 
 @auth.jwt_login_required
