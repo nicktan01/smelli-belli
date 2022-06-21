@@ -39,7 +39,7 @@ class Cart(models.Model):
     user = models.IntegerField(null=True) # changed this to match the changes from the quiz models. check ./views.py to see how the user information was grabbed out of the token
     quantity = models.PositiveSmallIntegerField()
     totals = models.FloatField()
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateField(auto_now_add=True)
 
 
 class WishList(models.Model):

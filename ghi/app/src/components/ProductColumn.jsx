@@ -9,6 +9,7 @@ function ProductColumn(props) {
             key={product.sku}
             sku={product.sku}
             onClickLikeProduct={props.onClickLikeProduct}
+            onClickCartProduct={props.onClickCartProduct}
             liked={props.likedProducts[product.sku]}
           />
         );

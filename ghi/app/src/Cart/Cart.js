@@ -1,7 +1,6 @@
 import React from 'react';
 
 
-
 class Cart extends React.Component {
     constructor(props) {
       super(props);
@@ -24,13 +23,16 @@ class Cart extends React.Component {
     } 
         
     render() {
-      console.log("this is the state", this.state)
+      console.log("this is the state", this.state.cart)
+      // const cartItems = this.state.map((d) => <li key={d.sku}>{d.name}</li>)
         return (
           
             <div className="row">
               <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
                   <h1>Cart</h1>
+                  {/* <h2>This is h2 { this.state }</h2>
+                  <div>This is div { this.state }</div> */}
                   <table className="table table-striped">
                     <thead>
                       <tr>
@@ -41,7 +43,7 @@ class Cart extends React.Component {
                     </thead>
                     <tbody>
                       <tr>
-                          <td>{ this.state.name }</td>
+                          <td>{ this.state.cart }</td>
                       </tr>
                     </tbody>
                   </table>

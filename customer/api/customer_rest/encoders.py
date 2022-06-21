@@ -58,5 +58,4 @@ class CartEncoder(ModelEncoder):
     ] 
     encoders = {
         "product": ProductVOEncoder(),
-        "user": UserVOEncoder()
         }

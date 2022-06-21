@@ -21,6 +21,7 @@ const scentOptions = [
 function ProductList({ category }) {
   const [productColumns, setProductColumns] = useState([[], [], [], []]);
   const [likedProducts, setLikedProducts] = useState({});
+  const [cartedProducts, setCartedProducts] = useState({});
   const [sortBy, setSortBy] = useState(sortOptions[0]);
   const [filterBy, setFilterBy] = useState([]);
 
