@@ -108,3 +108,19 @@ As Jaiden was working on our accounts pages, he noticed an issue while logging a
 - Hiding Employee Nav from non-staff users
 
 Got started on some Employee page work and hid the employee nav from users who are not staff. Will plan to work on the inventory page tomorrow.
+
+# June 16, 2022
+
+Today I worked on:
+
+- Employee Inventory Page
+
+Today I was able to finish writing the Inventory page for the employees. I started by writing the whole inventory page with a class based function and then later refactored it using hooks as practice. On the Inventory page I was able to list all products in a table, put in a search bar to search for items by name or keywords, and also adjust the quantity of a product right inside the table.
+
+# June 17, 2022
+
+Today I worked on:
+
+- Employee Add New Product Form
+
+To get more practice with hooks, I decided to try writing the form using hooks and it was successful! I also manually added drop down options inside the form but will have to revisit them later and fix a minor issue. I believe the dropdown inputs are saving via their value attribute and not the intended input that I wanted. It's basically just a matter of having the values be capitalized though rather than lowercase, so I will tinker with that and see what's going on another day. I tried adding a test product using the form and was able to search for said test product in the inventory page as well as see it appear in the products page!

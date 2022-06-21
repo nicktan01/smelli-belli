@@ -62,11 +62,11 @@ function Nav() {
                   className="dropdown-menu"
                   aria-labelledby="navbarDropdownMenuLink"
                 >
-                  <NavLink className="dropdown-item" to="/inventory">
+                  <NavLink className="dropdown-item" to="employees/inventory">
                     Inventory
                   </NavLink>
-                  <NavLink className="dropdown-item" to="/orderfulfillment">
-                    Order Fulfillment
+                  <NavLink className="dropdown-item" to="employees/newproduct">
+                    New Product Form
                   </NavLink>
                 </div>
               </li>

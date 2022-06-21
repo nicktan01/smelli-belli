@@ -85,6 +85,8 @@ Today I continued thinking about and working on the quizzes to find our users' s
 
 ## June 9, 2022
 
+---
+
 Got a lot done today!
 
 - Refactored Body and Home scent profile quizzes into class components
@@ -93,3 +95,25 @@ Got a lot done today!
 - Stopped working on the home and body quizzes in tandem because the code is more or less copy and pastable from body into home once I'm done, just changing the names of values, IDs, and some slightly different wording
 
 The front end portion of the quizzes is proving to be quite a hurdle, but it has been an incredibly enjoyable challenge. Using state and binding this to certain event handlers in order to save which answer a user has clicked on the quiz is really cool and it felt really exciting to see that working the way I intended it. Then, I worked on breaking the quiz into multiple pages, at least two for now, so that we can prompt the user with a sign up screen in order to save their quiz results if no authentication is detected. If authentication is detected, or once a user has signed up or refused to sign up, then I'd like that page to present the user with the results of their quiz, make a POST request to our backend endpoints to save those results if the conditions are met, and present the user with a filtered list of the products based on a query that matches products to the values of the answers from their quizzes! I left off last night having figured out different ways I can render multiple "pages" on a single React component, excited to spend today (June 10, when I am writing this entry) chugging along on figuring out the authentication portion and filtering the products list!! I figured out a funky way to make a POST request to our endpoints and I'm really excited about that.
+
+## June 10, 2022
+
+---
+
+This day was a huge win for me. I was able to get the quizzes to successfully start offering a filtered products table. I opted for a table for speed and was able to get it done right in time before the start of mandatory fun time!!
+
+## June 13, 2022
+
+---
+
+Separated each question into its own page, added a lot of explanatory comments in the code, brought the home products quiz up to speed with the body quiz so far. Just finishing touches on the quiz and adding authentication to it, so users can access their quiz results.
+
+## June 20, 2022
+
+---
+
+Well, I realize that my journal entries here are pretty sparse, but I'd like to take a moment to paint my Dear Grader a picture:
+
+You're coming up on the end of the biggest 19-week adventure you've willingly gone on in your life. You've poured blood sweat and tears into the personal project that is coming up on the finish line. Career services wants you to get some things done, and suddenly the work you do with them has a lot more bearing as the job search lies looming straight ahead. On top of that, you're super excited about the SEIR opportunity and have made landing that opportunity the new highest priority on the list! After going through the whole process of applying, interviewing, and then on boarding, the workload in your week at the end is much, much heavier. And, being at the end of 19 weeks, you're tired, Dear Grader. Oh, so tired. The results you see as you make each commit, sleep tugging at your eyelids, is enpugh to make you consider the day, your troubles, your successes, and your journey through each of them. So, with that in mind, I'd ask you to please keep that in mind when looking at the gap in my journal entries here. You can see the commits were there, and you can see how thoroughly I've documented my journal entries any other given week or time!
+
+That being said, I think I **finally** finished up the quiz components, more or less, today. I was finally able to get the user's id saved to the User prop on the Home and Body Quiz data models by checking the authorization token. I also am pretty proud of the work I did on the quizzes to check for an authentication token, offer the user a choice of signing up to save their profile results or taking the quiz anyway, and then offering the user a "Save my scent profile!" button if an auth token is detected at the final screen of the quiz. All in all, choosing to write the quizzes as class components simply because that was what I was used to and what we spent a lot of time doing in class was an immense mistake and not one I would like to make again. I wish that class components had more support, but the fact is they do not and because of that lack of support they are never going to be functional or even serviceable to a project. Never use class components. Authentication is also pretty nasty to work with, and I did not have a good time with that at all.

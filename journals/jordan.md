@@ -1,5 +1,10 @@
 ## Jordan's Journal
 
+## June 16, 2022
+Worked on styling for shopping pages - wishlist button functionality, and shopping page sorting.
+
+Notes about issues: refreshing page clears liked items -> need to save to user still
+
 ## June 9, 2022
 Morning: Discussed sorting and filtering with the team. Worked individually on making the product detail pages using a reference from Elliott. Changed product paths/routing. Made a quick logo to use for the site.
 
