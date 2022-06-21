@@ -37,6 +37,7 @@ class BodyQuiz extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      noAuth: false,
       answerOne: "",
       questionOneAnswered: false,
       answerTwo: "",
@@ -61,6 +62,7 @@ class BodyQuiz extends React.Component {
     // when a user has answered a question, or clicked the "Next" button
     this.handlePageBack = this.handlePageBack.bind(this);
     this.handlePageForward = this.handlePageForward.bind(this);
+    this.handleNoSignUp = this.handleNoSignUp.bind(this);
     this.handleQuestionOne = this.handleQuestionOne.bind(this);
     this.handleQuestionTwo = this.handleQuestionTwo.bind(this);
     this.handleQuestionThree = this.handleQuestionThree.bind(this);
@@ -81,6 +83,10 @@ class BodyQuiz extends React.Component {
       let emptyProductsList = [];
       this.setState({ products: emptyProductsList });
     }
+  }
+
+  handleNoSignUp() {
+    this.setState({ noAuth: true });
   }
 
   handleQuestionOne(event) {
@@ -224,6 +230,7 @@ class BodyQuiz extends React.Component {
     data.answer_5 = data.answerFive;
 
     // Delete the properties that don't appear on our quiz data models . . .
+    delete data.noAuth;
     delete data.answerOne;
     delete data.answerTwo;
     delete data.answerThree;
@@ -259,6 +266,7 @@ class BodyQuiz extends React.Component {
     // then clear the responses after posting to the backend's endpoint
     if (response.ok) {
       this.setState({
+        noAuth: false,
         answerOne: "",
         questionOneAnswered: false,
         answerTwo: "",
@@ -282,10 +290,13 @@ class BodyQuiz extends React.Component {
   }
 
   render() {
+    let token = this.context.token;
+
     // These variables dictate Bootstrap CSS styling rules to toggle
     // displaying or hiding certain "pages" of the quiz
     // An empty string is displayed, and "d-none" will be hidden!
     let quiz = "";
+    let noAuthClasses = "d-none";
     let quizPageOneClasses = "my-5";
     let quizPageTwoClasses = "my-5 d-none";
     let quizPageThreeClasses = "my-5 d-none";
@@ -295,18 +306,41 @@ class BodyQuiz extends React.Component {
     let quizPageFiveButtonClasses = "d-none";
     let displayProductsClasses = "d-none";
     let seeProductsButtonClasses = "d-none";
+    let saveScentProfileButtonClasses = "d-none";
     let noProductsClasses = "d-none";
     let resultsSubmittedClasses = "alert alert-success mb-0 d-none";
 
+    // Display quiz normally if user is logged in
     // If the user clicks an answer for Question One, then hide Question One
     // and display Question Two
-    if (this.state.currentStep == 1) {
+    if (this.state.currentStep == 1 && token) {
       quizPageOneClasses = "my-5";
       quizPageTwoClasses = "d-none";
       quizPageThreeClasses = "d-none";
       quizPageFourClasses = "d-none";
       quizPageFiveClasses = "d-none";
     }
+
+    // Display sign up prompt if user is logged out
+    if (this.state.currentStep == 1 && !token) {
+      noAuthClasses = "my-5";
+      quizPageOneClasses = "d-none";
+      quizPageTwoClasses = "d-none";
+      quizPageThreeClasses = "d-none";
+      quizPageFourClasses = "d-none";
+      quizPageFiveClasses = "d-none";
+    }
+
+    // Display quiz if user does not want to sign up
+    if (this.state.noAuth) {
+      noAuthClasses = "d-none";
+      quizPageOneClasses = "my-5";
+      quizPageTwoClasses = "d-none";
+      quizPageThreeClasses = "d-none";
+      quizPageFourClasses = "d-none";
+      quizPageFiveClasses = "d-none";
+    }
+
     if (this.state.currentStep == 2) {
       quizPageOneClasses = "d-none";
       quizPageTwoClasses = "my-5";
@@ -314,6 +348,7 @@ class BodyQuiz extends React.Component {
       quizPageFourClasses = "d-none";
       quizPageFiveClasses = "d-none";
     }
+
     if (this.state.currentStep == 3) {
       quizPageOneClasses = "d-none";
       quizPageTwoClasses = "d-none";
@@ -321,6 +356,7 @@ class BodyQuiz extends React.Component {
       quizPageFourClasses = "d-none";
       quizPageFiveClasses = "d-none";
     }
+
     if (this.state.currentStep == 4) {
       quizPageOneClasses = "d-none";
       quizPageTwoClasses = "d-none";
@@ -328,6 +364,7 @@ class BodyQuiz extends React.Component {
       quizPageFourClasses = "my-5";
       quizPageFiveClasses = "d-none";
     }
+
     if (this.state.currentStep == 5) {
       quizPageOneClasses = "d-none";
       quizPageTwoClasses = "d-none";
@@ -342,11 +379,23 @@ class BodyQuiz extends React.Component {
       quizPageFiveButtonClasses = "px-4 py-5 my-5 text-center";
     }
 
-    //If all the questions have been answered, and the Next button has been
+    // AUTH TOKEN, DISPLAY SAVE SCENT PROFILE BUTTON
+    // If all the questions have been answered, and the Next button has been
     // clicked by the User, then display the Results page
-    if (this.state.quizQuestionsComplete) {
+    if (this.state.quizQuestionsComplete && token) {
       quizResultsClasses = "my-5";
       seeProductsButtonClasses = "my-5 btn btn-primary";
+      saveScentProfileButtonClasses = "my-5 btn btn-primary";
+      quiz = "d-none";
+    }
+
+    // NO AUTH TOKEN, HIDE SAVE SCENT PROFILE BUTTON
+    // If all the questions have been answered, and the Next button has been
+    // clicked by the User, then display the Results page
+    if (this.state.quizQuestionsComplete && !token) {
+      quizResultsClasses = "my-5";
+      seeProductsButtonClasses = "my-5 btn btn-primary";
+      saveScentProfileButtonClasses = "d-none";
       quiz = "d-none";
     }
 
@@ -377,6 +426,25 @@ class BodyQuiz extends React.Component {
         <div className={quiz}>
           <h1 className="display-3 fw-bold">Scent Finder</h1>
           <h2 className="display-7 fw-bold">Body Products</h2>
+          <div className={noAuthClasses}>
+            <h2>Save Your Scent Profile Results For Later</h2>
+            <em>
+              We see you aren't logged in today. Sign up today and enjoy access
+              to the latest Smelli Belli news and save your Scent Profile
+              results for later!
+            </em>
+            <div className="my-5 d-grid gap-4 d-md-flex justify-content-center">
+              <button
+                className="btn btn-secondary"
+                onClick={this.handleNoSignUp}
+              >
+                No, thank you.
+              </button>
+              <Link to="/signup">
+                <button className="btn btn-primary">Sign me up!</button>
+              </Link>
+            </div>
+          </div>
           <div className={quizPageOneClasses} id="step-1">
             <div
               className="btn-toolbar justify-content-around mb-5"
@@ -704,7 +772,7 @@ class BodyQuiz extends React.Component {
             </div>
             <button
               onClick={this.handleSubmit}
-              className="my-5 btn btn-primary"
+              className={saveScentProfileButtonClasses}
             >
               Save My Scent Profile!
             </button>
