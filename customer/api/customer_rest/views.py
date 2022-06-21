@@ -15,7 +15,14 @@ from .encoders import (
 @require_http_methods(["GET", "POST"])
 def api_list_body_quizzes(request):
     if request.method == "GET":
-        body_quizzes = BodyQuiz.objects.all()
+        # This grabs all of the user information out of the authorization token
+        payload_dict = json.dumps(request.payload)
+        user_information = json.loads(payload_dict)
+        # Stores the id of the user grabbed from the token, and saves to a variable
+        user_id = user_information["user"]["id"]
+        # Grabs only the Body Quiz objects that match the saved User ID in the 
+        # table to the User ID in the active authorization token
+        body_quizzes = BodyQuiz.objects.get(user=user_id)
         return JsonResponse(
             {"body scent profiles": body_quizzes},
             encoder=BodyQuizEncoder
@@ -79,9 +86,16 @@ def api_show_body_quiz(request, pk):
 @require_http_methods(["GET", "POST"])
 def api_list_home_quizzes(request):
     if request.method == "GET":
-        home_quizzes = HomeQuiz.objects.all()
+        # This grabs all of the user information out of the authorization token
+        payload_dict = json.dumps(request.payload)
+        user_information = json.loads(payload_dict)
+        # Stores the id of the user grabbed from the token, and saves to a variable
+        user_id = user_information["user"]["id"]
+        # Grabs only the Body Quiz objects that match the saved User ID in the 
+        # table to the User ID in the active authorization token
+        home_quizzes = HomeQuiz.objects.get(user=user_id)
         return JsonResponse(
-            {"home scent profiles": home_quizzes},
+            {"body scent profiles": home_quizzes},
             encoder=HomeQuizEncoder
         )
     # POST

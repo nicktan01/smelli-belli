@@ -28,16 +28,14 @@ def get_products():
             },
         )
 
-
 def poll():
     while True:
-        print('employee poller polling for data')
+        print('Employee Poller polling for data')
         try:
             get_products()
         except Exception as e:
             print(e, file=sys.stderr)
         time.sleep(60)
-
 
 if __name__ == "__main__":
     poll()
