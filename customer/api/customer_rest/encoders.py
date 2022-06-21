@@ -4,6 +4,10 @@ from .models import (
     ProductVO, 
     UserVO, 
     BodyQuiz, 
+    Cart,
+    ProductVO,
+    BodyQuiz,
+    HomeQuiz 
 )
 
 class ProductVOEncoder(ModelEncoder):
@@ -16,7 +20,6 @@ class ProductVOEncoder(ModelEncoder):
         "price",
         "image"
     ]
-
 class UserVOEncoder(ModelEncoder):
     model = UserVO
     properties = ["id", "user"]
@@ -30,7 +33,7 @@ class BodyQuizEncoder(ModelEncoder):
         "answer_4", 
         "answer_5",
         "created",
-        # "user" 
+        "user" 
     ]
 
 class HomeQuizEncoder(ModelEncoder):
@@ -42,5 +45,17 @@ class HomeQuizEncoder(ModelEncoder):
         "answer_4", 
         "answer_5",
         "created",
-        # "user" 
+        "user" 
     ]
+
+class CartEncoder(ModelEncoder):
+    model = Cart
+    properties = [
+        "product",
+        "user",
+        "quantity",
+        "totals"
+    ] 
+    encoders = {
+        "product": ProductVOEncoder(),
+        }

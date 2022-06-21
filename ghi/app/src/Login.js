@@ -31,7 +31,7 @@ function Login() {
   return (
     <div>
       {token ? (
-        window.location.replace("http://localhost:3000/")
+        window.location.replace("/")
       ) : (
         <div className="row">
           <div className="offset-4 col-4 mt-4 mb-4">
@@ -60,7 +60,7 @@ function Login() {
               <p>
                 {error ? (
                   <div
-                    class="alert alert-danger"
+                    className="alert alert-danger"
                     role="alert"
                     dangerouslySetInnerHTML={{ __html: error }}
                   />
@@ -89,6 +89,5 @@ function Login() {
     </div>
   );
 }
-
 
 export default Login;

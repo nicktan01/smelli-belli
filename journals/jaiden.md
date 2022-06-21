@@ -116,3 +116,10 @@ Currently, even after making some changes, the `my account` button doesnt work p
 an active token. I will look into this further tonight and hopefully have a fix by tomorrow's project time so I can debug any other issues we are currently experiencing.
 It is especially strange to me because I pulled the logout component with the same imports from our original login/signup pages and while it does redirect to the main page
 upon logging out, it doesnt register that there is not an active token.
+
+## June 16, 2022
+Today I worked on:
+
+- Styling for the Main Page components
+
+I havent really done too much html for this project so im struggling with getting the placement of the different elements on the screen, but am honestly in a pretty good spot with tying in the main things needed for the main page. Hopefully I will be done tomorrow or over this three day weekend with the placement and scaling for the mainpage. I learned about authentication a little bit more thanks to Curtis coming in to talk with us about it and seeing how everything connects.
