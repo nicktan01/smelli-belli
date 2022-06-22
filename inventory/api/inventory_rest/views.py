@@ -22,7 +22,7 @@ def api_list_products(request):
     if request.method == "GET":
         sortBy = request.GET.get("sortBy", "bestselling")
         scents = list(filter(bool, request.GET.get("scents", "").split(",")))
-        print(scents)
+
         products = Product.objects
         if sortBy == "name-desc":
             products = products.order_by(Lower("name").desc())
