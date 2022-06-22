@@ -18,7 +18,6 @@ services:
       REACT_APP_INVENTORY_HOST: http://localhost:8100
       REACT_APP_CUSTOMER_HOST: http://localhost:8090
       REACT_APP_EMPLOYEE_HOST: http://localhost:8080
-      INVENTORY_POLLER_HOST: http://inventory-api:8000/api/products
   database:
     image: postgres:14.2-bullseye
     volumes:
@@ -119,3 +118,4 @@ services:
       DATABASE_URL: postgres://customer:password@database:5432/customer
       WAIT_HOSTS: database:5432,customer-api:8000
       WAIT_TIMEOUT: 240
+      INVENTORY_POLLER_HOST: http://inventory-api:8000/api/products

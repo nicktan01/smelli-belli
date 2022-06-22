@@ -145,7 +145,9 @@ class HomeQuiz extends React.Component {
             // categories that the user matched with in their scent profile quiz
             if (
               String(product.scent1) === this.state.answerTwo ||
-              String(product.scent1) === this.state.answerThree
+              String(product.scent1) === this.state.answerThree ||
+              String(product.scent2) === this.state.answerTwo ||
+              String(product.scent2) === this.state.answerThree
             ) {
               // Add these products to the filtered products list
               products.push(product);
@@ -285,7 +287,7 @@ class HomeQuiz extends React.Component {
     // Display quiz normally if user is logged in
     // If the user clicks an answer for Question One, then hide Question One
     // and display Question Two
-    if (this.state.currentStep == 1 && token) {
+    if (this.state.currentStep === 1 && token) {
       quizPageOneClasses = "my-5";
       quizPageTwoClasses = "d-none";
       quizPageThreeClasses = "d-none";
@@ -294,7 +296,7 @@ class HomeQuiz extends React.Component {
     }
 
     // Display sign up prompt if user is logged out
-    if (this.state.currentStep == 1 && !token) {
+    if (this.state.currentStep === 1 && !token) {
       noAuthClasses = "my-5";
       quizPageOneClasses = "d-none";
       quizPageTwoClasses = "d-none";
@@ -313,7 +315,7 @@ class HomeQuiz extends React.Component {
       quizPageFiveClasses = "d-none";
     }
 
-    if (this.state.currentStep == 2) {
+    if (this.state.currentStep === 2) {
       quizPageOneClasses = "d-none";
       quizPageTwoClasses = "my-5";
       quizPageThreeClasses = "d-none";
@@ -321,7 +323,7 @@ class HomeQuiz extends React.Component {
       quizPageFiveClasses = "d-none";
     }
 
-    if (this.state.currentStep == 3) {
+    if (this.state.currentStep === 3) {
       quizPageOneClasses = "d-none";
       quizPageTwoClasses = "d-none";
       quizPageThreeClasses = "my-5";
@@ -329,7 +331,7 @@ class HomeQuiz extends React.Component {
       quizPageFiveClasses = "d-none";
     }
 
-    if (this.state.currentStep == 4) {
+    if (this.state.currentStep === 4) {
       quizPageOneClasses = "d-none";
       quizPageTwoClasses = "d-none";
       quizPageThreeClasses = "d-none";
@@ -337,7 +339,7 @@ class HomeQuiz extends React.Component {
       quizPageFiveClasses = "d-none";
     }
 
-    if (this.state.currentStep == 5) {
+    if (this.state.currentStep === 5) {
       quizPageOneClasses = "d-none";
       quizPageTwoClasses = "d-none";
       quizPageThreeClasses = "d-none";
@@ -462,7 +464,7 @@ class HomeQuiz extends React.Component {
               <button
                 onClick={this.handleQuestionOne}
                 value={this.state.answerOne}
-                id="Incense"
+                id="Incense Stick"
                 className="btn btn-primary"
               >
                 Incense
