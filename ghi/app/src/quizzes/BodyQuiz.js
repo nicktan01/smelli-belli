@@ -173,7 +173,9 @@ class BodyQuiz extends React.Component {
             // categories that the user matched with in their scent profile quiz
             if (
               String(product.scent1) === this.state.answerTwo ||
-              String(product.scent1) === this.state.answerThree
+              String(product.scent1) === this.state.answerThree ||
+              String(product.scent2) === this.state.answerTwo ||
+              String(product.scent2) === this.state.answerThree
             ) {
               // Add these products to the filtered products list
               products.push(product);

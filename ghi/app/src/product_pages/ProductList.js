@@ -89,7 +89,7 @@ function ProductList({ category }) {
               i = 0;
             }
           }
-
+          
           setProductColumns(newProductColumns);
         }
       } catch (e) {
