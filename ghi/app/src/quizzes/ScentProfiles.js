@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { getTokenInternal } from "../authApi";
-
-function scentProfileColumns() {
-
-}
+import BodyScentProfileColumn from "../components/BodyScentProfileColumn";
+import HomeScentProfileColumn from "../components/HomeScentProfileColumn";
 
 function ScentProfilesList() {
-  const [homeScentProfileColumns, setHomeScentProfileColumns] = useState([[], []]);
-  const [bodyScentProfileColumns, setBodyScentProfileColumns] = useState([[], []]);
+  const [homeScentProfileColumns, setHomeScentProfileColumns] = useState([[], [], [], []]);
+  const [bodyScentProfileColumns, setBodyScentProfileColumns] = useState([[], [], [], []]);
   
   useEffect(() => {
     
@@ -31,13 +29,13 @@ function ScentProfilesList() {
         }
       }
 
-      const homeProfileColumns = [[], []];
+      const homeProfileColumns = [[], [], [], []];
 
       let i = 0;
       for (const homeScentProfile of homeScentProfiles) {
         homeProfileColumns[i].push(homeScentProfile);
         i += 1;
-        if (i > 1) {
+        if (i > 3) {
           i = 0;
         }
       }
@@ -67,13 +65,13 @@ function ScentProfilesList() {
         // setBodyScentProfiles(bodyScentProfileData.body_scent_profiles);
       }
 
-      const bodyProfileColumns = [[], []];
+      const bodyProfileColumns = [[], [], [], []];
 
       let i = 0;
       for (const bodyScentProfile of bodyScentProfiles) {
         bodyProfileColumns[i].push(bodyScentProfile);
         i += 1;
-        if (i > 1) {
+        if (i > 3) {
           i = 0;
         }
       }
@@ -87,60 +85,36 @@ function ScentProfilesList() {
 
   return (
     <>
-    <div id="home_scent_profiles">
-      <h2>Home Scent Profiles</h2>
-      {/* <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Product Category</th>
-            <th>Scent Profile #1</th>
-            <th>Scent Profile #2</th>
-            <th>Scent Intensity</th>
-          </tr>
-        </thead>
-        <tbody>
-          {homeScentProfiles.map((scentProfile, index) => {
-            return (
-              <tr key={index}>
-                <td>{scentProfile.created}</td>
-                <td>{scentProfile.answer_1}</td>
-                <td>{scentProfile.answer_2}</td>
-                <td>{scentProfile.answer_3}</td>
-                <td>{scentProfile.answer_5}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
-    <div id="body_scent_profiles">
-      <h2>Body Scent Profiles</h2>
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Product Category</th>
-            <th>Scent Profile #1</th>
-            <th>Scent Profile #2</th>
-            <th>Scent Intensity</th>
-          </tr>
-        </thead>
-        <tbody>
-          {bodyScentProfiles.map((scentProfile, index) => {
-            return (
-              <tr key={index}>
-                <td>{scentProfile.created}</td>
-                <td>{scentProfile.answer_1}</td>
-                <td>{scentProfile.answer_2}</td>
-                <td>{scentProfile.answer_3}</td>
-                <td>{scentProfile.answer_5}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table> */}
-    </div>
+      <div 
+        className="container px-4 py-5 my-5 text-center" 
+        id="home_scent_profiles"
+      >
+        <h2>Home Scent Profiles</h2>
+        <div className="container">
+          <div className="row">
+            {homeScentProfileColumns.map((homeScentProfileList, index) => {
+              return (
+                <HomeScentProfileColumn key={index} list={homeScentProfileList} />
+              );
+            })}
+          </div>
+        </div>
+      </div>
+      <div
+        className="container px-4 py-5 my-5 text-center"
+        id="body_scent_profiles"
+      >
+        <h2>Body Scent Profiles</h2>
+        <div className="container">
+          <div className="row">
+            {bodyScentProfileColumns.map((bodyScentProfileList, index) => {
+              return (
+                <BodyScentProfileColumn key={index} list={bodyScentProfileList} />
+              );
+            })}
+          </div>
+        </div>
+      </div>
     </>
   );
 }

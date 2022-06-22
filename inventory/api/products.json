@@ -207,7 +207,7 @@
     "model": "inventory_rest.product",
     "pk": 13,
     "fields": {
-      "name": "Lavendar Pine Incense Stick",
+      "name": "Lavender Pine Incense Stick",
       "product_category": "Incense Stick",
       "product_type": "Home",
       "sku": "189P4",
@@ -224,7 +224,7 @@
     "model": "inventory_rest.product",
     "pk": 14,
     "fields": {
-      "name": "Lavendar Pine Room Spray",
+      "name": "Lavender Pine Room Spray",
       "product_category": "Room Spray",
       "product_type": "Home",
       "sku": "1B302",
@@ -241,7 +241,7 @@
     "model": "inventory_rest.product",
     "pk": 15,
     "fields": {
-      "name": "Lavendar Pine Lotion",
+      "name": "Lavender Pine Lotion",
       "product_category": "Lotion",
       "product_type": "Body",
       "sku": "188N6",
@@ -258,7 +258,7 @@
     "model": "inventory_rest.product",
     "pk": 16,
     "fields": {
-      "name": "Lavendar Pine Deodorant",
+      "name": "Lavender Pine Deodorant",
       "product_category": "Deodorant",
       "product_type": "Body",
       "sku": "18A94",
