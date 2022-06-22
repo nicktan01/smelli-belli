@@ -116,3 +116,23 @@ Currently, even after making some changes, the `my account` button doesnt work p
 an active token. I will look into this further tonight and hopefully have a fix by tomorrow's project time so I can debug any other issues we are currently experiencing.
 It is especially strange to me because I pulled the logout component with the same imports from our original login/signup pages and while it does redirect to the main page
 upon logging out, it doesnt register that there is not an active token.
+
+## June 16, 2022
+Today I worked on:
+
+- Styling for the Main Page components
+
+I havent really done too much html for this project so im struggling with getting the placement of the different elements on the screen, but am honestly in a pretty good spot with tying in the main things needed for the main page. Hopefully I will be done tomorrow or over this three day weekend with the placement and scaling for the mainpage. I learned about authentication a little bit more thanks to Curtis coming in to talk with us about it and seeing how everything connects.
+
+## June 21, 2022
+Today I worked on:
+
+- Fixed some issues for deployment
+- Finishing Front end for cart
+- Updating Front end for main page
+
+In the morning I worked with my entire group to sort out some issues regarding urls and deployment. We opted for enviornment variables to replace our current `localhost` urls in order to make sure everything would work when we deploy in the coming week. 
+
+I also assisted Nicholas with figuring out why products wouldnt display within the cart, and I learned a little bit more about authentication after reviewing the steps that were taken within quizzes to get a current user using the token.
+
+After working with the team, I went back to fixing some minor bugs within my own code and tring to update the main page so that elements within the page would scale better and allow for a better user experience.

@@ -62,7 +62,7 @@ function NewProductForm(props) {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    const productUrl = "http://localhost:8100/api/products/";
+    const productUrl = `${process.env.REACT_APP_INVENTORY_HOST}/api/products/`;
     const fetchConfig = {
       method: "POST",
       body: JSON.stringify(formData),

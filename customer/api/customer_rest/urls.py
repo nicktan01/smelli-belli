@@ -4,10 +4,16 @@ from .views import (
     api_list_body_quizzes,
     api_show_body_quiz,
     api_list_home_quizzes,
-    api_show_home_quiz
+    api_show_home_quiz,
+    api_cart
 )
 
 urlpatterns = [
+    path(
+        "cart/",
+        api_cart,
+        name="api_cart",
+    ),
     path(
         "bodyquizzes/",
         api_list_body_quizzes,

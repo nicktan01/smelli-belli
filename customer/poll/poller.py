@@ -14,7 +14,7 @@ django.setup()
 from customer_rest.models import ProductVO
 
 def get_products():
-    response = requests.get("http://inventory-api:8000/api/products/")
+    response = requests.get(os.environ["INVENTORY_POLLER_HOST"])
     content = json.loads(response.content)
     for product in content["products"]:
         ProductVO.objects.update_or_create(
@@ -29,7 +29,7 @@ def get_products():
 
 def poll():
     while True:
-        print('Customer poller polling for data')
+        print('Customer Poller polling for data')
         try:
             # Write your polling logic, here
             get_products()
