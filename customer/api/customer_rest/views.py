@@ -21,9 +21,9 @@ def api_list_body_quizzes(request):
         user_id = user_information["user"]["id"]
         # Grabs only the Body Quiz objects that match the saved User ID in the 
         # table to the User ID in the active authorization token
-        body_quizzes = BodyQuiz.objects.get(user=user_id)
+        body_quizzes = BodyQuiz.objects.filter(user=user_id)
         return JsonResponse(
-            {"body scent profiles": body_quizzes},
+            {"body_scent_profiles": body_quizzes},
             encoder=BodyQuizEncoder
         )
     # POST
@@ -92,9 +92,9 @@ def api_list_home_quizzes(request):
         user_id = user_information["user"]["id"]
         # Grabs only the Body Quiz objects that match the saved User ID in the 
         # table to the User ID in the active authorization token
-        home_quizzes = HomeQuiz.objects.get(user=user_id)
+        home_quizzes = HomeQuiz.objects.filter(user=user_id)
         return JsonResponse(
-            {"body scent profiles": home_quizzes},
+            {"home_scent_profiles": home_quizzes},
             encoder=HomeQuizEncoder
         )
     # POST
