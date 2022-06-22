@@ -33,8 +33,6 @@ class Cart(models.Model):
         on_delete=models.CASCADE,
     )
     user = models.IntegerField(null=True) # changed this to match the changes from the quiz models. check ./views.py to see how the user information was grabbed out of the token
-    quantity = models.PositiveSmallIntegerField()
-    totals = models.FloatField()
     created = models.DateField(auto_now_add=True)
 
 

@@ -67,7 +67,10 @@ function Cart(props) {
     <div className="container">
       <div className="row">
         {columns.map((list) => (
-          <ProductColumn list={list} cartedProducts={cartedProducts} />
+          <ProductColumn list={list} 
+          cartedProducts={cartedProducts} 
+          showPlusMinus={true}
+          />
         ))}
       </div>
       <div className="row">

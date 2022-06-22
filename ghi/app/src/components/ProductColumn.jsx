@@ -5,6 +5,7 @@ function ProductColumn({
   likedProducts = {},
   onClickLikeProduct,
   onClickCartProduct,
+  showPlusMinus,
   cartedProducts = {},
 }) 
 
@@ -21,6 +22,7 @@ function ProductColumn({
             onClickCartProduct={onClickCartProduct}
             liked={likedProducts[product.sku]}
             carted={cartedProducts[product.sku]}
+            showPlusMinus={showPlusMinus}
           />
         );
 

@@ -16,8 +16,7 @@ def api_orders(request):
             {"orders": orders},
             encoder=OrderEncoder,
         )
-    # POST
-    else:
+    elif request.method == "POST":
         try:
             content = json.loads(request.body)
             order = Order.objects.create(**content)
@@ -53,7 +52,7 @@ def api_order(request, pk):
             )
         except Order.DoesNotExist:
             return JsonResponse({"message": "Does not exist"})
-    else:  # PUT
+    elif request.method == "PUT":
         try:
             content = json.loads(request.body)
             order = Order.objects.get(id=pk)

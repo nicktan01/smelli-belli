@@ -22,7 +22,7 @@ def api_list_products(request):
     if request.method == "GET":
         sortBy = request.GET.get("sortBy", "bestselling")
         scents = list(filter(bool, request.GET.get("scents", "").split(",")))
-        print(scents)
+
         products = Product.objects
         if sortBy == "name-desc":
             products = products.order_by(Lower("name").desc())
@@ -45,8 +45,8 @@ def api_list_products(request):
             {"products": products.all()},
             encoder=ProductListEncoder,
         )
-    # POST
-    else:
+
+    elif request.method == "POST":
         content = json.loads(request.body)
 
         # Then, grab the Product object
@@ -85,8 +85,7 @@ def api_show_product(request, sku):
             return JsonResponse({"deleted": count > 0})
         except Product.DoesNotExist:
             return JsonResponse({"message": "Product does not exist"})
-    # PUT
-    else:
+    elif request.method == "PUT":
         try:
             content = json.loads(request.body)
             # Grabbing Product objects by their SKU

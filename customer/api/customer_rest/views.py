@@ -6,7 +6,6 @@ from django.views.decorators.http import require_http_methods
 from .models import BodyQuiz, HomeQuiz, Cart, ProductVO, WishList
 from .encoders import (
     CartEncoder,
-    CartEncoder,
     BodyQuizEncoder,
     HomeQuizEncoder,
     ProductVOEncoder,
@@ -21,15 +20,13 @@ def api_list_body_quizzes(request):
         user_information = json.loads(payload_dict)
         # Stores the id of the user grabbed from the token, and saves to a variable
         user_id = user_information["user"]["id"]
-        # Grabs only the Body Quiz objects that match the saved User ID in the 
+        # Grabs only the Body Quiz objects that match the saved User ID in the
         # table to the User ID in the active authorization token
         body_quizzes = BodyQuiz.objects.filter(user=user_id)
         return JsonResponse(
-            {"body_scent_profiles": body_quizzes},
-            encoder=BodyQuizEncoder
+            {"body_scent_profiles": body_quizzes}, encoder=BodyQuizEncoder
         )
-    # POST
-    else:
+    elif request.method == "POST":
         # This grabs all of the user information out of the authorization token
         payload_dict = json.dumps(request.payload)
         user_information = json.loads(payload_dict)
@@ -42,11 +39,7 @@ def api_list_body_quizzes(request):
         # Then, grab the Body Quiz object
         try:
             body_quiz = BodyQuiz.objects.create(**content)
-            return JsonResponse(
-                body_quiz,
-                encoder=BodyQuizEncoder,
-                safe=False
-            )
+            return JsonResponse(body_quiz, encoder=BodyQuizEncoder, safe=False)
         except:
             response = JsonResponse(
                 {"message": "Could not create the body scent profile"}
@@ -60,11 +53,7 @@ def api_show_body_quiz(request, pk):
     if request.method == "GET":
         try:
             body_quiz = BodyQuiz.objects.get(id=pk)
-            return JsonResponse(
-                body_quiz,
-                encoder=BodyQuizEncoder,
-                safe=False
-            )
+            return JsonResponse(body_quiz, encoder=BodyQuizEncoder, safe=False)
         except BodyQuiz.DoesNotExist:
             response = JsonResponse(
                 {"message": "That body scent profile does not exist!"}
@@ -74,9 +63,7 @@ def api_show_body_quiz(request, pk):
     elif request.method == "DELETE":
         try:
             count, _ = BodyQuiz.objects.filter(id=pk).delete()
-            return JsonResponse(
-                {"deleted": count > 0}
-            )
+            return JsonResponse({"deleted": count > 0})
         except BodyQuiz.DoesNotExist:
             return JsonResponse(
                 {"message": "That body scent profile does not exist!"}
@@ -92,15 +79,13 @@ def api_list_home_quizzes(request):
         user_information = json.loads(payload_dict)
         # Stores the id of the user grabbed from the token, and saves to a variable
         user_id = user_information["user"]["id"]
-        # Grabs only the Body Quiz objects that match the saved User ID in the 
+        # Grabs only the Body Quiz objects that match the saved User ID in the
         # table to the User ID in the active authorization token
         home_quizzes = HomeQuiz.objects.filter(user=user_id)
         return JsonResponse(
-            {"home_scent_profiles": home_quizzes},
-            encoder=HomeQuizEncoder
+            {"home_scent_profiles": home_quizzes}, encoder=HomeQuizEncoder
         )
-    # POST
-    else:
+    elif request.method == "POST":
         # This grabs all of the user information out of the authorization token
         payload_dict = json.dumps(request.payload)
         user_information = json.loads(payload_dict)
@@ -113,11 +98,7 @@ def api_list_home_quizzes(request):
         # Then, grab the Home Quiz object
         try:
             home_quiz = HomeQuiz.objects.create(**content)
-            return JsonResponse(
-                home_quiz,
-                encoder=HomeQuizEncoder,
-                safe=False
-            )
+            return JsonResponse(home_quiz, encoder=HomeQuizEncoder, safe=False)
         except:
             response = JsonResponse(
                 {"message": "Could not create the home scent profile"}
@@ -131,11 +112,7 @@ def api_show_home_quiz(request, pk):
     if request.method == "GET":
         try:
             home_quiz = HomeQuiz.objects.get(id=pk)
-            return JsonResponse(
-                home_quiz,
-                encoder=HomeQuizEncoder,
-                safe=False
-            )
+            return JsonResponse(home_quiz, encoder=HomeQuizEncoder, safe=False)
         except HomeQuiz.DoesNotExist:
             response = JsonResponse(
                 {"message": "That home scent profile does not exist!"}
@@ -145,15 +122,14 @@ def api_show_home_quiz(request, pk):
     elif request.method == "DELETE":
         try:
             count, _ = HomeQuiz.objects.filter(id=pk).delete()
-            return JsonResponse(
-                {"deleted": count > 0}
-            )
+            return JsonResponse({"deleted": count > 0})
         except HomeQuiz.DoesNotExist:
             return JsonResponse(
                 {"message": "That home scent profile does not exist!"}
             )
 
-# Wishlist functionality 
+
+# Wishlist functionality
 @auth.jwt_login_required
 @require_http_methods(["GET", "POST", "PUT", "DELETE"])
 def api_wishlist(request):
@@ -165,35 +141,33 @@ def api_wishlist(request):
         # same method for retrieving user info as used above
         content = json.loads(request.body)
         product = ProductVO.objects.get(sku=content["sku"])
-        
+
         try:
             if not WishList.objects.filter(product=product, user=user_id):
-                wishlist = WishList.objects.create(product=product, user=user_id)
-            return JsonResponse(
-                {"message": "Done"}
-            )
+                wishlist = WishList.objects.create(
+                    product=product, user=user_id
+                )
+            return JsonResponse({"message": "Done"})
         except Exception as e:
-            response = JsonResponse(
-                {"message": "Could not create wishlist"}
-            )
+            response = JsonResponse({"message": "Could not create wishlist"})
             print("exception:", e)
             response.status_code = 400
             return response
     elif request.method == "GET":
         try:
-            wishlist = list(map((lambda item: item.product.sku), WishList.objects.filter(user=user_id)))
-            return JsonResponse(
-                wishlist,
-                safe=False
+            wishlist = list(
+                map(
+                    (lambda item: item.product.sku),
+                    WishList.objects.filter(user=user_id),
+                )
             )
+            return JsonResponse(wishlist, safe=False)
         except WishList.DoesNotExist:
-            response = JsonResponse(
-                {"message": "No wishlist items"}
-            )
+            response = JsonResponse({"message": "No wishlist items"})
             response.status_code = 404
             return response
-# def add_wishlist(request):
-#     pass
+    # def add_wishlist(request):
+    #     pass
     # get current user id
     # receive sku from request
     # add an entry to table
@@ -201,17 +175,15 @@ def api_wishlist(request):
         content = json.loads(request.body)
         product = ProductVO.objects.get(sku=content["sku"])
         WishList.objects.filter(user=user_id, product=product).delete()
-        return JsonResponse(
-                {"message": "Done"}
-            )
-        
+        return JsonResponse({"message": "Done"})
+
+
 # def delete_wishlist(request):
 #     pass
-    # get current user id
-    # receive sku from request
-    # remove entry from table
-   
-        
+# get current user id
+# receive sku from request
+# remove entry from table
+
 
 @auth.jwt_login_required
 @require_http_methods(["GET", "POST", "PUT", "DELETE"])

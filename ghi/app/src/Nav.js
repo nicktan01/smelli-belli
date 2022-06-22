@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useToken } from "./authApi";
+import useSWR from "swr";
 import { useState, useEffect } from "react";
 
 function Nav() {
@@ -21,6 +22,22 @@ function Nav() {
       getCurrentUser();
     }
   }, [token]);
+
+  const { data: cart, error } = useSWR(
+    token ? "/api/cart/" : null,
+    async () => {
+      const request = await fetch("http://localhost:8090/api/cart/", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const json = await request.json();
+      return json;
+    }
+  );
+
+  let quantity = 0;
+  (cart || []).forEach((item) => {
+    quantity += item.cartQuantity
+  });
 
   return (
     <nav
@@ -164,7 +181,7 @@ function Nav() {
               <NavLink className="nav-link" to="/cart">
                 <i className="bi bi-cart"></i>
                 <span className="position-absolute top-25 start-90 translate-middle badge rounded-pill bg-danger">
-                  3
+                  {quantity}
                 </span>
               </NavLink>
             </span>
@@ -202,7 +219,7 @@ function Nav() {
               <NavLink className="nav-link" to="/cart">
                 <i className="bi bi-cart"></i>
                 <span className="position-absolute top-25 start-90 translate-middle badge rounded-pill bg-danger">
-                  3
+                  {/* {cartQuantity} */}
                 </span>
               </NavLink>
             </span>
