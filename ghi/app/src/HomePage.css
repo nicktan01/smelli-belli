@@ -18,7 +18,8 @@
 }
 
 .left-img {
-  padding-left: 530px
+  padding-left: 530px;
+  padding-bottom: 50px;
 }
 
 .quiz-container {
@@ -47,4 +48,14 @@
 
 .break-word {
   word-wrap: break-word;
+}
+
+.body-text {
+  position: relative;
+  offset-position: -60%;
+}
+
+.home-text {
+  position: relative;
+
 }

@@ -11,7 +11,7 @@ class HomePage extends React.Component {
   }
   
   async getListProducts() {
-      const response = await fetch('http://localhost:8100/api/products/');
+      const response = await fetch(`${process.env.REACT_APP_INVENTORY_HOST}/api/products/`);
       if (response.ok) {
         const data = await response.json();
         this.setState({
@@ -67,16 +67,16 @@ class HomePage extends React.Component {
      <div className="pxy-5 shadow offset-3 col-6 mt-4 mb-5" width={1000}>
       <div className="container px-5">
           <div className=" text-centered row position-relative">
-            <div className="text-centered">
+            <div className="text-centered body-text">
               <h3 className="">Body Scent Quiz</h3>
                 <p className="">Take a short quiz to determine your ideal scent profile for all body related products!</p>
                   <NavLink to="/bodyquiz" role="button" className="col text-center btn btn-outline-dark btn-lg">
                         Body Quiz Scent
                   </NavLink >
-          </div>
+            </div>
             
-            <div className="text-center left-img">
-              <img src="/images/body-quiz.jpg"
+            <div className="text-center">
+              <img className="left-img" src="/images/body-quiz.jpg"
                     height={300}
                     width={null}
                     style={{ objectFit: "cover", width: "100%" }}
@@ -93,8 +93,9 @@ class HomePage extends React.Component {
                   Home Quiz Scent
                 </NavLink> 
           </div>
-          <div className="text-center right-img">
-            <img src="/images/home-quiz.jpg"
+          <div className="text-center">
+            <img className="right-img"
+                  src="/images/home-quiz.jpg"
                   height={300}
                   width={null}
                   style={{ objectFit: "cover", width: "100%",}}>
