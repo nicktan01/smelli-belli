@@ -23,6 +23,7 @@ class ProductVOEncoder(ModelEncoder):
 class BodyQuizEncoder(ModelEncoder):
     model = BodyQuiz
     properties = [
+        "id",
         "answer_1", 
         "answer_2", 
         "answer_3", 
@@ -35,6 +36,7 @@ class BodyQuizEncoder(ModelEncoder):
 class HomeQuizEncoder(ModelEncoder):
     model = HomeQuiz
     properties = [
+        "id",
         "answer_1", 
         "answer_2", 
         "answer_3", 
