@@ -2,12 +2,12 @@ from common.json import ModelEncoder
 from .models import (
     HomeQuiz,
     ProductVO, 
-    UserVO, 
     BodyQuiz, 
     Cart,
     ProductVO,
     BodyQuiz,
-    HomeQuiz 
+    HomeQuiz,
+    WishList 
 )
 
 class ProductVOEncoder(ModelEncoder):
@@ -18,15 +18,14 @@ class ProductVOEncoder(ModelEncoder):
         "name",
         "sku",
         "price",
-        "image"
+        "image",
+        "cartQuantity"
     ]
-class UserVOEncoder(ModelEncoder):
-    model = UserVO
-    properties = ["id", "user"]
 
 class BodyQuizEncoder(ModelEncoder):
     model = BodyQuiz
     properties = [
+        "id",
         "answer_1", 
         "answer_2", 
         "answer_3", 
@@ -39,6 +38,7 @@ class BodyQuizEncoder(ModelEncoder):
 class HomeQuizEncoder(ModelEncoder):
     model = HomeQuiz
     properties = [
+        "id",
         "answer_1", 
         "answer_2", 
         "answer_3", 
@@ -56,6 +56,16 @@ class CartEncoder(ModelEncoder):
         "quantity",
         "totals"
     ] 
+    encoders = {
+        "product": ProductVOEncoder(),
+        }
+
+class WishListEncoder(ModelEncoder):
+    model = WishList
+    properties = [
+        "user",
+        "product"
+    ]
     encoders = {
         "product": ProductVOEncoder(),
         }

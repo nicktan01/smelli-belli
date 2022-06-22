@@ -757,5 +757,4 @@ class HomeQuiz extends React.Component {
   }
 }
 
-HomeQuiz.contextType = AuthContext;
 export default HomeQuiz;

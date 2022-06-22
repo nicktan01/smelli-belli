@@ -14,7 +14,6 @@ function Nav() {
       });
       if (response.ok) {
         const user = await response.json();
-        console.log(user);
         setUser(user);
       }
     }
@@ -123,6 +122,8 @@ function Nav() {
               </div>
             </li>
           </ul>
+          { token ?
+          <>
           <ul className="navbar-nav">
             <span className="nav-item dropdown">
               <NavLink
@@ -154,7 +155,7 @@ function Nav() {
                 <NavLink className="dropdown-item" to="/wishlist">
                   Wish List
                 </NavLink>
-                <NavLink className="dropdown-item" to="/scentprofile">
+                <NavLink className="dropdown-item" to="/scentprofiles">
                   Scent Profile
                 </NavLink>
               </div>
@@ -168,6 +169,46 @@ function Nav() {
               </NavLink>
             </span>
           </ul>
+          </>
+          :
+          <>
+          <ul className="navbar-nav">
+            <span className="nav-item dropdown">
+              <NavLink
+                className="nav-link dropdown-toggle"
+                to="#"
+                id="navbarDropdownMenuLink"
+                data-toggle="dropdown"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i className="bi bi-person-fill"></i>
+              </NavLink>
+              <div
+                style={{ left: "unset", right: "0" }}
+                className="dropdown-menu"
+                aria-labelledby="navbarDropdownMenuLink"
+              >
+                <NavLink
+                  className="dropdown-item"
+                  to={token ? "/account" : "/login"}
+                >
+                  My Account
+                </NavLink>
+              </div>
+            </span>
+            <span className="nav-item active">
+              <NavLink className="nav-link" to="/cart">
+                <i className="bi bi-cart"></i>
+                <span className="position-absolute top-25 start-90 translate-middle badge rounded-pill bg-danger">
+                  3
+                </span>
+              </NavLink>
+            </span>
+          </ul>
+          </> 
+          }
         </div>
       </div>
     </nav>

@@ -120,8 +120,8 @@ function NewProductForm(props) {
                 className="form-control"
               >
                 <option value="product_type">Select Product Type</option>
-                <option value="home">Home</option>
-                <option value="body">Body</option>
+                <option value="Home">Home</option>
+                <option value="Body">Body</option>
               </select>
             </div>
             <div className="form-floating mb-3">
@@ -137,13 +137,13 @@ function NewProductForm(props) {
                 <option value="product_category">
                   Select Product Category
                 </option>
-                <option value="candle">Candle</option>
-                <option value="incense_stick">Incense Stick</option>
-                <option value="room_spray">Room Spray</option>
-                <option value="lotion">Lotion</option>
-                <option value="body_wash">Body Wash</option>
-                <option value="soap">Soap</option>
-                <option value="deodorant">Deodorant</option>
+                <option value="Candle">Candle</option>
+                <option value="Incense Stick">Incense Stick</option>
+                <option value="Room Spray">Room Spray</option>
+                <option value="Lotion">Lotion</option>
+                <option value="Body Wash">Body Wash</option>
+                <option value="Soap">Soap</option>
+                <option value="Deodorant">Deodorant</option>
               </select>
             </div>
             <div className="form-floating mb-3">
@@ -196,11 +196,11 @@ function NewProductForm(props) {
                 className="form-control"
               >
                 <option value="scent1">Select Primary Scent</option>
-                <option value="fresh">Fresh</option>
-                <option value="amber">Amber</option>
-                <option value="floral">Floral</option>
-                <option value="woody">Woody</option>
-                <option value="fruity">Fruity</option>
+                <option value="Fresh">Fresh</option>
+                <option value="Amber">Amber</option>
+                <option value="Floral">Floral</option>
+                <option value="Woody">Woody</option>
+                <option value="Fruity">Fruity</option>
               </select>
             </div>
             <div className="form-floating mb-3">
@@ -214,11 +214,11 @@ function NewProductForm(props) {
                 className="form-control"
               >
                 <option value="scent2">Select Secondary Scent</option>
-                <option value="fresh">Fresh</option>
-                <option value="amber">Amber</option>
-                <option value="floral">Floral</option>
-                <option value="woody">Woody</option>
-                <option value="fruity">Fruity</option>
+                <option value="Fresh">Fresh</option>
+                <option value="Amber">Amber</option>
+                <option value="Floral">Floral</option>
+                <option value="Woody">Woody</option>
+                <option value="Fruity">Fruity</option>
               </select>
             </div>
             <div className="form-floating mb-3">

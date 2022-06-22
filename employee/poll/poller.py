@@ -9,7 +9,8 @@ sys.path.append("")
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "employee_project.settings")
 django.setup()
 
-from employee_rest.models import ProductVO, UserVO
+from employee_rest.models import ProductVO
+
 
 def get_products():
     response = requests.get(os.environ["INVENTORY_POLLER_HOST"])
@@ -22,7 +23,7 @@ def get_products():
                 "sku": product["sku"],
                 "price": product["price"],
                 "size": product["size"],
-                "quantity": product["quantity"] ,
+                "quantity": product["quantity"],
                 "limited_item": product["limited_item"],
                 "image": product["image"],
             },
@@ -31,7 +32,7 @@ def get_products():
 
 def poll():
     while True:
-        print('employee poller polling for data')
+        print("Employee Poller polling for data")
         try:
             get_products()
         except Exception as e:
