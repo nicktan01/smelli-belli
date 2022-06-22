@@ -1,5 +1,5 @@
 import React from "react";
-import { useToken } from "./authApi";
+import { useToken } from "../authApi";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";

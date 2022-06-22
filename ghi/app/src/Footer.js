@@ -112,6 +112,7 @@ function Footer() {
             className="bi me-2"
             width="115"
             height="70"
+            alt="logo"
           />
         </div>
       </NavLink>

@@ -81,7 +81,7 @@ class Product(models.Model):
     quantity = models.PositiveSmallIntegerField()
     image = models.URLField(blank=True, null=True)
     description = models.CharField(max_length=400)
-    
+
     def __str__(self):
         return f"{self.name} - {self.size}, {self.sku}"
 
@@ -91,4 +91,5 @@ class Product(models.Model):
         return reverse("api_show_product", kwargs={"sku": self.sku})  # SKU!
 
     class Meta:
-        ordering = ("size", "name")  # Order Products first by size, then name
+        ordering = ("id", "name")
+        # ordering = ("size", "name")  # Order Products first by size, then name

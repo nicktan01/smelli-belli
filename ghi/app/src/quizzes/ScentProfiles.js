@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { getTokenInternal } from "../authApi";
 
+function scentProfileColumns() {
+
+}
+
 function ScentProfilesList() {
-  const [homeScentProfiles, setHomeScentProfiles] = useState([]);
-  const [bodyScentProfiles, setBodyScentProfiles] = useState([]);
+  const [homeScentProfileColumns, setHomeScentProfileColumns] = useState([[], []]);
+  const [bodyScentProfileColumns, setBodyScentProfileColumns] = useState([[], []]);
   
   useEffect(() => {
+    
     async function getHomeScentProfileData() {
       const token = await getTokenInternal();
       const homeUrl = `${process.env.REACT_APP_CUSTOMER_HOST}/api/homequizzes/`;
@@ -18,10 +23,26 @@ function ScentProfilesList() {
       }
       const homeScentProfileResponse = await fetch(homeUrl, fetchConfig);
       const homeScentProfileData = await homeScentProfileResponse.json();
-
+      
+      const homeScentProfiles = [];
       if (homeScentProfileResponse.ok) {
-        setHomeScentProfiles(homeScentProfileData.home_scent_profiles);
+        for (let scentProfile of homeScentProfileData.home_scent_profiles) {
+          homeScentProfiles.push(scentProfile);
+        }
       }
+
+      const homeProfileColumns = [[], []];
+
+      let i = 0;
+      for (const homeScentProfile of homeScentProfiles) {
+        homeProfileColumns[i].push(homeScentProfile);
+        i += 1;
+        if (i > 1) {
+          i = 0;
+        }
+      }
+      console.log("What are inside the Home Profile Columns?", homeProfileColumns);
+      setHomeScentProfileColumns(homeProfileColumns);
     }
     
     async function getBodyScentProfileData() {
@@ -38,19 +59,37 @@ function ScentProfilesList() {
       const bodyScentProfileResponse = await fetch(bodyUrl, fetchConfig);
       const bodyScentProfileData = await bodyScentProfileResponse.json();
 
+      const bodyScentProfiles = [];
       if (bodyScentProfileResponse.ok) {
-        setBodyScentProfiles(bodyScentProfileData.body_scent_profiles);
+        for (let scentProfile of bodyScentProfileData.body_scent_profiles) {
+          bodyScentProfiles.push(scentProfile);
+        }
+        // setBodyScentProfiles(bodyScentProfileData.body_scent_profiles);
       }
+
+      const bodyProfileColumns = [[], []];
+
+      let i = 0;
+      for (const bodyScentProfile of bodyScentProfiles) {
+        bodyProfileColumns[i].push(bodyScentProfile);
+        i += 1;
+        if (i > 1) {
+          i = 0;
+        }
+      }
+      console.log("What are inside the Body Profile Columns?", bodyProfileColumns);
+      setBodyScentProfileColumns(bodyProfileColumns);
     }
-    getBodyScentProfileData();
+
     getHomeScentProfileData();
+    getBodyScentProfileData();
   }, []);
 
   return (
     <>
     <div id="home_scent_profiles">
       <h2>Home Scent Profiles</h2>
-      <table className="table table-striped">
+      {/* <table className="table table-striped">
         <thead>
           <tr>
             <th>Date</th>
@@ -100,7 +139,7 @@ function ScentProfilesList() {
             );
           })}
         </tbody>
-      </table>
+      </table> */}
     </div>
     </>
   );

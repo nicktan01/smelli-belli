@@ -1,6 +1,5 @@
-import { useToken } from "./authApi";
+import { useToken } from "../authApi";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 function EditAccount() {
   const [token, update] = useToken();
