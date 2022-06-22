@@ -1,6 +1,8 @@
 import React from "react";
+import { AuthContext } from "../authApi";
 
 class Cart extends React.Component {
+  static contextType = AuthContext
     constructor(props) {
       super(props);
       this.state = {
@@ -12,7 +14,14 @@ class Cart extends React.Component {
     }
 
     async componentDidMount() {
-        const response = await fetch(`${process.env.REACT_APP_CUSTOMER_HOST}/api/cart/`);
+      const token = this.context.token;
+      console.log(token)
+        const response = await fetch(`${process.env.REACT_APP_CUSTOMER_HOST}/api/cart/`, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        });
         if (response.ok) {
           const data = await response.json();
           console.log("this is the data ", data)
@@ -25,9 +34,7 @@ class Cart extends React.Component {
     } 
         
     render() {
-      let first_product = this.state.products[0]
-      console.log("this is the products", first_product)
-     
+      console.log(this.state.products)
         return (
             
             <div className="row">
@@ -47,6 +54,7 @@ class Cart extends React.Component {
                         <tr key={cart.product.sku}>
                           <td>{cart.product.name}</td>
                           <td>{cart.product.price}</td>
+                          {/* <td>{cart.product.image}</td> */}
                         </tr>
                       );
                     })}

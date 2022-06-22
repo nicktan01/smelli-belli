@@ -5,7 +5,7 @@ import "../product_pages/products.css";
 
 function Product({ sku, onClickLikeProduct, onClickCartProduct, liked, carted}) {
   const navigate = useNavigate();
-  //const [token] = useToken();
+  const [token] = useToken();
 
   function likeProductHandler(e, sku) {
     e.stopPropagation();
@@ -43,7 +43,7 @@ function Product({ sku, onClickLikeProduct, onClickCartProduct, liked, carted}) 
         method: "post",
         headers: {
           'Content-Type': 'application/json',
-          //Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           'product': product,
@@ -143,5 +143,5 @@ function Product({ sku, onClickLikeProduct, onClickCartProduct, liked, carted}) 
   );
 }
 
-//Product.contextType = AuthContext;
+Product.contextType = AuthContext;
 export default Product;

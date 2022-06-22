@@ -160,25 +160,28 @@ def delete_wishlist(request):
     # get to user/wishlist
     # put to user/wishlist
     # delete to user/wishlist
-# @auth.jwt_login_required
+@auth.jwt_login_required
 @require_http_methods(["GET", "POST"])
 def api_cart(request):
     if request.method == "GET":
-        cart = Cart.objects.all()
+        payload_dict = json.dumps(request.payload)
+        user_information = json.loads(payload_dict)
+        user_id = user_information["user"]["id"]
+        cart = Cart.objects.get(user=user_id)
         return JsonResponse(
             cart,
             encoder=CartEncoder,
             safe=False
         )
     else: #POST
-        # payload_dict = json.dumps(request.payload)
-        # user_information = json.loads(payload_dict)
-        user_id = 1
+        payload_dict = json.dumps(request.payload)
+        user_information = json.loads(payload_dict)
+        user_id = user_information["user"]["id"]
         content = json.loads(request.body)
         # Updates the content dictionary with the user id stored in user_id
         content["user"] = user_id
         try:
-            content = json.loads(request.body)
+            # content = json.loads(request.body)
             print("This is the content: ",content)
             content["product"] = ProductVO.objects.get(sku=content["product"]["sku"])
             # add a fake user temp bypass until account is setup
