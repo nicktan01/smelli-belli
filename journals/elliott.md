@@ -108,6 +108,24 @@ This day was a huge win for me. I was able to get the quizzes to successfully st
 
 Separated each question into its own page, added a lot of explanatory comments in the code, brought the home products quiz up to speed with the body quiz so far. Just finishing touches on the quiz and adding authentication to it, so users can access their quiz results.
 
+## June 15, 2022
+
+---
+
+I was incredibly tired this week with interviewing for and filling out all the onboarding paperwork for the SEIR position. Super excited for that! But it definitely slowed down work a lot, combined with the horrible 10-month sleep regression my son slipped into THIS VERY SAME WEEK. Sigh... This day I was able to work a lot on the bootstrap properties used in the quizzes to really hone in the formatting and make sure everything looked nice and clean. It wasn't a huge day, but it was important work.
+
+## June 16, 2022
+
+---
+
+On this day I got navigation buttons working within the quizzes so users can toggle back and forth between questions they've already answered in case they want to review a question and perhaps change their answer to it. I also got detail page links to each product recommended to the user working. Nice!
+
+## June 17, 2022
+
+---
+
+Worked with Curtis on trying to grab the user's information out of the token and save it to the quiz data models, but it was a pretty big blocker and I wasn't able to finish the work before the end of the day. I did a lot of work that got me to the point I needed to be to finish things up on Monday!
+
 ## June 20, 2022
 
 ---
