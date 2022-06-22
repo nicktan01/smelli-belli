@@ -48,7 +48,7 @@ class HomeQuiz extends React.Component {
   // This function creates an empty list when the page is first rendered
   // that we can later add products to when the user finishes the quiz
   async componentDidMount() {
-    const productUrl = "http://localhost:8100/api/products/";
+    const productUrl = `${process.env.REACT_APP_INVENTORY_HOST}/api/products/`;
     const productResponse = await fetch(productUrl);
 
     if (productResponse.ok) {
@@ -123,7 +123,7 @@ class HomeQuiz extends React.Component {
       this.setState({ quizQuestionsComplete: true });
     }
 
-    const url = "http://localhost:8100/api/products/";
+    const url = `${process.env.REACT_APP_INVENTORY_HOST}/api/products/`;
 
     try {
       const response = await fetch(url);
@@ -132,7 +132,7 @@ class HomeQuiz extends React.Component {
 
         const requests = [];
         for (let product of data.products) {
-          const detailUrl = `http://localhost:8100${product.href}`;
+          const detailUrl = `${process.env.REACT_APP_INVENTORY_HOST}${product.href}`;
           requests.push(fetch(detailUrl));
         }
 
@@ -222,7 +222,7 @@ class HomeQuiz extends React.Component {
     delete data.currentStep;
 
     // . . . so that we can POST a quiz object into our database!
-    const quizResultsUrl = "http://localhost:8090/api/homequizzes/";
+    const quizResultsUrl = `${process.env.REACT_APP_CUSTOMER_HOST}/api/homequizzes/`;
     const token = this.context.token;
     const fetchConfig = {
       method: "post",
@@ -401,9 +401,9 @@ class HomeQuiz extends React.Component {
           <div className={noAuthClasses}>
             <h2>Save Your Scent Profile Results For Later</h2>
             <em>
-              We see you aren't logged in today. Sign up today and enjoy access
-              to the latest Smelli Belli news and save your Scent Profile
-              results for later!
+              We see you aren't logged in today. Sign up and enjoy access to the
+              latest Smelli Belli news and save your Scent Profile results for
+              later!
             </em>
             <div className="my-5 d-grid gap-4 d-md-flex justify-content-center">
               <button
@@ -620,7 +620,7 @@ class HomeQuiz extends React.Component {
                 Next
               </button>
             </div>
-            <h4>Which home decor style is your favorite?</h4>
+            <h4>What style of home decor best describes your own?</h4>
             <em>Please, choose one</em>
             <div className="my-5 d-grid gap-4 d-md-flex justify-content-center">
               <button
@@ -757,5 +757,4 @@ class HomeQuiz extends React.Component {
   }
 }
 
-HomeQuiz.contextType = AuthContext;
 export default HomeQuiz;

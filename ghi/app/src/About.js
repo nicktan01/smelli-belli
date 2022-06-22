@@ -183,6 +183,7 @@ function About() {
           height={300}
           width={null}
           style={{ objectFit: "cover", width: "100%" }}
+          alt="about banner"
         />
         <div
           style={{
@@ -204,6 +205,7 @@ function About() {
             top: "50%",
             transform: "translateY(-50%)",
           }}
+          alt="about logo"
         />
       </div>
       <div className="px-4 py-3 my-1 text-center">

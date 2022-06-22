@@ -7,10 +7,6 @@ class ProductVO(models.Model):
     sku = models.CharField(max_length=12, unique=True)
     price = models.FloatField()
     image = models.URLField()
-    
-class UserVO(models.Model):
-    import_href = models.CharField(max_length=200, unique=True)
-    user = models.CharField(max_length=50)
 
 class BodyQuiz(models.Model):
     answer_1 = models.CharField(max_length=50)

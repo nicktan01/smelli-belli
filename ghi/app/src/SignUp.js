@@ -32,7 +32,7 @@ function SignUp() {
   return (
     <div>
       {token ? (
-        window.location.replace("http://localhost:3000/")
+        window.location.replace("/")
       ) : (
         <div className="row">
           <div className="offset-4 col-4 mt-4 mb-4">

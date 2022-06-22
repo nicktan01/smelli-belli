@@ -100,9 +100,7 @@ The front end portion of the quizzes is proving to be quite a hurdle, but it has
 
 ---
 
-Got it done right in time before the start of mandatory fun time!!
-
-ADD MORE HERE, DORK
+This day was a huge win for me. I was able to get the quizzes to successfully start offering a filtered products table. I opted for a table for speed and was able to get it done right in time before the start of mandatory fun time!!
 
 ## June 13, 2022
 
@@ -110,4 +108,40 @@ ADD MORE HERE, DORK
 
 Separated each question into its own page, added a lot of explanatory comments in the code, brought the home products quiz up to speed with the body quiz so far. Just finishing touches on the quiz and adding authentication to it, so users can access their quiz results.
 
-ADD MORE HERE, BOZO
+## June 15, 2022
+
+---
+
+I was incredibly tired this week with interviewing for and filling out all the onboarding paperwork for the SEIR position. Super excited for that! But it definitely slowed down work a lot, combined with the horrible 10-month sleep regression my son slipped into THIS VERY SAME WEEK. Sigh... This day I was able to work a lot on the bootstrap properties used in the quizzes to really hone in the formatting and make sure everything looked nice and clean. It wasn't a huge day, but it was important work.
+
+## June 16, 2022
+
+---
+
+On this day I got navigation buttons working within the quizzes so users can toggle back and forth between questions they've already answered in case they want to review a question and perhaps change their answer to it. I also got detail page links to each product recommended to the user working. Nice!
+
+## June 17, 2022
+
+---
+
+Worked with Curtis on trying to grab the user's information out of the token and save it to the quiz data models, but it was a pretty big blocker and I wasn't able to finish the work before the end of the day. I did a lot of work that got me to the point I needed to be to finish things up on Monday!
+
+## June 20, 2022
+
+---
+
+Well, I realize that my journal entries here are pretty sparse, but I'd like to take a moment to paint my Dear Grader a picture:
+
+You're coming up on the end of the biggest 19-week adventure you've willingly gone on in your life. You've poured blood sweat and tears into the personal project that is coming up on the finish line. Career services wants you to get some things done, and suddenly the work you do with them has a lot more bearing as the job search lies looming straight ahead. On top of that, you're super excited about the SEIR opportunity and have made landing that opportunity the new highest priority on the list! After going through the whole process of applying, interviewing, and then on boarding, the workload in your week at the end is much, much heavier. And, being at the end of 19 weeks, you're tired, Dear Grader. Oh, so tired. The results you see as you make each commit, sleep tugging at your eyelids, is enpugh to make you consider the day, your troubles, your successes, and your journey through each of them. So, with that in mind, I'd ask you to please keep that in mind when looking at the gap in my journal entries here. You can see the commits were there, and you can see how thoroughly I've documented my journal entries any other given week or time!
+
+That being said, I think I **finally** finished up the quiz components, more or less, today. I was finally able to get the user's id saved to the User prop on the Home and Body Quiz data models by checking the authorization token. I also am pretty proud of the work I did on the quizzes to check for an authentication token, offer the user a choice of signing up to save their profile results or taking the quiz anyway, and then offering the user a "Save my scent profile!" button if an auth token is detected at the final screen of the quiz. All in all, choosing to write the quizzes as class components simply because that was what I was used to and what we spent a lot of time doing in class was an immense mistake and not one I would like to make again. I wish that class components had more support, but the fact is they do not and because of that lack of support they are never going to be functional or even serviceable to a project. Never use class components. Authentication is also pretty nasty to work with, and I did not have a good time with that at all.
+
+## June 21, 2022
+
+---
+
+Today I spent some time trying to help Nicholas out with the cart. That was really difficult because we are trying to figure out how to authenticate the user's token in the fetch request's headers whenever we make requests to the cart endpoint. That was pretty tough work, and we got a clue from an outside source to check out "stale while refresh." Who knows if that will get us to where we need to be.
+
+While helping Nicholas with that, I also spent the day working on the component that shows a user their saved home and body scent profiles. We want users to be able to save their results, so that they can pull them up again later whenever they want and see their results, as well as hopefully get a link to a filtered products page so they can continue browsing at the recommended products. At the end of the night I was able to finally figure out the GET request for only showing the relevant scent profiles for the currently-logged in user and opted to render the results as an ugly table for now. I'm hoping to change the table to cards using Bootstrap, or at least something more aesthetic than the ugly tables.
+
+I also updated some of our data model documentation as that had really grown out of date as the project has gone on. Finally, I reworked the nav bar a little bit so that logged out users do not see all the links to user-specific parts of the application, like the saved scent profile page. They can still access these pages using the url, which is frustrating, but we'll get there. I think??
