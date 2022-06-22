@@ -1,4 +1,4 @@
-## May 27, 2022
+# May 27, 2022
 
 Today, we worked on:
 
@@ -16,7 +16,7 @@ We drafted up our initial Docker compose file, but we're still feeling unsure ab
 
 We wanted to start our Django project files but were unsure of how to do so.
 
-## May 31, 2022
+# May 31, 2022
 
 Today, we worked on:
 
@@ -29,7 +29,7 @@ Elliott showed us how to start our Django inventory project using a local virtua
 Jordan, Nicholas and I were able to add issues to create the backend components of our microservices. Each issue is to create the models, views, and paths of the different microservices. We hope to get most of the backend set up by the end of this week!
 We also are planning to implement the Customer microservice using FastAPI and the Inventory microservice using Django.
 
-## June 1, 2022
+# June 1, 2022
 
 Today, we worked on:
 
