@@ -124,3 +124,19 @@ Today I worked on:
 - Employee Add New Product Form
 
 To get more practice with hooks, I decided to try writing the form using hooks and it was successful! I also manually added drop down options inside the form but will have to revisit them later and fix a minor issue. I believe the dropdown inputs are saving via their value attribute and not the intended input that I wanted. It's basically just a matter of having the values be capitalized though rather than lowercase, so I will tinker with that and see what's going on another day. I tried adding a test product using the form and was able to search for said test product in the inventory page as well as see it appear in the products page!
+
+# June 21, 2022
+
+Today I worked on:
+
+- Curtis' feedback updates on hardcoded URLS (with Group)
+
+We worked together on a Liveshare session to update all of the hardcoded URLs in front and back end with environment variables to get it prepared for deployment.
+
+- Cleaning up the Employee microservice
+
+I did some clean up in the employee microservice - updating the ProductVO model and removing the UserVO model and other UserVO related things (encoders, admin). I also updated the employee data model to have the ProductVO datatable.
+
+- Updated GHI.md information
+
+I updated my respective pages that I built on the GHI doc to reflect what was actually completed and showing on the pages so that it would be accurate.
