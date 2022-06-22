@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSWRConfig } from "swr";
-import { AuthContext, useToken } from "../authApi";
+import { useAuthContext } from "../authApi";
 import "../product_pages/products.css";
 
 function Product({
@@ -13,7 +13,7 @@ function Product({
   carted,
 }) {
   const navigate = useNavigate();
-  const { token } = useToken();
+  const { token } = useAuthContext();
 
   // prevents navigation to detail page when clicking on wishlist button on product card
   function likeProductHandler(e, sku) {
@@ -54,7 +54,7 @@ function Product({
   const { mutate } = useSWRConfig();
 
   function addToWishlist(sku, token) {
-    const url = "http://localhost:8090/api/wishlist/";
+    const url = `${process.env.REACT_APP_CUSTOMER_HOST}/api/wishlist/`;
     const fetchConfig = {
       method: "post",
       headers: {
@@ -75,7 +75,7 @@ function Product({
   }
 
   function deleteFromWishlist(sku, token) {
-    const url = "http://localhost:8090/api/wishlist/";
+    const url = `${process.env.REACT_APP_CUSTOMER_HOST}/api/wishlist/`;
     const fetchConfig = {
       method: "delete",
       headers: {
