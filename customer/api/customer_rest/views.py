@@ -2,13 +2,14 @@ import djwto.authentication as auth
 from django.http import JsonResponse
 import json
 from django.views.decorators.http import require_http_methods
-from .models import BodyQuiz, HomeQuiz, Cart, ProductVO
+from .models import BodyQuiz, HomeQuiz, Cart, ProductVO, WishList
 from .encoders import (
     CartEncoder,
     CartEncoder,
     BodyQuizEncoder,
     HomeQuizEncoder,
-    UserVO
+    UserVO,
+    WishListEncoder
     )
 
 @auth.jwt_login_required
@@ -138,28 +139,66 @@ def api_show_home_quiz(request, pk):
                 {"message": "That home scent profile does not exist!"}
             )
 
-# Wishlist functionality - Jordan
-def get_wishlist(request):
-    pass
-    # query wishlist table for all products matching current user id
-    # return all products in an array
+# Wishlist functionality 
+@auth.jwt_login_required
+@require_http_methods(["GET", "POST", "PUT", "DELETE"])
+def api_wishlist(request):
+    payload_dict = json.dumps(request.payload)
+    user_information = json.loads(payload_dict)
+    user_id = user_information["user"]["id"]
 
-def add_wishlist(request):
-    pass
+    if request.method == "POST":
+        # same method for retrieving user info as used above
+        content = json.loads(request.body)
+        product = ProductVO.objects.get(sku=content["sku"])
+        
+        try:
+            if not WishList.objects.filter(product=product, user=user_id):
+                wishlist = WishList.objects.create(product=product, user=user_id)
+            return JsonResponse(
+                {"message": "Done"}
+            )
+        except Exception as e:
+            response = JsonResponse(
+                {"message": "Could not create wishlist"}
+            )
+            print("exception:", e)
+            response.status_code = 400
+            return response
+    elif request.method == "GET":
+        try:
+            wishlist = list(map((lambda item: item.product.sku), WishList.objects.filter(user=user_id)))
+            return JsonResponse(
+                wishlist,
+                safe=False
+            )
+        except WishList.DoesNotExist:
+            response = JsonResponse(
+                {"message": "No wishlist items"}
+            )
+            response.status_code = 404
+            return response
+# def add_wishlist(request):
+#     pass
     # get current user id
     # receive sku from request
     # add an entry to table
-
-def delete_wishlist(request):
-    pass
+    elif request.method == "DELETE":
+        content = json.loads(request.body)
+        product = ProductVO.objects.get(sku=content["sku"])
+        WishList.objects.filter(user=user_id, product=product).delete()
+        return JsonResponse(
+                {"message": "Done"}
+            )
+        
+# def delete_wishlist(request):
+#     pass
     # get current user id
     # receive sku from request
     # remove entry from table
+   
+        
 
-    # urls to map to wishlist views
-    # get to user/wishlist
-    # put to user/wishlist
-    # delete to user/wishlist
 # @auth.jwt_login_required
 @require_http_methods(["GET", "POST"])
 def api_cart(request):

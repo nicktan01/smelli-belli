@@ -7,7 +7,8 @@ from .models import (
     Cart,
     ProductVO,
     BodyQuiz,
-    HomeQuiz 
+    HomeQuiz,
+    WishList 
 )
 
 class ProductVOEncoder(ModelEncoder):
@@ -56,6 +57,16 @@ class CartEncoder(ModelEncoder):
         "quantity",
         "totals"
     ] 
+    encoders = {
+        "product": ProductVOEncoder(),
+        }
+
+class WishListEncoder(ModelEncoder):
+    model = WishList
+    properties = [
+        "user",
+        "product"
+    ]
     encoders = {
         "product": ProductVOEncoder(),
         }

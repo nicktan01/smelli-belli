@@ -71,7 +71,7 @@ export function useToken() {
     if (!token) {
       fetchToken();
     }
-  }, [token]);
+  }, [setToken, token]);
 
   async function logout() {
     if (token) {

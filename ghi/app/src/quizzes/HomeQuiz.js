@@ -620,7 +620,7 @@ class HomeQuiz extends React.Component {
                 Next
               </button>
             </div>
-            <h4>What clothing style is your favorite?</h4>
+            <h4>Which home decor style is your favorite?</h4>
             <em>Please, choose one</em>
             <div className="my-5 d-grid gap-4 d-md-flex justify-content-center">
               <button

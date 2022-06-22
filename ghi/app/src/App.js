@@ -17,6 +17,7 @@ import Checkout from "./Cart/Checkout";
 import { AuthProvider } from "./authApi";
 import InventoryList from "./employee_pages/Inventory";
 import NewProductForm from "./employee_pages/NewProductForm";
+import WishlistPage from "./WishlistPage";
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
             <Route path="/homequiz" element={<HomeQuiz />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/wishlist" element={<WishlistPage />} />
           </Routes>
           <Footer />
         </AuthProvider>
@@ -63,4 +65,3 @@ function App() {
 }
 
 export default App;
-
