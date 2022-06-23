@@ -152,8 +152,6 @@ deploy-back-end-job-heroku:
     # Only run if the commit is tagged with git tag
     - if: ($CI_COMMIT_BRANCH == "deploy" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH)
   stage: deploy
-  needs:
-    - build-back-end-job
   image: docker:20.10.16
   services:
     - docker:20.10.16-dind
