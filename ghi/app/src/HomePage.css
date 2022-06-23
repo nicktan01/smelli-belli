@@ -1,0 +1,61 @@
+.carousel-inner > .carousel-item > img {
+    width:640px;
+    height:360px;
+  }
+  
+.hero-img-blur {
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+}
+
+.flipped {
+  transform: rotateY(180deg);
+  transform: rotateX(180deg);
+}
+
+.right-img {
+  padding-right: 530px
+}
+
+.left-img {
+  padding-left: 530px;
+  padding-bottom: 50px;
+}
+
+.quiz-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 50px;
+  grid-row-gap: 0px;
+  }
+
+.carousel-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    }
+  
+.div1 { grid-area: 1 / 1 / 2 / 2;
+  height: 500px;
+  width: 1200px; }
+.div2 { grid-area: 1 / 2 / 2 / 3;   
+  height: 500px;
+  width: 1200px; }
+.div3 { grid-area: 1 / 2 / 4 / 5; }
+
+.break-word {
+  word-wrap: break-word;
+}
+
+.body-text {
+  position: relative;
+  offset-position: -60%;
+}
+
+.home-text {
+  position: relative;
+
+}

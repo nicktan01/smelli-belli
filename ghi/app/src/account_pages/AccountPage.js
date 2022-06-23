@@ -62,9 +62,6 @@ function AccountPage() {
             <div className="container p-4 mt-4">
               <h3>
                 Account Details:
-                <NavLink to="/account/edit" className="nowrap">
-                  <i className="bi bi-pencil-square"></i>
-                </NavLink>
               </h3>
               <div>first name: {user.first_name}</div>
               <div>last name: {user.last_name}</div>
