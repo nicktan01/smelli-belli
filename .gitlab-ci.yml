@@ -1,0 +1,145 @@
+stages:
+  - test   # Run tests first
+  - build  # Run build after tests
+  - deploy # Run deploy after build
+
+api-unit-test-job:
+  image: python:3-bullseye
+  stage: test
+  script:
+    - cd accounts/api
+    - pip install -r requirements.txt
+    - python manage.py test
+    - cd ../../customer/api
+    - pip install -r requirements.txt
+    - python manage.py test
+    - cd ../../employee/api
+    - pip install -r requirements.txt
+    - python manage.py test
+    - cd ../../inventory/api
+    - pip install -r requirements.txt
+    - python manage.py test
+
+lint-test-job:
+  image: python:3-bullseye
+  stage: test
+  script:
+    - pip install flake8
+    - flake8 accounts customer employee inventory
+
+build-front-end-job:
+  rules:
+    # Only run if the commit is tagged with git tag
+    - if: ($CI_COMMIT_BRANCH == "deploy" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH)
+  stage: build
+  image: node:lts-bullseye
+  needs:
+    - api-unit-test-job  # These two jobs must succeed for
+    - lint-test-job      # this build-job to run
+  script:
+    - cd ghi/app
+    - npm install
+    - npm run build  # Build the React application
+  artifacts:
+    paths:
+      - ghi/app/build/  # Save all of the files in the build path
+
+build-back-end-job:
+  rules:
+    # Only run if the commit is tagged with git tag
+    - if: ($CI_COMMIT_BRANCH == "deploy" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH)
+  stage: build
+  image: docker:20.10.16
+  services:
+    - docker:20.10.16-dind
+  script:
+    - cd accounts/api
+    - docker build -t ${CI_REGISTRY_IMAGE}/accounts_api:latest .
+    - docker tag ${CI_REGISTRY_IMAGE}/accounts_api:latest ${CI_REGISTRY_IMAGE}/accounts_api:$CI_COMMIT_TAG
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker push ${CI_REGISTRY_IMAGE}/accounts_api:$CI_COMMIT_TAG
+    - docker push ${CI_REGISTRY_IMAGE}/accounts_api:latest
+
+    - cd ../../customer/api
+    - docker build -t ${CI_REGISTRY_IMAGE}/customer_api:latest .
+    - docker tag ${CI_REGISTRY_IMAGE}/customer_api:latest ${CI_REGISTRY_IMAGE}/customer_api:$CI_COMMIT_TAG
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker push ${CI_REGISTRY_IMAGE}/customer_api:$CI_COMMIT_TAG
+    - docker push ${CI_REGISTRY_IMAGE}/customer_api:latest
+
+    - cd ../../employee/api
+    - docker build -t ${CI_REGISTRY_IMAGE}/employee_api:latest .
+    - docker tag ${CI_REGISTRY_IMAGE}/employee_api:latest ${CI_REGISTRY_IMAGE}/employee_api:$CI_COMMIT_TAG
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker push ${CI_REGISTRY_IMAGE}/employee_api:$CI_COMMIT_TAG
+    - docker push ${CI_REGISTRY_IMAGE}/employee_api:latest
+
+    - cd ../../inventory/api
+    - docker build -t ${CI_REGISTRY_IMAGE}/inventory_api:latest .
+    - docker tag ${CI_REGISTRY_IMAGE}/inventory_api:latest ${CI_REGISTRY_IMAGE}/inventory_api:$CI_COMMIT_TAG
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker push ${CI_REGISTRY_IMAGE}/inventory_api:$CI_COMMIT_TAG
+    - docker push ${CI_REGISTRY_IMAGE}/inventory_api:latest
+
+deploy-back-end-job-heroku:
+  rules:
+    # Only run if the commit is tagged with git tag
+    - if: ($CI_COMMIT_BRANCH == "deploy" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH)
+  stage: deploy
+  needs:
+    - build-back-end-job
+  image: docker:20.10.16
+  services:
+    - docker:20.10.16-dind
+  script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker pull ${CI_REGISTRY_IMAGE}/accounts_api:latest
+    - docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
+    - docker tag ${CI_REGISTRY_IMAGE}/accounts_api:latest registry.heroku.com/$HEROKU_STAGING_ACCOUNTS_APP/web:latest
+    - docker push registry.heroku.com/$HEROKU_STAGING_ACCOUNTS_APP/web:latest
+
+    - docker pull ${CI_REGISTRY_IMAGE}/customer_api:latest
+    - docker tag ${CI_REGISTRY_IMAGE}/customer_api:latest registry.heroku.com/$HEROKU_STAGING_CUSTOMER_APP/web:latest
+    - docker push registry.heroku.com/$HEROKU_STAGING_CUSTOMER_APP/web:latest
+
+    - docker pull ${CI_REGISTRY_IMAGE}/employee_api:latest
+    - docker tag ${CI_REGISTRY_IMAGE}/employee_api:latest registry.heroku.com/$HEROKU_STAGING_EMPLOYEE_APP/web:latest
+    - docker push registry.heroku.com/$HEROKU_STAGING_EMPLOYEE_APP/web:latest
+
+    - docker pull ${CI_REGISTRY_IMAGE}/inventory_api:latest
+    - docker tag ${CI_REGISTRY_IMAGE}/inventory_api:latest registry.heroku.com/$HEROKU_STAGING_INVENTORY_APP/web:latest
+    - docker push registry.heroku.com/$HEROKU_STAGING_INVENTORY_APP/web:latest
+
+heroku-release:
+  stage: deploy
+  image: node:10.17-alpine
+  rules:
+    - if: ($CI_COMMIT_BRANCH == "deploy" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH)
+  needs:
+    - deploy-back-end-job-heroku
+  before_script:
+    - apk add curl bash
+    - curl https://cli-assets.heroku.com/install.sh | sh
+  script:
+    - heroku container:release web --app $HEROKU_STAGING_ACCOUNTS_APP
+    - heroku container:release web --app $HEROKU_STAGING_CUSTOMER_APP
+    - heroku container:release web --app $HEROKU_STAGING_EMPLOYEE_APP
+    - heroku container:release web --app $HEROKU_STAGING_INVENTORY_APP
+
+# This is an easy way to deploy a React app using GitLab
+# Pages. Then, you can access your application from
+# gitlab.io.
+pages:
+  stage: deploy
+  rules:
+    # Only run if the commit is tagged with git tag
+    - if: ($CI_COMMIT_BRANCH == "deploy" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH)
+  dependencies:
+    - build-front-end-job
+  needs:
+    - build-front-end-job
+  script:
+    - mv ghi/build public
+  artifacts:
+    paths:
+      - public
