@@ -74,7 +74,7 @@ build-back-end-job:
     - docker push ${CI_REGISTRY_IMAGE}/customer_api:$CI_JOB_ID
     - docker push ${CI_REGISTRY_IMAGE}/customer_api:latest
 
-    - cd ../poller
+    - cd ../poll
     - docker build -t ${CI_REGISTRY_IMAGE}/customer_poller:latest .
     - docker tag ${CI_REGISTRY_IMAGE}/customer_poller:latest ${CI_REGISTRY_IMAGE}/customer_poller:$CI_JOB_ID
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
@@ -88,7 +88,7 @@ build-back-end-job:
     - docker push ${CI_REGISTRY_IMAGE}/employee_api:$CI_JOB_ID
     - docker push ${CI_REGISTRY_IMAGE}/employee_api:latest
 
-    - cd ../poller
+    - cd ../poll
     - docker build -t ${CI_REGISTRY_IMAGE}/employee_poller:latest .
     - docker tag ${CI_REGISTRY_IMAGE}/employee_poller:latest ${CI_REGISTRY_IMAGE}/employee_poller:$CI_JOB_ID
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
