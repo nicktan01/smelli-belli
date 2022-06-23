@@ -11,9 +11,12 @@ const ProductDetails = () => {
   const { data: wishlist, error } = useSWR(
     token ? "/api/wishlist/" : null,
     async () => {
-      const request = await fetch("http://localhost:8090/api/wishlist/", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const request = await fetch(
+        `${process.env.REACT_APP_CUSTOMER_HOST}/api/wishlist/`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       const json = await request.json();
       return json;
     }
@@ -33,7 +36,6 @@ const ProductDetails = () => {
 
   function likeProductHandler(e, sku) {
     e.stopPropagation();
-    console.log("token:", token);
     if (token === false || token === undefined) {
       navigate("/login");
       navigate(-1);

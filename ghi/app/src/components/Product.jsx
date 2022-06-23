@@ -15,10 +15,8 @@ function Product({
   const navigate = useNavigate();
   const { token } = useAuthContext();
 
-  // prevents navigation to detail page when clicking on wishlist button on product card
   function likeProductHandler(e, sku) {
     e.stopPropagation();
-    console.log("token:", token);
     if (token === false || token === undefined) {
       navigate("/login");
       navigate(-1);
@@ -99,7 +97,6 @@ function Product({
   function cartProductHandler(e, product, price) {
     e.stopPropagation();
     onClickCartProduct(product.sku);
-    console.log("The product: ", product);
     async function fetchData() {
       const url = `${process.env.REACT_APP_CUSTOMER_HOST}/api/cart/`;
       const fetchConfig = {

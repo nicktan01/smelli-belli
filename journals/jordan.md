@@ -3,7 +3,8 @@
 ## June 22, 2022
 Morning: Had a fire to put out, after I merged with main last night it seemed like nothing was working correctly. After a lot of circular troublshooting, the problem was that the customer poller host was declared in the wrong place in the docker compose. Now things are working again. 
 
-Afternoon: Working on getting the wishlist to post from the product detail page. 
+Afternoon: Working on getting the wishlist to post from the product detail page. Got it working, I had to assign a new variable to track something but it is complete! Very weird to be approaching the end (for now) of this project
+
 ## June 21, 2022
 Morning: Feeling very burnt out. Troubleshooting why the cart button is not changing when clicked - thinking this is happening because the cart object is not saving correctly on my branch. Will return to check this when I merge with Nicholas' code.
 
