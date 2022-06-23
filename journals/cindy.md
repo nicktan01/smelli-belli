@@ -148,3 +148,15 @@ Fixed the form so that the drop down items would post the proper capitalized wor
 - Fixed banner image linter issue
 
 Just needed to add img alt attribute.
+
+# June 22, 2022
+
+Today I worked on:
+
+- Going through files and doing more minor clean up
+
+I went through all of our files to look for any unused imports and pseudocode that could be removed to prepare it for deployment. Also checked for commented out code and let the team know which files contained commented out code so they could update/remove those.
+
+- Writing 2 Unit Tests for Inventory
+
+Spent some time researching how to write unit tests for Django by reading the documentation and also watching some Youtube videos. I initally had some trouble running the tests because it was saying I didn't have permission to create a database, so I had to do some research into that as well. Turns out I needed to connect to the Postgres terminal and add an alternate user "inventory" to be able to create databases. Then my test was able to run and I decided to start with a simple API call test for the list products and it passed! So I decided to try writing one more unit test for the search product function I made for the Employee Inventory page and that was a bit of a struggle. I tried searching for how to write unit testing for search queries and tried what I found but it wasn't working and later discovered that since our products are written in JSON, I also had to format my assert to be JSON as well! And since I was testing search for a product, I was also able to write a setup function to create a test product to search for.

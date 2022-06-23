@@ -80,6 +80,7 @@ export function useToken() {
       internalToken = null;
       setToken(null);
       navigate("/");
+      window.location.reload()
     }
   }
 
@@ -126,7 +127,7 @@ export function useToken() {
   async function update(username, password, email, firstName, lastName) {
     const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/accounts/`;
     const response = await fetch(url, {
-      method: "put",
+      method: "post",
       body: JSON.stringify({
         username,
         password,

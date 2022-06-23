@@ -27,7 +27,6 @@ function AccountPage() {
     }
   }, [token]);
 
-  // accounts/<str:email>
   return (
     <div>
       {token ? (
@@ -35,23 +34,12 @@ function AccountPage() {
           <div className="offset-4 col-4 mt-4 mb-4">
             <div className="shadow p-4 mt-4">
               <h1 className="mx-4">You're logged in!</h1>
-              {/* <div>{token}</div> */}
               <button
                 className="btn btn-danger offset-4 col-4"
                 onClick={logout}
               >
                 Logout
               </button>
-              {/* {orders == null ? (
-                            <div>Orders loading...</div>
-                          ) : (
-                            <div>{orders.length || "no"} products</div>
-                          )}
-                          {user == null ? (
-                            <div>Loading your information</div>
-                          ) : (
-                            <div>You are staff: {user.is_staff ? "YES!" : "no :-("}</div>
-                          )} */}
             </div>
           </div>
           <div className="container shadow p-4 mt-4">
@@ -62,9 +50,6 @@ function AccountPage() {
             <div className="container p-4 mt-4">
               <h3>
                 Account Details:
-                <NavLink to="/account/edit" className="nowrap">
-                  <i className="bi bi-pencil-square"></i>
-                </NavLink>
               </h3>
               <div>first name: {user.first_name}</div>
               <div>last name: {user.last_name}</div>
