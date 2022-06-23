@@ -1,3 +1,4 @@
+import djwto.authentication as auth
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 import json
@@ -5,9 +6,9 @@ from .encoders import (
     ProductVOEncoder,
     OrderEncoder,
 )
-from .models import ProductVO, Order
+from .models import LineItem, ProductVO, Order
 
-
+# @auth.jwt_login_required
 @require_http_methods(["GET", "POST"])
 def api_orders(request):
     if request.method == "GET":
@@ -17,11 +18,38 @@ def api_orders(request):
             encoder=OrderEncoder,
         )
     elif request.method == "POST":
-        try:
-            content = json.loads(request.body)
+        content = json.loads(request.body)
+        print("This is the content!!!!", content)
+        # try:
+        if True:
+            productVOs = []
+            products = content.get("products")
+            for p in products:
+                product_id = p.get("sku")
+                print("PRODUCT_ID", product_id)
+                product = ProductVO.objects.get(sku=product_id)
+                print("Product: ", product)
+                quantity = p.get("quantity")
+                li = {
+                    "product": product,
+                    "quantity": quantity
+                }
+                lineItem = LineItem.objects.create(**li)
+                productVOs.append(lineItem)
+            # content = json.loads(request.body)
+            # for element in content:
+            #     order = Order.objects.create(**element)
+            #     orders.append(order)
+            # content["products"] = productVOs
+            del content["products"]
             order = Order.objects.create(**content)
+            for pvo in productVOs:
+                order.products.add(pvo)
+            # order.products.set(productVOs)
+            order.save()
+            print(order)
             return JsonResponse(order, encoder=OrderEncoder, safe=False)
-        except:
+        # except:
             response = JsonResponse({"message": "Could not create the order"})
             response.status_code = 400
             return response

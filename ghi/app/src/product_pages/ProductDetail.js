@@ -46,7 +46,7 @@ const ProductDetails = () => {
       deleteFromWishlist(sku, token);
     }
   }
-
+  
   const { mutate } = useSWRConfig();
 
   function addToWishlist(sku, token) {
