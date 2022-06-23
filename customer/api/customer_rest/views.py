@@ -185,8 +185,8 @@ def api_cart(request):
         product = ProductVO.objects.get(sku=content["sku"])
 
         try:
-            if not Cart.objects.filter(product=product, user=user_id):
-                cart = Cart.objects.create(product=product, user=user_id)
+            # if not Cart.objects.filter(product=product, user=user_id):
+            cart = Cart.objects.create(product=product, user=user_id)
             return JsonResponse(
                 {"message": "Done"}
             )

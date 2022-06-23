@@ -5,10 +5,24 @@ import { useSWRConfig } from "swr";
 import { useAuthContext } from "../authApi";
 import "../product_pages/products.css";
 
-function Product({ sku, liked, carted, cartQuantity, showPlusMinus }) {
+function Product({ sku, liked, cartQuantity, carted, showPlusMinus }) {
   const navigate = useNavigate();
   // const [token] = useToken();
   const { token } = useAuthContext();
+  let [ quantity, setQuantity ] = useState(cartQuantity);
+
+  const incrementCounter = () => {
+     addToCart(sku, token);
+    
+  }
+
+  const decrementCounter = () => {
+    if (cartQuantity > 1) {
+      setQuantity(cartQuantity -= 1);
+    } else if (cartQuantity <= 0) {
+      setQuantity(1);
+    }
+  }
 
   function likeProductHandler(e, sku) {
     e.stopPropagation();
@@ -29,11 +43,8 @@ function Product({ sku, liked, carted, cartQuantity, showPlusMinus }) {
       navigate("/login");
       return;
     }
-    if (!carted) {
-      addToCart(sku, token);
-    } else {
-      deleteFromCart(sku, token);
-    }
+    console.log("This is cart handler")
+    addToCart(sku, token); 
   }
 
   const [product, setProduct] = useState({});
@@ -143,7 +154,6 @@ function Product({ sku, liked, carted, cartQuantity, showPlusMinus }) {
         mutate("/api/cart/");
       });
   }
-
   return (
     <div key={product.sku} className="card mb-3 shadow-none border-0">
       {liked ? (
@@ -198,13 +208,15 @@ function Product({ sku, liked, carted, cartQuantity, showPlusMinus }) {
       <div className="card-body">
         <div className="counter">
           {showPlusMinus ? (
-            <button onClick={() => deleteFromCart(product.sku, token)}>
+            <button onClick={decrementCounter}>
               -
             </button>
           ) : null}
           {cartQuantity}
           {showPlusMinus ? (
-            <button onClick={() => addToCart(product.sku, token)}>+</button>
+            <button onClick={(e) => cartProductHandler(e, product.sku)}>
+              +
+            </button>
           ) : null}
         </div>
       </div>
