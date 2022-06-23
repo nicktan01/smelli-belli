@@ -6,21 +6,21 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('inventory_rest', '0006_remove_product_ingredients_and_more'),
+        ("inventory_rest", "0006_remove_product_ingredients_and_more"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='product',
-            name='created',
+            model_name="product",
+            name="created",
         ),
         migrations.RemoveField(
-            model_name='product',
-            name='updated',
+            model_name="product",
+            name="updated",
         ),
         migrations.AlterField(
-            model_name='product',
-            name='image',
+            model_name="product",
+            name="image",
             field=models.URLField(blank=True, null=True),
         ),
     ]

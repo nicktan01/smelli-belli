@@ -1,7 +1,6 @@
 from django.http import JsonResponse
 from django.test import TestCase, Client
 from django.urls import reverse
-import json
 
 from ..encoders import ProductListEncoder
 

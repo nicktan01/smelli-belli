@@ -7,6 +7,7 @@ import json
 from .encoders import AccountModelEncoder
 from .models import User
 
+
 # Create your views here.
 def create_user(json_content):
     try:

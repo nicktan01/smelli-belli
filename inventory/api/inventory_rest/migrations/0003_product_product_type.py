@@ -6,13 +6,21 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('inventory_rest', '0002_alter_product_image'),
+        ("inventory_rest", "0002_alter_product_image"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='product',
-            name='product_type',
-            field=models.CharField(choices=[('', '-----------'), ('Home', 'Home'), ('Body', 'Body')], default='', max_length=10),
+            model_name="product",
+            name="product_type",
+            field=models.CharField(
+                choices=[
+                    ("", "-----------"),
+                    ("Home", "Home"),
+                    ("Body", "Body"),
+                ],
+                default="",
+                max_length=10,
+            ),
         ),
     ]

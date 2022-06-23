@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('inventory_rest', '0001_initial'),
+        ("inventory_rest", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='product',
-            name='image',
+            model_name="product",
+            name="image",
             field=models.URLField(blank=True),
         ),
     ]

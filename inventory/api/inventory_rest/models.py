@@ -1,6 +1,7 @@
 from django.urls import reverse
 from django.db import models
 
+
 # Create your models here.
 class Product(models.Model):
     ONE_FL_OZ = "1.0 fl oz"
@@ -92,4 +93,5 @@ class Product(models.Model):
 
     class Meta:
         ordering = ("id", "name")
-        # ordering = ("size", "name")  # Order Products first by size, then name
+        # Order Products first by size, then name
+        # ordering = ("size", "name")

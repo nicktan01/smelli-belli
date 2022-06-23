@@ -55,7 +55,7 @@ def api_list_products(request):
             return JsonResponse(
                 product, encoder=ProductDetailEncoder, safe=False
             )
-        except:
+        except Exception:
             response = JsonResponse(
                 {"message": "Could not create the product"}
             )

@@ -5,11 +5,11 @@ import json
 from django.views.decorators.http import require_http_methods
 from .models import BodyQuiz, HomeQuiz, Cart, ProductVO, WishList
 from .encoders import (
-    CartEncoder,
     BodyQuizEncoder,
     HomeQuizEncoder,
     ProductVOEncoder,
-    )
+)
+
 
 @auth.jwt_login_required
 @require_http_methods(["GET", "POST"])
@@ -18,7 +18,8 @@ def api_list_body_quizzes(request):
         # This grabs all of the user information out of the authorization token
         payload_dict = json.dumps(request.payload)
         user_information = json.loads(payload_dict)
-        # Stores the id of the user grabbed from the token, and saves to a variable
+        # Stores the id of the user grabbed from the token, and saves to a
+        # variable
         user_id = user_information["user"]["id"]
         # Grabs only the Body Quiz objects that match the saved User ID in the
         # table to the User ID in the active authorization token
@@ -30,7 +31,8 @@ def api_list_body_quizzes(request):
         # This grabs all of the user information out of the authorization token
         payload_dict = json.dumps(request.payload)
         user_information = json.loads(payload_dict)
-        # Stores the id of the user grabbed from the token, and saves to a variable
+        # Stores the id of the user grabbed from the token, and saves to a
+        # variable
         user_id = user_information["user"]["id"]
         content = json.loads(request.body)
         # Updates the content dictionary with the user id stored in user_id
@@ -40,7 +42,7 @@ def api_list_body_quizzes(request):
         try:
             body_quiz = BodyQuiz.objects.create(**content)
             return JsonResponse(body_quiz, encoder=BodyQuizEncoder, safe=False)
-        except:
+        except Exception:
             response = JsonResponse(
                 {"message": "Could not create the body scent profile"}
             )
@@ -77,7 +79,8 @@ def api_list_home_quizzes(request):
         # This grabs all of the user information out of the authorization token
         payload_dict = json.dumps(request.payload)
         user_information = json.loads(payload_dict)
-        # Stores the id of the user grabbed from the token, and saves to a variable
+        # Stores the id of the user grabbed from the token, and saves to a
+        # variable
         user_id = user_information["user"]["id"]
         # Grabs only the Body Quiz objects that match the saved User ID in the
         # table to the User ID in the active authorization token
@@ -89,7 +92,8 @@ def api_list_home_quizzes(request):
         # This grabs all of the user information out of the authorization token
         payload_dict = json.dumps(request.payload)
         user_information = json.loads(payload_dict)
-        # Stores the id of the user grabbed from the token, and saves to a variable
+        # Stores the id of the user grabbed from the token, and saves to a
+        # variable
         user_id = user_information["user"]["id"]
         content = json.loads(request.body)
         # Updates the content dictionary with the user id stored in user_id
@@ -99,7 +103,7 @@ def api_list_home_quizzes(request):
         try:
             home_quiz = HomeQuiz.objects.create(**content)
             return JsonResponse(home_quiz, encoder=HomeQuizEncoder, safe=False)
-        except:
+        except Exception:
             response = JsonResponse(
                 {"message": "Could not create the home scent profile"}
             )
@@ -199,41 +203,36 @@ def api_cart(request):
         try:
             if not Cart.objects.filter(product=product, user=user_id):
                 cart = Cart.objects.create(product=product, user=user_id)
-            return JsonResponse(
-                {"message": "Done"}
-            )
+            return JsonResponse({"message": "Done"})
         except Exception as e:
-            response = JsonResponse(
-                {"message": "Could not create cart"}
-            )
+            response = JsonResponse({"message": "Could not create cart"})
             print("exception", e)
             response.status_code = 400
             return response
     elif request.method == "GET":
         try:
-            cart = list(map((lambda item: item.product), Cart.objects.filter(user=user_id).order_by("product__name")))
-            groupedProducts = itertools.groupby(cart, key= lambda item: item.id)
+            cart = list(
+                map(
+                    (lambda item: item.product),
+                    Cart.objects.filter(user=user_id).order_by(
+                        "product__name"
+                    ),
+                )
+            )
+            groupedProducts = itertools.groupby(cart, key=lambda item: item.id)
             result = []
             for product, group in groupedProducts:
                 group = list(group)
                 product = group[0]
                 product.cartQuantity = len(list(group))
                 result.append(product)
-            return JsonResponse(
-                result,
-                encoder=ProductVOEncoder,
-                safe=False
-            )
+            return JsonResponse(result, encoder=ProductVOEncoder, safe=False)
         except Cart.DoesNotExist:
-            response = JsonResponse(
-                {"message": "No cart items"}
-            )
+            response = JsonResponse({"message": "No cart items"})
             response.status_code = 404
             return response
     elif request.method == "DELETE":
         content = json.load(request.body)
         product = ProductVO.objects.get(sku=content["sku"])
         Cart.objects.filter(user=user_id, product=product).delete()
-        return JsonResponse(
-            {"message": "Done"}
-        )
+        return JsonResponse({"message": "Done"})

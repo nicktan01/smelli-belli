@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('inventory_rest', '0009_alter_product_product_type'),
+        ("inventory_rest", "0009_alter_product_product_type"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='product',
-            name='status',
-            field=models.CharField(default='NOT_CARTED', max_length=100),
+            model_name="product",
+            name="status",
+            field=models.CharField(default="NOT_CARTED", max_length=100),
         ),
     ]

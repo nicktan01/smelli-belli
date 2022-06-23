@@ -8,64 +8,117 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='BodyQuiz',
+            name="BodyQuiz",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('answer_1', models.CharField(max_length=50)),
-                ('answer_2', models.CharField(max_length=50)),
-                ('answer_3', models.CharField(max_length=50)),
-                ('answer_4', models.CharField(max_length=50)),
-                ('answer_5', models.CharField(max_length=50)),
-                ('created', models.DateField(auto_now_add=True)),
-                ('user', models.IntegerField(null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("answer_1", models.CharField(max_length=50)),
+                ("answer_2", models.CharField(max_length=50)),
+                ("answer_3", models.CharField(max_length=50)),
+                ("answer_4", models.CharField(max_length=50)),
+                ("answer_5", models.CharField(max_length=50)),
+                ("created", models.DateField(auto_now_add=True)),
+                ("user", models.IntegerField(null=True)),
             ],
         ),
         migrations.CreateModel(
-            name='HomeQuiz',
+            name="HomeQuiz",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('answer_1', models.CharField(max_length=50)),
-                ('answer_2', models.CharField(max_length=50)),
-                ('answer_3', models.CharField(max_length=50)),
-                ('answer_4', models.CharField(max_length=50)),
-                ('answer_5', models.CharField(max_length=50)),
-                ('created', models.DateField(auto_now_add=True)),
-                ('user', models.IntegerField(null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("answer_1", models.CharField(max_length=50)),
+                ("answer_2", models.CharField(max_length=50)),
+                ("answer_3", models.CharField(max_length=50)),
+                ("answer_4", models.CharField(max_length=50)),
+                ("answer_5", models.CharField(max_length=50)),
+                ("created", models.DateField(auto_now_add=True)),
+                ("user", models.IntegerField(null=True)),
             ],
         ),
         migrations.CreateModel(
-            name='ProductVO',
+            name="ProductVO",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('import_href', models.CharField(max_length=200, unique=True)),
-                ('name', models.CharField(max_length=50)),
-                ('sku', models.CharField(max_length=12, unique=True)),
-                ('price', models.FloatField()),
-                ('image', models.URLField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("import_href", models.CharField(max_length=200, unique=True)),
+                ("name", models.CharField(max_length=50)),
+                ("sku", models.CharField(max_length=12, unique=True)),
+                ("price", models.FloatField()),
+                ("image", models.URLField()),
             ],
         ),
         migrations.CreateModel(
-            name='WishList',
+            name="WishList",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('user', models.IntegerField(null=True)),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='wishlist', to='customer_rest.productvo')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("user", models.IntegerField(null=True)),
+                (
+                    "product",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="wishlist",
+                        to="customer_rest.productvo",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Cart',
+            name="Cart",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('user', models.IntegerField(null=True)),
-                ('quantity', models.PositiveSmallIntegerField()),
-                ('totals', models.FloatField()),
-                ('created', models.DateField(auto_now_add=True)),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='cart', to='customer_rest.productvo')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("user", models.IntegerField(null=True)),
+                ("quantity", models.PositiveSmallIntegerField()),
+                ("totals", models.FloatField()),
+                ("created", models.DateField(auto_now_add=True)),
+                (
+                    "product",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="cart",
+                        to="customer_rest.productvo",
+                    ),
+                ),
             ],
         ),
     ]

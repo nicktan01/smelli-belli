@@ -6,34 +6,56 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('inventory_rest', '0005_product_product_category'),
+        ("inventory_rest", "0005_product_product_category"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='product',
-            name='ingredients',
+            model_name="product",
+            name="ingredients",
         ),
         migrations.RemoveField(
-            model_name='product',
-            name='limited_item',
+            model_name="product",
+            name="limited_item",
         ),
         migrations.RemoveField(
-            model_name='product',
-            name='storage',
+            model_name="product",
+            name="storage",
         ),
         migrations.RemoveField(
-            model_name='product',
-            name='usage',
+            model_name="product",
+            name="usage",
         ),
         migrations.AlterField(
-            model_name='product',
-            name='scent1',
-            field=models.CharField(blank=True, choices=[('', '-----------'), ('Fresh', 'Fresh'), ('Amber', 'Amber'), ('Floral', 'Floral'), ('Woody', 'Woody'), ('Fruity', 'Fruity')], max_length=25),
+            model_name="product",
+            name="scent1",
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ("", "-----------"),
+                    ("Fresh", "Fresh"),
+                    ("Amber", "Amber"),
+                    ("Floral", "Floral"),
+                    ("Woody", "Woody"),
+                    ("Fruity", "Fruity"),
+                ],
+                max_length=25,
+            ),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='scent2',
-            field=models.CharField(blank=True, choices=[('', '-----------'), ('Fresh', 'Fresh'), ('Amber', 'Amber'), ('Floral', 'Floral'), ('Woody', 'Woody'), ('Fruity', 'Fruity')], max_length=25),
+            model_name="product",
+            name="scent2",
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ("", "-----------"),
+                    ("Fresh", "Fresh"),
+                    ("Amber", "Amber"),
+                    ("Floral", "Floral"),
+                    ("Woody", "Woody"),
+                    ("Fruity", "Fruity"),
+                ],
+                max_length=25,
+            ),
         ),
     ]

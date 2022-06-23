@@ -1,14 +1,12 @@
 from common.json import ModelEncoder
 from .models import (
-    HomeQuiz,
-    ProductVO, 
-    BodyQuiz, 
-    Cart,
-    ProductVO,
     BodyQuiz,
+    Cart,
     HomeQuiz,
-    WishList 
+    ProductVO,
+    WishList,
 )
+
 
 class ProductVOEncoder(ModelEncoder):
     model = ProductVO
@@ -19,53 +17,49 @@ class ProductVOEncoder(ModelEncoder):
         "sku",
         "price",
         "image",
-        "cartQuantity"
+        "cartQuantity",
     ]
+
 
 class BodyQuizEncoder(ModelEncoder):
     model = BodyQuiz
     properties = [
         "id",
-        "answer_1", 
-        "answer_2", 
-        "answer_3", 
-        "answer_4", 
+        "answer_1",
+        "answer_2",
+        "answer_3",
+        "answer_4",
         "answer_5",
         "created",
-        "user" 
+        "user",
     ]
+
 
 class HomeQuizEncoder(ModelEncoder):
     model = HomeQuiz
     properties = [
         "id",
-        "answer_1", 
-        "answer_2", 
-        "answer_3", 
-        "answer_4", 
+        "answer_1",
+        "answer_2",
+        "answer_3",
+        "answer_4",
         "answer_5",
         "created",
-        "user" 
+        "user",
     ]
+
 
 class CartEncoder(ModelEncoder):
     model = Cart
-    properties = [
-        "product",
-        "user",
-        "quantity",
-        "totals"
-    ] 
+    properties = ["product", "user", "quantity", "totals"]
     encoders = {
         "product": ProductVOEncoder(),
-        }
+    }
+
 
 class WishListEncoder(ModelEncoder):
     model = WishList
-    properties = [
-        "user",
-        "product"
-    ]
+    properties = ["user", "product"]
     encoders = {
         "product": ProductVOEncoder(),
-        }
+    }

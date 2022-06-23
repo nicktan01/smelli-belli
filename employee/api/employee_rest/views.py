@@ -21,7 +21,7 @@ def api_orders(request):
             content = json.loads(request.body)
             order = Order.objects.create(**content)
             return JsonResponse(order, encoder=OrderEncoder, safe=False)
-        except:
+        except Exception:
             response = JsonResponse({"message": "Could not create the order"})
             response.status_code = 400
             return response
