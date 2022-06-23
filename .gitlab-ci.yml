@@ -76,7 +76,7 @@ build-customer-api-back-end-job:
   services:
     - docker:20.10.16-dind
   script:
-    - cd ../../customer/api
+    - cd customer/api
     - docker build -t ${CI_REGISTRY_IMAGE}/customer_api:latest .
     - docker tag ${CI_REGISTRY_IMAGE}/customer_api:latest ${CI_REGISTRY_IMAGE}/customer_api:$CI_JOB_ID
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
@@ -92,7 +92,7 @@ build-customer-poller-back-end-job:
   services:
     - docker:20.10.16-dind
   script:
-    - cd ../
+    - cd customer
     - docker build -t ${CI_REGISTRY_IMAGE}/customer_poller:latest -f Dockerfile.poller .
     - docker tag ${CI_REGISTRY_IMAGE}/customer_poller:latest ${CI_REGISTRY_IMAGE}/customer_poller:$CI_JOB_ID
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
@@ -108,7 +108,7 @@ build-employee-api-back-end-job:
   services:
     - docker:20.10.16-dind
   script:
-    - cd ../../employee/api
+    - cd employee/api
     - docker build -t ${CI_REGISTRY_IMAGE}/employee_api:latest .
     - docker tag ${CI_REGISTRY_IMAGE}/employee_api:latest ${CI_REGISTRY_IMAGE}/employee_api:$CI_JOB_ID
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
@@ -124,7 +124,7 @@ build-employee-poller-end-job:
   services:
     - docker:20.10.16-dind
   script:
-    - cd ../poll
+    - cd employee
     - docker build -t ${CI_REGISTRY_IMAGE}/customer_poller:latest -f Dockerfile.poller .
     - docker tag ${CI_REGISTRY_IMAGE}/employee_poller:latest ${CI_REGISTRY_IMAGE}/employee_poller:$CI_JOB_ID
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
@@ -140,7 +140,7 @@ build-inventory-api-back-end-job:
   services:
     - docker:20.10.16-dind
   script:
-    - cd ../../inventory/api
+    - cd inventory/api
     - docker build -t ${CI_REGISTRY_IMAGE}/inventory_api:latest .
     - docker tag ${CI_REGISTRY_IMAGE}/inventory_api:latest ${CI_REGISTRY_IMAGE}/inventory_api:$CI_JOB_ID
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
