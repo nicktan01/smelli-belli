@@ -123,3 +123,25 @@ Today I worked on:
 - Styling for the Main Page components
 
 I havent really done too much html for this project so im struggling with getting the placement of the different elements on the screen, but am honestly in a pretty good spot with tying in the main things needed for the main page. Hopefully I will be done tomorrow or over this three day weekend with the placement and scaling for the mainpage. I learned about authentication a little bit more thanks to Curtis coming in to talk with us about it and seeing how everything connects.
+
+## June 21, 2022
+Today I worked on:
+
+- Fixed some issues for deployment
+- Finishing Front end for cart
+- Updating Front end for main page
+
+In the morning I worked with my entire group to sort out some issues regarding urls and deployment. We opted for enviornment variables to replace our current `localhost` urls in order to make sure everything would work when we deploy in the coming week. 
+
+I also assisted Nicholas with figuring out why products wouldnt display within the cart, and I learned a little bit more about authentication after reviewing the steps that were taken within quizzes to get a current user using the token.
+
+After working with the team, I went back to fixing some minor bugs within my own code and tring to update the main page so that elements within the page would scale better and allow for a better user experience.
+
+## June 22, 2022
+Today I worked on:
+
+- Worked on the Cart
+
+I worked with Nicholas to sort out some blockers he was having. We managed to get a lot done after talking some stuff out. The cart button now works and properly adds items to cart, and if the same product is added multiple times, it will instead increase the quantity of the item as opposed to showing multiple instances of the product. We also got pricing to show up and be calculated properly based on the amount of each item exists in cart. We made a few changes in the backend in order to keep track of the cartQuantity of each item. Overall I think the cart is pretty much done as of right now and we just need to add a `place order` button to allow for orders to be created.
+
+I did have a revelation about just how free you are to do certain things when it comes to hiding components or showing them as we did for the increase/decrease buttons for the quantity of an item. 

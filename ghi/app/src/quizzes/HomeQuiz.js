@@ -48,7 +48,7 @@ class HomeQuiz extends React.Component {
   // This function creates an empty list when the page is first rendered
   // that we can later add products to when the user finishes the quiz
   async componentDidMount() {
-    const productUrl = "http://localhost:8100/api/products/";
+    const productUrl = `${process.env.REACT_APP_INVENTORY_HOST}/api/products/`;
     const productResponse = await fetch(productUrl);
 
     if (productResponse.ok) {
@@ -123,7 +123,7 @@ class HomeQuiz extends React.Component {
       this.setState({ quizQuestionsComplete: true });
     }
 
-    const url = "http://localhost:8100/api/products/";
+    const url = `${process.env.REACT_APP_INVENTORY_HOST}/api/products/`;
 
     try {
       const response = await fetch(url);
@@ -132,7 +132,7 @@ class HomeQuiz extends React.Component {
 
         const requests = [];
         for (let product of data.products) {
-          const detailUrl = `http://localhost:8100${product.href}`;
+          const detailUrl = `${process.env.REACT_APP_INVENTORY_HOST}${product.href}`;
           requests.push(fetch(detailUrl));
         }
 
@@ -222,7 +222,7 @@ class HomeQuiz extends React.Component {
     delete data.currentStep;
 
     // . . . so that we can POST a quiz object into our database!
-    const quizResultsUrl = "http://localhost:8090/api/homequizzes/";
+    const quizResultsUrl = `${process.env.REACT_APP_CUSTOMER_HOST}/api/homequizzes/`;
     const token = this.context.token;
     const fetchConfig = {
       method: "post",
@@ -285,7 +285,7 @@ class HomeQuiz extends React.Component {
     // Display quiz normally if user is logged in
     // If the user clicks an answer for Question One, then hide Question One
     // and display Question Two
-    if (this.state.currentStep == 1 && token) {
+    if (this.state.currentStep === 1 && token) {
       quizPageOneClasses = "my-5";
       quizPageTwoClasses = "d-none";
       quizPageThreeClasses = "d-none";
@@ -294,7 +294,7 @@ class HomeQuiz extends React.Component {
     }
 
     // Display sign up prompt if user is logged out
-    if (this.state.currentStep == 1 && !token) {
+    if (this.state.currentStep === 1 && !token) {
       noAuthClasses = "my-5";
       quizPageOneClasses = "d-none";
       quizPageTwoClasses = "d-none";
@@ -313,7 +313,7 @@ class HomeQuiz extends React.Component {
       quizPageFiveClasses = "d-none";
     }
 
-    if (this.state.currentStep == 2) {
+    if (this.state.currentStep === 2) {
       quizPageOneClasses = "d-none";
       quizPageTwoClasses = "my-5";
       quizPageThreeClasses = "d-none";
@@ -321,7 +321,7 @@ class HomeQuiz extends React.Component {
       quizPageFiveClasses = "d-none";
     }
 
-    if (this.state.currentStep == 3) {
+    if (this.state.currentStep === 3) {
       quizPageOneClasses = "d-none";
       quizPageTwoClasses = "d-none";
       quizPageThreeClasses = "my-5";
@@ -329,7 +329,7 @@ class HomeQuiz extends React.Component {
       quizPageFiveClasses = "d-none";
     }
 
-    if (this.state.currentStep == 4) {
+    if (this.state.currentStep === 4) {
       quizPageOneClasses = "d-none";
       quizPageTwoClasses = "d-none";
       quizPageThreeClasses = "d-none";
@@ -337,7 +337,7 @@ class HomeQuiz extends React.Component {
       quizPageFiveClasses = "d-none";
     }
 
-    if (this.state.currentStep == 5) {
+    if (this.state.currentStep === 5) {
       quizPageOneClasses = "d-none";
       quizPageTwoClasses = "d-none";
       quizPageThreeClasses = "d-none";
@@ -462,7 +462,7 @@ class HomeQuiz extends React.Component {
               <button
                 onClick={this.handleQuestionOne}
                 value={this.state.answerOne}
-                id="Incense"
+                id="Incense Stick"
                 className="btn btn-primary"
               >
                 Incense
@@ -757,5 +757,4 @@ class HomeQuiz extends React.Component {
   }
 }
 
-HomeQuiz.contextType = AuthContext;
 export default HomeQuiz;

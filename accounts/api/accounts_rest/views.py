@@ -23,7 +23,10 @@ def create_user(json_content):
     ]
     missing_properties = []
     for required_property in required_properties:
-        if required_property not in content or len(content[required_property]) == 0:
+        if (
+            required_property not in content
+            or len(content[required_property]) == 0
+        ):
             missing_properties.append(required_property)
     if missing_properties:
         response_content = {
@@ -138,13 +141,14 @@ def api_user_token(request):
 @require_http_methods(["GET"])
 @auth.jwt_login_required
 def api_current_user(request):
-    print("I AM HERE")
-    user_id =request.payload["user"]["id"]
+    user_id = request.payload["user"]["id"]
     user = User.objects.get(id=user_id)
-    return JsonResponse({
-        "is_staff": user.is_staff,
-        "username": user.username,
-        "email": user.email,
-        "first_name": user.first_name,
-        "last_name": user.last_name
-    })
+    return JsonResponse(
+        {
+            "is_staff": user.is_staff,
+            "username": user.username,
+            "email": user.email,
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+        }
+    )
