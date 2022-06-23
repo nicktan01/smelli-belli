@@ -2,12 +2,13 @@ from django.db import models
 
 
 class ProductVO(models.Model):
+    import_href = models.CharField(max_length=200, unique=True)
     name = models.CharField(max_length=50)
     size = models.CharField(max_length=25)
     sku = models.CharField(max_length=12, unique=True)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     quantity = models.PositiveSmallIntegerField()
-    import_href = models.CharField(max_length=200, unique=True)
+    image = models.URLField()
 
 
 class LineItem(models.Model):

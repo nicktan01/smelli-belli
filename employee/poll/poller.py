@@ -20,11 +20,10 @@ def get_products():
             import_href=product["href"],
             defaults={
                 "name": product["name"],
+                "size": product["size"],
                 "sku": product["sku"],
                 "price": product["price"],
-                "size": product["size"],
                 "quantity": product["quantity"],
-                "limited_item": product["limited_item"],
                 "image": product["image"],
             },
         )
