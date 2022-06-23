@@ -18,9 +18,10 @@ function Product({
   // prevents navigation to detail page when clicking on wishlist button on product card
   function likeProductHandler(e, sku) {
     e.stopPropagation();
-    if (token === undefined) {
+    console.log("token:", token);
+    if (token === false || token === undefined) {
       navigate("/login");
-      return;
+      navigate(-1);
     }
     if (!liked) {
       addToWishlist(sku, token);

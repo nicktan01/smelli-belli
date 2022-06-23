@@ -1,6 +1,9 @@
 ## Jordan's Journal
 
+## June 22, 2022
+Morning: Had a fire to put out, after I merged with main last night it seemed like nothing was working correctly. After a lot of circular troublshooting, the problem was that the customer poller host was declared in the wrong place in the docker compose. Now things are working again. 
 
+Afternoon: Working on getting the wishlist to post from the product detail page. 
 ## June 21, 2022
 Morning: Feeling very burnt out. Troubleshooting why the cart button is not changing when clicked - thinking this is happening because the cart object is not saving correctly on my branch. Will return to check this when I merge with Nicholas' code.
 
@@ -8,7 +11,7 @@ Afternoon: Writing wishlist views and working on saving the wishlist items with 
 
 Night: Made final post, get, and delete views for the wishlists. Got wishlist saving to current logged in user, if not logged in page redirects to login - need to get this to redirect back to the page they were on. The wishlist items display on the account wishlist page and can be removed from the list. 
 
-Aha moment - I can now really understand why separating some things out into components is good, there are a few functional things I would like the be more general so I could use them for more than one page (like the product column list set up, or having the product handle the add to cart/add to wishlist functions rather than the product list which does this now)
+Aha moment - I can now really understand why separating some things out into components is good, there are a few functional things I would like the be more general so I could use them for more than one page (like the product column list set up, or having something outside the product handle the add to cart/add to wishlist functions rather than the product list which does this now)
 ## June 18, 2022
 Implemented sorting button and function for the shopping pages using react-select, had to add sorting conditions to the list view for products. Also got filtering by primary scent implemented in the same manner. Removed components from the product list page to put in their own component files to make them easier to reference and reuse. This also made my product list file much easier to navigate.
 
