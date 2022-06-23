@@ -22,12 +22,26 @@ class HomePage extends React.Component {
       }
   } 
 
+//   async getOrders() {
+//     const response = await fetch(`${process.env.REACT_APP_EMPLOYEE_HOST}/api/orders/`);
+//     if (response.ok) {
+//       const data = await response.json();
+//       this.setState({
+//         products: data.products,
+//       });
+//     } else {
+//       console.error(response);
+//     }
+// } 
+
   async componentDidMount() {
     this.getListProducts();
+    // this.getOrders()
   }
 
   render() {
-
+    //let top_lotion = this.state.products.sortby()[0]
+    //let top_candle = this.state.products.sortby()[0]
     let top_lotion = this.state.products[0];
     let top_candle = this.state.products[1];
     return (
