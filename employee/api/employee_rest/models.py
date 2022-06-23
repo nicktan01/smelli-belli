@@ -10,11 +10,20 @@ class ProductVO(models.Model):
     import_href = models.CharField(max_length=200, unique=True)
 
 
-class Order(models.Model):
-    products = models.ForeignKey(
-        ProductVO, related_name="order", on_delete=models.CASCADE
+class LineItem(models.Model):
+    product = models.ForeignKey(
+        ProductVO, on_delete=models.CASCADE
     )
     quantity = models.PositiveSmallIntegerField()
-    totals = models.DecimalField(max_digits=10, decimal_places=2)
+
+    
+class Order(models.Model):
+    products = models.ManyToManyField(
+        LineItem, 
+        null=True
+    )
+    user = models.IntegerField(null=True)
+    # quantity = models.PositiveSmallIntegerField()
+    total = models.DecimalField(max_digits=10, decimal_places=2)
     order_number = models.IntegerField()
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True, null=True)

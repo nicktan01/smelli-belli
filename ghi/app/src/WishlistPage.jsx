@@ -8,9 +8,12 @@ function WishlistPage(props) {
   const { data: wishlist, error } = useSWR(
     token ? "/api/wishlist/" : null,
     async () => {
-      const request = await fetch("http://localhost:8090/api/wishlist/", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const request = await fetch(
+        `${process.env.REACT_APP_CUSTOMER_HOST}/api/wishlist/`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       const json = await request.json();
       return json;
     }
@@ -33,7 +36,10 @@ function WishlistPage(props) {
   (wishlist || []).forEach((item) => (likedProducts[item] = true));
 
   return (
-    <div className="container">
+    <div className="container mt-2">
+      <div>
+        <h2>Wishlisted Items</h2>
+      </div>
       <div className="row">
         {columns.map((list) => (
           <ProductColumn list={list} likedProducts={likedProducts} />

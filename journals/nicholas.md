@@ -67,3 +67,22 @@ Today, I worked on:
 
 -Discussed authentication with the group
 -Continued working on cart function alone. Had a couple of blocker and got some help from Jordan and Jaiden.
+
+## June 15, 2022
+Today, I worked on:
+
+-Continuing the cart function, was able to get the cart populating from the main but had some trouble displaying it in frontend.
+
+## June 16, 2022
+Today, I worked on:
+
+-Tried to get the cart function finished, talked about refactoring into functions instead of class component with the group
+
+## June 21, 2022
+Today, I worked on:
+
+-had Elliot help me out with some of the cart. Had trouble with some authentication which became stale while refresh. Not sure what is going on there...
+
+## June 22, 2022
+
+-Had a very successful day, the cart is finally online and the frontend works! The button from the page populates the cart and shows on the frontend! continued to work on showing the quantity in cart and the checkout mechanism 

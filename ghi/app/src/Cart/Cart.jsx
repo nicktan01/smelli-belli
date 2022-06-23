@@ -9,36 +9,30 @@ function Cart(props) {
   const { data: cart, error } = useSWR(
     token ? "/api/cart/" : null,
     async () => {
-      const request = await fetch("http://localhost:8090/api/cart/", {
+      const request = await fetch(`${process.env.REACT_APP_CUSTOMER_HOST}/api/cart/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const json = await request.json();
       return json;
     }
   );
-  // const [product, setProduct] = useState({});
-
-  // const fetchProductData = useCallback(() => {
-  //   const url = `${process.env.REACT_APP_INVENTORY_HOST}/api/products/`;
-
-  //   try {
-  //     const detailUrl = `${process.env.REACT_APP_INVENTORY_HOST}/api/products/${sku}`;
-  //     setProduct("loading");
-  //     fetch(detailUrl)
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         setProduct(data);
-  //       });
-  //   } catch (e) {
-  //     console.error("error:", e);
-  //   }
-  // }, [sku]);
-  
-  // useEffect(() => {
-  //   fetchProductData();
-  // }, [fetchProductData, sku]);
-
-  // const { mutate } = useSWRConfig();
+  async function checkout(items){
+    console.log(items)
+    const url = `${process.env.REACT_APP_EMPLOYEE_HOST}/api/orders/`
+    const fetchConfig = {
+      method: "post",
+      header: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        items: items,
+      }),
+    };
+    const response = await fetch(url, fetchConfig);
+    if(response.ok){
+      console.log("this is the response", response)
+    }
+  }
 
   let columns = [[], [], [], []];
 
@@ -58,11 +52,10 @@ function Cart(props) {
   let quantity = 0;
   (cart || []).forEach((item) => {
     cartedProducts[item] = true;
-    total += item.price;
+    total += item.price * item.cartQuantity;
     quantity += item.cartQuantity
   });
 
-  console.log(total)
   return (
     <div className="container">
       <div className="row">
@@ -86,10 +79,11 @@ function Cart(props) {
           <tbody>
             <tr>
               <td>{quantity}</td>
-              <td>{total}</td>
+              <td>${total}</td>
             </tr>
           </tbody>
         </table>
+        <button className="btn btn-dark" onClick={() => {checkout({cart})}}>Checkout</button>
         </div>
       </div>
     </div>

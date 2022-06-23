@@ -1,30 +1,35 @@
 from common.json import ModelEncoder
-from .models import ProductVO, Order
+from .models import LineItem, ProductVO, Order
 
 
 class ProductVOEncoder(ModelEncoder):
     model = ProductVO
     properties = [
-        "id",
-        "name",
-        "size",
+        # "id",
+        # "name",
+        # "size",
         "sku",
-        "price",
+        # "price",
         "quantity",
-        "import_href",
+        # "import_href",
     ]
 
-
+# class ProductsEncoder(ModelEncoder):
+class LineItemEncoder(ModelEncoder):
+    model = LineItem
+    properties = [
+        "product",
+        "quantity",
+    ]
+    encoders = {
+        "product": ProductVOEncoder(),
+        }
 class OrderEncoder(ModelEncoder):
     model = Order
     properties = [
-        "id",
+        "user",
         "products",
-        "quantity",
-        "totals",
-        "order_number",
-        "created",
     ]
     encoders = {
-        "products": ProductVOEncoder(),
-    }
+        "products": LineItemEncoder(),
+        }

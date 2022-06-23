@@ -6,6 +6,9 @@ import { useState, useEffect } from "react";
 function Nav() {
   const [token] = useToken();
   const [user, setUser] = useState(null);
+  const [isNavCollapsed, setIsNavCollapsed] = useState(true);
+
+  const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
   useEffect(() => {
     async function getCurrentUser() {
@@ -54,12 +57,13 @@ function Nav() {
           data-toggle="collapse"
           data-target="#navbarNavDropdown"
           aria-controls="navbarNavDropdown"
-          aria-expanded="false"
+          aria-expanded={!isNavCollapsed ? true : false}
           aria-label="Toggle navigation"
+          onClick={handleNavCollapse}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNavDropdown">
+        <div className={`${isNavCollapsed ? 'collapse' : ''} navbar-collapse`} id="navbarNavDropdown">
           <ul className="navbar-nav me-auto">
             {token && user && user.is_staff && (
               <li className="nav-item dropdown">
