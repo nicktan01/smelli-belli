@@ -9,7 +9,7 @@ function Cart(props) {
   const { data: cart, error } = useSWR(
     token ? "/api/cart/" : null,
     async () => {
-      const request = await fetch("http://localhost:8090/api/cart/", {
+      const request = await fetch(`${process.env.REACT_APP_CUSTOMER_HOST}/api/cart/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const json = await request.json();
@@ -58,11 +58,10 @@ function Cart(props) {
   let quantity = 0;
   (cart || []).forEach((item) => {
     cartedProducts[item] = true;
-    total += item.price;
+    total += item.price * item.cartQuantity;
     quantity += item.cartQuantity
   });
 
-  console.log(total)
   return (
     <div className="container">
       <div className="row">
