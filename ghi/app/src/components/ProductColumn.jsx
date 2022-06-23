@@ -1,18 +1,31 @@
 import Product from "../components/Product";
 
-function ProductColumn(props) {
+function ProductColumn({
+  list = [],
+  likedProducts = {},
+  onClickLikeProduct,
+  onClickCartProduct,
+  showPlusMinus,
+  cartedProducts = {},
+}) 
+
+{
   return (
     <div className="col">
-      {props.list.map((product) => {
+      {list.map((product) => {
         return (
           <Product
             key={product.sku}
             sku={product.sku}
-            onClickLikeProduct={props.onClickLikeProduct}
-            onClickCartProduct={props.onClickCartProduct}
-            liked={props.likedProducts[product.sku]}
+            cartQuantity={product.cartQuantity}
+            onClickLikeProduct={onClickLikeProduct}
+            onClickCartProduct={onClickCartProduct}
+            liked={likedProducts[product.sku]}
+            carted={cartedProducts[product.sku]}
+            showPlusMinus={showPlusMinus}
           />
         );
+
       })}
     </div>
   );

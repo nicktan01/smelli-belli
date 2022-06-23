@@ -82,6 +82,17 @@ that a user can purchase.
 
 ---
 
+### ProductVO
+
+| name        | type                        | unique | optional |
+| ----------- | --------------------------- | ------ | -------- |
+| import_href | reference to Product entity | yes    | no       |
+| name        | reference to Product entity | yes    | no       |
+| size        | reference to Product entity | no     | no       |
+| sku         | reference to Product entity | yes    | no       |
+| price       | reference to Product entity | no     | no       |
+| quantity    | reference to Product entity | no     | no       |
+
 ### Order
 
 | Name         | Type     | Unique | Optional |
@@ -90,5 +101,4 @@ that a user can purchase.
 | quantity     | int      | no     | no       |
 | totals       | int      | no     | no       |
 | order_number | int      | yes    | no       |
-| customer     | int      | no     | no       |
 | created      | datetime | no     | no       |

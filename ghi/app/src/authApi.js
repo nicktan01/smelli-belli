@@ -6,7 +6,7 @@ export function getToken() {
   return internalToken;
 }
 
-async function getTokenInternal() {
+export async function getTokenInternal() {
   const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/accounts/me/token/`;
   try {
     const response = await fetch(url, {
@@ -71,7 +71,7 @@ export function useToken() {
     if (!token) {
       fetchToken();
     }
-  }, [token]);
+  }, [setToken, token]);
 
   async function logout() {
     if (token) {
@@ -80,6 +80,7 @@ export function useToken() {
       internalToken = null;
       setToken(null);
       navigate("/");
+      window.location.reload()
     }
   }
 
@@ -126,7 +127,7 @@ export function useToken() {
   async function update(username, password, email, firstName, lastName) {
     const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/accounts/`;
     const response = await fetch(url, {
-      method: "put",
+      method: "post",
       body: JSON.stringify({
         username,
         password,

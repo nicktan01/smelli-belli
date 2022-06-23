@@ -1,14 +1,30 @@
 ## Jordan's Journal
 
+
+## June 21, 2022
+Morning: Feeling very burnt out. Troubleshooting why the cart button is not changing when clicked - thinking this is happening because the cart object is not saving correctly on my branch. Will return to check this when I merge with Nicholas' code.
+
+Afternoon: Writing wishlist views and working on saving the wishlist items with authorization
+
+Night: Made final post, get, and delete views for the wishlists. Got wishlist saving to current logged in user, if not logged in page redirects to login - need to get this to redirect back to the page they were on. The wishlist items display on the account wishlist page and can be removed from the list. 
+
+Aha moment - I can now really understand why separating some things out into components is good, there are a few functional things I would like the be more general so I could use them for more than one page (like the product column list set up, or having the product handle the add to cart/add to wishlist functions rather than the product list which does this now)
+## June 18, 2022
+Implemented sorting button and function for the shopping pages using react-select, had to add sorting conditions to the list view for products. Also got filtering by primary scent implemented in the same manner. Removed components from the product list page to put in their own component files to make them easier to reference and reuse. This also made my product list file much easier to navigate.
+
+Aha moment - how and why urls change when you do things on a site! adding the sortBy and filter options change what is shown in the search bar depending on the selections and which variable they are for
+
+Researched methods for verifying users and brainstormed how i will get the wishlist items saving to a user. 
+
 ## June 16, 2022
 Worked on styling for shopping pages - wishlist button functionality, and shopping page sorting.
 
-Notes about issues: refreshing page clears liked items -> need to save to user still
+Notes about issues: refreshing page clears liked items -> need to save to a user
 
 ## June 9, 2022
 Morning: Discussed sorting and filtering with the team. Worked individually on making the product detail pages using a reference from Elliott. Changed product paths/routing. Made a quick logo to use for the site.
 
-Afternoon: Got the detail page showing the rest of the product information. Linked the cards on the product lists to their respecrtive detail pages. Found icons to use for wishlisted items and got the icon showing on the product list cards.
+Afternoon: Got the detail page showing the rest of the product information. Linked the cards on the product lists to their respective detail pages. Found icons to use for wishlisted items and got the icon showing on the product list cards.
 
 Night: Refactored the product list pages to function based, removed the HomeProducts.js and BodyProducts.js and added in category filtering to the ProductList.js. Changed the paths to reflect refactoring. Changed the methods for rendering so products load as they are available rather than waiting for entire set to load for a better user experience. Implemented state change functions for the wishlist icon, now clickable and will save to object, need to connect the liked items to an account/user and/or prompt for login/signup once auth has been implemented.
 ## June 8, 2022

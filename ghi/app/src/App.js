@@ -4,19 +4,20 @@ import Nav from "./Nav";
 import HomePage from "./HomePage";
 import Footer from "./Footer";
 import About from "./About";
-import AccountPage from "./AccountPage";
+import AccountPage from "./account_pages/AccountPage";
 import ProductList from "./product_pages/ProductList";
 import ProductDetails from "./product_pages/ProductDetail";
 import Login from "./Login";
 import SignUp from "./SignUp";
-import EditAccount from "./EditAccount";
+import EditAccount from "./account_pages/EditAccount";
 import BodyQuiz from "./quizzes/BodyQuiz";
 import HomeQuiz from "./quizzes/HomeQuiz";
+import ScentProfilesList from "./quizzes/ScentProfiles";
 import Cart from "./Cart/Cart";
-import Checkout from "./Cart/Checkout";
 import { AuthProvider } from "./authApi";
 import InventoryList from "./employee_pages/Inventory";
 import NewProductForm from "./employee_pages/NewProductForm";
+import WishlistPage from "./WishlistPage";
 
 function App() {
   return (
@@ -52,8 +53,10 @@ function App() {
             <Route path="/account/edit" element={<EditAccount />} />
             <Route path="/bodyquiz" element={<BodyQuiz />} />
             <Route path="/homequiz" element={<HomeQuiz />} />
+            <Route path="/scentprofiles" element={<ScentProfilesList />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/wishlist" element={<WishlistPage />} />
+            {/* <Route path="/checkout" element={<Checkout />} /> */}
           </Routes>
           <Footer />
         </AuthProvider>
@@ -63,4 +66,3 @@ function App() {
 }
 
 export default App;
-

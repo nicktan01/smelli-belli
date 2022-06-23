@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./products.css";
 import Select from "react-select";
 import ProductColumn from "../components/ProductColumn";
+import useSWR from "swr";
+import { useAuthContext } from "../authApi";
 
 const sortOptions = [
   { value: "bestselling", label: "Best Selling" },
@@ -25,6 +27,23 @@ function ProductList({ category }) {
   const [sortBy, setSortBy] = useState(sortOptions[0]);
   const [filterBy, setFilterBy] = useState([]);
 
+  // Fetching wishlist for the user
+  const { token } = useAuthContext();
+  const { data: wishlist, error } = useSWR(
+    token ? "/api/wishlist/" : null,
+    async () => {
+      const request = await fetch(
+        `${process.env.REACT_APP_CUSTOMER_HOST}/api/wishlist/`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      const json = await request.json();
+      return json;
+    }
+  );
+
+  // customStyles is setting styling for the react-select filter and sort by fields
   const customStyles = {
     menu: (provided, state) => ({
       ...provided,
@@ -44,9 +63,9 @@ function ProductList({ category }) {
 
   useEffect(() => {
     async function fetchData() {
-      const url = `${process.env.REACT_APP_INVENTORY_HOST}/api/products?sortBy=${
-        sortBy.value
-      }&scents=${filterBy.reduce(
+      const url = `${
+        process.env.REACT_APP_INVENTORY_HOST
+      }/api/products?sortBy=${sortBy.value}&scents=${filterBy.reduce(
         (a, b) => (a ? a + "," + b.value : b.value),
         ""
       )}`;
@@ -73,7 +92,7 @@ function ProductList({ category }) {
               i = 0;
             }
           }
-
+          
           setProductColumns(newProductColumns);
         }
       } catch (e) {
@@ -83,6 +102,10 @@ function ProductList({ category }) {
     fetchData();
   }, [category, filterBy, sortBy]);
 
+  if (wishlist && wishlist.error) return null;
+  let likedProductsMap = {};
+  (wishlist || []).forEach((sku) => (likedProductsMap[sku] = true));
+
   return (
     <>
       <div className="d-flex justify-content-center position-relative">
@@ -91,6 +114,7 @@ function ProductList({ category }) {
           height={150}
           width={null}
           style={{ objectFit: "cover", width: "100%" }}
+          alt="dried flowers in small containers of oil"
         />
 
         <div
@@ -138,7 +162,7 @@ function ProductList({ category }) {
               <ProductColumn
                 key={index}
                 list={productList}
-                likedProducts={likedProducts}
+                likedProducts={likedProductsMap}
                 cartedProducts={cartedProducts}
                 onClickLikeProduct={(productId) =>
                   setLikedProducts({
@@ -149,7 +173,7 @@ function ProductList({ category }) {
                 onClickCartProduct={(productId) =>
                   setCartedProducts({
                     ...cartedProducts,
-                  [productId]: !cartedProducts[productId],
+                    [productId]: !cartedProducts[productId],
                   })
                 }
               />
@@ -162,4 +186,3 @@ function ProductList({ category }) {
 }
 
 export default ProductList;
-

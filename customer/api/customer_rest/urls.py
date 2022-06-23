@@ -5,7 +5,8 @@ from .views import (
     api_show_body_quiz,
     api_list_home_quizzes,
     api_show_home_quiz,
-    api_cart
+    api_cart,
+    api_wishlist
 )
 
 urlpatterns = [
@@ -34,4 +35,9 @@ urlpatterns = [
         api_show_home_quiz,
         name="api_show_home_quiz"
     ),
+    path(
+        "wishlist/",
+        api_wishlist,
+        name ="api_wishlist"
+    )
 ]

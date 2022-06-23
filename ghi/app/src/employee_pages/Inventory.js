@@ -6,6 +6,7 @@ export function InventoryTable(props) {
       <thead>
         <tr>
           <th scope="col">Product</th>
+          <th scope="col">Size</th>
           <th scope="col">SKU</th>
           <th scope="col">Quantity</th>
           <th scope="col">Price</th>
@@ -41,6 +42,7 @@ export function InventoryRow(props) {
   return (
     <tr key={props.product.sku}>
       <td>{props.product.name}</td>
+      <td>{props.product.size}</td>
       <td>{props.product.sku}</td>
       <td>
         {!isEditing ? (
@@ -160,6 +162,7 @@ function InventoryList(props) {
           height={300}
           width={null}
           style={{ objectFit: "cover", width: "100%", opacity: "0.6" }}
+          alt="inventory banner"
         />
         <div
           style={{
@@ -181,6 +184,7 @@ function InventoryList(props) {
             top: "50%",
             transform: "translateY(-50%)",
           }}
+          alt="inventory logo"
         />
       </div>
       <div className="row justify-content-center mt-3">
