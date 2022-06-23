@@ -51,7 +51,7 @@ build-front-end-job:
     paths:
       - ghi/app/build/  # Save all of the files in the build path
 
-build-back-end-job:
+build-accounts-api-back-end-job:
   rules:
     # Only run if the commit is tagged with git tag
     - if: ($CI_COMMIT_BRANCH == "deploy" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH)
@@ -67,6 +67,15 @@ build-back-end-job:
     - docker push ${CI_REGISTRY_IMAGE}/accounts_api:$CI_JOB_ID
     - docker push ${CI_REGISTRY_IMAGE}/accounts_api:latest
 
+build-customer-api-back-end-job:
+  rules:
+    # Only run if the commit is tagged with git tag
+    - if: ($CI_COMMIT_BRANCH == "deploy" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH)
+  stage: build
+  image: docker:20.10.16
+  services:
+    - docker:20.10.16-dind
+  script:
     - cd ../../customer/api
     - docker build -t ${CI_REGISTRY_IMAGE}/customer_api:latest .
     - docker tag ${CI_REGISTRY_IMAGE}/customer_api:latest ${CI_REGISTRY_IMAGE}/customer_api:$CI_JOB_ID
@@ -74,6 +83,15 @@ build-back-end-job:
     - docker push ${CI_REGISTRY_IMAGE}/customer_api:$CI_JOB_ID
     - docker push ${CI_REGISTRY_IMAGE}/customer_api:latest
 
+build-customer-poller-back-end-job:
+  rules:
+    # Only run if the commit is tagged with git tag
+    - if: ($CI_COMMIT_BRANCH == "deploy" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH)
+  stage: build
+  image: docker:20.10.16
+  services:
+    - docker:20.10.16-dind
+  script:
     - cd ../
     - docker build -t ${CI_REGISTRY_IMAGE}/customer_poller:latest -f Dockerfile.poller .
     - docker tag ${CI_REGISTRY_IMAGE}/customer_poller:latest ${CI_REGISTRY_IMAGE}/customer_poller:$CI_JOB_ID
@@ -81,6 +99,15 @@ build-back-end-job:
     - docker push ${CI_REGISTRY_IMAGE}/customer_poller:$CI_JOB_ID
     - docker push ${CI_REGISTRY_IMAGE}/customer_poller:latest
 
+build-employee-api-back-end-job:
+  rules:
+    # Only run if the commit is tagged with git tag
+    - if: ($CI_COMMIT_BRANCH == "deploy" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH)
+  stage: build
+  image: docker:20.10.16
+  services:
+    - docker:20.10.16-dind
+  script:
     - cd ../../employee/api
     - docker build -t ${CI_REGISTRY_IMAGE}/employee_api:latest .
     - docker tag ${CI_REGISTRY_IMAGE}/employee_api:latest ${CI_REGISTRY_IMAGE}/employee_api:$CI_JOB_ID
@@ -88,6 +115,15 @@ build-back-end-job:
     - docker push ${CI_REGISTRY_IMAGE}/employee_api:$CI_JOB_ID
     - docker push ${CI_REGISTRY_IMAGE}/employee_api:latest
 
+build-employee-poller-end-job:
+  rules:
+    # Only run if the commit is tagged with git tag
+    - if: ($CI_COMMIT_BRANCH == "deploy" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH)
+  stage: build
+  image: docker:20.10.16
+  services:
+    - docker:20.10.16-dind
+  script:
     - cd ../poll
     - docker build -t ${CI_REGISTRY_IMAGE}/customer_poller:latest -f Dockerfile.poller .
     - docker tag ${CI_REGISTRY_IMAGE}/employee_poller:latest ${CI_REGISTRY_IMAGE}/employee_poller:$CI_JOB_ID
@@ -95,6 +131,15 @@ build-back-end-job:
     - docker push ${CI_REGISTRY_IMAGE}/employee_poller:$CI_JOB_ID
     - docker push ${CI_REGISTRY_IMAGE}/employee_poller:latest
 
+build-inventory-api-back-end-job:
+  rules:
+    # Only run if the commit is tagged with git tag
+    - if: ($CI_COMMIT_BRANCH == "deploy" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH)
+  stage: build
+  image: docker:20.10.16
+  services:
+    - docker:20.10.16-dind
+  script:
     - cd ../../inventory/api
     - docker build -t ${CI_REGISTRY_IMAGE}/inventory_api:latest .
     - docker tag ${CI_REGISTRY_IMAGE}/inventory_api:latest ${CI_REGISTRY_IMAGE}/inventory_api:$CI_JOB_ID
