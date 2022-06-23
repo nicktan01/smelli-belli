@@ -62,44 +62,44 @@ build-back-end-job:
   script:
     - cd accounts/api
     - docker build -t ${CI_REGISTRY_IMAGE}/accounts_api:latest .
-    - docker tag ${CI_REGISTRY_IMAGE}/accounts_api:latest ${CI_REGISTRY_IMAGE}/accounts_api:$CI_COMMIT_TAG
+    - docker tag ${CI_REGISTRY_IMAGE}/accounts_api:latest ${CI_REGISTRY_IMAGE}/accounts_api:$CI_JOB_ID
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
-    - docker push ${CI_REGISTRY_IMAGE}/accounts_api:$CI_COMMIT_TAG
+    - docker push ${CI_REGISTRY_IMAGE}/accounts_api:$CI_JOB_ID
     - docker push ${CI_REGISTRY_IMAGE}/accounts_api:latest
 
     - cd ../../customer/api
     - docker build -t ${CI_REGISTRY_IMAGE}/customer_api:latest .
-    - docker tag ${CI_REGISTRY_IMAGE}/customer_api:latest ${CI_REGISTRY_IMAGE}/customer_api:$CI_COMMIT_TAG
+    - docker tag ${CI_REGISTRY_IMAGE}/customer_api:latest ${CI_REGISTRY_IMAGE}/customer_api:$CI_JOB_ID
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
-    - docker push ${CI_REGISTRY_IMAGE}/customer_api:$CI_COMMIT_TAG
+    - docker push ${CI_REGISTRY_IMAGE}/customer_api:$CI_JOB_ID
     - docker push ${CI_REGISTRY_IMAGE}/customer_api:latest
 
     - cd ../poller
     - docker build -t ${CI_REGISTRY_IMAGE}/customer_poller:latest .
-    - docker tag ${CI_REGISTRY_IMAGE}/customer_poller:latest ${CI_REGISTRY_IMAGE}/customer_poller:$CI_COMMIT_TAG
+    - docker tag ${CI_REGISTRY_IMAGE}/customer_poller:latest ${CI_REGISTRY_IMAGE}/customer_poller:$CI_JOB_ID
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
-    - docker push ${CI_REGISTRY_IMAGE}/customer_poller:$CI_COMMIT_TAG
+    - docker push ${CI_REGISTRY_IMAGE}/customer_poller:$CI_JOB_ID
     - docker push ${CI_REGISTRY_IMAGE}/customer_poller:latest
 
     - cd ../../employee/api
     - docker build -t ${CI_REGISTRY_IMAGE}/employee_api:latest .
-    - docker tag ${CI_REGISTRY_IMAGE}/employee_api:latest ${CI_REGISTRY_IMAGE}/employee_api:$CI_COMMIT_TAG
+    - docker tag ${CI_REGISTRY_IMAGE}/employee_api:latest ${CI_REGISTRY_IMAGE}/employee_api:$CI_JOB_ID
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
-    - docker push ${CI_REGISTRY_IMAGE}/employee_api:$CI_COMMIT_TAG
+    - docker push ${CI_REGISTRY_IMAGE}/employee_api:$CI_JOB_ID
     - docker push ${CI_REGISTRY_IMAGE}/employee_api:latest
 
     - cd ../poller
     - docker build -t ${CI_REGISTRY_IMAGE}/employee_poller:latest .
-    - docker tag ${CI_REGISTRY_IMAGE}/employee_poller:latest ${CI_REGISTRY_IMAGE}/employee_poller:$CI_COMMIT_TAG
+    - docker tag ${CI_REGISTRY_IMAGE}/employee_poller:latest ${CI_REGISTRY_IMAGE}/employee_poller:$CI_JOB_ID
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
-    - docker push ${CI_REGISTRY_IMAGE}/employee_poller:$CI_COMMIT_TAG
+    - docker push ${CI_REGISTRY_IMAGE}/employee_poller:$CI_JOB_ID
     - docker push ${CI_REGISTRY_IMAGE}/employee_poller:latest
 
     - cd ../../inventory/api
     - docker build -t ${CI_REGISTRY_IMAGE}/inventory_api:latest .
-    - docker tag ${CI_REGISTRY_IMAGE}/inventory_api:latest ${CI_REGISTRY_IMAGE}/inventory_api:$CI_COMMIT_TAG
+    - docker tag ${CI_REGISTRY_IMAGE}/inventory_api:latest ${CI_REGISTRY_IMAGE}/inventory_api:$CI_JOB_ID
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
-    - docker push ${CI_REGISTRY_IMAGE}/inventory_api:$CI_COMMIT_TAG
+    - docker push ${CI_REGISTRY_IMAGE}/inventory_api:$CI_JOB_ID
     - docker push ${CI_REGISTRY_IMAGE}/inventory_api:latest
 
 deploy-back-end-job-heroku:
