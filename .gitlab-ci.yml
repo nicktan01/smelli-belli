@@ -74,12 +74,26 @@ build-back-end-job:
     - docker push ${CI_REGISTRY_IMAGE}/customer_api:$CI_COMMIT_TAG
     - docker push ${CI_REGISTRY_IMAGE}/customer_api:latest
 
+    - cd ../poller
+    - docker build -t ${CI_REGISTRY_IMAGE}/customer_poller:latest .
+    - docker tag ${CI_REGISTRY_IMAGE}/customer_poller:latest ${CI_REGISTRY_IMAGE}/customer_poller:$CI_COMMIT_TAG
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker push ${CI_REGISTRY_IMAGE}/customer_poller:$CI_COMMIT_TAG
+    - docker push ${CI_REGISTRY_IMAGE}/customer_poller:latest
+
     - cd ../../employee/api
     - docker build -t ${CI_REGISTRY_IMAGE}/employee_api:latest .
     - docker tag ${CI_REGISTRY_IMAGE}/employee_api:latest ${CI_REGISTRY_IMAGE}/employee_api:$CI_COMMIT_TAG
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - docker push ${CI_REGISTRY_IMAGE}/employee_api:$CI_COMMIT_TAG
     - docker push ${CI_REGISTRY_IMAGE}/employee_api:latest
+
+    - cd ../poller
+    - docker build -t ${CI_REGISTRY_IMAGE}/employee_poller:latest .
+    - docker tag ${CI_REGISTRY_IMAGE}/employee_poller:latest ${CI_REGISTRY_IMAGE}/employee_poller:$CI_COMMIT_TAG
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker push ${CI_REGISTRY_IMAGE}/employee_poller:$CI_COMMIT_TAG
+    - docker push ${CI_REGISTRY_IMAGE}/employee_poller:latest
 
     - cd ../../inventory/api
     - docker build -t ${CI_REGISTRY_IMAGE}/inventory_api:latest .
@@ -117,6 +131,14 @@ deploy-back-end-job-heroku:
     - docker tag ${CI_REGISTRY_IMAGE}/inventory_api:latest registry.heroku.com/$HEROKU_STAGING_INVENTORY_APP/web:latest
     - docker push registry.heroku.com/$HEROKU_STAGING_INVENTORY_APP/web:latest
 
+    - docker pull ${CI_REGISTRY_IMAGE}/employee_poller:latest
+    - docker tag ${CI_REGISTRY_IMAGE}/employee_poller:latest registry.heroku.com/$HEROKU_STAGING_EMPLOYEE_POLLER/web:latest
+    - docker push registry.heroku.com/$HEROKU_STAGING_EMPLOYEE_POLLER/web:latest
+
+    - docker pull ${CI_REGISTRY_IMAGE}/customer_poller:latest
+    - docker tag ${CI_REGISTRY_IMAGE}/customer_poller:latest registry.heroku.com/$HEROKU_STAGING_CUSTOMER_POLLER/web:latest
+    - docker push registry.heroku.com/$HEROKU_STAGING_CUSTOMER_POLLER/web:latest
+
 heroku-release:
   stage: deploy
   image: node:10.17-alpine
@@ -132,6 +154,8 @@ heroku-release:
     - heroku container:release web --app $HEROKU_STAGING_CUSTOMER_APP
     - heroku container:release web --app $HEROKU_STAGING_EMPLOYEE_APP
     - heroku container:release web --app $HEROKU_STAGING_INVENTORY_APP
+    - heroku container:release web --app $HEROKU_STAGING_CUSTOMER_POLLER
+    - heroku container:release web --app $HEROKU_STAGING_EMPLOYEE_POLLER
 
 # This is an easy way to deploy a React app using GitLab
 # Pages. Then, you can access your application from
