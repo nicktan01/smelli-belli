@@ -24,6 +24,7 @@ class LineItemEncoder(ModelEncoder):
     encoders = {
         "product": ProductVOEncoder(),
         }
+
 class OrderEncoder(ModelEncoder):
     model = Order
     properties = [
@@ -33,3 +34,11 @@ class OrderEncoder(ModelEncoder):
     encoders = {
         "products": LineItemEncoder(),
         }
+    
+    # def get_extra_data(self, o):
+        # return {
+            # "products": {
+                # "sku": o.order.line_item.sku,
+                # "quantity": o.order.line_item.quantity,
+            # }
+        # }
