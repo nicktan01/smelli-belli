@@ -68,7 +68,7 @@ function Product({
   const { mutate } = useSWRConfig();
 
   function addToWishlist(sku, token) {
-    const url = "http://localhost:8090/api/wishlist/";
+    const url = `${process.env.REACT_APP_CUSTOMER_HOST}/api/wishlist/`;
     const fetchConfig = {
       method: "post",
       headers: {
@@ -89,7 +89,7 @@ function Product({
   }
 
   function deleteFromWishlist(sku, token) {
-    const url = "http://localhost:8090/api/wishlist/";
+    const url = `${process.env.REACT_APP_CUSTOMER_HOST}/api/wishlist/`;
     const fetchConfig = {
       method: "delete",
       headers: {
@@ -110,7 +110,7 @@ function Product({
   }
 
   function addToCart(sku, token) {
-    const url = "http://localhost:8090/api/cart/";
+    const url = `${process.env.REACT_APP_CUSTOMER_HOST}/api/cart/`;
     const fetchConfig = {
       method: "post",
       headers: {
@@ -131,7 +131,7 @@ function Product({
   }
   
   function deleteFromCart(sku, token) {
-    const url = "http://localhost:8090/api/cart";
+    const url = `${process.env.REACT_APP_CUSTOMER_HOST}/api/cart`;
     const fetchConfig = {
       method: "delete",
       headers: {
@@ -208,7 +208,7 @@ function Product({
         <div className="counter">
           {showPlusMinus ? <button onClick={() => deleteFromCart(product.sku, token)}>-</button>:null}
           {cartQuantity}
-          {showPlusMinus ? <button>+</button>:null}
+          {showPlusMinus ? <button onClick={() => addToCart(product.sku, token)}>+</button>:null}
         </div>
       </div>
       <div>
