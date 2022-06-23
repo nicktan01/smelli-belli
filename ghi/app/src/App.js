@@ -14,7 +14,6 @@ import BodyQuiz from "./quizzes/BodyQuiz";
 import HomeQuiz from "./quizzes/HomeQuiz";
 import ScentProfilesList from "./quizzes/ScentProfiles";
 import Cart from "./Cart/Cart";
-import Checkout from "./Cart/Checkout";
 import { AuthProvider } from "./authApi";
 import InventoryList from "./employee_pages/Inventory";
 import NewProductForm from "./employee_pages/NewProductForm";

@@ -1,10 +1,14 @@
 import { NavLink } from "react-router-dom";
 import { useToken } from "./authApi";
+import useSWR from "swr";
 import { useState, useEffect } from "react";
 
 function Nav() {
   const [token] = useToken();
   const [user, setUser] = useState(null);
+  const [isNavCollapsed, setIsNavCollapsed] = useState(true);
+
+  const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
   useEffect(() => {
     async function getCurrentUser() {
@@ -22,6 +26,22 @@ function Nav() {
     }
   }, [token]);
 
+  const { data: cart, error } = useSWR(
+    token ? "/api/cart/" : null,
+    async () => {
+      const request = await fetch("http://localhost:8090/api/cart/", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const json = await request.json();
+      return json;
+    }
+  );
+
+  let quantity = 0;
+  (cart || []).forEach((item) => {
+    quantity += item.cartQuantity
+  });
+
   return (
     <nav
       className="navbar navbar-expand-lg navbar-light"
@@ -37,12 +57,13 @@ function Nav() {
           data-toggle="collapse"
           data-target="#navbarNavDropdown"
           aria-controls="navbarNavDropdown"
-          aria-expanded="false"
+          aria-expanded={!isNavCollapsed ? true : false}
           aria-label="Toggle navigation"
+          onClick={handleNavCollapse}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNavDropdown">
+        <div className={`${isNavCollapsed ? 'collapse' : ''} navbar-collapse`} id="navbarNavDropdown">
           <ul className="navbar-nav me-auto">
             {token && user && user.is_staff && (
               <li className="nav-item dropdown">
@@ -164,7 +185,7 @@ function Nav() {
               <NavLink className="nav-link" to="/cart">
                 <i className="bi bi-cart"></i>
                 <span className="position-absolute top-25 start-90 translate-middle badge rounded-pill bg-danger">
-                  3
+                  {quantity}
                 </span>
               </NavLink>
             </span>
@@ -202,7 +223,7 @@ function Nav() {
               <NavLink className="nav-link" to="/cart">
                 <i className="bi bi-cart"></i>
                 <span className="position-absolute top-25 start-90 translate-middle badge rounded-pill bg-danger">
-                  3
+                  {/* {cartQuantity} */}
                 </span>
               </NavLink>
             </span>
