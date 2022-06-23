@@ -3,13 +3,13 @@ RUN python -m pip install --upgrade pip
 WORKDIR /app
 
 # Copy the top-level files
-COPY requirements.txt requirements.txt
-COPY poller.py poller.py
+COPY poll/requirements.txt requirements.txt
+COPY poll/poller.py poller.py
 
 # Copy the Django project and all Django apps
-COPY ../api/customer_project customer_project
-COPY ../api/customer_rest customer_rest
-COPY ../api/common common
+COPY api/employee_project employee_project
+COPY api/employee_rest employee_rest
+COPY api/common common
 
 RUN pip install -r requirements.txt
 CMD python manage.py migrate && gunicorn django_project.wsgi --bind 0.0.0.0:$PORT --log-file -
