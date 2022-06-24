@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 import useSWR, { useSWRConfig } from "swr";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../authApi";
+import "../product_pages/products.css";
 
 const ProductDetails = () => {
   const navigate = useNavigate();
   const { token } = useAuthContext();
-  const { data: wishlist, error } = useSWR(
+  const { data: wishlist } = useSWR(
     token ? "/api/wishlist/" : null,
     async () => {
       const request = await fetch(
@@ -38,7 +39,6 @@ const ProductDetails = () => {
     e.stopPropagation();
     if (token === false || token === undefined) {
       navigate("/login");
-      navigate(-1);
     }
     if (!productLiked) {
       addToWishlist(sku, token);
@@ -91,6 +91,57 @@ const ProductDetails = () => {
       });
   }
 
+  function cartProductHandler(e, sku) {
+    e.stopPropagation();
+    if (token === undefined) {
+      navigate("/login");
+      return;
+    }
+    addToCart(sku, token);
+  }
+
+  function addToCart(sku, token) {
+    const url = `${process.env.REACT_APP_CUSTOMER_HOST}/api/cart/`;
+    const fetchConfig = {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        sku: sku,
+      }),
+    };
+    const response = fetch(url, fetchConfig);
+
+    response
+      .then((res) => res.json())
+      .then((data) => {
+        mutate("/api/cart/");
+      });
+  }
+
+  // function deleteFromCart(sku, token) {
+  //   const url = `${process.env.REACT_APP_CUSTOMER_HOST}/api/cart`;
+  //   const fetchConfig = {
+  //     method: "delete",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //     body: JSON.stringify({
+  //       sku: sku,
+  //     }),
+  //   };
+  //   const response = fetch(url, fetchConfig);
+
+  //   response
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       mutate("/api/cart/");
+  //     });
+  // }
+
   useEffect(() => {
     const productUrl = `${BASE_URL}/${sku}/`;
     fetch(productUrl)
@@ -104,17 +155,14 @@ const ProductDetails = () => {
         setCurrentScent2(data.scent2);
         setCurrentDescription(data.description);
       });
-  }, [sku]);
+  }, [BASE_URL, sku]);
 
   return (
     <>
       <div className="container mt-5">
-        <div className="row">
-          <img src={image} style={{ width: 400 }} />
-        </div>
-        <div className="media-body">
-          <div className="media-heading">
-            <h3>{name}</h3>
+        <div className="product-image">
+          <img src={image} style={{ width: 400 }} alt="products" />
+          <button className="heart-button">
             <div className="heart">
               {productLiked ? (
                 <svg
@@ -122,7 +170,7 @@ const ProductDetails = () => {
                   width="20"
                   height="20"
                   fill="currentColor"
-                  className="bi bi-heart-fill"
+                  className="like-icon bi bi-heart-fill mb-1"
                   viewBox="0 0 16 16"
                   onClick={(e) => likeProductHandler(e, sku)}
                 >
@@ -137,7 +185,7 @@ const ProductDetails = () => {
                   width="20"
                   height="20"
                   fill="currentColor"
-                  className="bi bi-heart"
+                  className="like-icon bi bi-heart mb-1"
                   viewBox="0 0 16 16"
                   onClick={(e) => likeProductHandler(e, sku)}
                 >
@@ -145,25 +193,38 @@ const ProductDetails = () => {
                 </svg>
               )}
             </div>
-
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="25"
-              height="25"
-              fill="currentColor"
-              className=" cart bi bi-cart-plus"
-              viewBox="0 0 16 16"
-            >
-              <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z" />
-              <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
-            </svg>
+          </button>
+        </div>
+        <div className="info">
+          <div className="media-body">
+            <div className="media-heading">
+              <h3>{name}</h3>
+              <button
+                className="cart-button"
+                onClick={(e) => cartProductHandler(e, sku)}
+              >
+                {" "}
+                Add to cart
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="25"
+                  fill="currentColor"
+                  className=" cart bi bi-cart-plus"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z" />
+                  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                </svg>
+              </button>
+            </div>
+            <h4>
+              ${price} - {size}
+            </h4>
+            <p>{description}</p>
+            <p> Primary Scent: {scent1}</p>
+            <p> Secondary Scent: {scent2}</p>
           </div>
-          <h4>
-            ${price} - {size}
-          </h4>
-          <p>{description}</p>
-          <p> Primary Scent: {scent1}</p>
-          <p> Secondary Scent: {scent2}</p>
         </div>
       </div>
     </>

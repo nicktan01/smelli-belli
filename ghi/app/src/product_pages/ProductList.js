@@ -29,7 +29,7 @@ function ProductList({ category }) {
 
   // Fetching wishlist for the user
   const { token } = useAuthContext();
-  const { data: wishlist, error } = useSWR(
+  const { data: wishlist } = useSWR(
     token ? "/api/wishlist/" : null,
     async () => {
       const request = await fetch(
@@ -92,7 +92,7 @@ function ProductList({ category }) {
               i = 0;
             }
           }
-          
+
           setProductColumns(newProductColumns);
         }
       } catch (e) {
