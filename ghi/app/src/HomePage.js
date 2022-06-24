@@ -154,12 +154,16 @@ class HomePage extends React.Component {
             </div>
           </div>
 
+          <div className="px-4 py-3 my-1 text-center">
+            <h3>Featured Products</h3>
+          </div>
           <div className="carousel-container carousel-dark">
             <div className="carousel container x-5 y-5 div3">
               <div
                 id="carouselExampleCaptions"
-                className="carousel slide mt-5"
+                className="carousel slide mt-1"
                 data-bs-ride="false"
+                style={{ width: "100%" }}
               >
                 <div className="carousel-indicators">
                   <button
@@ -190,7 +194,7 @@ class HomePage extends React.Component {
                                 key={product.sku}
                                 src={product.image}
                                 className="d-block height-80 mx-auto"
-                                alt="product images"
+                                alt="product"
                               />
                             </NavLink>
                             <div
@@ -224,7 +228,7 @@ class HomePage extends React.Component {
                                 key={product.sku}
                                 src={product.image}
                                 className="d-block height-80 mx-auto"
-                                alt="headphones.jpeg"
+                                alt="product"
                               />
                             </NavLink>
                             <div
