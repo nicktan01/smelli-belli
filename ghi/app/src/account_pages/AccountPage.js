@@ -1,6 +1,7 @@
 import React from "react";
 import { useToken } from "../authApi";
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 function AccountPage() {
   // eslint-disable-next-line no-unused-vars
@@ -23,6 +24,8 @@ function AccountPage() {
       getCurrentUser();
     }
   }, [token]);
+
+
 
   return (
     <div>
@@ -49,6 +52,16 @@ function AccountPage() {
               <div>first name: {user.first_name}</div>
               <div>last name: {user.last_name}</div>
               <div>email: {user.email}</div>
+            </div>
+            <div>
+              <NavLink className="dropdown-item" to="/scentprofiles">
+                Scent Profiles
+              </NavLink>
+            </div>
+            <div>
+              <NavLink className="dropdown-item" to="/wishlist">
+                Wish List
+              </NavLink>
             </div>
           </div>
         </div>
