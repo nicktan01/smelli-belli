@@ -1,7 +1,6 @@
 import React from "react";
 import useSWR from "swr";
 import { useSWRConfig } from "swr";
-// import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../authApi";
 import ProductColumn from "../components/ProductColumn";
@@ -19,34 +18,7 @@ function Cart(props) {
     const json = await request.json();
     return json;
   });
-  // const [product, setProduct] = useState({});
-
-  // const fetchProductData = useCallback(() => {
-  //   const url = `${process.env.REACT_APP_INVENTORY_HOST}/api/products/`;
-
-  //   try {
-  //     const detailUrl = `${process.env.REACT_APP_INVENTORY_HOST}/api/products/${sku}`;
-  //     setProduct("loading");
-  //     fetch(detailUrl)
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         setProduct(data);
-  //       });
-  //   } catch (e) {
-  //     console.error("error:", e);
-  //   }
-  // }, [sku]);
-
-  // useEffect(() => {
-  //   fetchProductData();
-  // }, [fetchProductData, sku]);
-
-  // const { mutate } = useSWRConfig();
-  //     });
-  //     const json = await request.json();
-  //     return json;
-  //   }
-  // );
+  
   const { mutate } = useSWRConfig();
 
   async function checkout(items) {
@@ -94,22 +66,6 @@ function Cart(props) {
         mutate("/api/orders/");
       });
   }
-
-  // const cart_url = `${process.env.REACT_APP_CUSTOMER_HOST}/api/cart/`;
-  // const fetchConfigCart = {
-  //   method: "delete",
-  //   header: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   body: JSON.stringify(requestBody),
-  // }
-  // const response = await fetch(url, fetchConfig);
-  // const delete_response = await fetch(cart_url, fetchConfigCart)
-
-  // if (delete_response.ok) {
-  //   console.log("this is the delete response", delete_response);
-  // }
-
   let columns = [[], [], [], []];
 
   if ((cart || {}).error || cart === undefined) return null;

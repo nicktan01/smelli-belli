@@ -34,7 +34,6 @@ function Product({ sku, liked, cartQuantity, carted, showPlusMinus }) {
   const [product, setProduct] = useState({});
 
   const fetchProductData = useCallback(() => {
-    // const url = `${process.env.REACT_APP_INVENTORY_HOST}/api/products/`;
 
     try {
       const detailUrl = `${process.env.REACT_APP_INVENTORY_HOST}/api/products/${sku}`;

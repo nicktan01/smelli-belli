@@ -36,18 +36,15 @@ def api_orders(request):
                 }
                 lineItem = LineItem.objects.create(**li)
                 productVOs.append(lineItem)
-            # get user id
             payload_dict = json.dumps(request.payload)
             user_information = json.loads(payload_dict)
             user_id = user_information["user"]["id"]
             content = json.loads(request.body)
             content["user"] = user_id
-            # end of getting user id
             del content["products"] 
             order = Order.objects.create(**content)
             for pvo in productVOs:
                 order.products.add(pvo)
-            # order.products.set(productVOs)
             order.save()
             print(order)
             return JsonResponse(order, encoder=OrderEncoder, safe=False)
