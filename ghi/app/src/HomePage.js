@@ -214,6 +214,7 @@ class HomePage extends React.Component {
                           </div>
                         );
                       }
+                      return null;
                     })}
                   </div>
                   <div className="carousel-item">
@@ -248,6 +249,7 @@ class HomePage extends React.Component {
                           </div>
                         );
                       }
+                      return null;
                     })}
                   </div>
                 </div>
