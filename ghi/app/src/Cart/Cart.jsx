@@ -39,6 +39,28 @@ function Cart(props) {
   // }, [fetchProductData, sku]);
 
   // const { mutate } = useSWRConfig();
+  //     });
+  //     const json = await request.json();
+  //     return json;
+  //   }
+  // );
+  async function checkout(items) {
+    console.log(items);
+    const url = `${process.env.REACT_APP_EMPLOYEE_HOST}/api/orders/`;
+    const fetchConfig = {
+      method: "post",
+      header: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        items: items,
+      }),
+    };
+    const response = await fetch(url, fetchConfig);
+    if (response.ok) {
+      console.log("this is the response", response);
+    }
+  }
 
   let columns = [[], [], [], []];
 
@@ -86,10 +108,18 @@ function Cart(props) {
             <tbody>
               <tr>
                 <td>{quantity}</td>
-                <td>{total}</td>
+                <td>${total}</td>
               </tr>
             </tbody>
           </table>
+          <button
+            className="btn btn-dark"
+            onClick={() => {
+              checkout({ cart });
+            }}
+          >
+            Checkout
+          </button>
         </div>
       </div>
     </div>

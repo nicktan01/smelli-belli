@@ -24,38 +24,23 @@ class HomePage extends React.Component {
     }
   }
 
-  //   async getOrders() {
-  //     const response = await fetch(`${process.env.REACT_APP_EMPLOYEE_HOST}/api/orders/`);
-  //     if (response.ok) {
-  //       const data = await response.json();
-  //       this.setState({
-  //         products: data.products,
-  //       });
-  //     } else {
-  //       console.error(response);
-  //     }
-  // }
-
   async componentDidMount() {
     this.getListProducts();
-    // this.getOrders()
   }
 
   render() {
-    //let top_lotion = this.state.products.sortby()[0]
-    //let top_candle = this.state.products.sortby()[0]
-    let top_lotion = this.state.products[0];
-    let top_candle = this.state.products[1];
+    let top_lotion = this.state.products[2];
+    let top_candle = this.state.products[5];
     return (
       <React.Fragment>
         <div className="Mainpage d-flex justify-content-center position-relative">
           <img
             className="hero-img-blur"
-            alt="blurred background of dried flowers"
             src="/images/hero-img.jpg"
             height={300}
             width={null}
             style={{ objectFit: "cover", width: "100%" }}
+            alt="home banner"
           />
           <div
             style={{
@@ -70,7 +55,6 @@ class HomePage extends React.Component {
           />
           <img
             src="/images/sbmain.png"
-            alt=""
             height={200}
             width={null}
             style={{
@@ -78,21 +62,43 @@ class HomePage extends React.Component {
               top: "50%",
               transform: "translateY(-50%)",
             }}
+            alt="logo"
           />
         </div>
-        <h3
-          className="text-center"
-          style={{
-            transform: "translateY(-90%)",
-          }}
-        >
-          Find Products Suited For You!
-        </h3>
+        <div className="px-4 py-3 my-1 text-center">
+          <h3>Find Products Suited For You!</h3>
+        </div>
 
-        <div className="pxy-5 shadow offset-3 col-6 mt-4 mb-5" width={1000}>
-          <div className="container px-5">
-            <div className=" text-centered row position-relative">
-              <div className="text-centered body-text">
+        <div className="px-4 py-1 my-1 text-center">
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div style={{ position: "relative" }}>
+              <img src="/images/body-quiz.jpg" width={500} alt="quiz"></img>
+              <div
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  width: "100%",
+                  height: "200px",
+                  background: "#fff",
+                  opacity: "0.6",
+                }}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translateX(-50%) translateY(-50%)",
+                  padding: "5px",
+                }}
+              >
                 <h3 className="">Body Scent Quiz</h3>
                 <p className="">
                   Take a short quiz to determine your ideal scent profile for
@@ -106,43 +112,44 @@ class HomePage extends React.Component {
                   Body Quiz Scent
                 </NavLink>
               </div>
-
-              <div className="text-center">
-                <img
-                  className="left-img"
-                  alt=""
-                  src="/images/body-quiz.jpg"
-                  height={300}
-                  width={null}
-                  style={{ objectFit: "cover", width: "100%" }}
-                ></img>
-              </div>
             </div>
 
-            <div className="row position-relative">
-              <div className="position-absolute top-50 start-100 translate-middle">
-                <h3>Home Scent Quiz</h3>
-                <p>
-                  Take a short quiz to determine your ideal scent profile for
-                  all home related products!
-                </p>
-                <NavLink
-                  to="/homequiz"
-                  role="button"
-                  className="col text-center btn btn-outline-dark btn-lg"
+            <div className="px-4 py-1 my-1 text-center">
+              <div style={{ position: "relative" }}>
+                <img src="/images/home-quiz.jpg" width={500} alt="quiz"></img>
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    width: "100%",
+                    height: "200px",
+                    background: "#fff",
+                    opacity: "0.5",
+                  }}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translateX(-50%) translateY(-50%)",
+                    padding: "5px",
+                  }}
                 >
-                  Home Quiz Scent
-                </NavLink>
-              </div>
-              <div className="text-center">
-                <img
-                  className="right-img"
-                  alt=""
-                  src="/images/home-quiz.jpg"
-                  height={300}
-                  width={null}
-                  style={{ objectFit: "cover", width: "100%" }}
-                ></img>
+                  <h3>Home Scent Quiz</h3>
+                  <p>
+                    Take a short quiz to determine your ideal scent profile for
+                    all home related products!
+                  </p>
+                  <NavLink
+                    to="/homequiz"
+                    role="button"
+                    className="col text-center btn btn-outline-dark btn-lg"
+                  >
+                    Home Quiz Scent
+                  </NavLink>
+                </div>
               </div>
             </div>
           </div>
@@ -183,11 +190,21 @@ class HomePage extends React.Component {
                                 key={product.sku}
                                 src={product.image}
                                 className="d-block height-80 mx-auto"
-                                alt="headphones.jpeg"
+                                alt="product images"
                               />
                             </NavLink>
+                            <div
+                              style={{
+                                position: "absolute",
+                                bottom: "0%",
+                                width: "100%",
+                                height: "150px",
+                                background: "#fff",
+                                opacity: "0.5",
+                              }}
+                            />
                             <div className="carousel-caption d-none d-md-block stroke-text">
-                              <h5>Our top Home Product!</h5>
+                              <h5>Our top Home Product</h5>
                               <p>{product.name}</p>
                             </div>
                           </div>
@@ -210,6 +227,16 @@ class HomePage extends React.Component {
                                 alt="headphones.jpeg"
                               />
                             </NavLink>
+                            <div
+                              style={{
+                                position: "absolute",
+                                bottom: "0%",
+                                width: "100%",
+                                height: "150px",
+                                background: "#fff",
+                                opacity: "0.5",
+                              }}
+                            />
                             <div className="carousel-caption d-none d-md-block stroke-text">
                               <h5>Our top Body Product</h5>
                               <p>{product.name}</p>

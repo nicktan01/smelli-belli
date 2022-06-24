@@ -185,8 +185,8 @@ def api_cart(request):
         product = ProductVO.objects.get(sku=content["sku"])
 
         try:
-            if not Cart.objects.filter(product=product, user=user_id):
-                cart = Cart.objects.create(product=product, user=user_id)
+            # if not Cart.objects.filter(product=product, user=user_id):
+            cart = Cart.objects.create(product=product, user=user_id)
             return JsonResponse(
                 {"message": "Done"}
             )
@@ -219,7 +219,7 @@ def api_cart(request):
             response.status_code = 404
             return response
     elif request.method == "DELETE":
-        content = json.load(request.body)
+        content = json.loads(request.body)
         product = ProductVO.objects.get(sku=content["sku"])
         Cart.objects.filter(user=user_id, product=product).delete()
         return JsonResponse(

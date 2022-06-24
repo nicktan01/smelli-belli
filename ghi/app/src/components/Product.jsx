@@ -5,7 +5,7 @@ import { useSWRConfig } from "swr";
 import { useAuthContext } from "../authApi";
 import "../product_pages/products.css";
 
-function Product({ sku, liked, carted, cartQuantity, showPlusMinus }) {
+function Product({ sku, liked, cartQuantity, carted, showPlusMinus }) {
   const navigate = useNavigate();
 
   const { token } = useAuthContext();
@@ -28,12 +28,19 @@ function Product({ sku, liked, carted, cartQuantity, showPlusMinus }) {
       navigate("/login");
       return;
     }
-    if (!carted) {
-      addToCart(sku, token);
-    } else {
-      deleteFromCart(sku, token);
-    }
+    console.log("This is cart handler");
+    addToCart(sku, token);
   }
+
+  // function cartProductHandlerDelete(e, sku) {
+  //   e.stopPropagation();
+  //   if (token === undefined) {
+  //     navigate("/login");
+  //     return;
+  //   }
+  //   console.log("This is cart handler");
+  //   deleteFromCart(sku, token);
+  // }
 
   const [product, setProduct] = useState({});
 
@@ -142,7 +149,6 @@ function Product({ sku, liked, carted, cartQuantity, showPlusMinus }) {
         mutate("/api/cart/");
       });
   }
-
   return (
     <div className="outer-container">
       <div key={product.sku} className="card mb-3 shadow-none border-0">

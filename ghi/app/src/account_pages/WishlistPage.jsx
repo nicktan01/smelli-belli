@@ -1,7 +1,7 @@
 import useSWR from "swr";
 
-import { useAuthContext } from "./authApi";
-import ProductColumn from "./components/ProductColumn";
+import { useAuthContext } from "../authApi";
+import ProductColumn from "../components/ProductColumn";
 
 function WishlistPage(props) {
   const { token } = useAuthContext();

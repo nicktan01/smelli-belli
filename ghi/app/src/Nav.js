@@ -169,10 +169,6 @@ function Nav() {
                     >
                       My Account
                     </NavLink>
-
-                    <NavLink className="dropdown-item" to="/orderhistory">
-                      Order History
-                    </NavLink>
                     <NavLink className="dropdown-item" to="/wishlist">
                       Wish List
                     </NavLink>
