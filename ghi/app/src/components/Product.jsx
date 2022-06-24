@@ -31,17 +31,6 @@ function Product({ sku, liked, cartQuantity, carted, showPlusMinus }) {
     console.log("This is cart handler");
     addToCart(sku, token);
   }
-
-  // function cartProductHandlerDelete(e, sku) {
-  //   e.stopPropagation();
-  //   if (token === undefined) {
-  //     navigate("/login");
-  //     return;
-  //   }
-  //   console.log("This is cart handler");
-  //   deleteFromCart(sku, token);
-  // }
-
   const [product, setProduct] = useState({});
 
   const fetchProductData = useCallback(() => {

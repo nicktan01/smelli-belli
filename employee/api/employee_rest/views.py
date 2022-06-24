@@ -8,7 +8,7 @@ from .encoders import (
 )
 from .models import LineItem, ProductVO, Order
 
-# @auth.jwt_login_required
+@auth.jwt_login_required
 @require_http_methods(["GET", "POST"])
 def api_orders(request):
     if request.method == "GET":
@@ -36,12 +36,14 @@ def api_orders(request):
                 }
                 lineItem = LineItem.objects.create(**li)
                 productVOs.append(lineItem)
-            # content = json.loads(request.body)
-            # for element in content:
-            #     order = Order.objects.create(**element)
-            #     orders.append(order)
-            # content["products"] = productVOs
-            del content["products"]
+            # get user id
+            payload_dict = json.dumps(request.payload)
+            user_information = json.loads(payload_dict)
+            user_id = user_information["user"]["id"]
+            content = json.loads(request.body)
+            content["user"] = user_id
+            # end of getting user id
+            del content["products"] 
             order = Order.objects.create(**content)
             for pvo in productVOs:
                 order.products.add(pvo)

@@ -230,20 +230,6 @@ def api_cart(request):
             if not deleteflag:
                 cc.delete()
                 deleteflag = True
-        # print("this is the cart:", cart_contents)
-        # print("popped cart item:", cart_contents)
-        # cart_contents.update()
-        # result = []
-        # print("carted Product:", carted_product)
-        # print(cart)
-        # for product, group in groupedProducts:
-        #     group = list(group)
-        #     product = group[0]
-        #     # product.cartQuantity -= 1
-        #     result.append(product)
-        # # del cart[0]
-        # print(cart)
-
         return JsonResponse(
             {"message": "Done"}
         )
