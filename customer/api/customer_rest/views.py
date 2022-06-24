@@ -220,8 +220,30 @@ def api_cart(request):
             return response
     elif request.method == "DELETE":
         content = json.loads(request.body)
-        product = ProductVO.objects.get(sku=content["sku"])
-        Cart.objects.filter(user=user_id, product=product).delete()
+        carted_product = ProductVO.objects.get(sku=content["sku"])
+        # cart = list(Cart.objects.get(user=user_id, product=product))
+        cart_contents = Cart.objects.filter(user=user_id, product=carted_product)
+        cartItem = list(map((lambda item: item.product), cart_contents))
+        groupedProducts = itertools.groupby(cartItem, key= lambda item: item.id)
+        deleteflag = False
+        for cc in cart_contents:
+            if not deleteflag:
+                cc.delete()
+                deleteflag = True
+        # print("this is the cart:", cart_contents)
+        # print("popped cart item:", cart_contents)
+        # cart_contents.update()
+        # result = []
+        # print("carted Product:", carted_product)
+        # print(cart)
+        # for product, group in groupedProducts:
+        #     group = list(group)
+        #     product = group[0]
+        #     # product.cartQuantity -= 1
+        #     result.append(product)
+        # # del cart[0]
+        # print(cart)
+
         return JsonResponse(
             {"message": "Done"}
         )

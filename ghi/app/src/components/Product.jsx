@@ -32,7 +32,7 @@ function Product({ sku, liked, cartQuantity, carted, showPlusMinus }) {
     console.log("This is cart handler")
     addToCart(sku, token); 
   }
-  
+
   function cartProductHandlerDelete(e, sku) {
     e.stopPropagation();
     if (token === undefined) {
