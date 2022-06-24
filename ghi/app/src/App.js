@@ -16,7 +16,7 @@ import Cart from "./Cart/Cart";
 import { AuthProvider } from "./authApi";
 import InventoryList from "./employee_pages/Inventory";
 import NewProductForm from "./employee_pages/NewProductForm";
-import WishlistPage from "./WishlistPage";
+import WishlistPage from "./account_pages/WishlistPage";
 
 function App() {
   return (

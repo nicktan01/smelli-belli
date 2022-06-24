@@ -138,7 +138,6 @@ def api_wishlist(request):
     user_id = user_information["user"]["id"]
 
     if request.method == "POST":
-        # same method for retrieving user info as used above
         content = json.loads(request.body)
         product = ProductVO.objects.get(sku=content["sku"])
 
@@ -166,23 +165,12 @@ def api_wishlist(request):
             response = JsonResponse({"message": "No wishlist items"})
             response.status_code = 404
             return response
-    # def add_wishlist(request):
-    #     pass
-    # get current user id
-    # receive sku from request
-    # add an entry to table
     elif request.method == "DELETE":
         content = json.loads(request.body)
         product = ProductVO.objects.get(sku=content["sku"])
         WishList.objects.filter(user=user_id, product=product).delete()
         return JsonResponse({"message": "Done"})
 
-
-# def delete_wishlist(request):
-#     pass
-# get current user id
-# receive sku from request
-# remove entry from table
 
 
 @auth.jwt_login_required
@@ -197,8 +185,8 @@ def api_cart(request):
         product = ProductVO.objects.get(sku=content["sku"])
 
         try:
-            if not Cart.objects.filter(product=product, user=user_id):
-                cart = Cart.objects.create(product=product, user=user_id)
+            # if not Cart.objects.filter(product=product, user=user_id):
+            cart = Cart.objects.create(product=product, user=user_id)
             return JsonResponse(
                 {"message": "Done"}
             )
@@ -231,7 +219,7 @@ def api_cart(request):
             response.status_code = 404
             return response
     elif request.method == "DELETE":
-        content = json.load(request.body)
+        content = json.loads(request.body)
         product = ProductVO.objects.get(sku=content["sku"])
         Cart.objects.filter(user=user_id, product=product).delete()
         return JsonResponse(

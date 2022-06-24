@@ -25,6 +25,7 @@ class ModelEncoder(DateEncoder, QuerySetEncoder, JSONEncoder):
 
     def default(self, o):
         if isinstance(o, self.model):
+            print("ModelEncoder")
             d = {}
             if hasattr(o, "get_api_url"):
                 try:
@@ -32,9 +33,15 @@ class ModelEncoder(DateEncoder, QuerySetEncoder, JSONEncoder):
                 except NoReverseMatch:
                     pass
             for property in self.properties:
+                encoder = self.encoders.get(property)
                 value = getattr(o, property)
-                if property in self.encoders:
-                    encoder = self.encoders[property]
+                if hasattr(value, "all") and callable(value.all):
+                    value = map(
+                        encoder.default if encoder else lambda x: x,
+                        list(value.all()),
+                    )
+                    value = list(value)
+                elif encoder:
                     value = encoder.default(value)
                 d[property] = value
             d.update(self.get_extra_data(o))

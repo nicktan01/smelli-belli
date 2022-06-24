@@ -2,26 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSWRConfig } from "swr";
-import { useAuthContext, } from "../authApi";
+import { useAuthContext } from "../authApi";
 import "../product_pages/products.css";
 
-function Product({
-  sku,
-  liked,
-  carted,
-  cartQuantity,
-  showPlusMinus
-}) {
+function Product({ sku, liked, cartQuantity, carted, showPlusMinus }) {
   const navigate = useNavigate();
   // const [token] = useToken();
   const { token } = useAuthContext();
 
-  // prevents navigation to detail page when clicking on wishlist button on product card
   function likeProductHandler(e, sku) {
     e.stopPropagation();
-    if (token === undefined) {
+    if (token === false || token === undefined) {
       navigate("/login");
-      return;
+      navigate(-1);
     }
     if (!liked) {
       addToWishlist(sku, token);
@@ -36,13 +29,20 @@ function Product({
       navigate("/login");
       return;
     }
-    if (!carted){
-      addToCart(sku, token);
-    }
-    else {
-      deleteFromCart(sku, token);
-    }
+    console.log("This is cart handler")
+    addToCart(sku, token); 
   }
+  
+  function cartProductHandlerDelete(e, sku) {
+    e.stopPropagation();
+    if (token === undefined) {
+      navigate("/login");
+      return;
+    }
+    console.log("This is cart handler")
+    deleteFromCart(sku, token); 
+  }
+
   const [product, setProduct] = useState({});
 
   const fetchProductData = useCallback(() => {
@@ -129,7 +129,7 @@ function Product({
         mutate("/api/cart/");
       });
   }
-  
+
   function deleteFromCart(sku, token) {
     const url = `${process.env.REACT_APP_CUSTOMER_HOST}/api/cart`;
     const fetchConfig = {
@@ -150,13 +150,8 @@ function Product({
         mutate("/api/cart/");
       });
   }
-
   return (
-    <div
-      key={product.sku}
-      className="card mb-3 shadow-none border-0"
-    
-    >
+    <div key={product.sku} className="card mb-3 shadow-none border-0">
       {liked ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -185,30 +180,40 @@ function Product({
           <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
         </svg>
       )}
-      <div onClick={() => {
-        navigate(`/products/${product.sku}`);
-      }}>
+      <div
+        onClick={() => {
+          navigate(`/products/${product.sku}`);
+        }}
+      >
         <img
-        src={
-          !product.image
-            ? "https://tracerproducts.com/wp-content/uploads/2019/12/Product-Image-Coming-Soon.jpg"
-            : product.image
-        }
-        className="card-img-top"
-        alt="placeholder for product"
-      />
-      <div className="card-body">
-        <h5 className="card-title">{product.name}</h5>
-        <h6 className="card-subtitle mb-2 text-muted">
-          ${product.price} - {product.size}
-        </h6>
+          src={
+            !product.image
+              ? "https://tracerproducts.com/wp-content/uploads/2019/12/Product-Image-Coming-Soon.jpg"
+              : product.image
+          }
+          className="card-img-top"
+          alt="placeholder for product"
+        />
+        <div className="card-body">
+          <h5 className="card-title">{product.name}</h5>
+          <h6 className="card-subtitle mb-2 text-muted">
+            ${product.price} - {product.size}
+          </h6>
         </div>
       </div>
       <div className="card-body">
         <div className="counter">
-          {showPlusMinus ? <button onClick={() => deleteFromCart(product.sku, token)}>-</button>:null}
+          {showPlusMinus ? (
+            <button onClick={(e) => cartProductHandlerDelete(e, product.sku)}>
+              -
+            </button>
+          ) : null}
           {cartQuantity}
-          {showPlusMinus ? <button onClick={() => addToCart(product.sku, token)}>+</button>:null}
+          {showPlusMinus ? (
+            <button onClick={(e) => cartProductHandler(e, product.sku)}>
+              +
+            </button>
+          ) : null}
         </div>
       </div>
       <div>
