@@ -18,7 +18,8 @@ class ProductVOEncoder(ModelEncoder):
         "name",
         "sku",
         "price",
-        "image"
+        "image",
+        "cartQuantity"
     ]
 
 class BodyQuizEncoder(ModelEncoder):

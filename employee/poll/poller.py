@@ -13,18 +13,17 @@ from employee_rest.models import ProductVO
 
 
 def get_products():
-    response = requests.get(os.environ["INVENTORY_POLLER_HOST"])
+    response = requests.get(os.environ["EMPLOYEE_POLLER_HOST"])
     content = json.loads(response.content)
     for product in content["products"]:
         ProductVO.objects.update_or_create(
             import_href=product["href"],
             defaults={
                 "name": product["name"],
+                "size": product["size"],
                 "sku": product["sku"],
                 "price": product["price"],
-                "size": product["size"],
                 "quantity": product["quantity"],
-                "limited_item": product["limited_item"],
                 "image": product["image"],
             },
         )
