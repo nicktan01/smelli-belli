@@ -145,3 +145,13 @@ Today I worked on:
 I worked with Nicholas to sort out some blockers he was having. We managed to get a lot done after talking some stuff out. The cart button now works and properly adds items to cart, and if the same product is added multiple times, it will instead increase the quantity of the item as opposed to showing multiple instances of the product. We also got pricing to show up and be calculated properly based on the amount of each item exists in cart. We made a few changes in the backend in order to keep track of the cartQuantity of each item. Overall I think the cart is pretty much done as of right now and we just need to add a `place order` button to allow for orders to be created.
 
 I did have a revelation about just how free you are to do certain things when it comes to hiding components or showing them as we did for the increase/decrease buttons for the quantity of an item. 
+
+## June 23, 2022
+Today I worked on:
+
+- Orders
+- Increment/Decrement Quantity (within orders)
+
+I worked with Nicholas and Elliot to try and get a working endpoint for orders when you submit a cart. I also worked on trying to get an increment and decrement counter working with them for different cart items.
+
+I learned today how to get all of the values within a stored list, and map them out to reappend them into a list within an encoder. I have a gist of what steps need to be taken but I definitely need to review the syntax and order of the steps in order to do so myself.
