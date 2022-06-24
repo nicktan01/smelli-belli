@@ -1,14 +1,11 @@
 import React from "react";
 import { useToken } from "../authApi";
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 function AccountPage() {
+  // eslint-disable-next-line no-unused-vars
   const [token, login, logout] = useToken();
   const [user, setUser] = useState("");
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     async function getCurrentUser() {
@@ -48,9 +45,7 @@ function AccountPage() {
               <div>you are currently logged in as: {user.username}</div>
             </header>
             <div className="container p-4 mt-4">
-              <h3>
-                Account Details:
-              </h3>
+              <h3>Account Details:</h3>
               <div>first name: {user.first_name}</div>
               <div>last name: {user.last_name}</div>
               <div>email: {user.email}</div>

@@ -18,6 +18,7 @@ services:
       REACT_APP_INVENTORY_HOST: http://localhost:8100
       REACT_APP_CUSTOMER_HOST: http://localhost:8090
       REACT_APP_EMPLOYEE_HOST: http://localhost:8080
+      CI: "true"
   database:
     image: postgres:14.2-bullseye
     volumes:

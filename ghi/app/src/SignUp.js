@@ -2,12 +2,14 @@ import { useToken } from "./authApi";
 import { useState, useEffect } from "react";
 
 function SignUp() {
+  // eslint-disable-next-line no-unused-vars
   const [token, login, logout, signup] = useToken();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  // eslint-disable-next-line no-unused-vars
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const canSignup = username && password && email && firstName && lastName;

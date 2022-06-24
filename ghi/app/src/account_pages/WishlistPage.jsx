@@ -5,7 +5,7 @@ import ProductColumn from "../components/ProductColumn";
 
 function WishlistPage(props) {
   const { token } = useAuthContext();
-  const { data: wishlist, error } = useSWR(
+  const { data: wishlist } = useSWR(
     token ? "/api/wishlist/" : null,
     async () => {
       const request = await fetch(
@@ -36,14 +36,14 @@ function WishlistPage(props) {
   (wishlist || []).forEach((item) => (likedProducts[item] = true));
 
   return (
-    <div className="container mt-2">
-      <div>
-        <h2>Wishlisted Items</h2>
-      </div>
-      <div className="row">
-        {columns.map((list) => (
-          <ProductColumn list={list} likedProducts={likedProducts} />
-        ))}
+    <div>
+      <h2>Wishlisted Items</h2>
+      <div className="container ">
+        <div className="row">
+          {columns.map((list) => (
+            <ProductColumn list={list} likedProducts={likedProducts} />
+          ))}
+        </div>
       </div>
     </div>
   );

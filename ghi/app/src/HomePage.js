@@ -35,6 +35,7 @@ class HomePage extends React.Component {
       <React.Fragment>
         <div className="Mainpage d-flex justify-content-center position-relative">
           <img
+            className="hero-img-blur"
             src="/images/hero-img.jpg"
             height={300}
             width={null}

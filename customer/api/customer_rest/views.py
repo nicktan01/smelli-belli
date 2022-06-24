@@ -129,7 +129,7 @@ def api_show_home_quiz(request, pk):
             )
 
 
-# Wishlist functionality
+
 @auth.jwt_login_required
 @require_http_methods(["GET", "POST", "PUT", "DELETE"])
 def api_wishlist(request):

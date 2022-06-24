@@ -26,16 +26,13 @@ function Nav() {
     }
   }, [token]);
 
-  const { data: cart, error } = useSWR(
-    token ? "/api/cart/" : null,
-    async () => {
-      const request = await fetch("http://localhost:8090/api/cart/", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const json = await request.json();
-      return json;
-    }
-  );
+  const { data: cart } = useSWR(token ? "/api/cart/" : null, async () => {
+    const request = await fetch("http://localhost:8090/api/cart/", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const json = await request.json();
+    return json;
+  });
 
   let quantity = 0;
   (cart || []).forEach((item) => {
