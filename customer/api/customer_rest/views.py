@@ -175,7 +175,7 @@ def api_wishlist(request):
 
 @auth.jwt_login_required
 @require_http_methods(["GET", "POST", "PUT", "DELETE"])
-def api_cart(request, sku):
+def api_cart(request):
     payload_dict = json.dumps(request.payload)
     user_information = json.loads(payload_dict)
     user_id = user_information["user"]["id"]
@@ -219,16 +219,6 @@ def api_cart(request, sku):
             response.status_code = 404
             return response
     elif request.method == "DELETE":
-        # try:
-        #     product = Cart.objects.get(sku=sku)
-        #     product.delete()
-        #     return JsonResponse(
-        #         product,
-        #         encoder=ProductVOEncoder,
-        #         safe=False
-        #     )
-        # except Cart.DoesNotExist:
-        #     return JsonResponse({"message": "Does not exist"})
         content = json.loads(request.body)
         product = ProductVO.objects.get(sku=content["sku"])
         Cart.objects.filter(user=user_id, product=product).delete()
