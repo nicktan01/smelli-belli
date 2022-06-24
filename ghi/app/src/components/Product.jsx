@@ -9,20 +9,6 @@ function Product({ sku, liked, cartQuantity, carted, showPlusMinus }) {
   const navigate = useNavigate();
   // const [token] = useToken();
   const { token } = useAuthContext();
-  let [ quantity, setQuantity ] = useState(cartQuantity);
-
-  const incrementCounter = () => {
-     addToCart(sku, token);
-    
-  }
-
-  const decrementCounter = () => {
-    if (cartQuantity > 1) {
-      setQuantity(cartQuantity -= 1);
-    } else if (cartQuantity <= 0) {
-      setQuantity(1);
-    }
-  }
 
   function likeProductHandler(e, sku) {
     e.stopPropagation();
@@ -45,6 +31,16 @@ function Product({ sku, liked, cartQuantity, carted, showPlusMinus }) {
     }
     console.log("This is cart handler")
     addToCart(sku, token); 
+  }
+  
+  function cartProductHandlerDelete(e, sku) {
+    e.stopPropagation();
+    if (token === undefined) {
+      navigate("/login");
+      return;
+    }
+    console.log("This is cart handler")
+    deleteFromCart(sku, token); 
   }
 
   const [product, setProduct] = useState({});
@@ -208,7 +204,7 @@ function Product({ sku, liked, cartQuantity, carted, showPlusMinus }) {
       <div className="card-body">
         <div className="counter">
           {showPlusMinus ? (
-            <button onClick={decrementCounter}>
+            <button onClick={(e) => cartProductHandlerDelete(e, product.sku)}>
               -
             </button>
           ) : null}

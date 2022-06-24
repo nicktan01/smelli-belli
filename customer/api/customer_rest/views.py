@@ -219,7 +219,7 @@ def api_cart(request):
             response.status_code = 404
             return response
     elif request.method == "DELETE":
-        content = json.load(request.body)
+        content = json.loads(request.body)
         product = ProductVO.objects.get(sku=content["sku"])
         Cart.objects.filter(user=user_id, product=product).delete()
         return JsonResponse(
