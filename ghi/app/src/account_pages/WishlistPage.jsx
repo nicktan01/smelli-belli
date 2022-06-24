@@ -2,6 +2,7 @@ import useSWR from "swr";
 
 import { useAuthContext } from "../authApi";
 import ProductColumn from "../components/ProductColumn";
+import "../account_pages/wishlist.css";
 
 function WishlistPage(props) {
   const { token } = useAuthContext();
@@ -38,7 +39,7 @@ function WishlistPage(props) {
   return (
     <div>
       <h2>Wishlisted Items</h2>
-      <div className="container ">
+      <div className="container">
         <div className="row">
           {columns.map((list) => (
             <ProductColumn list={list} likedProducts={likedProducts} />
