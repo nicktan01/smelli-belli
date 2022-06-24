@@ -295,7 +295,7 @@ class BodyQuiz extends React.Component {
     // These variables dictate Bootstrap CSS styling rules to toggle
     // displaying or hiding certain "pages" of the quiz
     // An empty string is displayed, and "d-none" will be hidden!
-    let quiz = "";
+    let quiz = "py-5 px-5 mx-auto text-center";
     let noAuthClasses = "d-none";
     let quizPageOneClasses = "my-5";
     let quizPageTwoClasses = "my-5 d-none";
@@ -383,7 +383,7 @@ class BodyQuiz extends React.Component {
     // If all the questions have been answered, and the Next button has been
     // clicked by the User, then display the Results page
     if (this.state.quizQuestionsComplete && token) {
-      quizResultsClasses = "my-5";
+      quizResultsClasses = "py-5 px-5 mx-auto text-center";
       seeProductsButtonClasses = "my-5 btn btn-primary";
       saveScentProfileButtonClasses = "my-5 btn btn-primary";
       quiz = "d-none";
@@ -393,7 +393,7 @@ class BodyQuiz extends React.Component {
     // If all the questions have been answered, and the Next button has been
     // clicked by the User, then display the Results page
     if (this.state.quizQuestionsComplete && !token) {
-      quizResultsClasses = "my-5";
+      quizResultsClasses = "py-5 px-5 mx-auto text-center";
       seeProductsButtonClasses = "my-5 btn btn-primary";
       saveScentProfileButtonClasses = "d-none";
       quiz = "d-none";
@@ -402,27 +402,27 @@ class BodyQuiz extends React.Component {
     // If the User clicks the "See Products" button, then display the filtered
     // products cards!
     if (this.state.quizCompleted) {
-      displayProductsClasses = "";
+      displayProductsClasses = "pt-5";
       seeProductsButtonClasses = "d-none";
     }
 
     // If there are no matches, display an error message!
     if (this.state.noMatches) {
       quizResultsClasses = "d-none";
-      noProductsClasses = "";
+      noProductsClasses = "py-5 px-5 mx-auto text-center";
     }
 
     // If the User clicks the "Save My Results" button, then display a success
     // message and hide the form from re-appearing
     if (this.state.resultsSubmitted) {
-      resultsSubmittedClasses = "alert alert-success mb-0";
+      resultsSubmittedClasses = "alert alert-success py-5 px-5 mx-auto text-center";
       quiz = "d-none";
       quizResultsClasses = "d-none";
       displayProductsClasses = "d-none";
     }
 
     return (
-      <div className="container px-4 py-5 my-5 text-center">
+      <div className="container">
         <div className={quiz}>
           <h1 className="display-3 fw-bold">Scent Finder</h1>
           <h2 className="display-7 fw-bold">Body Products</h2>
