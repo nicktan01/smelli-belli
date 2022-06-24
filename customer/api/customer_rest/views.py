@@ -188,7 +188,7 @@ def api_cart(request):
             # if not Cart.objects.filter(product=product, user=user_id):
             cart = Cart.objects.create(product=product, user=user_id)
             return JsonResponse(
-                {"message": "Done"}
+                {"message": "Product added to cart"}
             )
         except Exception as e:
             response = JsonResponse(
