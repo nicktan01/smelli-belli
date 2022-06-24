@@ -168,3 +168,7 @@ Today I worked on:
 - Fixing styling on the Home Page
 
 Jaiden was having a difficult time working with the styling on the Home Page and asked for assistance in working on it so I decided to give it a shot and was able to get the styling we had envisioned for the quiz links and the product carousel. Woohoo!
+
+- Fixing some product images
+
+Some of our product images were cropped weird so I decided to go back and crop them to appear better on our product cards and update those product images.
