@@ -151,7 +151,10 @@ Today I worked on:
 
 - Orders
 - Increment/Decrement Quantity (within orders)
+- wrote a unit test
 
 I worked with Nicholas and Elliot to try and get a working endpoint for orders when you submit a cart. I also worked on trying to get an increment and decrement counter working with them for different cart items.
 
 I learned today how to get all of the values within a stored list, and map them out to reappend them into a list within an encoder. I have a gist of what steps need to be taken but I definitely need to review the syntax and order of the steps in order to do so myself.
+
+I wrote a quick unit test for the accounts endpoint. 
