@@ -1,9 +1,15 @@
 ## Jordan's Journal
 
+## June 24, 2022
+There is still feature work being done. 
+
+This morning I worked on making sure I didn't miss any linted variables or break anything with the ones I removed. Did some more styling on the product card/wishlist page. Then after lunch I drew a couple icons for Elliott to use for the quiz button styling on the home page and tried to help figure out a problem with posting a submitted order - I think I was partially helpful.
+
+I really want to write a test to do with authentication but I am struggling to understand how to mock a user for a test. Hoping to figure this out to write a useful test.
 ## June 23, 2022
  I have been focusing on styling the product page, product detail page, and wishlist page while the last of the features are fixed up and implemented.
 
-I made the "add to cart" button on the product detail page functional. Then I went through the project and removed any unused variables.
+I made the "add to cart" button on the product detail page functional. Then I went through the project and removed any unused variables. I did run into an error with the CI environment variable, the error had an issue with it being a boolean so for now I put it in quotes. 
 ## June 22, 2022
 Morning: Had a fire to put out, after I merged with main last night it seemed like nothing was working correctly. After a lot of circular troublshooting, the problem was that the customer poller host was declared in the wrong place in the docker compose. Now things are working again. 
 
