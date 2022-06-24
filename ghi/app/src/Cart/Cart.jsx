@@ -49,34 +49,34 @@ function Cart(props) {
   // );
   const { mutate } = useSWRConfig();
 
-  async function checkout(items, token) {
+  async function checkout(items) {
     console.log("This is the items.cart:", items.cart);
     //get every item sku and quantity and store it in product post request
     //and the total price of the cart
-    let product_list = []
-    let product = {}
-    let total_amount = 0
-    let order_number = 1
-    for (let item of items.cart){
-      for (let i of items.cart){
-        product = {}
-        product["sku"] = item.sku
-        product["quantity"] = item.cartQuantity
-        total_amount += item.price * item.cartQuantity
-        order_number += 1
+    let product_list = [];
+    let product = {};
+    let total_amount = 0;
+    let order_number = 1;
+    for (let item of items.cart) {
+      for (let i of items.cart) {
+        product = {};
+        product["sku"] = item.sku;
+        product["quantity"] = item.cartQuantity;
+        total_amount += item.price * item.cartQuantity;
+        order_number += 1;
       }
-      product_list.push(product)
-      
+      product_list.push(product);
     }
-    console.log("this is the total price", total)
-    console.log("This is the product_list", product_list)
+    console.log("this is the total price", total);
+    console.log("This is the product_list", product_list);
 
     let requestBody = {
       user: 1,
       products: product_list,
       total: total_amount,
-      order_number: order_number
-    }
+      order_number: order_number,
+    };
+
     const url = `${process.env.REACT_APP_EMPLOYEE_HOST}/api/orders/`;
     const fetchConfig = {
       method: "post",
@@ -86,7 +86,7 @@ function Cart(props) {
       },
       body: JSON.stringify(requestBody),
     };
-    console.log("this is the requestBody", requestBody)
+    console.log("this is the requestBody", requestBody);
     const response = fetch(url, fetchConfig);
 
     response
@@ -95,23 +95,21 @@ function Cart(props) {
         mutate("/api/orders/");
       });
   }
-    
-    
-    // const cart_url = `${process.env.REACT_APP_CUSTOMER_HOST}/api/cart/`;
-    // const fetchConfigCart = {
-    //   method: "delete",
-    //   header: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(requestBody),
-    // }
-    // const response = await fetch(url, fetchConfig);
-    // const delete_response = await fetch(cart_url, fetchConfigCart)
 
-    // if (delete_response.ok) {
-    //   console.log("this is the delete response", delete_response);
-    // }
-  
+  // const cart_url = `${process.env.REACT_APP_CUSTOMER_HOST}/api/cart/`;
+  // const fetchConfigCart = {
+  //   method: "delete",
+  //   header: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: JSON.stringify(requestBody),
+  // }
+  // const response = await fetch(url, fetchConfig);
+  // const delete_response = await fetch(cart_url, fetchConfigCart)
+
+  // if (delete_response.ok) {
+  //   console.log("this is the delete response", delete_response);
+  // }
 
   let columns = [[], [], [], []];
 
