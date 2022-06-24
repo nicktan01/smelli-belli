@@ -71,7 +71,6 @@ function Cart(props) {
     console.log("This is the product_list", product_list);
 
     let requestBody = {
-      user: 1,
       products: product_list,
       total: total_amount,
       order_number: order_number,
