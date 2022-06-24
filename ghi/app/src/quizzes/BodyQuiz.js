@@ -12,7 +12,11 @@ export function ProductColumn(props) {
           <div key={product.href} className="card mb-3 shadow">
             {product.image && (
               <Link to={`/products/${product.sku}`}>
-                <img src={product.image} className="card-img-top" />
+                <img 
+                src={product.image} 
+                className="card-img-top" 
+                alt="product" 
+                />
               </Link>
             )}
             <div className="card-body">
@@ -446,27 +450,29 @@ class BodyQuiz extends React.Component {
             </div>
           </div>
           <div className={quizPageOneClasses} id="step-1">
-            <div
-              className="btn-toolbar justify-content-around mb-5"
-              role="toolbar"
-              aria-label="Toolbar with button groups"
-            >
-              <button
-                type="button"
-                className="btn-sm btn-secondary"
-                disabled={true}
+            <div className="container">
+              <div
+                className="btn-toolbar justify-content-around mb-5"
+                role="toolbar"
+                aria-label="Toolbar with button groups"
               >
-                Previous
-              </button>
-              <h6>Quiz Navigation</h6>
-              <button
-                type="button"
-                className="btn-sm btn-primary"
-                disabled={!this.state.questionOneAnswered}
-                onClick={this.handlePageForward}
-              >
-                Next
-              </button>
+                <button
+                  type="button"
+                  className="btn-sm btn-secondary"
+                  disabled={true}
+                >
+                  Previous
+                </button>
+                <h6 className="pt-1">1 of 5</h6>
+                <button
+                  type="button"
+                  className="btn-sm btn-primary"
+                  disabled={!this.state.questionOneAnswered}
+                  onClick={this.handlePageForward}
+                >
+                  Next
+                </button>
+              </div>
             </div>
             <h4>What kind of product are you looking for?</h4>
             <em>Please, choose one</em>
@@ -506,27 +512,29 @@ class BodyQuiz extends React.Component {
             </div>
           </div>
           <div className={quizPageTwoClasses} id="step-2">
-            <div
-              className="btn-toolbar justify-content-around mb-5"
-              role="toolbar"
-              aria-label="Toolbar with button groups"
-            >
-              <button
-                type="button"
-                className="btn-sm btn-primary"
-                onClick={this.handlePageBack}
+            <div className="container">
+              <div
+                className="btn-toolbar justify-content-around mb-5"
+                role="toolbar"
+                aria-label="Toolbar with button groups"
               >
-                Previous
-              </button>
-              <h6>Quiz Navigation</h6>
-              <button
-                type="button"
-                className="btn-sm btn-primary"
-                disabled={!this.state.questionTwoAnswered}
-                onClick={this.handlePageForward}
-              >
-                Next
-              </button>
+                <button
+                  type="button"
+                  className="btn-sm btn-primary"
+                  onClick={this.handlePageBack}
+                >
+                  Previous
+                </button>
+                <h6 className="pt-1">2 of 5</h6>
+                <button
+                  type="button"
+                  className="btn-sm btn-primary"
+                  disabled={!this.state.questionTwoAnswered}
+                  onClick={this.handlePageForward}
+                >
+                  Next
+                </button>
+              </div>
             </div>
             <h4>Which activity do you enjoy most?</h4>
             <em>Please, choose one</em>
@@ -574,27 +582,29 @@ class BodyQuiz extends React.Component {
             </div>
           </div>
           <div className={quizPageThreeClasses} id="step-3">
-            <div
-              className="btn-toolbar justify-content-around mb-5"
-              role="toolbar"
-              aria-label="Toolbar with button groups"
-            >
-              <button
-                type="button"
-                className="btn-sm btn-primary"
-                onClick={this.handlePageBack}
+            <div className="container">
+              <div
+                className="btn-toolbar justify-content-around mb-5"
+                role="toolbar"
+                aria-label="Toolbar with button groups"
               >
-                Previous
-              </button>
-              <h6>Quiz Navigation</h6>
-              <button
-                type="button"
-                className="btn-sm btn-primary"
-                disabled={!this.state.questionThreeAnswered}
-                onClick={this.handlePageForward}
-              >
-                Next
-              </button>
+                <button
+                  type="button"
+                  className="btn-sm btn-primary"
+                  onClick={this.handlePageBack}
+                >
+                  Previous
+                </button>
+                <h6 className="pt-1">3 of 5</h6>
+                <button
+                  type="button"
+                  className="btn-sm btn-primary"
+                  disabled={!this.state.questionThreeAnswered}
+                  onClick={this.handlePageForward}
+                >
+                  Next
+                </button>
+              </div>
             </div>
             <h4>What is your favorite season?</h4>
             <em>Please, choose one</em>
@@ -634,27 +644,29 @@ class BodyQuiz extends React.Component {
             </div>
           </div>
           <div className={quizPageFourClasses} id="step-4">
-            <div
-              className="btn-toolbar justify-content-around mb-5"
-              role="toolbar"
-              aria-label="Toolbar with button groups"
-            >
-              <button
-                type="button"
-                className="btn-sm btn-primary"
-                onClick={this.handlePageBack}
+            <div className="container">
+              <div
+                className="btn-toolbar justify-content-around mb-5"
+                role="toolbar"
+                aria-label="Toolbar with button groups"
               >
-                Previous
-              </button>
-              <h6>Quiz Navigation</h6>
-              <button
-                type="button"
-                className="btn-sm btn-primary"
-                disabled={!this.state.questionFourAnswered}
-                onClick={this.handlePageForward}
-              >
-                Next
-              </button>
+                <button
+                  type="button"
+                  className="btn-sm btn-primary"
+                  onClick={this.handlePageBack}
+                >
+                  Previous
+                </button>
+                <h6 className="pt-1">4 of 5</h6>
+                <button
+                  type="button"
+                  className="btn-sm btn-primary"
+                  disabled={!this.state.questionFourAnswered}
+                  onClick={this.handlePageForward}
+                >
+                  Next
+                </button>
+              </div>
             </div>
             <h4>What clothing style is your favorite?</h4>
             <em>Please, choose one</em>
@@ -702,26 +714,28 @@ class BodyQuiz extends React.Component {
             </div>
           </div>
           <div className={quizPageFiveClasses} id="step-5">
-            <div
-              className="btn-toolbar justify-content-around mb-5"
-              role="toolbar"
-              aria-label="Toolbar with button groups"
-            >
-              <button
-                type="button"
-                className="btn-sm btn-primary"
-                onClick={this.handlePageBack}
+            <div className="container">
+              <div
+                className="btn-toolbar justify-content-around mb-5"
+                role="toolbar"
+                aria-label="Toolbar with button groups"
               >
-                Previous
-              </button>
-              <h6>Quiz Navigation</h6>
-              <button
-                type="button"
-                className="btn-sm btn-secondary"
-                disabled={true}
-              >
-                Next
-              </button>
+                <button
+                  type="button"
+                  className="btn-sm btn-primary"
+                  onClick={this.handlePageBack}
+                >
+                  Previous
+                </button>
+                <h6 className="pt-1">5 of 5</h6>
+                <button
+                  type="button"
+                  className="btn-sm btn-secondary"
+                  disabled={true}
+                >
+                  Next
+                </button>
+              </div>
             </div>
             <h4>How intense would you like your scent?</h4>
             <em>Drag the slider to the desired value</em>

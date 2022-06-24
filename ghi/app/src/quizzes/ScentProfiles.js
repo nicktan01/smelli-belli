@@ -61,7 +61,6 @@ function ScentProfilesList() {
         for (let scentProfile of bodyScentProfileData.body_scent_profiles) {
           bodyScentProfiles.push(scentProfile);
         }
-        // setBodyScentProfiles(bodyScentProfileData.body_scent_profiles);
       }
 
       const bodyProfileColumns = [[], [], [], []];
