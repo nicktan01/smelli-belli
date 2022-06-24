@@ -9,16 +9,17 @@ from ..models import BodyQuiz
 
 
 class TestViews(TestCase):
-    def test_list_bodyquizzes_GET(self):
+    def test_list_bodyquizzes_403_without_token(self):
         client = Client()
         response = client.get(reverse("api_list_body_quizzes"))
         self.assertEquals(response.status_code, 403)
-        # We actually want a 403 here because an Authorization
-        # Bearer token is required to make a GET request
 
-    def test_list_homequizzes_GET(self):
+    def test_list_homequizzes_403_without_token(self):
         client = Client()
         response = client.get(reverse("api_list_home_quizzes"))
         self.assertEquals(response.status_code, 403)
-        # We actually want a 403 here because an Authorization
-        # Bearer token is required to make a GET request
+
+    def test_list_cart_403_without_token(self):
+        client = Client()
+        response = client.get(reverse("api_cart"))
+        self.assertEquals(response.status_code, 403)
