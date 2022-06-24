@@ -8,7 +8,7 @@ class ProductVO(models.Model):
     sku = models.CharField(max_length=12, unique=True)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     quantity = models.PositiveSmallIntegerField()
-    image = models.URLField()
+    image = models.URLField(null=True)
 
 
 class LineItem(models.Model):
