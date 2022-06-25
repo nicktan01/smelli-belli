@@ -22,7 +22,6 @@ function Cart(props) {
   const { mutate } = useSWRConfig();
 
   async function checkout(items) {
-    console.log("This is the items.cart:", items.cart);
     //get every item sku and quantity and store it in product post request
     //and the total price of the cart
     let product_list = [];
@@ -39,8 +38,6 @@ function Cart(props) {
       }
       product_list.push(product);
     }
-    console.log("this is the total price", total);
-    console.log("This is the product_list", product_list);
 
     let requestBody = {
       products: product_list,
@@ -57,7 +54,6 @@ function Cart(props) {
       },
       body: JSON.stringify(requestBody),
     };
-    console.log("this is the requestBody", requestBody);
     const response = fetch(url, fetchConfig);
 
     response

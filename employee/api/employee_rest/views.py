@@ -19,16 +19,13 @@ def api_orders(request):
         )
     elif request.method == "POST":
         content = json.loads(request.body)
-        print("This is the content!!!!", content)
         # try:
         if True:
             productVOs = []
             products = content.get("products")
             for p in products:
                 product_id = p.get("sku")
-                print("PRODUCT_ID", product_id)
                 product = ProductVO.objects.get(sku=product_id)
-                print("Product: ", product)
                 quantity = p.get("quantity")
                 li = {
                     "product": product,
@@ -46,7 +43,6 @@ def api_orders(request):
             for pvo in productVOs:
                 order.products.add(pvo)
             order.save()
-            print(order)
             return JsonResponse(order, encoder=OrderEncoder, safe=False)
         # except:
             response = JsonResponse({"message": "Could not create the order"})
