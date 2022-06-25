@@ -26,20 +26,17 @@ function Nav() {
     }
   }, [token]);
 
-  const { data: cart, error } = useSWR(
-    token ? "/api/cart/" : null,
-    async () => {
-      const request = await fetch("http://localhost:8090/api/cart/", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const json = await request.json();
-      return json;
-    }
-  );
+  const { data: cart } = useSWR(token ? "/api/cart/" : null, async () => {
+    const request = await fetch("http://localhost:8090/api/cart/", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const json = await request.json();
+    return json;
+  });
 
   let quantity = 0;
   (cart || []).forEach((item) => {
-    quantity += item.cartQuantity
+    quantity += item.cartQuantity;
   });
 
   return (
@@ -63,7 +60,10 @@ function Nav() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className={`${isNavCollapsed ? 'collapse' : ''} navbar-collapse`} id="navbarNavDropdown">
+        <div
+          className={`${isNavCollapsed ? "collapse" : ""} navbar-collapse`}
+          id="navbarNavDropdown"
+        >
           <ul className="navbar-nav me-auto">
             {token && user && user.is_staff && (
               <li className="nav-item dropdown">
@@ -143,93 +143,89 @@ function Nav() {
               </div>
             </li>
           </ul>
-          { token ?
-          <>
-          <ul className="navbar-nav">
-            <span className="nav-item dropdown">
-              <NavLink
-                className="nav-link dropdown-toggle"
-                to="#"
-                id="navbarDropdownMenuLink"
-                data-toggle="dropdown"
-                data-bs-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <i className="bi bi-person-fill"></i>
-              </NavLink>
-              <div
-                style={{ left: "unset", right: "0" }}
-                className="dropdown-menu"
-                aria-labelledby="navbarDropdownMenuLink"
-              >
-                <NavLink
-                  className="dropdown-item"
-                  to={token ? "/account" : "/login"}
-                >
-                  My Account
-                </NavLink>
-
-                <NavLink className="dropdown-item" to="/orderhistory">
-                  Order History
-                </NavLink>
-                <NavLink className="dropdown-item" to="/wishlist">
-                  Wish List
-                </NavLink>
-                <NavLink className="dropdown-item" to="/scentprofiles">
-                  Scent Profile
-                </NavLink>
-              </div>
-            </span>
-            <span className="nav-item active">
-              <NavLink className="nav-link" to="/cart">
-                <i className="bi bi-cart"></i>
-                <span className="position-absolute top-25 start-90 translate-middle badge rounded-pill bg-danger">
-                  {quantity}
+          {token ? (
+            <>
+              <ul className="navbar-nav">
+                <span className="nav-item dropdown">
+                  <NavLink
+                    className="nav-link dropdown-toggle"
+                    to="#"
+                    id="navbarDropdownMenuLink"
+                    data-toggle="dropdown"
+                    data-bs-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i className="bi bi-person-fill"></i>
+                  </NavLink>
+                  <div
+                    style={{ left: "unset", right: "0" }}
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdownMenuLink"
+                  >
+                    <NavLink
+                      className="dropdown-item"
+                      to={token ? "/account" : "/login"}
+                    >
+                      My Account
+                    </NavLink>
+                    <NavLink className="dropdown-item" to="/wishlist">
+                      Wish List
+                    </NavLink>
+                    <NavLink className="dropdown-item" to="/scentprofiles">
+                      Scent Profile
+                    </NavLink>
+                  </div>
                 </span>
-              </NavLink>
-            </span>
-          </ul>
-          </>
-          :
-          <>
-          <ul className="navbar-nav">
-            <span className="nav-item dropdown">
-              <NavLink
-                className="nav-link dropdown-toggle"
-                to="#"
-                id="navbarDropdownMenuLink"
-                data-toggle="dropdown"
-                data-bs-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <i className="bi bi-person-fill"></i>
-              </NavLink>
-              <div
-                style={{ left: "unset", right: "0" }}
-                className="dropdown-menu"
-                aria-labelledby="navbarDropdownMenuLink"
-              >
-                <NavLink
-                  className="dropdown-item"
-                  to={token ? "/account" : "/login"}
-                >
-                  My Account
-                </NavLink>
-              </div>
-            </span>
-            <span className="nav-item active">
-              <NavLink className="nav-link" to="/cart">
-                <i className="bi bi-cart"></i>
-                <span className="position-absolute top-25 start-90 translate-middle badge rounded-pill bg-danger">
-                  {/* {cartQuantity} */}
+                <span className="nav-item active">
+                  <NavLink className="nav-link" to="/cart">
+                    <i className="bi bi-cart"></i>
+                    <span className="position-absolute top-25 start-90 translate-middle badge rounded-pill bg-danger">
+                      {quantity}
+                    </span>
+                  </NavLink>
                 </span>
-              </NavLink>
-            </span>
-          </ul>
-          </> 
-          }
+              </ul>
+            </>
+          ) : (
+            <>
+              <ul className="navbar-nav">
+                <span className="nav-item dropdown">
+                  <NavLink
+                    className="nav-link dropdown-toggle"
+                    to="#"
+                    id="navbarDropdownMenuLink"
+                    data-toggle="dropdown"
+                    data-bs-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i className="bi bi-person-fill"></i>
+                  </NavLink>
+                  <div
+                    style={{ left: "unset", right: "0" }}
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdownMenuLink"
+                  >
+                    <NavLink
+                      className="dropdown-item"
+                      to={token ? "/account" : "/login"}
+                    >
+                      My Account
+                    </NavLink>
+                  </div>
+                </span>
+                <span className="nav-item active">
+                  <NavLink className="nav-link" to="/cart">
+                    <i className="bi bi-cart"></i>
+                    <span className="position-absolute top-25 start-90 translate-middle badge rounded-pill bg-danger">
+                      {/* {cartQuantity} */}
+                    </span>
+                  </NavLink>
+                </span>
+              </ul>
+            </>
+          )}
         </div>
       </div>
     </nav>

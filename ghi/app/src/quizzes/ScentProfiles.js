@@ -39,7 +39,6 @@ function ScentProfilesList() {
           i = 0;
         }
       }
-      console.log("What are inside the Home Profile Columns?", homeProfileColumns);
       setHomeScentProfileColumns(homeProfileColumns);
     }
     
@@ -62,7 +61,6 @@ function ScentProfilesList() {
         for (let scentProfile of bodyScentProfileData.body_scent_profiles) {
           bodyScentProfiles.push(scentProfile);
         }
-        // setBodyScentProfiles(bodyScentProfileData.body_scent_profiles);
       }
 
       const bodyProfileColumns = [[], [], [], []];
@@ -75,7 +73,6 @@ function ScentProfilesList() {
           i = 0;
         }
       }
-      console.log("What are inside the Body Profile Columns?", bodyProfileColumns);
       setBodyScentProfileColumns(bodyProfileColumns);
     }
 
@@ -86,11 +83,13 @@ function ScentProfilesList() {
   return (
     <>
       <div 
-        className="container px-4 py-5 my-5 text-center" 
+        className="container" 
         id="home_scent_profiles"
       >
-        <h2>Home Scent Profiles</h2>
-        <div className="container">
+        <div className="px-5 py-5 my-5 text-center">
+          <h2>Home Scent Profiles</h2>
+        </div>
+        <div className="px-5 py-5 my-5 text-center">
           <div className="row">
             {homeScentProfileColumns.map((homeScentProfileList, index) => {
               return (
@@ -101,11 +100,13 @@ function ScentProfilesList() {
         </div>
       </div>
       <div
-        className="container px-4 py-5 my-5 text-center"
+        className="container"
         id="body_scent_profiles"
       >
-        <h2>Body Scent Profiles</h2>
-        <div className="container">
+        <div className="px-5 py-5 my-5 text-center">
+          <h2>Body Scent Profiles</h2>
+        </div>
+        <div className="px-5 py-5 my-5 text-center">
           <div className="row">
             {bodyScentProfileColumns.map((bodyScentProfileList, index) => {
               return (

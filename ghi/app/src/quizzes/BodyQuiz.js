@@ -12,7 +12,11 @@ export function ProductColumn(props) {
           <div key={product.href} className="card mb-3 shadow">
             {product.image && (
               <Link to={`/products/${product.sku}`}>
-                <img src={product.image} className="card-img-top" />
+                <img 
+                src={product.image} 
+                className="card-img-top" 
+                alt="product" 
+                />
               </Link>
             )}
             <div className="card-body">
@@ -295,7 +299,7 @@ class BodyQuiz extends React.Component {
     // These variables dictate Bootstrap CSS styling rules to toggle
     // displaying or hiding certain "pages" of the quiz
     // An empty string is displayed, and "d-none" will be hidden!
-    let quiz = "";
+    let quiz = "py-5 px-5 mx-auto text-center";
     let noAuthClasses = "d-none";
     let quizPageOneClasses = "my-5";
     let quizPageTwoClasses = "my-5 d-none";
@@ -383,7 +387,7 @@ class BodyQuiz extends React.Component {
     // If all the questions have been answered, and the Next button has been
     // clicked by the User, then display the Results page
     if (this.state.quizQuestionsComplete && token) {
-      quizResultsClasses = "my-5";
+      quizResultsClasses = "py-5 px-5 mx-auto text-center";
       seeProductsButtonClasses = "my-5 btn btn-primary";
       saveScentProfileButtonClasses = "my-5 btn btn-primary";
       quiz = "d-none";
@@ -393,7 +397,7 @@ class BodyQuiz extends React.Component {
     // If all the questions have been answered, and the Next button has been
     // clicked by the User, then display the Results page
     if (this.state.quizQuestionsComplete && !token) {
-      quizResultsClasses = "my-5";
+      quizResultsClasses = "py-5 px-5 mx-auto text-center";
       seeProductsButtonClasses = "my-5 btn btn-primary";
       saveScentProfileButtonClasses = "d-none";
       quiz = "d-none";
@@ -402,27 +406,27 @@ class BodyQuiz extends React.Component {
     // If the User clicks the "See Products" button, then display the filtered
     // products cards!
     if (this.state.quizCompleted) {
-      displayProductsClasses = "";
+      displayProductsClasses = "pt-5";
       seeProductsButtonClasses = "d-none";
     }
 
     // If there are no matches, display an error message!
     if (this.state.noMatches) {
       quizResultsClasses = "d-none";
-      noProductsClasses = "";
+      noProductsClasses = "py-5 px-5 mx-auto text-center";
     }
 
     // If the User clicks the "Save My Results" button, then display a success
     // message and hide the form from re-appearing
     if (this.state.resultsSubmitted) {
-      resultsSubmittedClasses = "alert alert-success mb-0";
+      resultsSubmittedClasses = "alert alert-success py-5 px-5 mx-auto text-center";
       quiz = "d-none";
       quizResultsClasses = "d-none";
       displayProductsClasses = "d-none";
     }
 
     return (
-      <div className="container px-4 py-5 my-5 text-center">
+      <div className="container-md">
         <div className={quiz}>
           <h1 className="display-3 fw-bold">Scent Finder</h1>
           <h2 className="display-7 fw-bold">Body Products</h2>
@@ -433,7 +437,7 @@ class BodyQuiz extends React.Component {
               latest Smelli Belli news and save your Scent Profile results for
               later!
             </em>
-            <div className="my-5 d-grid gap-4 d-md-flex justify-content-center">
+            <div className="my-5 d-grid gap-4 d-md-flex justify-content-around">
               <button
                 className="btn btn-secondary"
                 onClick={this.handleNoSignUp}
@@ -447,7 +451,7 @@ class BodyQuiz extends React.Component {
           </div>
           <div className={quizPageOneClasses} id="step-1">
             <div
-              className="btn-toolbar justify-content-around mb-5"
+              className="btn-toolbar d-flex justify-content-between mb-5"
               role="toolbar"
               aria-label="Toolbar with button groups"
             >
@@ -458,7 +462,7 @@ class BodyQuiz extends React.Component {
               >
                 Previous
               </button>
-              <h6>Quiz Navigation</h6>
+              <h6 className="pt-1">1 of 5</h6>
               <button
                 type="button"
                 className="btn-sm btn-primary"
@@ -507,7 +511,7 @@ class BodyQuiz extends React.Component {
           </div>
           <div className={quizPageTwoClasses} id="step-2">
             <div
-              className="btn-toolbar justify-content-around mb-5"
+              className="btn-toolbar d-flex justify-content-between mb-5"
               role="toolbar"
               aria-label="Toolbar with button groups"
             >
@@ -518,7 +522,7 @@ class BodyQuiz extends React.Component {
               >
                 Previous
               </button>
-              <h6>Quiz Navigation</h6>
+              <h6 className="pt-1">2 of 5</h6>
               <button
                 type="button"
                 className="btn-sm btn-primary"
@@ -575,7 +579,7 @@ class BodyQuiz extends React.Component {
           </div>
           <div className={quizPageThreeClasses} id="step-3">
             <div
-              className="btn-toolbar justify-content-around mb-5"
+              className="btn-toolbar d-flex justify-content-between mb-5"
               role="toolbar"
               aria-label="Toolbar with button groups"
             >
@@ -586,7 +590,7 @@ class BodyQuiz extends React.Component {
               >
                 Previous
               </button>
-              <h6>Quiz Navigation</h6>
+              <h6 className="pt-1">3 of 5</h6>
               <button
                 type="button"
                 className="btn-sm btn-primary"
@@ -635,7 +639,7 @@ class BodyQuiz extends React.Component {
           </div>
           <div className={quizPageFourClasses} id="step-4">
             <div
-              className="btn-toolbar justify-content-around mb-5"
+              className="btn-toolbar d-flex justify-content-between mb-5"
               role="toolbar"
               aria-label="Toolbar with button groups"
             >
@@ -646,7 +650,7 @@ class BodyQuiz extends React.Component {
               >
                 Previous
               </button>
-              <h6>Quiz Navigation</h6>
+              <h6 className="pt-1">4 of 5</h6>
               <button
                 type="button"
                 className="btn-sm btn-primary"
@@ -703,7 +707,7 @@ class BodyQuiz extends React.Component {
           </div>
           <div className={quizPageFiveClasses} id="step-5">
             <div
-              className="btn-toolbar justify-content-around mb-5"
+              className="btn-toolbar d-flex justify-content-between mb-5"
               role="toolbar"
               aria-label="Toolbar with button groups"
             >
@@ -714,7 +718,7 @@ class BodyQuiz extends React.Component {
               >
                 Previous
               </button>
-              <h6>Quiz Navigation</h6>
+              <h6 className="pt-1">5 of 5</h6>
               <button
                 type="button"
                 className="btn-sm btn-secondary"

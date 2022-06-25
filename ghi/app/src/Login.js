@@ -3,9 +3,10 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const [token, login, logout] = useToken();
+  const [token, login] = useToken();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  // eslint-disable-next-line no-unused-vars
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();

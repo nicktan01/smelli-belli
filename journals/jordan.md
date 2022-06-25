@@ -1,14 +1,28 @@
 ## Jordan's Journal
 
+## June 24, 2022
+There is still feature work being done. 
+
+This morning I worked on making sure I didn't miss any linted variables or break anything with the ones I removed. Did some more styling on the product card/wishlist page. Then after lunch I drew a couple icons for Elliott to use for the quiz button styling on the home page and tried to help figure out a problem with posting a submitted order - I think I was partially helpful.
+
+I really want to write a test to do with authentication but I am struggling to understand how to mock a user for a test. Hoping to figure this out to write a useful test.
+## June 23, 2022
+ I have been focusing on styling the product page, product detail page, and wishlist page while the last of the features are fixed up and implemented.
+
+I made the "add to cart" button on the product detail page functional. Then I went through the project and removed any unused variables. I did run into an error with the CI environment variable, the error had an issue with it being a boolean so for now I put it in quotes. 
+## June 22, 2022
+Morning: Had a fire to put out, after I merged with main last night it seemed like nothing was working correctly. After a lot of circular troublshooting, the problem was that the customer poller host was declared in the wrong place in the docker compose. Now things are working again. 
+
+Afternoon: Working on getting the wishlist to post from the product detail page. Got it working, I had to assign a new variable to track something but it is complete! Very weird to be approaching the end (for now) of this project
 
 ## June 21, 2022
-Morning: Feeling very burnt out. Troubleshooting why the cart button is not changing when clicked - thinking this is happening because the cart object is not saving correctly on my branch. Will return to check this when I merge with Nicholas' code.
+Morning: Feeling pretty burnt out. Troubleshooting why the cart button is not changing when clicked - thinking this is happening because the cart object is not saving correctly on my branch. Will return to check this when I merge with Nicholas' code.
 
 Afternoon: Writing wishlist views and working on saving the wishlist items with authorization
 
 Night: Made final post, get, and delete views for the wishlists. Got wishlist saving to current logged in user, if not logged in page redirects to login - need to get this to redirect back to the page they were on. The wishlist items display on the account wishlist page and can be removed from the list. 
 
-Aha moment - I can now really understand why separating some things out into components is good, there are a few functional things I would like the be more general so I could use them for more than one page (like the product column list set up, or having the product handle the add to cart/add to wishlist functions rather than the product list which does this now)
+Aha moment - I can now really understand why separating some things out into components is good, there are a few functional things I would like the be more general so I could use them for more than one page (like the product column list set up, or having something outside the product handle the add to cart/add to wishlist functions rather than the product list which does this now)
 ## June 18, 2022
 Implemented sorting button and function for the shopping pages using react-select, had to add sorting conditions to the list view for products. Also got filtering by primary scent implemented in the same manner. Removed components from the product list page to put in their own component files to make them easier to reference and reuse. This also made my product list file much easier to navigate.
 
