@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('inventory_rest', '0011_remove_product_status'),
+        ("inventory_rest", "0011_remove_product_status"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='product',
-            options={'ordering': ('id', 'name')},
+            name="product",
+            options={"ordering": ("id", "name")},
         ),
     ]

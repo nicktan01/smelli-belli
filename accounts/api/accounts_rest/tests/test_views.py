@@ -17,5 +17,3 @@ class TestViews(TestCase):
         client = Client()
         response = client.get(reverse("api_list_accounts"))
         self.assertEquals(response.status_code, 200)
-
-

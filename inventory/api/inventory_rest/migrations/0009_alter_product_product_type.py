@@ -6,13 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('inventory_rest', '0008_alter_product_size_delete_size'),
+        ("inventory_rest", "0008_alter_product_size_delete_size"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='product',
-            name='product_type',
-            field=models.CharField(choices=[('', '-----------'), ('Home', 'Home'), ('Body', 'Body')], default='', max_length=50),
+            model_name="product",
+            name="product_type",
+            field=models.CharField(
+                choices=[("", "-----------"), ("Home", "Home"), ("Body", "Body")],
+                default="",
+                max_length=50,
+            ),
         ),
     ]

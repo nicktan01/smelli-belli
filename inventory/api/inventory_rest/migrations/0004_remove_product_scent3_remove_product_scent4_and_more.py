@@ -6,21 +6,33 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('inventory_rest', '0003_product_product_type'),
+        ("inventory_rest", "0003_product_product_type"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='product',
-            name='scent3',
+            model_name="product",
+            name="scent3",
         ),
         migrations.RemoveField(
-            model_name='product',
-            name='scent4',
+            model_name="product",
+            name="scent4",
         ),
         migrations.AlterField(
-            model_name='product',
-            name='scent1',
-            field=models.CharField(blank=True, choices=[('', '-----------'), ('Fresh', 'Fresh'), ('Amber', 'Amber'), ('Floral', 'Floral'), ('Woody', 'Woody'), ('Fruity', 'Fruity'), ('Gourmand', 'Gourmand')], max_length=25),
+            model_name="product",
+            name="scent1",
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ("", "-----------"),
+                    ("Fresh", "Fresh"),
+                    ("Amber", "Amber"),
+                    ("Floral", "Floral"),
+                    ("Woody", "Woody"),
+                    ("Fruity", "Fruity"),
+                    ("Gourmand", "Gourmand"),
+                ],
+                max_length=25,
+            ),
         ),
     ]

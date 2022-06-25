@@ -23,10 +23,7 @@ def create_user(json_content):
     ]
     missing_properties = []
     for required_property in required_properties:
-        if (
-            required_property not in content
-            or len(content[required_property]) == 0
-        ):
+        if required_property not in content or len(content[required_property]) == 0:
             missing_properties.append(required_property)
     if missing_properties:
         response_content = {

@@ -8,6 +8,7 @@ from .encoders import (
 )
 from .models import LineItem, ProductVO, Order
 
+
 @auth.jwt_login_required
 @require_http_methods(["GET", "POST"])
 def api_orders(request):
@@ -27,10 +28,7 @@ def api_orders(request):
                 product_id = p.get("sku")
                 product = ProductVO.objects.get(sku=product_id)
                 quantity = p.get("quantity")
-                li = {
-                    "product": product,
-                    "quantity": quantity
-                }
+                li = {"product": product, "quantity": quantity}
                 lineItem = LineItem.objects.create(**li)
                 productVOs.append(lineItem)
             payload_dict = json.dumps(request.payload)
@@ -38,13 +36,13 @@ def api_orders(request):
             user_id = user_information["user"]["id"]
             content = json.loads(request.body)
             content["user"] = user_id
-            del content["products"] 
+            del content["products"]
             order = Order.objects.create(**content)
             for pvo in productVOs:
                 order.products.add(pvo)
             order.save()
             return JsonResponse(order, encoder=OrderEncoder, safe=False)
-        # except:
+            # except:
             response = JsonResponse({"message": "Could not create the order"})
             response.status_code = 400
             return response

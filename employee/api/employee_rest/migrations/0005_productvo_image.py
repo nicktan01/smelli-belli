@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('employee_rest', '0004_alter_lineitem_product'),
+        ("employee_rest", "0004_alter_lineitem_product"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='productvo',
-            name='image',
+            model_name="productvo",
+            name="image",
             field=models.URLField(null=True),
         ),
     ]

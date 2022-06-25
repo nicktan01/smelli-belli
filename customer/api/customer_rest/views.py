@@ -9,7 +9,8 @@ from .encoders import (
     BodyQuizEncoder,
     HomeQuizEncoder,
     ProductVOEncoder,
-    )
+)
+
 
 @auth.jwt_login_required
 @require_http_methods(["GET", "POST"])
@@ -65,9 +66,7 @@ def api_show_body_quiz(request, pk):
             count, _ = BodyQuiz.objects.filter(id=pk).delete()
             return JsonResponse({"deleted": count > 0})
         except BodyQuiz.DoesNotExist:
-            return JsonResponse(
-                {"message": "That body scent profile does not exist!"}
-            )
+            return JsonResponse({"message": "That body scent profile does not exist!"})
 
 
 @auth.jwt_login_required
@@ -124,10 +123,7 @@ def api_show_home_quiz(request, pk):
             count, _ = HomeQuiz.objects.filter(id=pk).delete()
             return JsonResponse({"deleted": count > 0})
         except HomeQuiz.DoesNotExist:
-            return JsonResponse(
-                {"message": "That home scent profile does not exist!"}
-            )
-
+            return JsonResponse({"message": "That home scent profile does not exist!"})
 
 
 @auth.jwt_login_required
@@ -143,9 +139,7 @@ def api_wishlist(request):
 
         try:
             if not WishList.objects.filter(product=product, user=user_id):
-                wishlist = WishList.objects.create(
-                    product=product, user=user_id
-                )
+                wishlist = WishList.objects.create(product=product, user=user_id)
             return JsonResponse({"message": "Done"})
         except Exception as e:
             response = JsonResponse({"message": "Could not create wishlist"})
@@ -172,7 +166,6 @@ def api_wishlist(request):
         return JsonResponse({"message": "Done"})
 
 
-
 @auth.jwt_login_required
 @require_http_methods(["GET", "POST", "PUT", "DELETE"])
 def api_cart(request):
@@ -187,35 +180,30 @@ def api_cart(request):
         try:
             # if not Cart.objects.filter(product=product, user=user_id):
             cart = Cart.objects.create(product=product, user=user_id)
-            return JsonResponse(
-                {"message": "Product added to cart"}
-            )
+            return JsonResponse({"message": "Product added to cart"})
         except Exception as e:
-            response = JsonResponse(
-                {"message": "Could not create cart"}
-            )
+            response = JsonResponse({"message": "Could not create cart"})
             print("exception", e)
             response.status_code = 400
             return response
     elif request.method == "GET":
         try:
-            cart = list(map((lambda item: item.product), Cart.objects.filter(user=user_id).order_by("product__name")))
-            groupedProducts = itertools.groupby(cart, key= lambda item: item.id)
+            cart = list(
+                map(
+                    (lambda item: item.product),
+                    Cart.objects.filter(user=user_id).order_by("product__name"),
+                )
+            )
+            groupedProducts = itertools.groupby(cart, key=lambda item: item.id)
             result = []
             for product, group in groupedProducts:
                 group = list(group)
                 product = group[0]
                 product.cartQuantity = len(list(group))
                 result.append(product)
-            return JsonResponse(
-                result,
-                encoder=ProductVOEncoder,
-                safe=False
-            )
+            return JsonResponse(result, encoder=ProductVOEncoder, safe=False)
         except Cart.DoesNotExist:
-            response = JsonResponse(
-                {"message": "No cart items"}
-            )
+            response = JsonResponse({"message": "No cart items"})
             response.status_code = 404
             return response
     elif request.method == "DELETE":
@@ -224,12 +212,10 @@ def api_cart(request):
         # cart = list(Cart.objects.get(user=user_id, product=product))
         cart_contents = Cart.objects.filter(user=user_id, product=carted_product)
         cartItem = list(map((lambda item: item.product), cart_contents))
-        groupedProducts = itertools.groupby(cartItem, key= lambda item: item.id)
+        groupedProducts = itertools.groupby(cartItem, key=lambda item: item.id)
         deleteflag = False
         for cc in cart_contents:
             if not deleteflag:
                 cc.delete()
                 deleteflag = True
-        return JsonResponse(
-            {"message": "Done"}
-        )
+        return JsonResponse({"message": "Done"})

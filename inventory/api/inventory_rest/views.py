@@ -52,13 +52,9 @@ def api_list_products(request):
         # Then, grab the Product object
         try:
             product = Product.objects.create(**content)
-            return JsonResponse(
-                product, encoder=ProductDetailEncoder, safe=False
-            )
+            return JsonResponse(product, encoder=ProductDetailEncoder, safe=False)
         except:
-            response = JsonResponse(
-                {"message": "Could not create the product"}
-            )
+            response = JsonResponse({"message": "Could not create the product"})
             response.status_code = 400
             return response
 
@@ -69,9 +65,7 @@ def api_show_product(request, sku):
         try:
             # Note: we are grabbing Product objects by their SKU
             product = Product.objects.get(sku=sku)
-            return JsonResponse(
-                product, encoder=ProductDetailEncoder, safe=False
-            )
+            return JsonResponse(product, encoder=ProductDetailEncoder, safe=False)
         except Product.DoesNotExist:
             response = JsonResponse({"message": "Product does not exist"})
             response.status_code = 404
@@ -109,9 +103,7 @@ def api_show_product(request, sku):
                 if prop in content:
                     setattr(product, prop, content[prop])
             product.save()
-            return JsonResponse(
-                product, encoder=ProductDetailEncoder, safe=False
-            )
+            return JsonResponse(product, encoder=ProductDetailEncoder, safe=False)
         except Product.DoesNotExist:
             response = JsonResponse({"message": "Product does not exist"})
             response.status_code = 404

@@ -12,17 +12,12 @@ class ProductVO(models.Model):
 
 
 class LineItem(models.Model):
-    product = models.ForeignKey(
-        ProductVO, on_delete=models.CASCADE
-    )
+    product = models.ForeignKey(ProductVO, on_delete=models.CASCADE)
     quantity = models.PositiveSmallIntegerField()
 
-    
+
 class Order(models.Model):
-    products = models.ManyToManyField(
-        LineItem, 
-        null=True
-    )
+    products = models.ManyToManyField(LineItem, null=True)
     user = models.IntegerField(null=True)
     # quantity = models.PositiveSmallIntegerField()
     total = models.DecimalField(max_digits=10, decimal_places=2)
