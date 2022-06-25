@@ -25,8 +25,6 @@ function AccountPage() {
     }
   }, [token]);
 
-
-
   return (
     <div>
       {token ? (
@@ -44,12 +42,10 @@ function AccountPage() {
           </div>
           <div className="container shadow p-4 mt-4">
             <div className="row">
-            <header>
-              <h1>Account</h1>
-              <div>you are currently logged in as: {user.username}</div>
-            </header>
-            </div>
-            <div className="container p-4 mt-4">
+              <div className="py-3 my-1">
+                <h1>Account</h1>
+                <div>you are currently logged in as: {user.username}</div>
+              </div>
               <h3>Account Details:</h3>
               <div>first name: {user.first_name}</div>
               <div>last name: {user.last_name}</div>
