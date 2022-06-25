@@ -70,13 +70,11 @@ that a user can purchase.
 
 ### Cart
 
-| name     | type                        | unique | optional |
-| -------- | --------------------------- | ------ | -------- |
-| product  | reference to Product entity | no     | no       |
-| user     | reference to User entity    | no     | no       |
-| quantity | int                         | no     | no       |
-| totals   | int                         | no     | no       |
-| created  | datetime                    | no     | no       |
+| name    | type                        | unique | optional |
+| ------- | --------------------------- | ------ | -------- |
+| product | reference to Product entity | no     | no       |
+| user    | reference to User entity    | no     | no       |
+| created | datetime                    | no     | no       |
 
 ## Employee microservice
 
@@ -92,6 +90,7 @@ that a user can purchase.
 | sku         | reference to Product entity | yes    | no       |
 | price       | reference to Product entity | no     | no       |
 | quantity    | reference to Product entity | no     | no       |
+| image       | reference to Product entity | no     | yes      |
 
 ### Order
 
@@ -102,3 +101,10 @@ that a user can purchase.
 | totals       | int      | no     | no       |
 | order_number | int      | yes    | no       |
 | created      | datetime | no     | no       |
+
+### LineItem
+
+| Name     | Type                        | Unique | Optional |
+| -------- | --------------------------- | ------ | -------- |
+| product  | reference to Product entity | no     | no       |
+| quantity | int                         | no     | no       |
