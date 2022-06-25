@@ -77,7 +77,7 @@ export function InventoryRow(props) {
           </>
         )}
       </td>
-      <td>{props.product.price}</td>
+      <td>${props.product.price}.00</td>
     </tr>
   );
 }

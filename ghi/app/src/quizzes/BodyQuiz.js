@@ -388,8 +388,8 @@ class BodyQuiz extends React.Component {
     // clicked by the User, then display the Results page
     if (this.state.quizQuestionsComplete && token) {
       quizResultsClasses = "py-5 px-5 mx-auto text-center";
-      seeProductsButtonClasses = "my-5 btn btn-primary";
-      saveScentProfileButtonClasses = "my-5 btn btn-primary";
+      seeProductsButtonClasses = "my-5 btn btn-success";
+      saveScentProfileButtonClasses = "my-5 btn  btn-success";
       quiz = "d-none";
     }
 
@@ -398,7 +398,7 @@ class BodyQuiz extends React.Component {
     // clicked by the User, then display the Results page
     if (this.state.quizQuestionsComplete && !token) {
       quizResultsClasses = "py-5 px-5 mx-auto text-center";
-      seeProductsButtonClasses = "my-5 btn btn-primary";
+      seeProductsButtonClasses = "my-5 btn btn-success";
       saveScentProfileButtonClasses = "d-none";
       quiz = "d-none";
     }
@@ -445,7 +445,7 @@ class BodyQuiz extends React.Component {
                 No, thank you.
               </button>
               <Link to="/signup">
-                <button className="btn btn-primary">Sign me up!</button>
+                <button className="btn btn-success">Sign me up!</button>
               </Link>
             </div>
           </div>
@@ -465,7 +465,7 @@ class BodyQuiz extends React.Component {
               <h6 className="pt-1">1 of 5</h6>
               <button
                 type="button"
-                className="btn-sm btn-primary"
+                className="btn-sm btn-success"
                 disabled={!this.state.questionOneAnswered}
                 onClick={this.handlePageForward}
               >
@@ -479,7 +479,7 @@ class BodyQuiz extends React.Component {
                 onClick={this.handleQuestionOne}
                 value={this.state.answerOne}
                 id="Lotion"
-                className="btn btn-primary"
+                className="btn btn-success"
               >
                 Lotion
               </button>
@@ -487,7 +487,7 @@ class BodyQuiz extends React.Component {
                 onClick={this.handleQuestionOne}
                 value={this.state.answerOne}
                 id="Body Wash"
-                className="btn btn-primary"
+                className="btn btn-success"
               >
                 Body Wash
               </button>
@@ -495,7 +495,7 @@ class BodyQuiz extends React.Component {
                 onClick={this.handleQuestionOne}
                 value={this.state.answerOne}
                 id="Soap"
-                className="btn btn-primary"
+                className="btn btn-success"
               >
                 Soap
               </button>
@@ -503,7 +503,7 @@ class BodyQuiz extends React.Component {
                 onClick={this.handleQuestionOne}
                 value={this.state.answerOne}
                 id="Deodorant"
-                className="btn btn-primary"
+                className="btn btn-success"
               >
                 Deodorant
               </button>
@@ -517,7 +517,7 @@ class BodyQuiz extends React.Component {
             >
               <button
                 type="button"
-                className="btn-sm btn-primary"
+                className="btn-sm btn-success"
                 onClick={this.handlePageBack}
               >
                 Previous
@@ -525,7 +525,7 @@ class BodyQuiz extends React.Component {
               <h6 className="pt-1">2 of 5</h6>
               <button
                 type="button"
-                className="btn-sm btn-primary"
+                className="btn-sm btn-success"
                 disabled={!this.state.questionTwoAnswered}
                 onClick={this.handlePageForward}
               >
@@ -539,7 +539,7 @@ class BodyQuiz extends React.Component {
                 onClick={this.handleQuestionTwo}
                 value={this.state.answerTwo}
                 id="Fresh"
-                className="btn btn-primary"
+                className="btn btn-success"
               >
                 Hiking
               </button>
@@ -547,7 +547,7 @@ class BodyQuiz extends React.Component {
                 onClick={this.handleQuestionTwo}
                 value={this.state.answerTwo}
                 id="Amber"
-                className="btn btn-primary"
+                className="btn btn-success"
               >
                 Baking
               </button>
@@ -555,7 +555,7 @@ class BodyQuiz extends React.Component {
                 onClick={this.handleQuestionTwo}
                 value={this.state.answerTwo}
                 id="Floral"
-                className="btn btn-primary"
+                className="btn btn-success"
               >
                 Gardening
               </button>
@@ -563,7 +563,7 @@ class BodyQuiz extends React.Component {
                 onClick={this.handleQuestionTwo}
                 value={this.state.answerTwo}
                 id="Woody"
-                className="btn btn-primary"
+                className="btn btn-success"
               >
                 Camping
               </button>
@@ -571,7 +571,7 @@ class BodyQuiz extends React.Component {
                 onClick={this.handleQuestionTwo}
                 value={this.state.answerTwo}
                 id="Fruity"
-                className="btn btn-primary"
+                className="btn btn-success"
               >
                 Drinking Cocktails
               </button>
@@ -585,7 +585,7 @@ class BodyQuiz extends React.Component {
             >
               <button
                 type="button"
-                className="btn-sm btn-primary"
+                className="btn-sm btn-success"
                 onClick={this.handlePageBack}
               >
                 Previous
@@ -593,7 +593,7 @@ class BodyQuiz extends React.Component {
               <h6 className="pt-1">3 of 5</h6>
               <button
                 type="button"
-                className="btn-sm btn-primary"
+                className="btn-sm btn-success"
                 disabled={!this.state.questionThreeAnswered}
                 onClick={this.handlePageForward}
               >
@@ -607,7 +607,7 @@ class BodyQuiz extends React.Component {
                 onClick={this.handleQuestionThree}
                 value={this.state.answerThree}
                 id="Amber"
-                className="btn btn-primary"
+                className="btn btn-success"
               >
                 Winter
               </button>
@@ -615,7 +615,7 @@ class BodyQuiz extends React.Component {
                 onClick={this.handleQuestionThree}
                 value={this.state.answerThree}
                 id="Fresh"
-                className="btn btn-primary"
+                className="btn btn-success"
               >
                 Spring
               </button>
@@ -623,7 +623,7 @@ class BodyQuiz extends React.Component {
                 onClick={this.handleQuestionThree}
                 value={this.state.answerThree}
                 id="Fruity"
-                className="btn btn-primary"
+                className="btn btn-success"
               >
                 Summer
               </button>
@@ -631,7 +631,7 @@ class BodyQuiz extends React.Component {
                 onClick={this.handleQuestionThree}
                 value={this.state.answerThree}
                 id="Woody"
-                className="btn btn-primary"
+                className="btn btn-success"
               >
                 Fall
               </button>
@@ -645,7 +645,7 @@ class BodyQuiz extends React.Component {
             >
               <button
                 type="button"
-                className="btn-sm btn-primary"
+                className="btn-sm btn-success"
                 onClick={this.handlePageBack}
               >
                 Previous
@@ -653,7 +653,7 @@ class BodyQuiz extends React.Component {
               <h6 className="pt-1">4 of 5</h6>
               <button
                 type="button"
-                className="btn-sm btn-primary"
+                className="btn-sm btn-success"
                 disabled={!this.state.questionFourAnswered}
                 onClick={this.handlePageForward}
               >
@@ -667,7 +667,7 @@ class BodyQuiz extends React.Component {
                 onClick={this.handleQuestionFour}
                 value={this.state.answerFour}
                 id="Athleisure"
-                className="btn btn-primary"
+                className="btn btn-success"
               >
                 Athleisure
               </button>
@@ -675,7 +675,7 @@ class BodyQuiz extends React.Component {
                 onClick={this.handleQuestionFour}
                 value={this.state.answerFour}
                 id="Retro"
-                className="btn btn-primary"
+                className="btn btn-success"
               >
                 Retro
               </button>
@@ -683,7 +683,7 @@ class BodyQuiz extends React.Component {
                 onClick={this.handleQuestionFour}
                 value={this.state.answerFour}
                 id="Bohemian"
-                className="btn btn-primary"
+                className="btn btn-success"
               >
                 Bohemian
               </button>
@@ -691,7 +691,7 @@ class BodyQuiz extends React.Component {
                 onClick={this.handleQuestionFour}
                 value={this.state.answerFour}
                 id="Streetwear"
-                className="btn btn-primary"
+                className="btn btn-success"
               >
                 Streetwear
               </button>
@@ -699,7 +699,7 @@ class BodyQuiz extends React.Component {
                 onClick={this.handleQuestionFour}
                 value={this.state.answerFour}
                 id="Minimalist"
-                className="btn btn-primary"
+                className="btn btn-success"
               >
                 Minimalist
               </button>
@@ -713,7 +713,7 @@ class BodyQuiz extends React.Component {
             >
               <button
                 type="button"
-                className="btn-sm btn-primary"
+                className="btn-sm btn-success"
                 onClick={this.handlePageBack}
               >
                 Previous
@@ -748,7 +748,7 @@ class BodyQuiz extends React.Component {
           <div className={quizPageFiveButtonClasses}>
             <button
               onClick={this.handlePageOneComplete}
-              className="btn btn-primary"
+              className="btn btn-success"
             >
               Next
             </button>
