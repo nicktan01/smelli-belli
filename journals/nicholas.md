@@ -86,3 +86,14 @@ Today, I worked on:
 ## June 22, 2022
 
 -Had a very successful day, the cart is finally online and the frontend works! The button from the page populates the cart and shows on the frontend! continued to work on showing the quantity in cart and the checkout mechanism 
+
+## June 23, 2022
+
+-Wow what a day! Worked on incrementing and decrementing the products in cart and was a lot more complicated then expected. The increment works now but the decrement button is another story. Had curtis come in to fix some of the encoder stuff for the order backend. Worked together with jaiden and elliot on all of this.
+-Later at night Me and Elliot continued to work on decrement button. Got to the point where its removing from list but not the cart
+
+## June 24, 2022
+
+-Continued to work on the decrement button and finally had a breakthrough big thanks to Jeff, elliot and jaiden.
+-After the decrement token works me and jaiden continued to worked on the checkout. Got the order to populate during about after lunch time.
+- Me Jaiden Jordan and Cindy got the checkout button working! Will populate order endpoint when checkout button is clicked!
