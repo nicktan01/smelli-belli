@@ -253,6 +253,13 @@ deploy-customer-poller-job-heroku:
 heroku-release:
   stage: deploy
   image: node:10.17-alpine
+  needs:
+    - deploy-accounts-api-job-heroku
+    - deploy-customer-api-job-heroku
+    - deploy-employee-api-job-heroku
+    - deploy-inventory-api-job-heroku
+    - deploy-employee-poller-job-heroku
+    - deploy-customer-poller-job-heroku
   rules:
     - if: ($CI_COMMIT_BRANCH == "deploy" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH)
   before_script:
