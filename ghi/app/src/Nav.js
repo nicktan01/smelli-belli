@@ -27,9 +27,12 @@ function Nav() {
   }, [token]);
 
   const { data: cart } = useSWR(token ? "/api/cart/" : null, async () => {
-    const request = await fetch("http://localhost:8090/api/cart/", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const request = await fetch(
+      `${process.env.REACT_APP_CUSTOMER_HOST}/api/cart`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
     const json = await request.json();
     return json;
   });
@@ -46,7 +49,12 @@ function Nav() {
     >
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
-          <img src={process.env.PUBLIC_URL + "/images/sblogo2.png"} alt="" width="110" height="25" />
+          <img
+            src={process.env.PUBLIC_URL + "/images/sblogo2.png"}
+            alt=""
+            width="110"
+            height="25"
+          />
         </NavLink>
         <button
           className="navbar-toggler"
