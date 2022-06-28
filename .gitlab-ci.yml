@@ -160,8 +160,8 @@ deploy-accounts-api-job-heroku:
     - docker:20.10.16-dind
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
-    - docker pull ${CI_REGISTRY_IMAGE}/accounts_api:latest
     - docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
+    - docker pull ${CI_REGISTRY_IMAGE}/accounts_api:latest
     - docker tag ${CI_REGISTRY_IMAGE}/accounts_api:latest registry.heroku.com/$HEROKU_STAGING_ACCOUNTS_APP/web:latest
     - docker push registry.heroku.com/$HEROKU_STAGING_ACCOUNTS_APP/web:latest
 
@@ -176,6 +176,8 @@ deploy-customer-api-job-heroku:
   services:
     - docker:20.10.16-dind
   script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
     - docker pull ${CI_REGISTRY_IMAGE}/customer_api:latest
     - docker tag ${CI_REGISTRY_IMAGE}/customer_api:latest registry.heroku.com/$HEROKU_STAGING_CUSTOMER_APP/web:latest
     - docker push registry.heroku.com/$HEROKU_STAGING_CUSTOMER_APP/web:latest
@@ -191,6 +193,8 @@ deploy-employee-api-job-heroku:
   services:
     - docker:20.10.16-dind
   script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
     - docker pull ${CI_REGISTRY_IMAGE}/employee_api:latest
     - docker tag ${CI_REGISTRY_IMAGE}/employee_api:latest registry.heroku.com/$HEROKU_STAGING_EMPLOYEE_APP/web:latest
     - docker push registry.heroku.com/$HEROKU_STAGING_EMPLOYEE_APP/web:latest
@@ -206,6 +210,8 @@ deploy-inventory-api-job-heroku:
   services:
     - docker:20.10.16-dind
   script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
     - docker pull ${CI_REGISTRY_IMAGE}/inventory_api:latest
     - docker tag ${CI_REGISTRY_IMAGE}/inventory_api:latest registry.heroku.com/$HEROKU_STAGING_INVENTORY_APP/web:latest
     - docker push registry.heroku.com/$HEROKU_STAGING_INVENTORY_APP/web:latest
@@ -221,6 +227,8 @@ deploy-employee-poller-job-heroku:
   services:
     - docker:20.10.16-dind
   script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
     - docker pull ${CI_REGISTRY_IMAGE}/employee_poller:latest
     - docker tag ${CI_REGISTRY_IMAGE}/employee_poller:latest registry.heroku.com/$HEROKU_STAGING_EMPLOYEE_POLLER/worker:latest
     - docker push registry.heroku.com/$HEROKU_STAGING_EMPLOYEE_POLLER/worker:latest
@@ -236,6 +244,8 @@ deploy-customer-poller-job-heroku:
   services:
     - docker:20.10.16-dind
   script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
     - docker pull ${CI_REGISTRY_IMAGE}/customer_poller:latest
     - docker tag ${CI_REGISTRY_IMAGE}/customer_poller:latest registry.heroku.com/$HEROKU_STAGING_CUSTOMER_POLLER/worker:latest
     - docker push registry.heroku.com/$HEROKU_STAGING_CUSTOMER_POLLER/worker:latest
