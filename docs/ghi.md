@@ -23,8 +23,6 @@ This page will be where the visitor can take a scent finder quiz that is specifi
 
 - Home products list page
 - Body products list page
-- Can switch currency type for preferred currency (currency converter integration)
-- Reviews per product detail page (list)
 
 Each product linked to detail page and product can be added to cart from main or detail pages.
 

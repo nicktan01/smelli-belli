@@ -6,6 +6,8 @@ There is still feature work being done.
 This morning I worked on making sure I didn't miss any linted variables or break anything with the ones I removed. Did some more styling on the product card/wishlist page. Then after lunch I drew a couple icons for Elliott to use for the quiz button styling on the home page and tried to help figure out a problem with posting a submitted order - I think I was partially helpful.
 
 I really want to write a test to do with authentication but I am struggling to understand how to mock a user for a test. Hoping to figure this out to write a useful test.
+
+Came back together with the group and went through the python folders to format with black. Then I wrote a front end test to test the loading and displaying of the product component.  
 ## June 23, 2022
  I have been focusing on styling the product page, product detail page, and wishlist page while the last of the features are fixed up and implemented.
 
