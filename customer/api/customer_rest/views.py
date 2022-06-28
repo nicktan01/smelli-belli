@@ -67,7 +67,9 @@ def api_show_body_quiz(request, pk):
             count, _ = BodyQuiz.objects.filter(id=pk).delete()
             return JsonResponse({"deleted": count > 0})
         except BodyQuiz.DoesNotExist:
-            return JsonResponse({"message": "That body scent profile does not exist!"})
+            return JsonResponse(
+                {"message": "That body scent profile does not exist!"}
+            )
 
 
 @auth.jwt_login_required
@@ -126,7 +128,9 @@ def api_show_home_quiz(request, pk):
             count, _ = HomeQuiz.objects.filter(id=pk).delete()
             return JsonResponse({"deleted": count > 0})
         except HomeQuiz.DoesNotExist:
-            return JsonResponse({"message": "That home scent profile does not exist!"})
+            return JsonResponse(
+                {"message": "That home scent profile does not exist!"}
+            )
 
 
 @auth.jwt_login_required
@@ -142,7 +146,9 @@ def api_wishlist(request):
 
         try:
             if not WishList.objects.filter(product=product, user=user_id):
-                wishlist = WishList.objects.create(product=product, user=user_id)
+                wishlist = WishList.objects.create(
+                    product=product, user=user_id
+                )
             return JsonResponse({"message": "Done"})
         except Exception as e:
             response = JsonResponse({"message": "Could not create wishlist"})
@@ -215,7 +221,9 @@ def api_cart(request):
         content = json.loads(request.body)
         carted_product = ProductVO.objects.get(sku=content["sku"])
         # cart = list(Cart.objects.get(user=user_id, product=product))
-        cart_contents = Cart.objects.filter(user=user_id, product=carted_product)
+        cart_contents = Cart.objects.filter(
+            user=user_id, product=carted_product
+        )
         cartItem = list(map((lambda item: item.product), cart_contents))
         groupedProducts = itertools.groupby(cartItem, key=lambda item: item.id)
         deleteflag = False

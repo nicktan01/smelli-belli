@@ -17,6 +17,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="order",
             name="products",
-            field=models.ManyToManyField(null=True, to="employee_rest.lineitem"),
+            field=models.ManyToManyField(
+                null=True, to="employee_rest.lineitem"
+            ),
         ),
     ]

@@ -1,11 +1,5 @@
-from django.http import JsonResponse
 from django.test import TestCase, Client
 from django.urls import reverse
-import json
-
-from ..encoders import BodyQuizEncoder
-
-from ..models import BodyQuiz
 
 
 class TestViews(TestCase):
