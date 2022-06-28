@@ -153,6 +153,13 @@ deploy-back-end-job-heroku:
     - if: ($CI_COMMIT_BRANCH == "deploy" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH)
   stage: deploy
   image: docker:20.10.16
+  needs:
+    - build-accounts-api-back-end-job
+    - build-customer-api-back-end-job
+    - build-customer-poller-back-end-job
+    - build-employee-api-back-end-job
+    - build-employee-poller-back-end-job
+    - build-inventory-api-back-end-job
   services:
     - docker:20.10.16-dind
   script:
