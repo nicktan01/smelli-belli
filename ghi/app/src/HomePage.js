@@ -116,7 +116,7 @@ class HomePage extends React.Component {
 
             <div className="px-4 py-1 my-1 text-center">
               <div style={{ position: "relative" }}>
-                <img src="/images/home-quiz.jpg" width={500} alt="quiz"></img>
+                <img src={process.env.PUBLIC_URL + "/images/home-quiz.jpg"} width={500} alt="quiz"></img>
                 <div
                   style={{
                     position: "absolute",
