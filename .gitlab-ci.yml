@@ -115,7 +115,7 @@ build-employee-api-back-end-job:
     - docker push ${CI_REGISTRY_IMAGE}/employee_api:$CI_JOB_ID
     - docker push ${CI_REGISTRY_IMAGE}/employee_api:latest
 
-build-employee-poller-end-job:
+build-employee-poller-back-end-job:
   rules:
     # Only run if the commit is tagged with git tag
     - if: ($CI_COMMIT_BRANCH == "deploy" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH)
