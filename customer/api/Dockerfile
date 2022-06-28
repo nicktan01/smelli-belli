@@ -12,4 +12,4 @@ COPY customer_rest customer_rest
 COPY common common
 
 RUN pip install -r requirements.txt
-CMD python manage.py migrate && gunicorn django_project.wsgi --bind 0.0.0.0:$PORT --log-file -
+CMD python manage.py migrate && gunicorn customer_project.wsgi --bind 0.0.0.0:$PORT --log-file -
