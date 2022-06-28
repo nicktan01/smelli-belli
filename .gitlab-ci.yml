@@ -182,12 +182,12 @@ deploy-back-end-job-heroku:
     - docker push registry.heroku.com/$HEROKU_STAGING_INVENTORY_APP/web:latest
 
     - docker pull ${CI_REGISTRY_IMAGE}/employee_poller:latest
-    - docker tag ${CI_REGISTRY_IMAGE}/employee_poller:latest registry.heroku.com/$HEROKU_STAGING_EMPLOYEE_POLLER/web:latest
-    - docker push registry.heroku.com/$HEROKU_STAGING_EMPLOYEE_POLLER/web:latest
+    - docker tag ${CI_REGISTRY_IMAGE}/employee_poller:latest registry.heroku.com/$HEROKU_STAGING_EMPLOYEE_POLLER/worker:latest
+    - docker push registry.heroku.com/$HEROKU_STAGING_EMPLOYEE_POLLER/worker:latest
 
     - docker pull ${CI_REGISTRY_IMAGE}/customer_poller:latest
-    - docker tag ${CI_REGISTRY_IMAGE}/customer_poller:latest registry.heroku.com/$HEROKU_STAGING_CUSTOMER_POLLER/web:latest
-    - docker push registry.heroku.com/$HEROKU_STAGING_CUSTOMER_POLLER/web:latest
+    - docker tag ${CI_REGISTRY_IMAGE}/customer_poller:latest registry.heroku.com/$HEROKU_STAGING_CUSTOMER_POLLER/worker:latest
+    - docker push registry.heroku.com/$HEROKU_STAGING_CUSTOMER_POLLER/worker:latest
 
 heroku-release:
   stage: deploy
@@ -204,8 +204,8 @@ heroku-release:
     - heroku container:release web --app $HEROKU_STAGING_CUSTOMER_APP
     - heroku container:release web --app $HEROKU_STAGING_EMPLOYEE_APP
     - heroku container:release web --app $HEROKU_STAGING_INVENTORY_APP
-    - heroku container:release web --app $HEROKU_STAGING_CUSTOMER_POLLER
-    - heroku container:release web --app $HEROKU_STAGING_EMPLOYEE_POLLER
+    - heroku container:release worker --app $HEROKU_STAGING_CUSTOMER_POLLER
+    - heroku container:release worker --app $HEROKU_STAGING_EMPLOYEE_POLLER
 
 # This is an easy way to deploy a React app using GitLab
 # Pages. Then, you can access your application from
