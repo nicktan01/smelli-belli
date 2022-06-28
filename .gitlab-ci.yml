@@ -47,6 +47,7 @@ build-front-end-job:
     - cd ghi/app
     - npm install
     - npm run build  # Build the React application
+    - cp build/index.html build/404.html
   artifacts:
     paths:
       - ghi/app/build/  # Save all of the files in the build path
@@ -147,7 +148,7 @@ build-inventory-api-back-end-job:
     - docker push ${CI_REGISTRY_IMAGE}/inventory_api:$CI_JOB_ID
     - docker push ${CI_REGISTRY_IMAGE}/inventory_api:latest
 
-deploy-back-end-job-heroku:
+deploy-accounts-api-job-heroku:
   rules:
     # Only run if the commit is tagged with git tag
     - if: ($CI_COMMIT_BRANCH == "deploy" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH)
@@ -155,11 +156,6 @@ deploy-back-end-job-heroku:
   image: docker:20.10.16
   needs:
     - build-accounts-api-back-end-job
-    - build-customer-api-back-end-job
-    - build-customer-poller-back-end-job
-    - build-employee-api-back-end-job
-    - build-employee-poller-back-end-job
-    - build-inventory-api-back-end-job
   services:
     - docker:20.10.16-dind
   script:
@@ -169,22 +165,77 @@ deploy-back-end-job-heroku:
     - docker tag ${CI_REGISTRY_IMAGE}/accounts_api:latest registry.heroku.com/$HEROKU_STAGING_ACCOUNTS_APP/web:latest
     - docker push registry.heroku.com/$HEROKU_STAGING_ACCOUNTS_APP/web:latest
 
+deploy-customer-api-job-heroku:
+  rules:
+    # Only run if the commit is tagged with git tag
+    - if: ($CI_COMMIT_BRANCH == "deploy" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH)
+  stage: deploy
+  image: docker:20.10.16
+  needs:
+    - build-customer-api-back-end-job
+  services:
+    - docker:20.10.16-dind
+  script:
     - docker pull ${CI_REGISTRY_IMAGE}/customer_api:latest
     - docker tag ${CI_REGISTRY_IMAGE}/customer_api:latest registry.heroku.com/$HEROKU_STAGING_CUSTOMER_APP/web:latest
     - docker push registry.heroku.com/$HEROKU_STAGING_CUSTOMER_APP/web:latest
 
+deploy-employee-api-job-heroku:
+  rules:
+    # Only run if the commit is tagged with git tag
+    - if: ($CI_COMMIT_BRANCH == "deploy" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH)
+  stage: deploy
+  image: docker:20.10.16
+  needs:
+    - build-employee-api-back-end-job
+  services:
+    - docker:20.10.16-dind
+  script:
     - docker pull ${CI_REGISTRY_IMAGE}/employee_api:latest
     - docker tag ${CI_REGISTRY_IMAGE}/employee_api:latest registry.heroku.com/$HEROKU_STAGING_EMPLOYEE_APP/web:latest
     - docker push registry.heroku.com/$HEROKU_STAGING_EMPLOYEE_APP/web:latest
 
+deploy-inventory-api-job-heroku:
+  rules:
+    # Only run if the commit is tagged with git tag
+    - if: ($CI_COMMIT_BRANCH == "deploy" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH)
+  stage: deploy
+  image: docker:20.10.16
+  needs:
+    - build-inventory-api-back-end-job
+  services:
+    - docker:20.10.16-dind
+  script:
     - docker pull ${CI_REGISTRY_IMAGE}/inventory_api:latest
     - docker tag ${CI_REGISTRY_IMAGE}/inventory_api:latest registry.heroku.com/$HEROKU_STAGING_INVENTORY_APP/web:latest
     - docker push registry.heroku.com/$HEROKU_STAGING_INVENTORY_APP/web:latest
 
+deploy-employee-poller-job-heroku:
+  rules:
+    # Only run if the commit is tagged with git tag
+    - if: ($CI_COMMIT_BRANCH == "deploy" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH)
+  stage: deploy
+  image: docker:20.10.16
+  needs:
+    - build-employee-poller-back-end-job
+  services:
+    - docker:20.10.16-dind
+  script:
     - docker pull ${CI_REGISTRY_IMAGE}/employee_poller:latest
     - docker tag ${CI_REGISTRY_IMAGE}/employee_poller:latest registry.heroku.com/$HEROKU_STAGING_EMPLOYEE_POLLER/worker:latest
     - docker push registry.heroku.com/$HEROKU_STAGING_EMPLOYEE_POLLER/worker:latest
 
+deploy-customer-poller-job-heroku:
+  rules:
+    # Only run if the commit is tagged with git tag
+    - if: ($CI_COMMIT_BRANCH == "deploy" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH)
+  stage: deploy
+  image: docker:20.10.16
+  needs:
+    - build-customer-poller-back-end-job
+  services:
+    - docker:20.10.16-dind
+  script:
     - docker pull ${CI_REGISTRY_IMAGE}/customer_poller:latest
     - docker tag ${CI_REGISTRY_IMAGE}/customer_poller:latest registry.heroku.com/$HEROKU_STAGING_CUSTOMER_POLLER/worker:latest
     - docker push registry.heroku.com/$HEROKU_STAGING_CUSTOMER_POLLER/worker:latest
@@ -194,8 +245,6 @@ heroku-release:
   image: node:10.17-alpine
   rules:
     - if: ($CI_COMMIT_BRANCH == "deploy" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH)
-  needs:
-    - deploy-back-end-job-heroku
   before_script:
     - apk add curl bash
     - curl https://cli-assets.heroku.com/install.sh | sh
