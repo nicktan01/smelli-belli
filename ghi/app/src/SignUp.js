@@ -1,5 +1,6 @@
 import { useToken } from "./authApi";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
   // eslint-disable-next-line no-unused-vars
@@ -13,6 +14,7 @@ function SignUp() {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const canSignup = username && password && email && firstName && lastName;
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getCurrentUser() {
@@ -34,7 +36,7 @@ function SignUp() {
   return (
     <div>
       {token ? (
-        window.location.replace("/")
+        navigate("/")
       ) : (
         <div className="row">
           <div className="offset-4 col-4 mt-4 mb-4">

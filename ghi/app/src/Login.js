@@ -32,7 +32,7 @@ function Login() {
   return (
     <div>
       {token ? (
-        window.location.replace("/")
+        navigate("/")
       ) : (
         <div className="row">
           <div className="offset-4 col-4 mt-4 mb-4">
