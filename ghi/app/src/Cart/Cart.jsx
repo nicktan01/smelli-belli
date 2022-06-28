@@ -1,12 +1,10 @@
 import React from "react";
 import useSWR from "swr";
 import { useSWRConfig } from "swr";
-import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../authApi";
 import ProductColumn from "../components/ProductColumn";
 
-function Cart(props) {
-  const navigate = useNavigate();
+function Cart() {
   const { token } = useAuthContext();
   const { data: cart } = useSWR(token ? "/api/cart/" : null, async () => {
     const request = await fetch(
@@ -18,7 +16,7 @@ function Cart(props) {
     const json = await request.json();
     return json;
   });
-  
+
   const { mutate } = useSWRConfig();
 
   async function checkout(items) {
@@ -29,6 +27,7 @@ function Cart(props) {
     let total_amount = 0;
     let order_number = 1;
     for (let item of items.cart) {
+      // eslint-disable-next-line
       for (let i of items.cart) {
         product = {};
         product["sku"] = item.sku;
