@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import os
+from datetime import timedelta
 from pathlib import Path
 import dj_database_url
 
@@ -26,9 +28,9 @@ SECRET_KEY = (
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", False) == "True"
 
-ALLOWED_HOSTS = ["localhost"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -56,9 +58,12 @@ MIDDLEWARE = [
 ]
 
 DJWTO_CSRF = False
+DJWTO_ACCESS_TOKEN_LIFETIME = timedelta(days=1)
+DJWTO_SAME_SITE = "LAX" if DEBUG else "NONE"
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    os.environ.get("CORS_HOST", "http://localhost:3001"),
 ]
 CORS_ALLOW_CREDENTIALS = True
 
