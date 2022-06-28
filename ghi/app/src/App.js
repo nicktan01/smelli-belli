@@ -19,9 +19,12 @@ import NewProductForm from "./employee_pages/NewProductForm";
 import WishlistPage from "./account_pages/WishlistPage";
 
 function App() {
+  const domain = /https:\/\/[^/]+/;
+  const basename = process.env.PUBLIC_URL.replace(domain, '');
+
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <AuthProvider>
           <Nav />
           <Routes>

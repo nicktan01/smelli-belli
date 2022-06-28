@@ -3,12 +3,12 @@ function BodyScentProfileColumn(props) {
     <div className="col">
       {props.list.map((bodyScentProfile) => {
         return (
-          <div 
-            key={bodyScentProfile.id} 
+          <div
+            key={bodyScentProfile.id}
             className="card mb-3 shadow"
           >
-              <img 
-                src="https://tracerproducts.com/wp-content/uploads/2019/12/Product-Image-Coming-Soon.jpg"
+              <img
+                src={process.env.PUBLIC_URL + "https://tracerproducts.com/wp-content/uploads/2019/12/Product-Image-Coming-Soon.jpg"}
                 className="card-img-top"
                 alt="placeholder for scent profile"
               />
@@ -18,7 +18,7 @@ function BodyScentProfileColumn(props) {
                   {bodyScentProfile.created}
                 </h6>
               </div>
-          </div>          
+          </div>
         )
       })}
     </div>

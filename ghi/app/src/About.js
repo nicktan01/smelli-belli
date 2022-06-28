@@ -179,7 +179,7 @@ function About() {
     <>
       <div className="d-flex justify-content-center position-relative">
         <img
-          src="/images/bannerimg.jpeg"
+          src={process.env.PUBLIC_URL + "/images/bannerimg.jpeg"}
           height={300}
           width={null}
           style={{ objectFit: "cover", width: "100%" }}
@@ -197,7 +197,7 @@ function About() {
           }}
         />
         <img
-          src="/images/sbabout.png"
+          src={process.env.PUBLIC_URL + "/images/sbabout.png"}
           height={200}
           width={null}
           style={{

@@ -108,7 +108,7 @@ function Footer() {
       >
         <div className="justify-content-center">
           <img
-            src="/images/fulltranssb.png"
+            src={process.env.PUBLIC_URL + "/images/fulltranssb.png"}
             className="bi me-2"
             width="115"
             height="70"

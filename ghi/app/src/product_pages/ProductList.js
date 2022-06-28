@@ -110,7 +110,7 @@ function ProductList({ category }) {
     <>
       <div className="d-flex justify-content-center position-relative">
         <img
-          src="/images/bodyproducts.jpg"
+          src={process.env.PUBLIC_URL + "/images/bodyproducts.jpg"}
           height={150}
           width={null}
           style={{ objectFit: "cover", width: "100%" }}

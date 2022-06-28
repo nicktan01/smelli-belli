@@ -158,7 +158,7 @@ function InventoryList(props) {
     <>
       <div className="d-flex justify-content-center position-relative">
         <img
-          src="/images/invbanner.jpeg"
+          src={process.env.PUBLIC_URL + "/images/invbanner.jpeg"}
           height={300}
           width={null}
           style={{ objectFit: "cover", width: "100%", opacity: "0.6" }}
@@ -176,7 +176,7 @@ function InventoryList(props) {
           }}
         />
         <img
-          src="/images/invlogo.png"
+          src={process.env.PUBLIC_URL + "/images/invlogo.png"}
           height={200}
           width={null}
           style={{

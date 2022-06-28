@@ -46,7 +46,7 @@ function Nav() {
     >
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
-          <img src="/images/sblogo2.png" alt="" width="110" height="25" />
+          <img src={process.env.PUBLIC_URL + "/images/sblogo2.png"} alt="" width="110" height="25" />
         </NavLink>
         <button
           className="navbar-toggler"

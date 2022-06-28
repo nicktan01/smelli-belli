@@ -36,7 +36,7 @@ class HomePage extends React.Component {
         <div className="Mainpage d-flex justify-content-center position-relative">
           <img
             className="hero-img-blur"
-            src="/images/hero-img.jpg"
+            src={process.env.PUBLIC_URL + "/images/hero-img.jpg"}
             height={300}
             width={null}
             style={{ objectFit: "cover", width: "100%" }}
@@ -54,7 +54,7 @@ class HomePage extends React.Component {
             }}
           />
           <img
-            src="/images/sbmain.png"
+            src={process.env.PUBLIC_URL + "/images/sbmain.png"}
             height={200}
             width={null}
             style={{
@@ -78,7 +78,7 @@ class HomePage extends React.Component {
             }}
           >
             <div style={{ position: "relative" }}>
-              <img src="/images/body-quiz.jpg" width={500} alt="quiz"></img>
+              <img src={process.env.PUBLIC_URL + "/images/body-quiz.jpg"} width={500} alt="quiz"></img>
               <div
                 style={{
                   position: "absolute",
