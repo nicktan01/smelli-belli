@@ -8,7 +8,7 @@ function HomeScentProfileColumn(props) {
             className="card mb-3 shadow"
           >
               <img 
-                src="https://tracerproducts.com/wp-content/uploads/2019/12/Product-Image-Coming-Soon.jpg"
+                src={process.env.PUBLIC_URL + "https://tracerproducts.com/wp-content/uploads/2019/12/Product-Image-Coming-Soon.jpg"}
                 className="card-img-top"
                 alt="placeholder for scent profile"
               />
