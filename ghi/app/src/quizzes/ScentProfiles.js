@@ -89,8 +89,8 @@ function ScentProfilesList() {
         <div className="px-5 py-5 my-5 text-center">
           <h2>Home Scent Profiles</h2>
         </div>
-        <div className="px-5 py-5 my-5 text-center">
-          <div className="row">
+        <div className="container">
+          <div className="col">
             {homeScentProfileColumns.map((homeScentProfileList, index) => {
               return (
                 <HomeScentProfileColumn key={index} list={homeScentProfileList} />
@@ -106,8 +106,8 @@ function ScentProfilesList() {
         <div className="px-5 py-5 my-5 text-center">
           <h2>Body Scent Profiles</h2>
         </div>
-        <div className="px-5 py-5 my-5 text-center">
-          <div className="row">
+        <div className="container">
+          <div className="col">
             {bodyScentProfileColumns.map((bodyScentProfileList, index) => {
               return (
                 <BodyScentProfileColumn key={index} list={bodyScentProfileList} />
