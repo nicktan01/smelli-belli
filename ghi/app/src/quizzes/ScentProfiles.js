@@ -4,8 +4,8 @@ import BodyScentProfileColumn from "../components/BodyScentProfileColumn";
 import HomeScentProfileColumn from "../components/HomeScentProfileColumn";
 
 function ScentProfilesList() {
-  const [homeScentProfileColumns, setHomeScentProfileColumns] = useState([[], [], [], []]);
-  const [bodyScentProfileColumns, setBodyScentProfileColumns] = useState([[], [], [], []]);
+  const [homeScentProfileColumns, setHomeScentProfileColumns] = useState([[], []]);
+  const [bodyScentProfileColumns, setBodyScentProfileColumns] = useState([[], []]);
   
   useEffect(() => {
     
@@ -29,13 +29,13 @@ function ScentProfilesList() {
         }
       }
 
-      const homeProfileColumns = [[], [], [], []];
+      const homeProfileColumns = [[], []];
 
       let i = 0;
       for (const homeScentProfile of homeScentProfiles) {
         homeProfileColumns[i].push(homeScentProfile);
         i += 1;
-        if (i > 3) {
+        if (i > 1) {
           i = 0;
         }
       }
@@ -63,13 +63,13 @@ function ScentProfilesList() {
         }
       }
 
-      const bodyProfileColumns = [[], [], [], []];
+      const bodyProfileColumns = [[], []];
 
       let i = 0;
       for (const bodyScentProfile of bodyScentProfiles) {
         bodyProfileColumns[i].push(bodyScentProfile);
         i += 1;
-        if (i > 3) {
+        if (i > 1) {
           i = 0;
         }
       }
@@ -83,14 +83,15 @@ function ScentProfilesList() {
   return (
     <>
       <div 
-        className="container" 
+        className="container-sm"
+        style={{ backgroundColor: "rgba(253, 197, 245, 0.3)" }} 
         id="home_scent_profiles"
       >
         <div className="px-5 py-5 my-5 text-center">
           <h2>Home Scent Profiles</h2>
         </div>
         <div className="container">
-          <div className="col">
+          <div className="row">
             {homeScentProfileColumns.map((homeScentProfileList, index) => {
               return (
                 <HomeScentProfileColumn key={index} list={homeScentProfileList} />
@@ -100,14 +101,15 @@ function ScentProfilesList() {
         </div>
       </div>
       <div
-        className="container"
+        className="container-sm"
+        style={{ backgroundColor: "rgba(128, 147, 241, 0.3)" }}
         id="body_scent_profiles"
       >
         <div className="px-5 py-5 my-5 text-center">
           <h2>Body Scent Profiles</h2>
         </div>
         <div className="container">
-          <div className="col">
+          <div className="row">
             {bodyScentProfileColumns.map((bodyScentProfileList, index) => {
               return (
                 <BodyScentProfileColumn key={index} list={bodyScentProfileList} />
